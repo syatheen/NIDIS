@@ -48,3 +48,9 @@ Just for reference, the Python script is called as follows:
 ```bash
 python 
 ```
+
+## Simple Development Script
+
+```bash
+python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_V2.py N N 20060103 20191231 USDM CONUS 113 1 37 1 W
+```
