@@ -1,17 +1,18 @@
-from sklearn.utils.validation import _deprecate_positional_args, check_X_y
-from sklearn.utils.multiclass import check_classification_targets
 import numpy as np
 from scipy.sparse import issparse
-from sklearn.utils import check_random_state
-# TEMPORARY
-# from sklearn.utils.fixes import _astype_copy_false
-from sklearn.preprocessing import scale
-from sklearn.neighbors import NearestNeighbors, KDTree
 from scipy.special import digamma
+from sklearn.preprocessing import scale
+from sklearn.utils import check_random_state
+from sklearn.neighbors import NearestNeighbors, KDTree
+from sklearn.utils.multiclass import check_classification_targets
+from sklearn.utils.validation import _deprecate_positional_args, check_X_y
+
+# from sklearn.utils.fixes import _astype_copy_false
 
 
 def _compute_mi_cd_1ValueForMultiFeatures(c, d, n_neighbors):
-    """Compute mutual information between continuous (multi-dimensional) and discrete variables.
+    """Compute mutual information between continuous
+    (multi-dimensional) and discrete variables.
     Parameters
     ----------
     c : ndarray, shape (n_samples, n_features)
@@ -40,7 +41,7 @@ def _compute_mi_cd_1ValueForMultiFeatures(c, d, n_neighbors):
     """
 
     n_samples = c.shape[0]
-#    c = c.reshape((-1, 1))
+    # c = c.reshape((-1, 1))
 
     radius = np.empty(n_samples)
     label_counts = np.empty(n_samples)
@@ -56,9 +57,9 @@ def _compute_mi_cd_1ValueForMultiFeatures(c, d, n_neighbors):
             r = nn.kneighbors()[0]
             radius[mask] = np.nextafter(r[:, -1], 0)
             k_all[mask] = k
-        #end of if count > 1
+        # end of if count > 1
         label_counts[mask] = count
-    #end of for label in np.unique(d)
+    # end of for label in np.unique(d)
 
     # Ignore points with unique labels.
     mask = label_counts > 1
@@ -76,35 +77,35 @@ def _compute_mi_cd_1ValueForMultiFeatures(c, d, n_neighbors):
           np.mean(digamma(label_counts)) -
           np.mean(digamma(m_all + 1)))
 
-##    print("mi before max with 0 is ", mi)
     return max(0, mi)
 
-#end of def _compute_mi_cd_1ValueForMultiFeatures(c, d, n_neighbors)
 
-
-def _compute_mi_1ValueForMultiFeatures(X, y, X_discrete, y_discrete, n_neighbors=3):
+def _compute_mi_1ValueForMultiFeatures(
+        X, y, X_discrete, y_discrete, n_neighbors=3):
     """Compute mutual information between two variables.
     This is a simple wrapper which selects a proper function to call based on
     whether `X` and `y` are discrete or not.
     """
     if X_discrete and y_discrete:
-#        return mutual_info_score(X, y)
-        raise ValueError("_compute_mi_1ValueForMultiFeatures: Add code for both X and y discrete!")
+        raise ValueError(
+            "_compute_mi_1ValueForMultiFeatures: Add code " +
+            "for both X and y discrete!")
     elif X_discrete and not y_discrete:
-#        return _compute_mi_cd(y, X, n_neighbors)
-        raise ValueError("_compute_mi_1ValueForMultiFeatures: Add code for X discrete and y continuous!")
+        raise ValueError(
+            "_compute_mi_1ValueForMultiFeatures: Add code " +
+            "for X discrete and y continuous!")
     elif not X_discrete and y_discrete:
         return _compute_mi_cd_1ValueForMultiFeatures(X, y, n_neighbors)
     else:
-#        return _compute_mi_cc(X, y, n_neighbors)
-        raise ValueError("_compute_mi_1ValueForMultiFeatures: Add code for both X and y continuous!")
-    #end of if X_discrete and y_discrete
-#end of def _compute_mi_1ValueForMultiFeatures(X, y, X_discrete, y_discrete, n_neighbors=3)
+        raise ValueError(
+            "_compute_mi_1ValueForMultiFeatures: Add code " +
+            "for both X and y continuous!")
 
 
-def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto', 
-                                        discrete_target=False, n_neighbors=3, 
-                                        copy=True, random_state=None):
+def _estimate_mi_1ValueForMultiFeatures(
+        X, y, discrete_features='auto',
+        discrete_target=False, n_neighbors=3,
+        copy=True, random_state=None):
     """Estimate mutual information between all-features-together and the target.
 
     Parameters
@@ -115,7 +116,7 @@ def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto',
         Target vector.
     discrete_features : {'auto', bool}, default='auto'
         If bool, then determines whether to consider all features discrete
-        or continuous. If 'auto', it is assigned to False for dense `X` 
+        or continuous. If 'auto', it is assigned to False for dense `X`
         and to True for sparse `X`.
     discrete_target : bool, default=False
         Whether to consider `y` as a discrete variable.
@@ -135,7 +136,8 @@ def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto',
     Returns
     -------
     mi : ndarray, shape (1,)
-        Estimated mutual information between all-features-together and the target.
+        Estimated mutual information between all-features-together and
+        the target.
         A negative value will be replaced by 0.
 
     References
@@ -158,8 +160,9 @@ def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto',
         discrete_mask = np.empty(n_features, dtype=bool)
         discrete_mask.fill(discrete_features)
     else:
-        raise ValueError("Array option for discrete_features taken out; Features need to be all-discrete or all-continuous")
-    #end of if isinstance(discrete_features, (str, bool))
+        raise ValueError(
+            "Array option for discrete_features taken out; " +
+            "Features need to be all-discrete or all-continuous")
 
     continuous_mask = ~discrete_mask
     if np.any(continuous_mask) and issparse(X):
@@ -175,29 +178,27 @@ def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto',
                                           with_mean=False, copy=False)
 
         # Add small noise to continuous features as advised in Kraskov et. al.
-        # TEMPORARY
         # X = X.astype(float, **_astype_copy_false(X))
         means = np.maximum(1, np.mean(np.abs(X[:, continuous_mask]), axis=0))
         X[:, continuous_mask] += 1e-10 * means * rng.randn(
                 n_samples, np.sum(continuous_mask))
-    #end of if np.any(continuous_mask)
 
     if not discrete_target:
         y = scale(y, with_mean=False)
         y += 1e-10 * np.maximum(1, np.mean(np.abs(y))) * rng.randn(n_samples)
 
-#    mi = [_compute_mi_1ValueForMultiFeatures(X, y, discrete_mask, discrete_target, n_neighbors)]
-    mi = [_compute_mi_1ValueForMultiFeatures(X, y, discrete_features, discrete_target, n_neighbors)]
+    mi = [_compute_mi_1ValueForMultiFeatures(
+        X, y, discrete_features, discrete_target, n_neighbors)]
 
     return np.array(mi)
 
-#end of def _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features='auto',....)
- 
 
 @_deprecate_positional_args
-def MI_classif_1ValueForMultiFeatures(X, y, *, discrete_features='auto', n_neighbors=3,
-                                      copy=True, random_state=None):
-    """Estimate mutual information for all-features-together and a discrete target variable.
+def MI_classif_1ValueForMultiFeatures(
+        X, y, *, discrete_features='auto', n_neighbors=3,
+        copy=True, random_state=None):
+    """Estimate mutual information for all-features-together and a
+    discrete target variable.
 
     Mutual information (MI) [1]_ between two random variables is a non-negative
     value, which measures the dependency between the variables. It is equal
@@ -216,7 +217,7 @@ def MI_classif_1ValueForMultiFeatures(X, y, *, discrete_features='auto', n_neigh
         Target vector.
     discrete_features : {'auto', bool}, default='auto'
         If bool, then determines whether to consider all features discrete
-        or continuous.  If 'auto', it is assigned to False for dense `X` 
+        or continuous.  If 'auto', it is assigned to False for dense `X`
         and to True for sparse `X`.
     n_neighbors : int, default=3
         Number of neighbors to use for MI estimation for continuous variables,
@@ -234,7 +235,8 @@ def MI_classif_1ValueForMultiFeatures(X, y, *, discrete_features='auto', n_neigh
     Returns
     -------
     mi : ndarray, shape (1,)
-        Estimated mutual information between all-features-together and the target.
+        Estimated mutual information between
+        all-features-together and the target.
 
     Notes
     -----
@@ -253,17 +255,15 @@ def MI_classif_1ValueForMultiFeatures(X, y, *, discrete_features='auto', n_neigh
     .. [1] `Mutual Information
            <https://en.wikipedia.org/wiki/Mutual_information>`_
            on Wikipedia.
-    .. [2] (1.,2.) A. Kraskov, H. Stogbauer and P. Grassberger, "Estimating mutual
-           information". Phys. Rev. E 69, 2004.
-    .. [3] (1.,2.) B. C. Ross "Mutual Information between Discrete and Continuous
-           Data Sets". PLoS ONE 9(2), 2014.
+    .. [2] (1.,2.) A. Kraskov, H. Stogbauer and P. Grassberger,
+        "Estimating mutual information". Phys. Rev. E 69, 2004.
+    .. [3] (1.,2.) B. C. Ross "Mutual Information between Discrete
+        and Continuous Data Sets". PLoS ONE 9(2), 2014.
     .. [4] L. F. Kozachenko, N. N. Leonenko, "Sample Estimate of the Entropy
            of a Random Vector:, Probl. Peredachi Inf., 23:2 (1987), 9-16
     """
 
     check_classification_targets(y)
-    return _estimate_mi_1ValueForMultiFeatures(X, y, discrete_features, True, 
-                                               n_neighbors, copy, random_state)
-#end of def MI_classif_1ValueForMultiFeatures(X, y, *, discrete_features='auto', n_neighbors=3,...)
-
-
+    return _estimate_mi_1ValueForMultiFeatures(
+        X, y, discrete_features, True,
+        n_neighbors, copy, random_state)
