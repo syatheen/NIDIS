@@ -2,11 +2,12 @@ import os
 import sys
 import time
 from multiprocessing import Pool
-from CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
+from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
     import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
 
 
 def run_calc(parameters):
+
     # calling a different script
     # python /discover/nobackup/jacaraba/development/benchmark-amy/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_V2.py \
     # ${args[0]} ${args[1]} ${args[2]} ${args[3]} ${args[4]} ${args[5]} ${args[6]} ${args[7]} ${args[8]} ${args[9]} \
@@ -16,13 +17,13 @@ def run_calc(parameters):
     # ['N', 'N', '20060103', '20191231', 'USDM', 'CONUS', '113', '1', '38', '884', 'P']
 
     CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main(
-        IfMakeTargetBinary=parameters[0], # Choices are 'Y' for yes, and 'N' for no
-        IfIncludeD0AsDrought=parameters[1], # Choices are 'Y' for yes, and 'N' for no
-        BeginYYYYMMDD_Str=parameters[2], # Beginning YYYYMMDD, this is also a Tuesday
-        EndYYYYMMDD_Str=parameters[3], # Ending YYYYMMDD, this is also a Tuesday
-        TargetVariable=parameters[4], # Choices are 'USDM', 'CPC_S' (for short-term), 'CPC_LE' (for long-term Eastern), and 'CPC_LW' (for long-term Western)  
-        SpatialDomain=parameters[5], # Choices are 'CONUS'
-        WhichArgForNumInpLayers= 6, # Which argument has info about number of input layers, goes to 6 since its indexing
+        IfMakeTargetBinary=parameters[0],  # Choices are 'Y' for yes, and 'N' for no
+        IfIncludeD0AsDrought=parameters[1],  # Choices are 'Y' for yes, and 'N' for no
+        BeginYYYYMMDD_Str=parameters[2],  # Beginning YYYYMMDD, this is also a Tuesday
+        EndYYYYMMDD_Str=parameters[3],  # Ending YYYYMMDD, this is also a Tuesday
+        TargetVariable=parameters[4],  # Choices are 'USDM', 'CPC_S' (for short-term), 'CPC_LE' (for long-term Eastern), and 'CPC_LW' (for long-term Western)  
+        SpatialDomain=parameters[5],  # Choices are 'CONUS'
+        WhichArgForNumInpLayers= 6,  # Which argument has info about number of input layers, goes to 6 since its indexing
         NumInpLayers=int(round(float(parameters[6]))), #int(round(float(sys.argv[7]))), # 113 for all input channels, 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
         NumInpsForNDFracMI=parameters[7],
         WhichInpCombinForNDFracMI=int(round(float(parameters[8]))), #int(round(float(sys.argv[9]))), # 0-start
@@ -82,6 +83,7 @@ def main():
     print("End time: ", time.time() - start_time)
 
     return
+
 
 # -----------------------------------------------------------------------------
 # Invoke the main
