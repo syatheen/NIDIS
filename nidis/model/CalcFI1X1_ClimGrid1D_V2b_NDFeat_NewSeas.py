@@ -45,7 +45,8 @@ def main(
     NumInpsForNDFracMI,
     WhichInpCombinForNDFracMI, # 0-start
     Which_1D_Pixel, # Which 1D number of nClimGrid pixels # 0-start
-    WhichSeason # Choices are 'P' for sPring (Mar-May), 'U' for sUmmer (Jun-Aug), 'F' for Fall (Sep-Nov), 'W' for Winter (Dec-Feb), 'A' for all-seasons-together
+    WhichSeason, # Choices are 'P' for sPring (Mar-May), 'U' for sUmmer (Jun-Aug), 'F' for Fall (Sep-Nov), 'W' for Winter (Dec-Feb), 'A' for all-seasons-together
+    OutputDir
 ):
     print("Start time: ", time.time())
 
@@ -62,6 +63,7 @@ def main(
     WhichInpCombinForNDFracMI = int(round(float(sys.argv[9]))) # 0-start
     Which_1D_Pixel = int(round(float(sys.argv[10]))) # Which 1D number of nClimGrid pixels # 0-start
     WhichSeason = sys.argv[11] # Choices are 'P' for sPring (Mar-May), 'U' for sUmmer (Jun-Aug), 'F' for Fall (Sep-Nov), 'W' for Winter (Dec-Feb), 'A' for all-seasons-together
+    OutputDir = sys.argv[12]
     """
 
     Num_random_states = 101
@@ -92,7 +94,6 @@ def main(
 
     MinimumWindowSize = 1
     MaximumWindowSize = 35
-
     MinSamplesForFracI = 100
 
     # Inp channel info. 

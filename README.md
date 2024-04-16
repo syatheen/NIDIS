@@ -110,20 +110,45 @@ To make this workflow operational, we have added the following enhancements:
 - Multiprocessing implementation (single index, all seasons for a single node)
 - Adds postprocessing to the general pipeline
 
+We will use the following directory for intermediate processing:
+/discover/nobackup/projects/nca/jacaraba/NIDIS_Runs.
+
 The following are the steps needed to run this workflow operationally. The steps
 are outlined in order, and some of them are depedent of the other. These steps
 are outlined to run on Discover. Modifications might need to be done if we want to run
 this workflow in a different system.
 
-### 1. Creating Task Files
+### 1. Running Workflow Individually
+
+```bash
+PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --init-task 0 --end-task 5 --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step training
+```
+
+The default will run all pixels thorugh the same multiprocessing queue:
+
+```bash
+PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step training
+```
 
 ### 2. Running Through Slurm
 
+```bash
+```
+
 ### 3. Regression Testing
+
+```bash
+```
 
 ### 4. Postprocessing
 
+```bash
+```
+
 ### 5. Release
+
+```bash
+```
 
 ## References
 

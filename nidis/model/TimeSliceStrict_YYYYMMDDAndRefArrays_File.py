@@ -1,6 +1,8 @@
+
+from __future__ import division
+
 import sys
 import logging
-from __future__ import division
 
 
 def TimeSliceStrict_YYYYMMDDAndRefArrays(
