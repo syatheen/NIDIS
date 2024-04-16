@@ -60,11 +60,11 @@ def main():
 
     parser.add_argument('-i',
                         '--indicator',
-                        type=str,
+                        type=int,
                         required=True,
                         default=None,
                         dest='indicator',
-                        help='Indicator to process.')
+                        help='Indicator to process (goes from 1-113).')
 
     parser.add_argument('-se',
                         '--season',
@@ -129,6 +129,11 @@ def main():
     # gather arguments
     args = parser.parse_args()
 
+    # set indicator
+    # training script expects them in the 0-112 format, we
+    # will substract 1 just to keep it in line with spread sheet
+    indicator = args.indicator
+
     # set logging
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
@@ -145,10 +150,11 @@ def main():
     # set filename output
     log_filename = \
         f'{datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}' + \
-        f'Indicator_{args.indicator}.log'
-    os.makedirs(args.output_dir, exist_ok=True)
+        f'Indicator_{indicator}.log'
+    logs_output_dir = os.path.join(args.output_dir, 'Logs')
+    os.makedirs(logs_output_dir, exist_ok=True)
     fh = logging.FileHandler(
-        os.path.join(args.output_dir, log_filename))
+        os.path.join(logs_output_dir, log_filename))
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     logger.addHandler(fh)
@@ -158,8 +164,6 @@ def main():
         logger.handlers.pop(0)
 
     # generate output directory
-    indicator = int(args.indicator)
-
     output_dir = os.path.join(args.output_dir, f'indicator_{indicator}')
     os.makedirs(output_dir, exist_ok=True)
 
@@ -183,6 +187,10 @@ def main():
     #
     # We can generate this file on the fly
     # ----------------------------------------------
+
+    # if trainining
+    # if postprocessing
+    # if delete
 
     # read configuration files
     all_tasks = []
@@ -220,7 +228,7 @@ def main():
                 'CONUS',
                 '113',
                 '1',
-                args.indicator,  # '38', is this the actual indicator to change????
+                indicator - 1,  # '38', is this the actual indicator to change????
                 config_id,
                 season,
                 output_dir_indicator

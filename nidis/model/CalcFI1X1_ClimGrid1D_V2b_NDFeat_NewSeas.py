@@ -5,6 +5,7 @@
 
 from __future__ import division
 
+import os
 import sys
 import copy
 import time
@@ -12,6 +13,7 @@ import logging
 import numpy as np
 import geopandas as gpd
 
+from pathlib import Path
 from datetime import datetime
 from scipy.stats import entropy
 from sklearn.feature_selection import mutual_info_classif
@@ -87,6 +89,42 @@ def main(
             (not NumInpLayers in [113, 0, -10, -11, -12, -50]) ):
         #sys.exit("NumInpLayers needs to be 113, 0, -10, -11, -12, or -50!!!")
         print("***********************NumInpLayers needs to be 113, 0, -10, -11, -12, or -50!!!***************")
+
+    # Addition for better processing, do not process
+    # if output file already exists, this is not elegant,
+    # but is a quick fix based on the current time limitations
+    if SpatialDomain in ['CONUS']:
+        if TargetVariable == 'USDM':
+            TargetVariable_ShortStr = 'U'
+            SpatialDomain_ShortStr = 'C'
+        else:
+            TargetVariable_ShortStr = ''
+            SpatialDomain_ShortStr = ''
+
+    # set filename name
+    FracI_ClmGrd1D_AllValid_NDFeat_FileName = \
+        'FI1X1_ClmGrd1D_V2b_New/' + NumInpsForNDFracMI + '/' + IfMakeTargetBinary + \
+        IfIncludeD0AsDrought + '_' + TargetVariable_ShortStr + '_' + \
+        SpatialDomain_ShortStr + '_' + str(Which_1D_Pixel)
+    if NumInpLayers >= 0:
+        FracI_ClmGrd1D_AllValid_NDFeat_FileName = \
+            FracI_ClmGrd1D_AllValid_NDFeat_FileName + '_In' + str(NumInpLayers)
+    elif NumInpLayers < 0:
+        FracI_ClmGrd1D_AllValid_NDFeat_FileName = \
+            FracI_ClmGrd1D_AllValid_NDFeat_FileName + '_InM' + str(-NumInpLayers)
+
+    FracI_ClmGrd1D_AllValid_NDFeat_FileName = \
+        FracI_ClmGrd1D_AllValid_NDFeat_FileName + '_' + \
+        str(WhichInpCombinForNDFracMI) + '_' + WhichSeason + '.txt'
+
+    # filename for the final output of this function
+    OutputArrayFilename = os.path.join(
+        OutputDir,
+        f'{Path(FracI_ClmGrd1D_AllValid_NDFeat_FileName).stem}.txt'
+    )
+    if os.path.exists(OutputArrayFilename):
+        logging.info(f'Skipping, filename already exists: {OutputArrayFilename}')
+        return
 
     ClimGrid1DShpFile = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/nClimGrid/nClimGrid_as_poly_NoNans.shp'
 
@@ -346,9 +384,15 @@ def main(
     }
 
     #SY: Begin partially moved portion from that commented further below
+    # TODO: this needs its own flexible path
     ColCombinations = np.loadtxt(
-        'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpLayers) + '.txt',
-        dtype='int', ndmin=2)
+        os.path.join(
+          '/discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/Inputs',
+          'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpLayers) + '.txt'
+        ),
+        dtype='int',
+        ndmin=2
+    )
     SelectCols = ColCombinations[WhichInpCombinForNDFracMI, :]
     SelectCols = SelectCols - 1
     # SY: End partially moved portion from that commented further below
@@ -3159,20 +3203,21 @@ def main(
     del All_Target_Array 
     del All_Inputs_Mat
 
-    # ------------------------------------------
-    # TODO: THIS WE WILL MERGE INTO A SINGLE FILE
+    # This will merge outputs into a single file
 
-    RelMI_value = np.array([RelMI_value], dtype=np.float32)
-    np.savetxt(FracI_ClmGrd1D_AllValid_NDFeat_FileName, RelMI_value)
+    # RelMI_value = np.array([RelMI_value], dtype=np.float32)
+    # np.savetxt(FracI_ClmGrd1D_AllValid_NDFeat_FileName, RelMI_value)
 
-    sample_size = np.array([sample_size], dtype=np.float32)
-    np.savetxt(SampSiz_ClmGrd1D_AllValid_NDFeat_FileName, sample_size)
+    # sample_size = np.array([sample_size], dtype=np.float32)
+    # np.savetxt(SampSiz_ClmGrd1D_AllValid_NDFeat_FileName, sample_size)
 
-    WindowSize_prev = np.array([WindowSize_prev], dtype=np.float32)
-    np.savetxt(WindowSiz_ClmGrd1D_AllValid_NDFeat_FileName, WindowSize_prev)
+    # WindowSize_prev = np.array([WindowSize_prev], dtype=np.float32)
+    # np.savetxt(WindowSiz_ClmGrd1D_AllValid_NDFeat_FileName, WindowSize_prev)
 
-    # TODO: THIS WE WILL MERGE INTO A SINGLE FILE
-    # ------------------------------------------
+    # save output into array, order is alphabetical
+    OutputArray = np.array(
+        [RelMI_value, sample_size, WindowSize_prev], dtype=np.float32)
+    np.savetxt(OutputArrayFilename, OutputArray)
 
     eeend_Overall = datetime.now()
     eeelapsed_Overall = eeend_Overall - ssstart_Overall
