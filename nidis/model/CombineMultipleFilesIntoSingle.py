@@ -87,8 +87,11 @@ def CombineMultipleFilesIntoSingle(indicator, season, indicator_dir, output_dir,
             )
         )
         print(indicator_result.shape, indicator_result)
-    #    ArrayForSingleFile[WhichElem] = np.loadtxt('NN_U_C_' + str(int(round(float(WhichElem))))  + f'_In113_{indicator - 1}_{season}.txt')
+        FI1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[0]
+        SSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[1]
+        WSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[2]
 
+    print(FI1X1_ClmGrd1D_V2b_New_Array[0], FI1X1_ClmGrd1D_V2b_New_Array.shape)
     #print("ArrayForSingleFile is ",ArrayForSingleFile)
     #print("type(ArrayForSingleFile) is ",type(ArrayForSingleFile))
     #print("ArrayForSingleFile.shape is ",ArrayForSingleFile.shape)
