@@ -348,7 +348,7 @@ def main():
         run_postprocessing(
             indicator,
             seasons_list=args.season_list,
-            indicator_output_dir=indicator_output_dir
+            indicator_output_dir=indicator_output_dir,
             postprocessed_output_dir=postprocessed_output_dir
         )
 
