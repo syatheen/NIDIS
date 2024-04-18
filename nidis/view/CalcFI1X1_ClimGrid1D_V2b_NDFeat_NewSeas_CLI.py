@@ -49,6 +49,74 @@ def read_config(config_filename):
     return clean_lines
 
 
+def run_training(
+            indicator,
+            seasons_list,
+            init_task,
+            end_task,
+            start_date,
+            end_date,
+            output_dir,
+            n_processes: int = 90
+        ):
+
+    # IfMakeTargetBinary, Choices are 'Y' for yes, and 'N' for no
+    # IfIncludeD0AsDrought, Choices are 'Y' for yes, and 'N' for no
+    # Beginning YYYYMMDD, this is also a Tuesday
+    # Ending YYYYMMDD, this is also a Tuesday
+    # TargetVariable, Choices are 'USDM', 'CPC_S' (for short-term),
+    #   'CPC_LE' (for long-term Eastern), and
+    #   'CPC_LW' (for long-term Western)
+    # SpatialDomain, Choices are 'CONUS'
+    # NumInpLayers, 113 for all input channels, 0 for All CPC Blend
+    #    input channels,
+    #    -10 for remotely-sensed, -11 for modeled, -12 for modeled+
+    # NumInpsForNDFracMI
+    # WhichInpCombinForNDFracMI, 0-start
+    # Which_1D_Pixel, Which 1D number of nClimGrid pixels # 0-start
+    # WhichSeason, Choices are 'P' for sPring (Mar-May),
+    #     'U' for sUmmer (Jun-Aug),
+    #     'F' for Fall (Sep-Nov), 'W' for Winter (Dec-Feb),
+    #     'A' for all-seasons-together
+
+    # read configuration files
+    all_tasks = []
+    for season in seasons_list:
+
+        output_dir_indicator = os.path.join(output_dir, season)
+        os.makedirs(output_dir_indicator, exist_ok=True)
+
+        for config_id in range(init_task, end_task):
+
+            # general task command, go to documentation for
+            # additional details on each position
+            task = [
+                'N',
+                'N',
+                start_date,
+                end_date,
+                'USDM',
+                'CONUS',
+                '113',
+                '1',
+                indicator - 1,
+                config_id,
+                season,
+                output_dir_indicator
+            ]
+            all_tasks.append(task)
+
+    logging.info(f'Prepared {len(all_tasks)}')
+
+    # multiprocessing queue
+    p = Pool(processes=n_processes)
+    p.starmap(
+        run_calc,
+        zip(all_tasks)
+    )
+    return
+
+
 def main():
 
     # measure time of execution
@@ -71,7 +139,7 @@ def main():
                         type=str,
                         nargs='*',
                         required=True,
-                        dest='season',
+                        dest='season_list',
                         help='Season to process',
                         default=['A', 'P', 'U', 'F', 'W'],
                         choices=['A', 'P', 'U', 'F', 'W'])
@@ -108,6 +176,22 @@ def main():
                         dest='end_task',
                         help='End task to work from.')
 
+    parser.add_argument('-sd',
+                        '--start-date',
+                        type=str,
+                        required=False,
+                        default='20060103',
+                        dest='start_date',
+                        help='Date to start processing from.')
+
+    parser.add_argument('-ed',
+                        '--end-date',
+                        type=str,
+                        required=False,
+                        default='20191231',
+                        dest='end_date',
+                        help='Date to end processing at.')
+
     parser.add_argument('-o',
                         '--output-dir',
                         type=str,
@@ -115,6 +199,14 @@ def main():
                         required=True,
                         dest='output_dir',
                         help='Path to output directory')
+
+    parser.add_argument('-p',
+                        '--n-processes',
+                        type=int,
+                        required=False,
+                        default=90,
+                        dest='n_processes',
+                        help='Number of concurrent processes.')
 
     parser.add_argument('-s',
                         '--step',
@@ -164,94 +256,30 @@ def main():
         logger.handlers.pop(0)
 
     # generate output directory
-    output_dir = os.path.join(args.output_dir, f'indicator_{indicator}')
-    os.makedirs(output_dir, exist_ok=True)
+    indicator_output_dir = os.path.join(
+        args.output_dir, f'indicator_{indicator}')
+    os.makedirs(indicator_output_dir, exist_ok=True)
 
     # replaced when we developed the single file per 3 indicators
     # os.makedirs('FI1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
     # os.makedirs('SSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
     # os.makedirs('WSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
 
-    # configs to read, remove when ready
-    # init_task = int(sys.argv[1])
-    # end_task = int(sys.argv[2])
-    # task_file = sys.argv[3]
-
-    # ----------------------------------------------
-    # tasks.conf file has the following input,
-    # with the only changing columns being:
-    #     - the indicator "113"
-    #     - the pixel "0"
-    #     - the season "P"
-    # N N 20060103 20191231 USDM CONUS 113 1 38 0 P
-    #
-    # We can generate this file on the fly
-    # ----------------------------------------------
+    if 'training' in args.pipeline_step:
+        run_training(
+            indicator,
+            seasons_list=args.season_list,
+            init_task=args.init_task,
+            end_task=args.end_task,
+            start_date=args.start_date,
+            end_date=args.end_date,
+            output_dir=indicator_output_dir,
+            n_processes=args.n_processes
+        )
 
     # if trainining
     # if postprocessing
     # if delete
-
-    # read configuration files
-    all_tasks = []
-    for season in args.season:
-
-        output_dir_indicator = os.path.join(output_dir, season)
-        os.makedirs(output_dir_indicator, exist_ok=True)
-
-        for config_id in range(args.init_task, args.end_task):
-
-            # IfMakeTargetBinary, Choices are 'Y' for yes, and 'N' for no
-            # IfIncludeD0AsDrought, Choices are 'Y' for yes, and 'N' for no
-            # Beginning YYYYMMDD, this is also a Tuesday
-            # Ending YYYYMMDD, this is also a Tuesday
-            # TargetVariable, Choices are 'USDM', 'CPC_S' (for short-term),
-            #   'CPC_LE' (for long-term Eastern), and
-            #   'CPC_LW' (for long-term Western)
-            # SpatialDomain, Choices are 'CONUS'
-            # NumInpLayers, 113 for all input channels, 0 for All CPC Blend
-            #    input channels,
-            #    -10 for remotely-sensed, -11 for modeled, -12 for modeled+
-            # NumInpsForNDFracMI
-            # WhichInpCombinForNDFracMI, 0-start
-            # Which_1D_Pixel, Which 1D number of nClimGrid pixels # 0-start
-            # WhichSeason, Choices are 'P' for sPring (Mar-May),
-            #     'U' for sUmmer (Jun-Aug),
-            #     'F' for Fall (Sep-Nov), 'W' for Winter (Dec-Feb),
-            #     'A' for all-seasons-together
-            task = [
-                'N',
-                'N',
-                '20060103',
-                '20191231',
-                'USDM',
-                'CONUS',
-                '113',
-                '1',
-                indicator - 1,  # '38', is this the actual indicator to change????
-                config_id,
-                season,
-                output_dir_indicator
-            ]
-
-            # single_config_parameters = read_config(
-            #    os.path.join(
-            #        task_dir,
-            #        f'tasks{config_id}.conf'
-            #    )
-            # )
-            all_tasks.append(task)
-
-    logging.info(f'Prepared {len(all_tasks)}')
-
-    print(all_tasks[0])
-
-    # multiprocessing queue
-    p = Pool(processes=90)
-    p.starmap(
-        run_calc,
-        zip(all_tasks)
-    )
 
     # TODO: Add postprocessing here
     # - regression testing
