@@ -3,10 +3,14 @@ import sys
 import time
 import logging
 import argparse
+import numpy as np
+from glob import glob
 from datetime import datetime
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
     import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
+from nidis.model.Metadata import \
+    DictofNumNamePairs_Channels, DictofInitialToWord_Seasons
 
 
 def run_calc(parameters):
@@ -117,6 +121,60 @@ def run_training(
     return
 
 
+def check_numpy_content(filename):
+    x = np.loadtxt(filename)
+    if x.shape[0] != 3:
+        return 1
+    else:
+        return 0
+
+
+def run_regression_test(indicators_dir, n_pixels=469758):
+
+    # Assert number of filenames
+    filenames = glob(os.path.join(indicators_dir, '*.txt'))
+    assert len(filenames) == n_pixels, \
+        f'Missing {n_pixels - len(filenames)} files from creation.'
+
+    # Assert content of filenames - parallel
+    with Pool(cpu_count()) as pool:
+        results = pool.map(check_numpy_content, filenames)
+    errors_sum = sum(results)
+    assert errors_sum == 0, \
+        f'Found {errors_sum} error files from output.'
+
+    logging.info('Regression is done, all outputs look correct.')
+    return
+
+
+def run_postprocessing(
+            indicator,
+            seasons_list,
+            output_dir
+        ):
+
+    # DictofInitialToWord_Seasons
+    # DictofNumNamePairs_Channels
+
+    # iterate over each provided season
+    for season in seasons_list:
+
+        # if netcdf file exists, do not process
+        netcdf_filename = os.path.join(
+            output_dir,
+            f'NC2D_From_nCG1D_FIs1X1Etc_113_{season}_' +
+            f'{DictofNumNamePairs_Channels[indicator]}_V2.nc'
+        )
+        print(netcdf_filename)
+
+    # regression testing
+
+    # generate single file with outputs
+
+    # netcdf creation
+    return
+
+
 def main():
 
     # measure time of execution
@@ -215,7 +273,7 @@ def main():
                         required=True,
                         dest='pipeline_step',
                         help='Pipeline step to perform',
-                        default=['training', 'postprocessing', 'delete'],
+                        default=['training'],
                         choices=['training', 'postprocessing', 'delete'])
 
     # gather arguments
@@ -255,10 +313,15 @@ def main():
         # remove the root logger
         logger.handlers.pop(0)
 
-    # generate output directory
+    # generate output directory for indicator
     indicator_output_dir = os.path.join(
         args.output_dir, f'indicator_{indicator}')
     os.makedirs(indicator_output_dir, exist_ok=True)
+
+    # set and generate output directory for postprocessing
+    postprocessed_output_dir = os.path.join(
+        args.output_dir, 'Outputs')
+    os.makedirs(postprocessed_output_dir, exist_ok=True)
 
     # replaced when we developed the single file per 3 indicators
     # os.makedirs('FI1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
@@ -277,14 +340,15 @@ def main():
             n_processes=args.n_processes
         )
 
-    # if trainining
-    # if postprocessing
-    # if delete
+    if 'postprocessing' in args.pipeline_step:
+        run_postprocessing(
+            indicator,
+            seasons_list=args.season_list,
+            output_dir=postprocessed_output_dir
+        )
 
-    # TODO: Add postprocessing here
-    # - regression testing
-    # - netcdf creation
-    # if netcdf file exists, do not process
+    if 'delete' in args.pipeline_step:
+        logging.info('I am supposed to delete on this step')
 
     print("End time: ", time.time() - start_time)
     return
