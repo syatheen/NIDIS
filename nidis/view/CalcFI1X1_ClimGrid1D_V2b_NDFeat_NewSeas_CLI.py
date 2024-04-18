@@ -181,8 +181,13 @@ def run_postprocessing(
         # if everything looks good, generate single file with outputs
         logging.info(f'Running output combination for {season}')
         CombineMultipleFilesIntoSingle(
-            indicator, season, indicator_output_dir,
-            postprocessed_output_dir, n_pixels)
+            indicator,
+            season,
+            indicator_output_dir,
+            postprocessed_output_dir,
+            netcdf_filename,
+            n_pixels
+        )
 
         # netcdf creation
         # run_create_netcdf()
