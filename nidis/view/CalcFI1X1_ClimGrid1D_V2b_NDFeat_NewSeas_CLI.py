@@ -283,8 +283,8 @@ def main():
                         required=True,
                         dest='pipeline_step',
                         help='Pipeline step to perform',
-                        default=['training'],
-                        choices=['training', 'postprocessing', 'delete'])
+                        default=['train'],
+                        choices=['train', 'postprocess', 'delete'])
 
     # gather arguments
     args = parser.parse_args()
@@ -338,7 +338,7 @@ def main():
     # os.makedirs('SSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
     # os.makedirs('WSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
 
-    if 'training' in args.pipeline_step:
+    if 'train' in args.pipeline_step:
         run_training(
             indicator,
             seasons_list=args.season_list,
@@ -350,7 +350,7 @@ def main():
             n_processes=args.n_processes
         )
 
-    if 'postprocessing' in args.pipeline_step:
+    if 'postprocess' in args.pipeline_step:
         run_postprocessing(
             indicator,
             seasons_list=args.season_list,

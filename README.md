@@ -139,13 +139,13 @@ We have two ways of running this workflow now:
 ### 1. Running Workflow Individually
 
 ```bash
-PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --init-task 0 --end-task 5 --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step training
+PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --init-task 0 --end-task 5 --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step train
 ```
 
 The default will run all pixels thorugh the same multiprocessing queue:
 
 ```bash
-PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step training
+PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step train
 ```
 
 Working from discover:
@@ -153,13 +153,13 @@ Working from discover:
 ```bash
 module load python/GEOSpyD/Min23.5.2-0_py3.11 
 source activate /home/jacaraba/.conda/envs/amy-rf 
-time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 10000
+time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 10000
 ```
 
 Or developing locally to avoid output to terminal screen (faster):
 
 ```bash
-time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
+time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
 ```
 
 ### 2. Running Through Slurm
