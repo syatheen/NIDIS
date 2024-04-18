@@ -118,6 +118,19 @@ are outlined in order, and some of them are depedent of the other. These steps
 are outlined to run on Discover. Modifications might need to be done if we want to run
 this workflow in a different system.
 
+We have two ways of running this workflow now:
+
+- One full node running all 469758 tasks for a single season and a single indicator
+  - this option takes about 17 hours for a single indicator, single season
+  ```bash
+  sbatch sbatch_submission.sh 41 W nca
+  ```
+- N number of nodes running multiple seasons and a single indicator
+  - we will try this option now using 12 nodes at the same time
+  ```bash
+  bash bash_submission_single_indicator_multi_epoch.sh 43 "P U F W" fame
+  ```
+
 ### 1. Running Workflow Individually
 
 ```bash
@@ -135,12 +148,19 @@ Working from discover:
 ```bash
 module load python/GEOSpyD/Min23.5.2-0_py3.11 
 source activate /home/jacaraba/.conda/envs/amy-rf 
-PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 41 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 5
+time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 10000
+```
+
+Or developing locally to avoid output to terminal screen (faster):
+
+```bash
+time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
 ```
 
 ### 2. Running Through Slurm
 
 ```bash
+bash bash_submission_single_indicator_multi_epoch.sh 43 "P U F W" fame
 ```
 
 ### 3. Regression Testing
