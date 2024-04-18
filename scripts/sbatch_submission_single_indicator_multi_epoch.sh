@@ -19,6 +19,6 @@ source activate /home/jacaraba/.conda/envs/amy-rf
 # $2 - season, one of A, P, F, U, W
 # $3 - space, nca or fame
 export PYTHONPATH="/discover/nobackup/jacaraba/development/nidis"
-srun -J "NIDIS${1}" -n1 python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py \
+srun -n1 python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py \
     --indicator $1 --season $2 --output-dir /discover/nobackup/projects/$3/jacaraba/NIDIS_Runs --step train --init-task $4 --end-task $5
 

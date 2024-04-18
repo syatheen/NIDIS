@@ -169,22 +169,26 @@ def run_postprocessing(
             f'NC2D_From_nCG1D_FIs1X1Etc_113_{season}_' +
             f'{DictofNumNamePairs_Channels[indicator]}_V2.nc'
         )
+
         if os.path.exists(netcdf_filename):
             logging.info(f'Skipping {netcdf_filename}, file exists.')
+            continue
 
         # regression testing
-        indicator_output_dir = os.path.join(
+        indicator_output_dir_season = os.path.join(
             indicator_output_dir, season)
+        logging.info(f'Looking for files under {indicator_output_dir_season}')
 
+        # perform regression test
         logging.info(f'Running regression test for {season}')
-        run_regression_test(indicator_output_dir, n_pixels)
+        run_regression_test(indicator_output_dir_season, n_pixels)
 
         # if everything looks good, generate single file with outputs
         logging.info(f'Running output combination for {season}')
         CombineMultipleFilesIntoSingle(
             indicator,
             season,
-            indicator_output_dir,
+            indicator_output_dir_season,
             postprocessed_output_dir,
             n_pixels
         )
@@ -194,7 +198,6 @@ def run_postprocessing(
         ArrayToNetCDF(
             indicator,
             season,
-            indicator_output_dir,
             postprocessed_output_dir,
             netcdf_filename,
             n_pixels
@@ -369,7 +372,8 @@ def main():
         )
 
     if 'postprocess' in args.pipeline_step:
-        logging.info('Running postprocessing')
+        logging.info(
+            f'Running postprocessing for {indicator}, seasons {args.season_list}')
         run_postprocessing(
             indicator,
             seasons_list=args.season_list,

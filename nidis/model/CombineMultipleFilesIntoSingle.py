@@ -121,7 +121,6 @@ def CombineMultipleFilesIntoSingle(
 def ArrayToNetCDF(
             indicator,
             season,
-            indicator_dir,
             combined_output_dir,
             netcdf_filename,
             n_pixels=469758,

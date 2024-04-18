@@ -59,6 +59,6 @@ do
 
     # call sbatch script
     # 1 - indicator, 2 - seasons, 3 - filesystem
-    sbatch sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task
+    sbatch -J "NIDIS_${1}" sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task
 
 done
