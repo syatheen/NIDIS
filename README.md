@@ -3,6 +3,11 @@
 The following software serves as an operational version for the NIDIS map outputs.
 Internal progress sheet can be located [here](https://nasa-my.sharepoint.com/:x:/r/personal/jacaraba_ndc_nasa_gov/Documents/WorkDocuments/Projects/ILAB/2024-SONI-Parallel/Indicators_Data_Dictionary_nClimGrid_Resolution_ILAB.xlsx?d=w4d5e4812cb06468d819235dcd8268571&csf=1&web=1&e=cnB6yV).
 
+## RUNS ON DISCOVER
+
+- My current goal is 9 indicators per day completely done so we can finish with the current
+outputs in 10 days.
+
 ## Background
 
 From Yatheendradas et al. (2023), "Quantifying the Importance of Selected Drought Indicators for the United States Drought Monitor":
@@ -160,7 +165,7 @@ time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover
 ### 2. Running Through Slurm
 
 ```bash
-bash bash_submission_single_indicator_multi_epoch.sh 43 "P U F W" fame
+bash bash_submission_single_indicator_multi_epoch.sh 47 "P U F W" fame
 ```
 
 ### 3. Regression Testing

@@ -174,11 +174,14 @@ def run_postprocessing(
         # regression testing
         indicator_output_dir = os.path.join(
             indicator_output_dir, season)
-        run_regression_test(indicator_output_dir)
+        run_regression_test(indicator_output_dir, n_pixels)
 
-    # generate single file with outputs
+        # if everything looks good, generate single file with outputs
+        #run_combine_outputs()
 
-    # netcdf creation
+        # netcdf creation
+        #run_create_netcdf()
+
     return
 
 

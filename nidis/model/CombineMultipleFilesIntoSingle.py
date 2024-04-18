@@ -1,8 +1,5 @@
 import numpy as np
 
-def RegressionTesting():
-
-    return
 
 def CombineMultipleFilesIntoSingle():
 
