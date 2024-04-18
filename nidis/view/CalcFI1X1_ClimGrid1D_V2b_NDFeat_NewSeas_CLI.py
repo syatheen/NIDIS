@@ -190,6 +190,7 @@ def run_postprocessing(
         )
 
         # netcdf creation
+        logging.info(f'Generating netcdf for {season}')
         ArrayToNetCDF(
             indicator,
             season,

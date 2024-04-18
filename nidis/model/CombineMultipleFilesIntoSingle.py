@@ -8,7 +8,8 @@ import xarray as xr
 import geopandas as gpd
 from netCDF4 import Dataset
 from datetime import datetime, timedelta
-from nidis.model.Metadata import DictofNumNamePairs_Channels
+from nidis.model.Metadata import \
+    DictofNumNamePairs_Channels, DictofInitialToWord_Seasons
 
 
 
@@ -146,22 +147,19 @@ def ArrayToNetCDF(
     lats = nClimGrid_All['lat'].values
     lons = nClimGrid_All['lon'].values
 
-    """
-    FI_InNpz = np.load(FI_InNpzFile)
+    FI_InNpz = np.load(combined_indicator_filename)
     FracIs = FI_InNpz['ArrayForSingleFile']
     Idxs = np.where((~np.isnan(FracIs)) & (FracIs > 1.0))
     FracIs[Idxs] = 1.0
     Idxs = np.where((~np.isnan(FracIs)) & (FracIs < 0.0))
     FracIs[Idxs] = 0.0
 
-    SSiz_InNpz = np.load(SSiz_InNpzFile)
-    SampleSizes = SSiz_InNpz['ArrayForSingleFile']
-
-    WSiz_InNpz = np.load(WSiz_InNpzFile)
-    WindowSizes = WSiz_InNpz['ArrayForSingleFile']
+    SampleSizes = FI_InNpz['SSiz1X1_ClmGrd1D_V2b_New_Array']
+    WindowSizes = FI_InNpz['WSiz1X1_ClmGrd1D_V2b_New_Array']
 
     ClimGrid1DShp = gpd.read_file(ClimGrid1DShpFile)
-    PxlRowCol_SortedList_FrmShpFile = sorted(ClimGrid1DShp.PxlRowCol.values.tolist())
+    PxlRowCol_SortedList_FrmShpFile = sorted(
+        ClimGrid1DShp.PxlRowCol.values.tolist())
     PxlRowCols = np.array(PxlRowCol_SortedList_FrmShpFile)
     PxlRows = (np.around(PxlRowCols // 10000)).astype(int)
     PxlCols = (np.around(PxlRowCols % 10000)).astype(int)
@@ -177,16 +175,21 @@ def ArrayToNetCDF(
     WSiz_Arr2D[:] = np.NaN
     WSiz_Arr2D[PxlRows, PxlCols] = WindowSizes
 
-    try: ncfile.close()  # just to be safe, make sure dataset is not already open.
-    except: pass
-    ncfile = Dataset(OutNcFile, mode='w', format='NETCDF4_CLASSIC')
-    print(ncfile)
+    # just to be safe, make sure dataset is not already open.
+    try:
+        netcdf_filename.close()
+    except:
+        pass
 
-    lat_dim = ncfile.createDimension('lat', len(lats))     # latitude axis
-    lon_dim = ncfile.createDimension('lon', len(lons))    # longitude axis
+    logging.info(f'Writing to {netcdf_filename}')
+    ncfile = Dataset(netcdf_filename, mode='w', format='NETCDF4_CLASSIC')
 
-    ncfile.title = DictofNumNamePairs_Channels[InputNum_0Start+1] + ' ' + DictofInitialToWord_Seasons[WhichSeason_ShortStr] + ncfile_title_EndingSubstr 
+    lat_dim = ncfile.createDimension('lat', len(lats))  # latitude axis
+    lon_dim = ncfile.createDimension('lon', len(lons))  # longitude axis
 
+    ncfile.title = \
+        DictofNumNamePairs_Channels[indicator] + ' ' + \
+        DictofInitialToWord_Seasons[season] + ncfile_title_EndingSubstr
 
     # Define two variables with the same names as dimensions,
     # a conventional way to define "coordinate variables".
@@ -196,26 +199,33 @@ def ArrayToNetCDF(
     lon = ncfile.createVariable('lon', np.float32, ('lon',))
     lon.units = 'degrees_east'
     lon.long_name = 'longitude'
+
     # Define 2D variables to hold the data
-    FracI = ncfile.createVariable('FracI',np.float64,('lat','lon')) 
-    FracI.units = '-' 
-    SampleSize = ncfile.createVariable('SampleSize',np.float64,('lat','lon')) 
-    SampleSize.units = '-' 
-    WindowSize = ncfile.createVariable('WindowSize',np.float64,('lat','lon')) 
-    WindowSize.units = '-' 
+    FracI = ncfile.createVariable(
+        'FracI', np.float64, ('lat', 'lon'))
+    FracI.units = '-'
+    SampleSize = ncfile.createVariable(
+        'SampleSize', np.float64, ('lat', 'lon'))
+    SampleSize.units = '-'
+    WindowSize = ncfile.createVariable(
+        'WindowSize', np.float64, ('lat', 'lon'))
+    WindowSize.units = '-'
 
     # Write latitudes, longitudes.
     # Note: the ":" is necessary in these "write" statements
-    lat[:] = lats # south to north
-    lon[:] = lons # Greenwich meridian eastward
+    lat[:] = lats  # south to north
+    lon[:] = lons  # Greenwich meridian eastward
+
     # Write the data.  This writes the whole 2D netCDF variable all at once.
-    FracI[:,:] = FI_Arr2D
-    SampleSize[:,:] = SSiz_Arr2D  
-    WindowSize[:,:] = WSiz_Arr2D  
+    FracI[:, :] = FI_Arr2D
+    SampleSize[:, :] = SSiz_Arr2D
+    WindowSize[:, :] = WSiz_Arr2D
 
     # first print the Dataset object to see what we've got
-    print(ncfile)
+    logging.info(ncfile)
+
     # close the Dataset.
-    ncfile.close(); print('Dataset is closed!')
-    """
+    ncfile.close()
+    logging.info(f'Dataset is saved and closed under {netcdf_filename}')
+
     return
