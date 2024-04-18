@@ -11,6 +11,7 @@ from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
     import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
 from nidis.model.Metadata import \
     DictofNumNamePairs_Channels, DictofInitialToWord_Seasons
+from nidis.model.CombineMultipleFilesIntoSingle import CombineMultipleFilesIntoSingle
 
 
 def run_calc(parameters):
@@ -174,10 +175,14 @@ def run_postprocessing(
         # regression testing
         indicator_output_dir = os.path.join(
             indicator_output_dir, season)
+
+        logging.info(f'Running regression test for {season}')
         run_regression_test(indicator_output_dir, n_pixels)
 
         # if everything looks good, generate single file with outputs
-        #run_combine_outputs()
+        logging.info(f'Running output combination for {season}')
+        CombineMultipleFilesIntoSingle(
+            indicator, season, postprocessed_output_dir, n_pixels)
 
         # netcdf creation
         #run_create_netcdf()
@@ -351,6 +356,7 @@ def main():
         )
 
     if 'postprocess' in args.pipeline_step:
+        logging.info('Running postprocessing')
         run_postprocessing(
             indicator,
             seasons_list=args.season_list,
