@@ -165,7 +165,7 @@ time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover
 ### 2. Running Through Slurm
 
 ```bash
-bash bash_submission_single_indicator_multi_epoch.sh 47 "P U F W" fame
+bash bash_submission_single_indicator_multi_epoch.sh 72 "P U F W" nca
 ```
 
 ### 3. Regression Testing
