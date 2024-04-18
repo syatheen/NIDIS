@@ -130,6 +130,14 @@ The default will run all pixels thorugh the same multiprocessing queue:
 PYTHONPATH="/explore/nobackup/people/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /explore/nobackup/people/jacaraba/projects/NIDIS --step training
 ```
 
+Working from discover:
+
+```bash
+module load python/GEOSpyD/Min23.5.2-0_py3.11 
+source activate /home/jacaraba/.conda/envs/amy-rf 
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 41 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step training --init-task 0 --end-task 5
+```
+
 ### 2. Running Through Slurm
 
 ```bash
