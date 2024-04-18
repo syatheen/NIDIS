@@ -172,6 +172,8 @@ def run_postprocessing(
             logging.info(f'Skipping {netcdf_filename}, file exists.')
 
         # regression testing
+        indicator_output_dir = os.path.join(
+            indicator_output_dir, season)
         run_regression_test(indicator_output_dir)
 
     # generate single file with outputs
