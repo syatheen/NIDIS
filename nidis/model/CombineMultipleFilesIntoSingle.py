@@ -86,12 +86,12 @@ def CombineMultipleFilesIntoSingle(indicator, season, indicator_dir, output_dir,
                 f'NN_U_C_{WhichElem}_In113_{indicator - 1}_{season}.txt'
             )
         )
-        print(indicator_result.shape, indicator_result)
+        # print(indicator_result.shape, indicator_result)
         FI1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[0]
         SSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[1]
         WSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[2]
 
-    print(FI1X1_ClmGrd1D_V2b_New_Array[0], FI1X1_ClmGrd1D_V2b_New_Array.shape)
+    # print(FI1X1_ClmGrd1D_V2b_New_Array[0], FI1X1_ClmGrd1D_V2b_New_Array.shape)
     #print("ArrayForSingleFile is ",ArrayForSingleFile)
     #print("type(ArrayForSingleFile) is ",type(ArrayForSingleFile))
     #print("ArrayForSingleFile.shape is ",ArrayForSingleFile.shape)
@@ -101,6 +101,12 @@ def CombineMultipleFilesIntoSingle(indicator, season, indicator_dir, output_dir,
     # print("type(Idxs) is ",type(Idxs))
     #print("Idxs[0].shape is ",Idxs[0].shape)
 
-    #np.savez_compressed(SingleFile, ArrayForSingleFile = ArrayForSingleFile)
+    np.savez_compressed(
+        output_filename,
+        ArrayForSingleFile=FI1X1_ClmGrd1D_V2b_New_Array,
+        FI1X1_ClmGrd1D_V2b_New_Array=FI1X1_ClmGrd1D_V2b_New_Array,
+        SSiz1X1_ClmGrd1D_V2b_New_Array=SSiz1X1_ClmGrd1D_V2b_New_Array,
+        WSiz1X1_ClmGrd1D_V2b_New_Array=WSiz1X1_ClmGrd1D_V2b_New_Array
+    )
 
     return
