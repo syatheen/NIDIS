@@ -104,7 +104,7 @@ def main():
                         '--end-task',
                         type=int,
                         required=False,
-                        default=469757,
+                        default=469758,
                         dest='end_task',
                         help='End task to work from.')
 
@@ -256,7 +256,7 @@ def main():
     # TODO: Add postprocessing here
     # - regression testing
     # - netcdf creation
-    # - if file exists, do not process
+    # if netcdf file exists, do not process
 
     print("End time: ", time.time() - start_time)
     return

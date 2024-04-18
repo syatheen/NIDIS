@@ -634,9 +634,9 @@ def main(
 
                 for ThisFromInpLayersCombination in InpLayersCombination: #SY: NOTE THAT THIS NEEDS TO BE CHANGED FOR MULTI_INPUT!!!
                     if Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][2] == 'NA':
-                        SingleUnifiedDataFilename_NLDAS_2_daily = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][0] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][1] + '_Crr2MnthlyPrc_20060103To20210831.npz'
+                        SingleUnifiedDataFilename_NLDAS_2_daily = f'{temp_path_npz}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][0] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][1] + '_Crr2MnthlyPrc_20060103To20210831.npz'
                     else:
-                        SingleUnifiedDataFilename_NLDAS_2_daily = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][0] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][1] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][2] + '_Crr2MnthlyPrc_20060103To20210831.npz'
+                        SingleUnifiedDataFilename_NLDAS_2_daily = f'{temp_path_npz}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][0] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][1] + '_' + Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][2] + '_Crr2MnthlyPrc_20060103To20210831.npz'
                     #end of if Dict_NLDAS_2_daily_Keys_And_Values[ThisFromInpLayersCombination][2] == 'NA'
                 #end of for ThisFromInpLayersCombination in InpLayersCombination: #SY: NOTE THAT THIS NEEDS TO BE CHANGED FOR MULTI_INPUT!!!
 
