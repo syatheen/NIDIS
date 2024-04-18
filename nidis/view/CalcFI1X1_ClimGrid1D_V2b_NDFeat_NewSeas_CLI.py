@@ -11,7 +11,8 @@ from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
     import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
 from nidis.model.Metadata import \
     DictofNumNamePairs_Channels, DictofInitialToWord_Seasons
-from nidis.model.CombineMultipleFilesIntoSingle import CombineMultipleFilesIntoSingle
+from nidis.model.CombineMultipleFilesIntoSingle import \
+    CombineMultipleFilesIntoSingle, ArrayToNetCDF
 
 
 def run_calc(parameters):
@@ -185,12 +186,18 @@ def run_postprocessing(
             season,
             indicator_output_dir,
             postprocessed_output_dir,
-            netcdf_filename,
             n_pixels
         )
 
         # netcdf creation
-        # run_create_netcdf()
+        ArrayToNetCDF(
+            indicator,
+            season,
+            indicator_output_dir,
+            postprocessed_output_dir,
+            netcdf_filename,
+            n_pixels
+        )
 
     return
 
