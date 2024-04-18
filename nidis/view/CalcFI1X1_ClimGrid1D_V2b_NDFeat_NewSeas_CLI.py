@@ -150,7 +150,9 @@ def run_regression_test(indicators_dir, n_pixels=469758):
 def run_postprocessing(
             indicator,
             seasons_list,
-            output_dir
+            indicator_output_dir,
+            postprocessed_output_dir,
+            n_pixels=469758
         ):
 
     # DictofInitialToWord_Seasons
@@ -161,13 +163,15 @@ def run_postprocessing(
 
         # if netcdf file exists, do not process
         netcdf_filename = os.path.join(
-            output_dir,
+            postprocessed_output_dir,
             f'NC2D_From_nCG1D_FIs1X1Etc_113_{season}_' +
             f'{DictofNumNamePairs_Channels[indicator]}_V2.nc'
         )
-        print(netcdf_filename)
+        if os.path.exists(netcdf_filename):
+            logging.info(f'Skipping {netcdf_filename}, file exists.')
 
-    # regression testing
+        # regression testing
+        run_regression_test(indicator_output_dir)
 
     # generate single file with outputs
 
@@ -344,7 +348,8 @@ def main():
         run_postprocessing(
             indicator,
             seasons_list=args.season_list,
-            output_dir=postprocessed_output_dir
+            indicator_output_dir=indicator_output_dir
+            postprocessed_output_dir=postprocessed_output_dir
         )
 
     if 'delete' in args.pipeline_step:
