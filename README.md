@@ -176,6 +176,7 @@ bash bash_submission_single_indicator_multi_epoch.sh 47 "P U F W" fame
 ### 4. Postprocessing
 
 ```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step postprocess --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
 ```
 
 ### 5. Release

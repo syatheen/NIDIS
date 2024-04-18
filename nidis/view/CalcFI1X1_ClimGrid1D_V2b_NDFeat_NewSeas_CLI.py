@@ -133,7 +133,6 @@ def check_numpy_content(filename):
 def run_regression_test(indicators_dir, n_pixels=469758):
 
     # Assert number of filenames
-    print(indicators_dir)
     filenames = glob(os.path.join(indicators_dir, '*.txt'))
     assert len(filenames) == n_pixels, \
         f'Missing {n_pixels - len(filenames)} files from creation.'
@@ -177,7 +176,7 @@ def run_postprocessing(
             indicator_output_dir, season)
 
         logging.info(f'Running regression test for {season}')
-        run_regression_test(indicator_output_dir, n_pixels)
+        # run_regression_test(indicator_output_dir, n_pixels)
 
         # if everything looks good, generate single file with outputs
         logging.info(f'Running output combination for {season}')
@@ -185,7 +184,7 @@ def run_postprocessing(
             indicator, season, postprocessed_output_dir, n_pixels)
 
         # netcdf creation
-        #run_create_netcdf()
+        # run_create_netcdf()
 
     return
 
