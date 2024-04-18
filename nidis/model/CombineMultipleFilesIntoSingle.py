@@ -83,7 +83,6 @@ def CombineMultipleFilesIntoSingle(indicator, season, indicator_dir, output_dir,
         indicator_result = np.loadtxt(
             os.path.join(
                 indicator_dir,
-                season,
                 f'NN_U_C_{WhichElem}_In113_{indicator - 1}_{season}.txt'
             )
         )
