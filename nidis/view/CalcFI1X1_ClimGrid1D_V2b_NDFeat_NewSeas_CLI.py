@@ -132,6 +132,7 @@ def check_numpy_content(filename):
 def run_regression_test(indicators_dir, n_pixels=469758):
 
     # Assert number of filenames
+    print(indicators_dir)
     filenames = glob(os.path.join(indicators_dir, '*.txt'))
     assert len(filenames) == n_pixels, \
         f'Missing {n_pixels - len(filenames)} files from creation.'
