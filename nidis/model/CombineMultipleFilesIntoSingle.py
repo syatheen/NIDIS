@@ -54,10 +54,6 @@ duration = experiment()
 print(f'Took {duration:.3f} seconds')
 """
 
-def UpdateSingleValueArray():
-
-
-
 def CombineMultipleFilesIntoSingle(indicator, season, indicator_dir, output_dir, n_pixels=469758):
 
     output_filename = os.path.join(
