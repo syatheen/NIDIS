@@ -177,7 +177,7 @@ def run_postprocessing(
             indicator_output_dir, season)
 
         logging.info(f'Running regression test for {season}')
-        # run_regression_test(indicator_output_dir, n_pixels)
+        run_regression_test(indicator_output_dir, n_pixels)
 
         # if everything looks good, generate single file with outputs
         logging.info(f'Running output combination for {season}')

@@ -130,9 +130,9 @@ def ArrayToNetCDF(
             ncfile_title_EndingSubstr=' Pixel-specific Fractional Info of USDM (2006-01-03 To 2019-12-31)'
         ):
 
-    # NumInpLayers = 113
-    # WhichSeason_ShortStr = 'W'
-    # InputNum_0Start = 39
+    if os.path.exists(netcdf_filename):
+        logging.info(f'NetCDF file exists, skipping {netcdf_filename}')
+        return
 
     # consider replacing with output from previous function
     combined_indicator_filename = os.path.join(
