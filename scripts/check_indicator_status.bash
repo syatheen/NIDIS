@@ -10,13 +10,15 @@ for fileSystem in "fame" "nca"; do
     if [ -d "${PATH_INDICATOR}" ]; then
         echo "${PATH_INDICATOR}"
         for season in A P U F W; do
-            seasonStatus=`ls $PATH_INDICATOR/${season} |wc -l`
-            if [ "$seasonStatus" = "$nPixels" ]; then
-                status="Done"
-            else
-                status="Progress"
+            if [ -d "$PATH_INDICATOR/${season}" ]; then
+                seasonStatus=`ls $PATH_INDICATOR/${season} |wc -l`
+                if [ "$seasonStatus" = "$nPixels" ]; then
+                    status="Done"
+                else
+                    status="Progress"
+                fi
+                echo "${season} - ${seasonStatus} - ${status}"
             fi
-            echo "${season} - ${seasonStatus} - ${status}"
         done
     fi
 done
