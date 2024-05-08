@@ -155,7 +155,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
                         ImageInfo[Idxs] = 0.0
 
                         ImageInfo = np.flip(ImageInfo, axis = 1)
-                        HUCImageInfo = np.flip(HUCImageInfo, axis = 1)
+                        #HUCImageInfo = np.flip(HUCImageInfo, axis = 1)
 
                         Idxs = np.where( (HUCImageInfo < 0.) & (~np.isnan(ImageInfo)) )
                         ImageInfo[Idxs] = np.NaN
