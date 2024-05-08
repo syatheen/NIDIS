@@ -30,6 +30,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     # Python arguments to this program will be (for now):
     #        ArgLSM ArgVariable ArgYearInt ArgMonthInt 
     # ArgNum   1      2           3          4           
+    logging.info(f'{ArgLSM}, {ArgVariable}, {ArgYearInt}, {ArgMonthInt}')
 
     ssstart_Overall = datetime.now()
 
@@ -117,7 +118,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
                     ImageInfo = SrcInfo.read()
 
                     # new addition from nclimdiv script
-                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
+                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit) & ~np.isnan(ImageInfo))
                     ImageInfo[Idxs] = 0.0
 
                     ImageInfo = np.flip(ImageInfo, axis = 1)
@@ -182,7 +183,7 @@ def main_multiprocessing(
     logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
 
     # temporary for testing
-    multiprocessing_arguments = multiprocessing_arguments[:1]
+    # multiprocessing_arguments = multiprocessing_arguments[:1]
 
     p = Pool(processes=n_processes)
     p.starmap(
