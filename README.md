@@ -159,13 +159,14 @@ time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover
 Or developing locally to avoid output to terminal screen (faster):
 
 ```bash
-time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
+time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 78 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 469758
 ```
 
 ### 2. Running Through Slurm
 
 ```bash
-bash bash_submission_single_indicator_multi_epoch.sh 72 "P U F W" nca
+bash bash_submission_single_indicator_multi_epoch.sh 9 "A P U F W" fame
+bash bash_submission_single_indicator_multi_epoch.sh 10 "A P U F W" fame
 ```
 
 ### 3. Regression Testing
@@ -176,7 +177,13 @@ bash bash_submission_single_indicator_multi_epoch.sh 72 "P U F W" nca
 ### 4. Postprocessing
 
 ```bash
-PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 40 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step postprocess --init-task 0 --end-task 469758 > indicator_40_test_run.txt &
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --output-dir /discover/nobackup/projects/fame/jacaraba/NIDIS_Runs --step postprocess --season U F W --indicator 8
+```
+
+from Slurm
+
+```bash
+sbatch sbatch_submission_single_indicator_multi_epoch_postprocess.sh 43 "P U F W"
 ```
 
 ### 5. Release
