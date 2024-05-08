@@ -26,7 +26,7 @@ def spatial_resolution_api():
         type=str,
         nargs='*',
         required=True,
-        dest='lsm',
+        dest='lsm_list',
         help='LSM to process',
         default=['Mosaic', 'Noah', 'SAC', 'VIC'],
         choices=['Mosaic', 'Noah', 'SAC', 'VIC'])
@@ -37,7 +37,7 @@ def spatial_resolution_api():
         type=str,
         nargs='*',
         required=True,
-        dest='variable',
+        dest='variable_list',
         help='Variable to process',
         default=['EVAP', 'SWE', 'RUN', 'STRM'],
         choices=['EVAP', 'SWE', 'RUN', 'STRM'])

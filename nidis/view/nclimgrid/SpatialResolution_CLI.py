@@ -53,7 +53,7 @@ def main():
     # processing indicator
     logging.info(f'Processing indicator: {indicator}')
 
-    print(args.lsm, args.variables, args.start_date, args.end_date)
+    print(args.lsm_list, args.variable_list, args.start_date, args.end_date)
     # select indicator to process
     # if indicator >= 52 and indicator <= 63:
     #    indicators_52_to_63.main()
