@@ -25,10 +25,10 @@ def gen_date_range(start_date, end_date):
 
 def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
 
-    #NOTE: sys.argv indices start at 1, not 0
-    #Python arguments to this program will be (for now):
+    # NOTE: sys.argv indices start at 1, not 0
+    # Python arguments to this program will be (for now):
     #        ArgLSM ArgVariable ArgYearInt ArgMonthInt 
-    #ArgNum   1      2           3          4           
+    # ArgNum   1      2           3          4           
 
     ssstart_Overall = datetime.now()
 
@@ -48,7 +48,10 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     path_to_save_data = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/NLDAS_2_daily_Npzs'
     os.makedirs(path_to_save_data, exist_ok=True)
 
-    ArrayFileName = '/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily_Npzs/' + ArgLSM + '_' + ArgVariable  + '_' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + '_ClimGrid1D.PERW.npz'
+    ArrayFileName = os.path.join(
+        path_to_save_data,
+        f'{ArgLSM}_{ArgVariable}_{format(ArgYearInt, "04")}{format(ArgMonthInt,"02")}_ClimGrid1D.PERW.npz'
+    )
     print(ArrayFileName)
 
     """
