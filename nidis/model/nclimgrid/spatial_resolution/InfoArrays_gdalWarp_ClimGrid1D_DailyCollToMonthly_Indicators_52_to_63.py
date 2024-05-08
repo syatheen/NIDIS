@@ -105,6 +105,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
             f'{SourceFile} does not exist, decompress the original data?'
 
         # check for file permissions
+        print("EXISTANCEEE", os.path.exists(SourceFile))
+        print("PERMISSIONSSSS", os.access(SourceFile, os.R_OK))
         assert os.access(SourceFile, os.R_OK), \
             f'Cannot read {SourceFile}, make sure permissions are correct.'
 
@@ -197,8 +199,8 @@ def main_multiprocessing(
     logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
 
     # temporary for testing
-    # multiprocessing_arguments = multiprocessing_arguments[:1]
-    # logging.info(f'Only processing {multiprocessing_arguments}')
+    multiprocessing_arguments = multiprocessing_arguments[:1]
+    logging.info(f'Only processing {multiprocessing_arguments}')
 
     p = Pool(processes=n_processes)
     p.starmap(
