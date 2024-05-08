@@ -12,6 +12,8 @@ The following combinations are needed for each indicator between
 time range starts on 1980-1 and ends on 2021-8, with a month value
 for each year interval.
 
+Make sure the original GeoTIFF files have been unpacked.
+
 | Indicator #  | ArgLSM         | ArgVariable   |
 | :---:        |     :---:      |        :---:  |
 | 52   | Mosaic     | EVAP      |
