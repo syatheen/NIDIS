@@ -15,6 +15,7 @@ from calendar import monthrange
 from osgeo import gdal
 import shapely.speedups
 import fiona
+from multiprocessing import Pool, cpu_count
 
 shapely.speedups.enable()
 
