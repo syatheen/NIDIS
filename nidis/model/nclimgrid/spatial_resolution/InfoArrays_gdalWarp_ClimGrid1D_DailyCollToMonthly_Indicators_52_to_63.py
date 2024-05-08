@@ -123,7 +123,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
                     ImageInfo = SrcInfo.read()
 
                     # new addition from nclimdiv script
-                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit) & ~np.isnan(ImageInfo))
+                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
                     ImageInfo[Idxs] = 0.0
 
                     ImageInfo = np.flip(ImageInfo, axis = 1)
