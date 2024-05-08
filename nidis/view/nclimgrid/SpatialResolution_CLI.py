@@ -9,6 +9,9 @@ from datetime import datetime
 from multiprocessing import Pool, cpu_count
 from nidis.model.Parsers import spatial_resolution_api
 
+from nidis.model.nclimgrid.spatial_resolution import \
+    InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_52_to_63 as indicators_52_to_63
+
 #from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
 #    import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
 #from nidis.model.Metadata import \
@@ -50,6 +53,10 @@ def main():
     # processing indicator
     logging.info(f'Processing indicator: {indicator}')
 
+    print(args.lsm, args.variables, args.start_date, args.end_date)
+    # select indicator to process
+    # if indicator >= 52 and indicator <= 63:
+    #    indicators_52_to_63.main()
     """
     # set filename output
     log_filename = \
