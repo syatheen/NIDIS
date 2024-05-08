@@ -162,6 +162,6 @@ def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
     # Generating combination of parameters
     for lsm in ArgLSMList:
         for variable in ArgVariableList:
-            for mdate in date_list.list():
+            for mdate in date_list:
                 print(lsm, variable, mdate)
     return
