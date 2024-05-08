@@ -163,7 +163,5 @@ def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
     for lsm in ArgLSMList:
         for variable in ArgVariableList:
             for mdate in date_list:
-                print(mdate.year)
-                mdate = datetime.strptime(mdate, '%y/%m/%d %H:%M:%S')
-                print(lsm, variable, mdate.year)
+                print(lsm, variable, mdate.year, mdate.month)
     return
