@@ -153,6 +153,10 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     return
 
 
+def main_wrapper(args):
+   return main(*args)
+
+
 def main_multiprocessing(
             ArgLSMList,
             ArgVariableList,
@@ -182,7 +186,7 @@ def main_multiprocessing(
 
     p = Pool(processes=n_processes)
     p.starmap(
-        main,
+        main_wrapper,
         zip(multiprocessing_arguments)
     )
 
