@@ -157,13 +157,11 @@ def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
     logging.info("Inside main multiprocessing")
 
     # Generate date combinations
-    sdate = StartDate
-    edate = EndDate
-    date_list = pd.date_range(start=sdate, end=edate, freq='MS')
-    print(date_list)
+    date_list = pd.date_range(start=StartDate, end=EndDate, freq='MS')
 
     # Generating combination of parameters
     for lsm in ArgLSMList:
         for variable in ArgVariableList:
-            print(lsm, variable)
+            for mdate in date_list.list():
+                print(lsm, variable, mdate)
     return
