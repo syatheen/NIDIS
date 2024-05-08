@@ -52,13 +52,11 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
         path_to_save_data,
         f'{ArgLSM}_{ArgVariable}_{format(ArgYearInt, "04")}{format(ArgMonthInt,"02")}_ClimGrid1D.PERW.npz'
     )
-    print(ArrayFileName)
 
-    """
     SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/'
 
-    #NLDAS_2_daily_LowerLimit = 0.
-    #NLDAS_2_daily_UpperLimit = 100.
+    # NLDAS_2_daily_LowerLimit = 0.
+    # NLDAS_2_daily_UpperLimit = 100.
 
     NLDAS_2_daily_LowerLimit = 0.
     NLDAS_2_daily_ZerosLowerLimit = 50.49504470825193 # 50.495044708251945
@@ -66,8 +64,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     NLDAS_2_daily_ZerosUpperLimit = 50.49504470825198 # 50.49504470825197
     NLDAS_2_daily_UpperLimit = 100.
 
-    xres=0.125000000000/3
-    yres=0.125000000000/3
+    xres = 0.125000000000/3
+    yres = 0.125000000000/3
     resample_alg = 'near'
     Width = 1385
     Height = 596
@@ -89,17 +87,17 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
     RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
     RefArrayForPrcntl[:] = np.NaN
-
+    """
     for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
-      YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
-      SourceFile = SourceFileBasePath + 'NLDAS_2_daily/' + ArgLSM + '_' + ArgVariable + '/' + ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW.tif'
+        YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
+        SourceFile = SourceFileBasePath + 'NLDAS_2_daily/' + ArgLSM + '_' + ArgVariable + '/' + ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW.tif'
       
-      IfTifFileExists = os.path.exists(SourceFile)
-      if IfTifFileExists:
+        IfTifFileExists = os.path.exists(SourceFile)
+        if IfTifFileExists:
       
-        BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
-        outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
+            BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
+            outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
       
         try:
             os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
