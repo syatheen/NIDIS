@@ -90,6 +90,10 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
     RefArrayForPrcntl[:] = np.NaN
 
+    # TODO:
+    # check file permissions
+    # check existance of files
+
     for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
         YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
@@ -119,8 +123,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
                     ImageInfo = SrcInfo.read()
 
                     # new addition from nclimdiv script
-                    # Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit) & ~np.isnan(ImageInfo))
-                    # ImageInfo[Idxs] = 0.0
+                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit) & ~np.isnan(ImageInfo))
+                    ImageInfo[Idxs] = 0.0
 
                     ImageInfo = np.flip(ImageInfo, axis = 1)
 
