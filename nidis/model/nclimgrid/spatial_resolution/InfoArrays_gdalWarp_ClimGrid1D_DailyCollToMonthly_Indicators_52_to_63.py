@@ -160,8 +160,14 @@ def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
     date_list = pd.date_range(start=StartDate, end=EndDate, freq='MS')
 
     # Generating combination of parameters
+    multiprocessing_arguments = []
     for lsm in ArgLSMList:
         for variable in ArgVariableList:
             for mdate in date_list:
-                print(lsm, variable, mdate.year, mdate.month)
+                multiprocessing_arguments.append(
+                    [lsm, variable, mdate.year, mdate.month])
+
+    # Start processing
+    print(multiprocessing_arguments)
+
     return
