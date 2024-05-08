@@ -21,15 +21,32 @@ from multiprocessing import Pool, cpu_count
 shapely.speedups.enable()
 
 
-def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
+
+def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
 
     # NOTE: sys.argv indices start at 1, not 0
     # Python arguments to this program will be (for now):
-    #        ArgLSM ArgVariable ArgYearInt ArgMonthInt 
-    # ArgNum   1      2           3          4           
+    #        ArgLSM ArgVariable ArgYearInt ArgMonthInt ArgHUC
+    # ArgNum   1      2           3          4         5
     logging.info(f'{ArgLSM}, {ArgVariable}, {ArgYearInt}, {ArgMonthInt}')
 
     ssstart_Overall = datetime.now()
+
+    # new addition from climdiv
+    # Options are H02 (for HUC02), H04 (for HUC04), H06 (for HUC06), H08 (for HUC08)
+    if ArgHUC == 'H02':
+        HUC_FileNameBase = 'test02'
+    elif ArgHUC == 'H04':
+        HUC_FileNameBase = 'test04'
+    elif ArgHUC == 'H06':
+        HUC_FileNameBase = 'test06'
+    elif ArgHUC == 'H08':
+        HUC_FileNameBase = 'test08'
+
+    HUC_FileNameBase = os.path.join(
+        '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/NLDAS_2_daily',
+        HUC_FileNameBase
+    )
 
     #######BEGIN ANY EDITS REQUIRED#######
 
@@ -49,7 +66,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
 
     ArrayFileName = os.path.join(
         path_to_save_data,
-        f'{ArgLSM}_{ArgVariable}_{format(ArgYearInt, "04")}{format(ArgMonthInt,"02")}_ClimGrid1D.PERW.npz'
+        f'{ArgLSM}_{ArgVariable}_{format(ArgYearInt, "04")}{format(ArgMonthInt,"02")}_{ArgHUC}_ClimGrid1D.PERW.npz'
     )
 
     SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/'
@@ -87,9 +104,9 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
     RefArrayForPrcntl[:] = np.NaN
 
-    # TODO:
-    # check file permissions
-    # check existance of files
+    # new addition from climdiv
+    # TODO: What is this looking for????
+    IfHUCTifFileExists = os.path.exists(HUC_FileNameBase + '.tif')
 
     for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
@@ -111,7 +128,9 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
         os.makedirs(Path(outfn).parent, exist_ok=True)
 
         IfTifFileExists = os.path.exists(SourceFile)
-        if IfTifFileExists:
+        # if IfTifFileExists:
+        # new addition from climdiv
+        if IfTifFileExists and IfHUCTifFileExists:
 
             try:
                 # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
@@ -123,17 +142,35 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
             ds = None
 
             with rasterio.Env():
-                # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
                 with rasterio.open(outfn) as SrcInfo:
-                    ImageInfo = SrcInfo.read()
+                    with rasterio.open(HUC_FileNameBase + '.tif') as HUCSrcInfo:
 
-                    # new addition from nclimdiv script
-                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
-                    ImageInfo[Idxs] = 0.0
+                        # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
+                        #with rasterio.open(outfn) as SrcInfo:
+                        ImageInfo = SrcInfo.read()
+                        HUCImageInfo = HUCSrcInfo.read()
 
-                    ImageInfo = np.flip(ImageInfo, axis = 1)
+                        # new addition from nclimdiv script
+                        Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
+                        ImageInfo[Idxs] = 0.0
 
-                    RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+                        ImageInfo = np.flip(ImageInfo, axis = 1)
+                        HUCImageInfo = np.flip(HUCImageInfo, axis = 1)
+
+                        Idxs = np.where( (HUCImageInfo < 0.) & (~np.isnan(ImageInfo)) )
+                        ImageInfo[Idxs] = np.NaN
+
+                        Uniq_PosHUCs = np.unique(HUCImageInfo[np.where( HUCImageInfo > 0.5)])
+
+                        for ThisUniq_PosHUCs in Uniq_PosHUCs:
+                            Idxs = np.where(HUCImageInfo == ThisUniq_PosHUCs)
+                            if (np.isnan(np.nanmean(ImageInfo[Idxs]))):
+                                print(WhichDayInMonth, ' ', ThisUniq_PosHUCs, ' : All NaNs!')
+                            ImageInfo[Idxs] = np.nanmean(ImageInfo[Idxs])
+
+                        ImageInfo = ImageInfo.astype(np.float32) 
+
+                        RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
 
         try:
             # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
@@ -173,6 +210,7 @@ def main_multiprocessing(
             ArgVariableList,
             StartDate,
             EndDate,
+            ArgHUC,
             n_processes: int = 100
         ):
 
@@ -187,7 +225,7 @@ def main_multiprocessing(
         for variable in ArgVariableList:
             for mdate in date_list:
                 multiprocessing_arguments.append(
-                    [lsm, variable, mdate.year, mdate.month])
+                    [lsm, variable, mdate.year, mdate.month, ArgHUC])
 
     # Start processing
     logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
