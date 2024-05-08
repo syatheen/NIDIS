@@ -152,5 +152,11 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
 
 
 def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
-    print("Inside main multiprocessing")
+
+    logging.info("Inside main multiprocessing")
+
+    # Generating combination of parameters
+    for lsm in ArgLSMList:
+        for variable in ArgVariableList:
+            print(lsm variables)
     return
