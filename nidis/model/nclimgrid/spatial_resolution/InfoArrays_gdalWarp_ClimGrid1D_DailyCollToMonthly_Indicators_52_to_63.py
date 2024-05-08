@@ -2,6 +2,7 @@
 from __future__ import division
 import numpy as np
 import os
+import logging
 import rasterio
 from rasterio.features import shapes
 import geopandas as gpd
