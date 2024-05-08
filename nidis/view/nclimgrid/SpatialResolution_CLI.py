@@ -77,10 +77,6 @@ def main():
         args.output_dir, 'Outputs')
     os.makedirs(postprocessed_output_dir, exist_ok=True)
     """
-    # replaced when we developed the single file per 3 indicators
-    # os.makedirs('FI1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
-    # os.makedirs('SSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
-    # os.makedirs('WSiz1X1_ClmGrd1D_V2b_New/1/', exist_ok=True)
 
     """
     if 'train' in args.pipeline_step:
@@ -107,10 +103,10 @@ def main():
 
     if 'delete' in args.pipeline_step:
         logging.info('I am supposed to delete on this step')
-
-    print("End time: ", time.time() - start_time)
-    return
     """
+    logging.info(f'End time: {time.time() - start_time}')
+    return
+
 
 # -----------------------------------------------------------------------------
 # Invoke the main
