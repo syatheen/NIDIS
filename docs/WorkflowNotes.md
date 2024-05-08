@@ -26,3 +26,9 @@ for each year interval.
 | 61   | Noah       | RUN       |
 | 62   | SAC        | RUN       |
 | 63   | VIC        | RUN       |
+
+Running the single workflow for indicator 52 for example:
+
+```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2 --indicator 52
+```

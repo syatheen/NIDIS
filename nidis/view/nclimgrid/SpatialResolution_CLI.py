@@ -16,6 +16,8 @@ from nidis.model.Parsers import spatial_resolution_api
 #from nidis.model.CombineMultipleFilesIntoSingle import \
 #    CombineMultipleFilesIntoSingle, ArrayToNetCDF
 
+# NLDAS2
+# ArgLSM ArgVariable ArgYearInt ArgMonthInt 
 
 
 
