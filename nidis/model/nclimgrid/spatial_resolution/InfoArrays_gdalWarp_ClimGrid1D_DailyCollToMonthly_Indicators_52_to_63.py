@@ -135,7 +135,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
 
     print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
-    print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
+    # print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
     print("RefArrayForPrcntl.shape is ",RefArrayForPrcntl.shape)
     print("RefArrayForPrcntl is ",RefArrayForPrcntl)
     print("np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)) is ",np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)))
