@@ -53,10 +53,12 @@ def main():
     # processing indicator
     logging.info(f'Processing indicator: {indicator}')
 
-    print(args.lsm_list, args.variable_list, args.start_date, args.end_date)
     # select indicator to process
-    # if indicator >= 52 and indicator <= 63:
-    #    indicators_52_to_63.main()
+    if indicator >= 52 and indicator <= 63:
+        indicators_52_to_63.main_multiprocessing(
+            args.lsm_list, args.variable_list,
+            args.start_date, args.end_date)
+
     """
     # set filename output
     log_filename = \

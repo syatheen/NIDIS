@@ -149,3 +149,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
 
     """
     return
+
+
+def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
+    print("Inside main multiprocessing")
+    return
