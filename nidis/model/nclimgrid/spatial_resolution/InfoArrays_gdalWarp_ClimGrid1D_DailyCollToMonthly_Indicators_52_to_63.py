@@ -15,6 +15,7 @@ from calendar import monthrange
 from osgeo import gdal
 import shapely.speedups
 import fiona
+from pathlib import Path
 from multiprocessing import Pool, cpu_count
 
 shapely.speedups.enable()
@@ -87,48 +88,47 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
     RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
     RefArrayForPrcntl[:] = np.NaN
-    """
+
     for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
         YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
         SourceFile = SourceFileBasePath + 'NLDAS_2_daily/' + ArgLSM + '_' + ArgVariable + '/' + ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW.tif'
-      
+
         IfTifFileExists = os.path.exists(SourceFile)
         if IfTifFileExists:
-      
+
             BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
-            outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
-      
+            # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
+            outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
+            os.makedirs(Path(outfn).parent, exist_ok=True)
+
+            try:
+                # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+                os.remove(outfn)
+            except OSError:
+                pass
+
+            ds = gdal.Warp(outfn, SourceFile, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
+            ds = None
+
+            with rasterio.Env():
+                # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
+                with rasterio.open(outfn) as SrcInfo:
+                    ImageInfo = SrcInfo.read()
+
+                    # new addition from nclimdiv script
+                    Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
+                    ImageInfo[Idxs] = 0.0
+
+                    ImageInfo = np.flip(ImageInfo, axis = 1)
+
+                    RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+
         try:
-            os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+            # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+            os.remove(outfn)
         except OSError:
             pass
-      
-        ds = gdal.Warp(outfn, SourceFile, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
-        ds = None
-    
-        with rasterio.Env():
-          with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
-      
-            ImageInfo = SrcInfo.read()
-    
-            # new addition from nclimdiv script
-            Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
-            ImageInfo[Idxs] = 0.0
-      
-            ImageInfo = np.flip(ImageInfo, axis = 1)
-      
-            RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
-      
-          #end of with rasterio.open(..
-        #end of with rasterio.Env()
-      
-      #end of if IfTifFileExists
-
-      try:
-          os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
-      except OSError:
-          pass
 
     #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
 
@@ -150,7 +150,6 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     eeelapsed_Overall = eeend_Overall - ssstart_Overall
     print(eeelapsed_Overall.seconds,"sec:",eeelapsed_Overall.microseconds,"microsec")
 
-    """
     return
 
 
