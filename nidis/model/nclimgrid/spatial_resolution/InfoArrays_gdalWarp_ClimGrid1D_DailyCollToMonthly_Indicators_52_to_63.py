@@ -100,6 +100,15 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
         SourceFile = SourceFileBasePath + 'NLDAS_2_daily/' + ArgLSM + '_' + ArgVariable + '/' + ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW.tif'
         logging.info(f'SourceFile {SourceFile}')
 
+        # check for file existance
+        assert os.path.exists(SourceFile), \
+            f'{SourceFile} does not exist, decompress the original data?'
+
+        # check for file permissions
+        assert os.access(SourceFile, os.R_OK), \
+            f'Cannot read {SourceFile}, make sure permissions are correct.'
+
+
         BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
         # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
         outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
