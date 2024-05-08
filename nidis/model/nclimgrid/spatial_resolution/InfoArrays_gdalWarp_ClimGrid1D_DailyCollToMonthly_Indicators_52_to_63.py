@@ -94,13 +94,13 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
         YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
         SourceFile = SourceFileBasePath + 'NLDAS_2_daily/' + ArgLSM + '_' + ArgVariable + '/' + ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW.tif'
 
+        BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
+        # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
+        outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
+        os.makedirs(Path(outfn).parent, exist_ok=True)
+
         IfTifFileExists = os.path.exists(SourceFile)
         if IfTifFileExists:
-
-            BaseFileName = ArgLSM + '.' + ArgVariable + '.' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.PERW' 
-            # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
-            outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
-            os.makedirs(Path(outfn).parent, exist_ok=True)
 
             try:
                 # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
