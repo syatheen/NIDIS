@@ -186,10 +186,10 @@ def main_multiprocessing(
     multiprocessing_arguments = multiprocessing_arguments[:1]
     logging.info(f'Only processing {multiprocessing_arguments}')
 
-    #p = Pool(processes=n_processes)
-    #p.starmap(
-    #    main_wrapper,
-    #    zip(multiprocessing_arguments)
-    #)
+    p = Pool(processes=n_processes)
+    p.starmap(
+        main_wrapper,
+        zip(multiprocessing_arguments)
+    )
 
     return
