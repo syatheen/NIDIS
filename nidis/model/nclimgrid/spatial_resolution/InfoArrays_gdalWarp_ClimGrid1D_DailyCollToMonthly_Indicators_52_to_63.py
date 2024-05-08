@@ -168,7 +168,7 @@ def main_multiprocessing(
             ArgVariableList,
             StartDate,
             EndDate,
-            n_processes: int = 40
+            n_processes: int = 100
         ):
 
     logging.info("Inside main multiprocessing")
@@ -188,8 +188,8 @@ def main_multiprocessing(
     logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
 
     # temporary for testing
-    # multiprocessing_arguments = multiprocessing_arguments[:1]
-    # logging.info(f'Only processing {multiprocessing_arguments}')
+    multiprocessing_arguments = multiprocessing_arguments[:1]
+    logging.info(f'Only processing {multiprocessing_arguments}')
 
     p = Pool(processes=n_processes)
     p.starmap(
