@@ -152,7 +152,13 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
     return
 
 
-def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
+def main_multiprocessing(
+            ArgLSMList,
+            ArgVariableList,
+            StartDate,
+            EndDate,
+            n_processes: int = 40
+        ):
 
     logging.info("Inside main multiprocessing")
 
@@ -168,6 +174,15 @@ def main_multiprocessing(ArgLSMList, ArgVariableList, StartDate, EndDate):
                     [lsm, variable, mdate.year, mdate.month])
 
     # Start processing
-    print(multiprocessing_arguments)
+    logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
+
+    # temporary for testing
+    multiprocessing_arguments = multiprocessing_arguments[:1]
+
+    p = Pool(processes=n_processes)
+    p.starmap(
+        main,
+        zip(multiprocessing_arguments)
+    )
 
     return
