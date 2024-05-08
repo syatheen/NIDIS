@@ -47,6 +47,9 @@ def main():
     ch.setFormatter(formatter)
     logger.addHandler(ch)
 
+    # processing indicator
+    logging.info(f'Processing indicator: {indicator}')
+
     """
     # set filename output
     log_filename = \
