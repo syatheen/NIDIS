@@ -11,6 +11,9 @@ from nidis.model.Parsers import spatial_resolution_api
 
 from nidis.model.nclimgrid.spatial_resolution import \
     InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_52_to_63 as indicators_52_to_63
+from nidis.model.nclimgrid.spatial_resolution import \
+    InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_64_to_67 as indicators_64_to_67
+
 
 #from nidis.model.CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas \
 #    import main as CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_Main
@@ -58,6 +61,10 @@ def main():
         indicators_52_to_63.main_multiprocessing(
             args.lsm_list, args.variable_list,
             args.start_date, args.end_date)
+    elif indicator >= 64 and indicator <= 67:
+        indicators_64_to_67.main_multiprocessing(
+            args.lsm_list, args.variable_list,
+            args.start_date, args.end_date, args.huc_value)
 
     """
     # set filename output

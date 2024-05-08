@@ -32,5 +32,32 @@ Make sure the original GeoTIFF files have been unpacked.
 Running the single workflow for indicator 52 for example:
 
 ```bash
-PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2 --indicator 52
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2 --indicator 52 --lsm Mosaic --variable EVAP
+```
+
+We use this same arguments to go over each one of the other indicators.
+
+## Indicators 64 to 67
+
+The following combinations are needed for each indicator between
+64 to 67. Each combination is given to the necessary scripts. The
+time range starts on 1980-1 and ends on 2021-8, with a month value
+for each year interval.
+
+Make sure the original GeoTIFF files have been unpacked and that you
+have access to the test04.tif HUC filename.
+
+
+| Indicator #  | ArgLSM         | ArgVariable   |
+| :---:        |     :---:      |        :---:  |
+| 64   | Mosaic     | STRM      |
+| 65   | Noah       | STRM      |
+| 66   | SAC        | STRM      |
+| 67   | VIC        | STRM      |
+
+Each one of those entries is ran with H04 as the HUC parameter. An example
+if this run is listed below:
+
+```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2 --indicator 52 --lsm Mosaic --variable STRM
 ```
