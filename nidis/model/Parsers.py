@@ -5,7 +5,21 @@ def spatial_resolution_api():
 
     # Process command-line args.
     desc = 'Use this application to perform spatial resolution fixes.'
-    parser = argparse.ArgumentParser(description=desc)
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers(help=desc)
+
+    # Subparser for NLDAS2
+    nldas2_parser = subparsers.add_parser("NLDAS2")
+
+    nldas2_parser.add_argument('-i',
+                    '--indicator',
+                    type=int,
+                    required=True,
+                    default=None,
+                    dest='indicator',
+                    help='Indicator to process (goes from 1-113).')
+
+    return parser.parse_args()
 
 """
     parser.add_argument('-i',
