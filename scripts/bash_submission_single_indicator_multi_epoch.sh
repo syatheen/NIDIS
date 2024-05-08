@@ -31,7 +31,7 @@
 # provides acceptable performance.
 #
 # Provide the number of nodes you would like to use
-NUMBER_NODES=12
+NUMBER_NODES=40
 TOTAL_NUMBER_OF_TASKS=469758
 
 #PATH_TO_TASKS=`pwd`
@@ -59,6 +59,6 @@ do
 
     # call sbatch script
     # 1 - indicator, 2 - seasons, 3 - filesystem
-    sbatch sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task
+    sbatch -J "NID_${1}" sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task $4
 
 done
