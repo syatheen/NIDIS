@@ -226,6 +226,7 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
 
     NLDAS_2_Ref_BeginDateVecList = FindTuesdayAfter(LSM_Variable_daily_YYYYMMDD_Of_InfoArray[0,0])  # NLDAS_2_daily beginning year, month, day of month, this is also a Tuesday
     NLDAS_2_Ref_EndDateVecList = FindTuesdayBefore(LSM_Variable_daily_YYYYMMDD_Of_InfoArray[-1,0])  # NLDAS_2_daily ending year, month, day of month, this is also a Tuesday
+    print(NLDAS_2_Ref_BeginDateVecList)
 
     # this will cause problems, it is expecting a RefArrays directory from the 
     # place the script is running from
