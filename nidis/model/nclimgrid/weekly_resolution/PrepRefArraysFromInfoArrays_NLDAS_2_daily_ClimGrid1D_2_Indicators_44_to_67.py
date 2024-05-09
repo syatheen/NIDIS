@@ -363,47 +363,6 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
 
     return
 
-def main_wrapper(args):
-   return main(*args)
-
-
-def main_multiprocessing(
-            ArgLSMList,
-            ArgVariableList,
-            StartDate,
-            EndDate,
-            ArgHUC,
-            n_processes: int = 100
-        ):
-
-    logging.info("Inside main multiprocessing")
-
-    # Generate date combinations
-    date_list = pd.date_range(start=StartDate, end=EndDate, freq='MS')
-
-    # Generating combination of parameters
-    multiprocessing_arguments = []
-    for lsm in ArgLSMList:
-        for variable in ArgVariableList:
-            for mdate in date_list:
-                multiprocessing_arguments.append(
-                    [lsm, variable, mdate.year, mdate.month, ArgHUC])
-
-    # Start processing
-    logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
-
-    # temporary for testing
-    # multiprocessing_arguments = multiprocessing_arguments[:1]
-    # logging.info(f'Only processing {multiprocessing_arguments}')
-
-    p = Pool(processes=n_processes)
-    p.starmap(
-        main_wrapper,
-        zip(multiprocessing_arguments)
-    )
-
-    return
-
 
 if __name__ == '__main__':
     main()

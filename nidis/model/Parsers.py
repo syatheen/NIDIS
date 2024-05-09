@@ -13,6 +13,8 @@ def spatial_resolution_api():
     nldas2huc_parser = subparsers.add_parser("NLDAS2HUC")
 
     for subparser in [nldas2_parser, nldas2huc_parser]:
+
+        # make this indicators a list of things you can add
         subparser.add_argument(
             '-i',
             '--indicator',
@@ -22,6 +24,7 @@ def spatial_resolution_api():
             dest='indicator',
             help='Indicator to process (goes from 1-113).')
 
+        # make this optional and map to the dict
         subparser.add_argument(
             '-l',
             '--lsm',
@@ -33,6 +36,7 @@ def spatial_resolution_api():
             default=['Mosaic', 'Noah', 'SAC', 'VIC'],
             choices=['Mosaic', 'Noah', 'SAC', 'VIC'])
 
+        # make this optional use mapping from dict
         subparser.add_argument(
             '-v',
             '--variable',
@@ -62,6 +66,7 @@ def spatial_resolution_api():
             dest='end_date',
             help='Date to end processing at.')
 
+    # make this optional use mapping from metadata dict
     nldas2huc_parser.add_argument(
         '-hu',
         '--huc-value',
@@ -71,5 +76,22 @@ def spatial_resolution_api():
         help='HUC value to process',
         default='H04',
         choices=['H02', 'H04', 'H06', 'H08'])
+
+    return parser.parse_args()
+
+def weekly_resolution_api():
+
+    # Process command-line args.
+    desc = 'Use this application to perform weekly resolution fixes.'
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '-i',
+        '--indicator',
+        type=int,
+        required=True,
+        default=None,
+        dest='indicator',
+        help='Indicator to process (goes from 1-113).')
 
     return parser.parse_args()

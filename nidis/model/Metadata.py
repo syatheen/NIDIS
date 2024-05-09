@@ -117,3 +117,22 @@ DictofNumNamePairs_Channels = {1: 'Z_index',
                                111: 'VCI_BlendedVHP',
                                112: 'VHI_BlendedVHP',
                                113: 'GlobSnow3'}
+
+DictofSpatialAndWeeklyResolutionMapping = {
+    52: {'ArgLSM': 'Mosaic', 'ArgVariable': 'EVAP'},
+    53: {'ArgLSM': 'Noah', 'ArgVariable': 'EVAP'},
+    54: {'ArgLSM': 'SAC', 'ArgVariable': 'EVAP'},
+    55: {'ArgLSM': 'VIC', 'ArgVariable': 'EVAP'},
+    56: {'ArgLSM': 'Mosaic', 'ArgVariable': 'SWE'},
+    57: {'ArgLSM': 'Noah', 'ArgVariable': 'SWE'},
+    58: {'ArgLSM': 'SAC', 'ArgVariable': 'SWE'},
+    59: {'ArgLSM': 'VIC', 'ArgVariable': 'SWE'},
+    60: {'ArgLSM': 'Mosaic', 'ArgVariable': 'RUN'},
+    61: {'ArgLSM': 'Noah', 'ArgVariable': 'RUN'},
+    62: {'ArgLSM': 'SAC', 'ArgVariable': 'RUN'},
+    63: {'ArgLSM': 'VIC', 'ArgVariable': 'RUN'},
+    64: {'ArgLSM': 'Mosaic', 'ArgVariable': 'STRM', 'ArgHUC': 'H04'},
+    65: {'ArgLSM': 'Noah', 'ArgVariable': 'STRM', 'ArgHUC': 'H04'},
+    66: {'ArgLSM': 'SAC', 'ArgVariable': 'STRM', 'ArgHUC': 'H04'},
+    67: {'ArgLSM': 'VIC', 'ArgVariable': 'STRM', 'ArgHUC': 'H04'},
+}
