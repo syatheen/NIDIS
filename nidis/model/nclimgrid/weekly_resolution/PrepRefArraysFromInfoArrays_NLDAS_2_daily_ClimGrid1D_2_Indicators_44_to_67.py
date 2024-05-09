@@ -201,8 +201,10 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
     NLDAS_2_daily_Info_EndYYYYMMVecList = [2021, 8] # Ending year and month 
 
     if (ArgVariable == 'STRM') :
+        print('Inside STRM LSM_Variable_daily_YYYYMMDD_Of_InfoArray')
         LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ArgLSM, ArgVariable, ArgHUC, NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
     else:
+        print('Inside ELSE LSM_Variable_daily_YYYYMMDD_Of_InfoArray')
         LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ArgLSM, ArgVariable, '', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
 
     """
