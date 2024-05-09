@@ -41,9 +41,9 @@ def ConcatMonthlyArraysContainingDailyInfo(WhichLSM, WhichVariable, WhichHUC, NL
       elif ( (WhichVariable == 'EVAP') or 
              (WhichVariable == 'SWE') or
              (WhichVariable == 'RUN') ):
-        ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.PERW.50AdjustTo0.npz')
+        ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
       elif (WhichVariable == 'STRM') :
-        ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_' + WhichHUC + '_ClimGrid1D.PERW.50AdjustTo0.npz')
+        ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_' + WhichHUC + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
  
       ThisYYYYMMDD_Of_InfoArrayForPrcntl = ThisYYYYMM_Info['YYYYMMDD_Of_RefArrayForPrcntl']
       ThisInfoArrayForPrcntl = ThisYYYYMM_Info['RefArrayForPrcntl']
