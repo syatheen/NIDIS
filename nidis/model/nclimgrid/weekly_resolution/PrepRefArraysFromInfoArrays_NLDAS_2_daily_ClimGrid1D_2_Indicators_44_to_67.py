@@ -333,6 +333,33 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
             np.savez_compressed(LSM_Variable_RefFileName, SAC_EVAP_RefArray = LSM_Variable_RefArray, SAC_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
         elif ArgLSM == 'VIC':
             np.savez_compressed(LSM_Variable_RefFileName, VIC_EVAP_RefArray = LSM_Variable_RefArray, VIC_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+    elif ArgVariable == 'SWE':
+        if ArgLSM == 'Mosaic':
+            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_SWE_RefArray = LSM_Variable_RefArray, Mosaic_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'Noah':
+            np.savez_compressed(LSM_Variable_RefFileName, Noah_SWE_RefArray = LSM_Variable_RefArray, Noah_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'SAC':
+            np.savez_compressed(LSM_Variable_RefFileName, SAC_SWE_RefArray = LSM_Variable_RefArray, SAC_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'VIC':
+            np.savez_compressed(LSM_Variable_RefFileName, VIC_SWE_RefArray = LSM_Variable_RefArray, VIC_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+    elif ArgVariable == 'RUN':
+        if ArgLSM == 'Mosaic':
+            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_RUN_RefArray = LSM_Variable_RefArray, Mosaic_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'Noah':
+            np.savez_compressed(LSM_Variable_RefFileName, Noah_RUN_RefArray = LSM_Variable_RefArray, Noah_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'SAC':
+            np.savez_compressed(LSM_Variable_RefFileName, SAC_RUN_RefArray = LSM_Variable_RefArray, SAC_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'VIC':
+            np.savez_compressed(LSM_Variable_RefFileName, VIC_RUN_RefArray = LSM_Variable_RefArray, VIC_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+    elif ArgVariable == 'STRM':
+        if ArgLSM == 'Mosaic':
+            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_STRM_H04_RefArray = LSM_Variable_RefArray, Mosaic_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'Noah':
+            np.savez_compressed(LSM_Variable_RefFileName, Noah_STRM_H04_RefArray = LSM_Variable_RefArray, Noah_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'SAC':
+            np.savez_compressed(LSM_Variable_RefFileName, SAC_STRM_H04_RefArray = LSM_Variable_RefArray, SAC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+        elif ArgLSM == 'VIC':
+            np.savez_compressed(LSM_Variable_RefFileName, VIC_STRM_H04_RefArray = LSM_Variable_RefArray, VIC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
     else: #of if ArgVariable == '1MSM'
         print('Add remaining np.savez_compressed code lines for other variables!!')
         sys.exit(0)
