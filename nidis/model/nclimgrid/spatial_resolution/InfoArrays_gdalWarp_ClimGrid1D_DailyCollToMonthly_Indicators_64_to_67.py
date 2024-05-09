@@ -151,7 +151,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
 
             with rasterio.Env():
                 with rasterio.open(outfn) as SrcInfo:
-                    with rasterio.open(outfn_huc + '.tif') as HUCSrcInfo:
+                    with rasterio.open(outfn_huc) as HUCSrcInfo:
 
                         # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
                         #with rasterio.open(outfn) as SrcInfo:
