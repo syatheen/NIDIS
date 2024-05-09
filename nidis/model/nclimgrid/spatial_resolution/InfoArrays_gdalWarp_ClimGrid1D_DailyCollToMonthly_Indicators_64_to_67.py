@@ -35,17 +35,17 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
     # new addition from climdiv
     # Options are H02 (for HUC02), H04 (for HUC04), H06 (for HUC06), H08 (for HUC08)
     if ArgHUC == 'H02':
-        HUC_FileNameBase = 'test02'
+        HUC_Base = 'test02'
     elif ArgHUC == 'H04':
-        HUC_FileNameBase = 'test04'
+        HUC_Base = 'test04'
     elif ArgHUC == 'H06':
-        HUC_FileNameBase = 'test06'
+        HUC_Base = 'test06'
     elif ArgHUC == 'H08':
-        HUC_FileNameBase = 'test08'
+        HUC_Base = 'test08'
 
     HUC_FileNameBase = os.path.join(
         '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/NLDAS_2_daily',
-        HUC_FileNameBase
+        HUC_Base
     )
 
     #######BEGIN ANY EDITS REQUIRED#######
@@ -128,6 +128,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
         outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
         os.makedirs(Path(outfn).parent, exist_ok=True)
 
+        outfn_huc = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', f'{HUC_Base}.tif')
+
         IfTifFileExists = os.path.exists(SourceFile)
         # if IfTifFileExists:
         # new addition from climdiv
@@ -142,9 +144,14 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
             ds = gdal.Warp(outfn, SourceFile, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
             ds = None
 
+            # size is different between original HUC and new gdal warped data
+            # we are resampling HUC to match
+            ds = gdal.Warp(outfn_huc, f'{HUC_FileNameBase}.tif', options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
+            ds = None
+
             with rasterio.Env():
                 with rasterio.open(outfn) as SrcInfo:
-                    with rasterio.open(HUC_FileNameBase + '.tif') as HUCSrcInfo:
+                    with rasterio.open(outfn_huc + '.tif') as HUCSrcInfo:
 
                         # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
                         #with rasterio.open(outfn) as SrcInfo:
@@ -177,6 +184,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
         try:
             # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
             os.remove(outfn)
+            os.remove(outfn_huc)
         except OSError:
             pass
 
