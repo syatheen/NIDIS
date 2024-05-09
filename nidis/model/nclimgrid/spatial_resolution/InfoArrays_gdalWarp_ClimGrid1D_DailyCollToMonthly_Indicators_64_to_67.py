@@ -149,28 +149,29 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
                         #with rasterio.open(outfn) as SrcInfo:
                         ImageInfo = SrcInfo.read()
                         HUCImageInfo = HUCSrcInfo.read()
+                        print("SIZES OF IMAGE AND HUC", ImageInfo.shape, HUCImageInfo.shape)
 
                         # new addition from nclimdiv script
-                        Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
-                        ImageInfo[Idxs] = 0.0
+                        # Idxs = np.where((ImageInfo >= NLDAS_2_daily_ZerosLowerLimit) & (ImageInfo <= NLDAS_2_daily_ZerosUpperLimit))
+                        # ImageInfo[Idxs] = 0.0
 
-                        ImageInfo = np.flip(ImageInfo, axis = 1)
-                        #HUCImageInfo = np.flip(HUCImageInfo, axis = 1)
+                        # ImageInfo = np.flip(ImageInfo, axis = 1)
+                        # HUCImageInfo = np.flip(HUCImageInfo, axis = 1)
 
-                        Idxs = np.where( (HUCImageInfo < 0.) & (~np.isnan(ImageInfo)) )
-                        ImageInfo[Idxs] = np.NaN
+                        # Idxs = np.where( (HUCImageInfo < 0.) & (~np.isnan(ImageInfo)) )
+                        # ImageInfo[Idxs] = np.NaN
 
-                        Uniq_PosHUCs = np.unique(HUCImageInfo[np.where( HUCImageInfo > 0.5)])
+                        # Uniq_PosHUCs = np.unique(HUCImageInfo[np.where( HUCImageInfo > 0.5)])
 
-                        for ThisUniq_PosHUCs in Uniq_PosHUCs:
-                            Idxs = np.where(HUCImageInfo == ThisUniq_PosHUCs)
-                            if (np.isnan(np.nanmean(ImageInfo[Idxs]))):
-                                print(WhichDayInMonth, ' ', ThisUniq_PosHUCs, ' : All NaNs!')
-                            ImageInfo[Idxs] = np.nanmean(ImageInfo[Idxs])
+                        # for ThisUniq_PosHUCs in Uniq_PosHUCs:
+                        #    Idxs = np.where(HUCImageInfo == ThisUniq_PosHUCs)
+                        #    if (np.isnan(np.nanmean(ImageInfo[Idxs]))):
+                        #        print(WhichDayInMonth, ' ', ThisUniq_PosHUCs, ' : All NaNs!')
+                        #    ImageInfo[Idxs] = np.nanmean(ImageInfo[Idxs])
 
-                        ImageInfo = ImageInfo.astype(np.float32) 
+                        # ImageInfo = ImageInfo.astype(np.float32) 
 
-                        RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+                        # RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
 
         try:
             # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
