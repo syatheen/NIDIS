@@ -205,6 +205,7 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
     else:
         LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ArgLSM, ArgVariable, '', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
 
+    """
     #Mosaic_STRM_daily_H02_YYYYMMDD_Of_InfoArray, Mosaic_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Mosaic', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
     #Noah_STRM_daily_H02_YYYYMMDD_Of_InfoArray, Noah_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Noah', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
     #SAC_STRM_daily_H02_YYYYMMDD_Of_InfoArray, SAC_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('SAC', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
@@ -268,7 +269,7 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
         sys.exit(0)
 
     #END check whether the beginning and ending days are indeed Tuesdays
-
+    """
     return
 
 """
