@@ -29,6 +29,8 @@ Make sure the original GeoTIFF files have been unpacked.
 | 62   | SAC        | RUN       |
 | 63   | VIC        | RUN       |
 
+### Spatial Resolution
+
 Running the single workflow for indicator 52 for example:
 
 ```bash
@@ -36,6 +38,18 @@ PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/noba
 ```
 
 We use this same arguments to go over each one of the other indicators.
+
+### Weekly Resolution
+
+The next step belongs to weekly resolution. To run this on the current workflow we run the following command:
+
+```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/WeeklyResolution_CLI.py -i 53
+```
+
+### Percentile Creation
+
+
 
 ## Indicators 64 to 67
 
