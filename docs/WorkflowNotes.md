@@ -59,5 +59,5 @@ Each one of those entries is ran with H04 as the HUC parameter. An example
 if this run is listed below:
 
 ```bash
-PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2 --indicator 52 --lsm Mosaic --variable STRM
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/SpatialResolution_CLI.py NLDAS2HUC --indicator 64 --lsm Mosaic --variable STRM --huc-value H04
 ```
