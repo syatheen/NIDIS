@@ -128,7 +128,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
         outfn = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
         os.makedirs(Path(outfn).parent, exist_ok=True)
 
-        outfn_huc = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', f'{HUC_Base}.tif')
+        outfn_huc = os.path.join(path_to_save_data, 'NLDAS_2_daily/TempCreatedFiles/', f'{BaseFileName}_{HUC_Base}.tif')
 
         IfTifFileExists = os.path.exists(SourceFile)
         # if IfTifFileExists:
