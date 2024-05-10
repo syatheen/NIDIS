@@ -47,9 +47,25 @@ The next step belongs to weekly resolution. To run this on the current workflow 
 PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/WeeklyResolution_CLI.py -i 53
 ```
 
+This can be submitted via slurm with:
+
+```bash
+sbatch sbatch_weekly_resolution.sh 53
+```
+
 ### Percentile Creation
 
+The next step belong to the percentile creation code. To run this on the current workflow we run the following command:
 
+```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/nclimgrid/PercentileCreation_CLI.py --indicator 53
+```
+
+This can be submitted via slurm with:
+
+```bash
+sbatch sbatch_percentile_creation.sh 53
+```
 
 ## Indicators 64 to 67
 
@@ -61,13 +77,12 @@ for each year interval.
 Make sure the original GeoTIFF files have been unpacked and that you
 have access to the test04.tif HUC filename.
 
-
-| Indicator #  | ArgLSM         | ArgVariable   |
-| :---:        |     :---:      |        :---:  |
-| 64   | Mosaic     | STRM      |
-| 65   | Noah       | STRM      |
-| 66   | SAC        | STRM      |
-| 67   | VIC        | STRM      |
+| Indicator #  | ArgLSM         | ArgVariable   | HUC  |
+| :---:        |     :---:      |        :---:  |:---: |
+| 64           | Mosaic         | STRM          | H04  |
+| 65           | Noah           | STRM          | H04  |
+| 66           | SAC            | STRM          | H04  |
+| 67           | VIC            | STRM          | H04  |
 
 Each one of those entries is ran with H04 as the HUC parameter. An example
 if this run is listed below:
