@@ -125,8 +125,8 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
     NLDAS_2_daily_YYYYMMDD_Of_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_RUN_YYYYMMDD_Of_RefArray']
     NLDAS_2_daily_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_RUN_RefArray']
   elif ArgVariable == 'STRM':
-    NLDAS_2_daily_YYYYMMDD_Of_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_STRM_YYYYMMDD_Of_RefArray']
-    NLDAS_2_daily_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_STRM_RefArray']
+    NLDAS_2_daily_YYYYMMDD_Of_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_STRM_{ArgHUC}_YYYYMMDD_Of_RefArray']
+    NLDAS_2_daily_RefArray = NLDAS_2_daily_RefObject[f'{ArgLSM}_STRM_{ArgHUC}_RefArray']
   else: #of if ArgVariable == '1MSM'
     print('Add remaining np.savez_compressed code lines for other variables!!')
     sys.exit(0)
