@@ -95,3 +95,20 @@ def weekly_resolution_api():
         help='Indicator to process (goes from 1-113).')
 
     return parser.parse_args()
+
+def percentile_creation_api():
+
+    # Process command-line args.
+    desc = 'Use this application to perform percentile creation.'
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        '-i',
+        '--indicator',
+        type=int,
+        required=True,
+        default=None,
+        dest='indicator',
+        help='Indicator to process (goes from 1-113).')
+
+    return parser.parse_args()

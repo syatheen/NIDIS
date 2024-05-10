@@ -7,11 +7,11 @@ import numpy as np
 from glob import glob
 from datetime import datetime
 from multiprocessing import Pool, cpu_count
-from nidis.model.Parsers import weekly_resolution_api
+from nidis.model.Parsers import percentile_creation_api
 
 from nidis.model.Metadata import DictofSpatialAndWeeklyResolutionMapping
-from nidis.model.nclimgrid.weekly_resolution import \
-    PrepRefArraysFromInfoArrays_NLDAS_2_daily_ClimGrid1D_2_Indicators_44_to_67 \
+from nidis.model.nclimgrid.percentile_creation import \
+    PrepSingle_ClimGrid1D_NLDAS_2_daily_CorrToMonthlyPerc_Indicators_44_to_67 \
     as indicators_44_to_67
 
 
@@ -21,7 +21,7 @@ def main():
     start_time = time.time()
 
     # gather arguments
-    args = weekly_resolution_api()
+    args = percentile_creation_api()
 
     # set indicator
     # training script expects them in the 0-112 format, we
