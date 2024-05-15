@@ -165,9 +165,15 @@ time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover
 ### 2. Running Through Slurm
 
 ```bash
-bash bash_submission_single_indicator_multi_epoch.sh 9 "A P U F W" fame
-bash bash_submission_single_indicator_multi_epoch.sh 10 "A P U F W" fame
+bash bash_submission_single_indicator_multi_epoch.sh 112 "P U F W" fame 70
+bash bash_submission_single_indicator_multi_epoch.sh 9 "P U F W" fame 70
 ```
+
+where:
+- 112 is the indicator number
+- "P U F W" are the seasons to run
+- fame is the project storage directory
+- 70 is the number of concurrent processes
 
 ### 3. Regression Testing
 
