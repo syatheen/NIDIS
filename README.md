@@ -188,8 +188,7 @@ sbatch sbatch_submission_single_indicator_multi_epoch_postprocess.sh 43 "P U F W
 
 ### 5. Release
 
-```bash
-```
+We will document release procedures here later.
 
 ## References
 
