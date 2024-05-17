@@ -162,6 +162,10 @@ Or developing locally to avoid output to terminal screen (faster):
 time PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --indicator 78 --season W --output-dir /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 469758
 ```
 
+```bash
+PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --output-dir /discover/nobackup/projects/fame/jacaraba/NIDIS_Runs --step train --init-task 0 --end-task 469758 --season A --indicator 52
+```
+
 ### 2. Running Through Slurm
 
 ```bash

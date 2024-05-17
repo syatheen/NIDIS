@@ -9,7 +9,7 @@
 #SBATCH --error=%x_%j.err       # Error file
 #SBATCH --mail-user=jordan.a.caraballo-vega@nasa.gov
 
-module purge
+# module purge
 module load python/GEOSpyD/Min23.5.2-0_py3.11
 source activate /home/jacaraba/.conda/envs/amy-rf
 

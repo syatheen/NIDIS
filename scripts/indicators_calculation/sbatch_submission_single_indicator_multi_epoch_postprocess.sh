@@ -12,7 +12,7 @@
 
 module purge
 module load python/GEOSpyD/Min23.5.2-0_py3.11
-source activate /home/syatheen/.conda/envs/newearthmlnew_noGPU
+source activate /home/jacaraba/.conda/envs/amy-rf
 
 # srun -n1 python CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py $1 $2 $3
 
