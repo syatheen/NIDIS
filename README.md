@@ -196,6 +196,16 @@ from Slurm
 ```bash
 sbatch sbatch_submission_single_indicator_multi_epoch_postprocess.sh 43 "P U F W"
 ```
+May have to delete the line "--qos admin" in bash script.
+
+After running postproicessing, check that 5 .nc files have been created per indicator by running:
+
+```bash
+ls -lth /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/Outputs/*.nc | more
+```
+
+If the postprocessing script worked, then you can delete the indicator_XX files located in /discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/
+
 
 ### 5. Release
 
