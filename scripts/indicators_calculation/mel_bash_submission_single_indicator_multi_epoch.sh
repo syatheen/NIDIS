@@ -59,6 +59,6 @@ do
 
     # call sbatch script
     # 1 - indicator, 2 - seasons, 3 - filesystem
-    sbatch -J "NID_${1}" /discover/nobackup/jacaraba/development/nidis/scripts/indicators_calculation/sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task $4
+    sbatch -J "NID_${1}" /discover/nobackup/jacaraba/development/nidis/scripts/indicators_calculation/mel_sbatch_submission_single_indicator_multi_epoch.sh $1 "$2" $3 $start_task $end_task $4
 
 done
