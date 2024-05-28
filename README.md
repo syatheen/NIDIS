@@ -15,13 +15,23 @@ From Yatheendradas et al. (2023), "Quantifying the Importance of Selected Drough
 Drought maps from the U.S. Drought Monitor and the Objective Short- and Long-Term Drought Indicator Blends and Blend Equivalents are integrated information sources of the different types of drought. Multiple indicators go into creation of these maps, yet it is usually not clear to both public and private stakeholders like local agencies and insurance companies about the importance of any indicator in any region and season to the drought maps. Our study provides such objective information to enable understanding the mechanism and type of drought occurring at a location, season, and possibly event of interest, as well as to potentially aid in better drought monitoring and forecasting using smaller custom sets of indicators.
 
 ## Dependencies
-Run on discover. To request access refer to NCCS guides: https://www.nccs.nasa.gov/nccs-users/instructional/using-discover
+Run on discover nca and fame nodes. To request access refer to NCCS guides: https://www.nccs.nasa.gov/nccs-users/instructional/using-discover
 
 Ensure umask set to 002 in ~/.bashrc file
 
-Document Python environment creation here:
+Python environment creation here:
+(include environment.yml file in repo)
 
 ```bash
+# Create the environment from the environment.yml file:
+conda env create -f environment.yml
+
+# Activate the new environment:
+conda activate myenv
+
+# Verify that the new environment was installed correctly:
+conda env list
+
 ```
 
 ## Original Workflow
@@ -33,6 +43,7 @@ the things that have run:
 - Soni Ran: 73 indicators for the A season already done, 20 already done for P U F W
 - We need to Run: 113 indicators total for P U F W A
 - Right now we can Run: 73 P U F W, where all we need to change is the P U F W
+- Update 5/24/2028: 103 indicators (P U F W A) finished running and post-processing
 
 The original script has a single output file per pixel multiplied by 3. Thus we have about
 469,908 * 3 small files on discover.
