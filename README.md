@@ -15,6 +15,8 @@ From Yatheendradas et al. (2023), "Quantifying the Importance of Selected Drough
 Drought maps from the U.S. Drought Monitor and the Objective Short- and Long-Term Drought Indicator Blends and Blend Equivalents are integrated information sources of the different types of drought. Multiple indicators go into creation of these maps, yet it is usually not clear to both public and private stakeholders like local agencies and insurance companies about the importance of any indicator in any region and season to the drought maps. Our study provides such objective information to enable understanding the mechanism and type of drought occurring at a location, season, and possibly event of interest, as well as to potentially aid in better drought monitoring and forecasting using smaller custom sets of indicators.
 
 ## Dependencies
+Run on discover. To request access refer to NCCS guides: https://www.nccs.nasa.gov/nccs-users/instructional/using-discover
+
 Ensure umask set to 002 in ~/.bashrc file
 
 Document Python environment creation here:
