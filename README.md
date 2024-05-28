@@ -66,6 +66,11 @@ Slurm job array, more tasks that can be run at the same time. Only run these man
 Each task is considered a separate job. It will fit all within a single node.
 100 to 200 processes run out of memory.
 
+To see quota before running, may want to run:
+```bash
+showquota -h
+```
+
 ## Development Workflow
 
 The challenge of using multi-prog for programs that in many cases last less than 20s is the 
@@ -193,6 +198,8 @@ where:
 - fame is the project storage directory
 - 70 is the number of concurrent processes
 
+Suggest keeping 70 but changing the rest as appropriate
+
 ### 3. Regression Testing
 
 ```bash
@@ -200,6 +207,12 @@ where:
 
 ### 4. Postprocessing
 
+Before running postprocessing, to ensure processes are complete consider running:
+```bash
+bash /discover/nobackup/jacaraba/development/nidis/scripts/indicators_calculation/check_indicator_status.bash
+```
+
+Postprocessing
 ```bash
 PYTHONPATH="/discover/nobackup/jacaraba/development/nidis" python /discover/nobackup/jacaraba/development/nidis/nidis/view/CalcFI1X1_ClimGrid1D_V2b_NDFeat_NewSeas_CLI.py --output-dir /discover/nobackup/projects/fame/jacaraba/NIDIS_Runs --step postprocess --season U F W --indicator 8
 ```
