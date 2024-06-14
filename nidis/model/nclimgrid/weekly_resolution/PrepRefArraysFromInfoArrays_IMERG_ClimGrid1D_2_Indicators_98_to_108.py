@@ -141,7 +141,7 @@ def main():
 
   # BEGIN code arguments / editable section
 
-  NumMonthsStr = sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month' 
+  NumMonthsStr = '72Month' #sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month' 
 
   if NumMonthsStr == '1Month':
     IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG1MonthsMean_20000630To20210531.npz'
@@ -164,7 +164,7 @@ def main():
   elif NumMonthsStr == '60Month':
     IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG60MonthsMean_20050531To20210531.npz'
   elif NumMonthsStr == '72Month':
-    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG72MonthsMean_20060531To20210531.npz'
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/IMERG_Npzs/InfoArrsDailyMean/ClimGrid1D/IMERG72MonthsMean_20060531To20210531.npz'
   #end of if NumMonthsStr == '1Month'
 
   IMERG_nMonth_Info = np.load(IMERG_nMonth_InfoFilename)
@@ -175,7 +175,7 @@ def main():
   IMERG_nMonth_Ref_BeginDateVecList = FindTuesdayAfter(IMERG_nMonth_YYYYMMDD_Of_InfoArray[0,0])  # 1Month IMERG beginning year, month, day of month, this is also a Tuesday
   IMERG_nMonth_Ref_EndDateVecList = FindTuesdayBefore(IMERG_nMonth_YYYYMMDD_Of_InfoArray[-1,0])  # 1Month IMERG ending year, month, day of month, this is also a Tuesday
 
-  IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(IMERG_nMonth_Ref_BeginDateVecList[0],'04')+format(IMERG_nMonth_Ref_BeginDateVecList[1],'02')+format(IMERG_nMonth_Ref_BeginDateVecList[2],'02')+'To'+format(IMERG_nMonth_Ref_EndDateVecList[0],'04')+format(IMERG_nMonth_Ref_EndDateVecList[1],'02')+format(IMERG_nMonth_Ref_EndDateVecList[2],'02')+'.npz'
+  IMERG_nMonth_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(IMERG_nMonth_Ref_BeginDateVecList[0],'04')+format(IMERG_nMonth_Ref_BeginDateVecList[1],'02')+format(IMERG_nMonth_Ref_BeginDateVecList[2],'02')+'To'+format(IMERG_nMonth_Ref_EndDateVecList[0],'04')+format(IMERG_nMonth_Ref_EndDateVecList[1],'02')+format(IMERG_nMonth_Ref_EndDateVecList[2],'02')+'.npz'
 
   # END code arguments / editable section
 
