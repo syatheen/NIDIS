@@ -47,7 +47,7 @@ def main(ArgYearInt: int, ArgMonthInt: int):
   SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs'
   SourceFileBasePathWrite = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/IMERG/daily_Final_V06_Tifs'
 
-  os.makedirs(os.path.join(SourceFileBasePathWrite, 'TempCreatedFiles'))
+  os.makedirs(os.path.join(SourceFileBasePathWrite, 'TempCreatedFiles'), exist_ok=True)
 
   # IMERG_daily_LowerLimit = 0.
   # IMERG_daily_UpperLimit = 272478720.000000
