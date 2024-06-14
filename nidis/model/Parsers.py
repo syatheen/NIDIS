@@ -11,6 +11,7 @@ def spatial_resolution_api():
     # Subparser for NLDAS2
     nldas2_parser = subparsers.add_parser("NLDAS2")
     nldas2huc_parser = subparsers.add_parser("NLDAS2HUC")
+    imerg_parser = subparsers.add_parser("IMERG")
 
     for subparser in [nldas2_parser, nldas2huc_parser]:
 
@@ -47,6 +48,37 @@ def spatial_resolution_api():
             help='Variable to process',
             default=['EVAP', 'SWE', 'RUN', 'STRM'],
             choices=['EVAP', 'SWE', 'RUN', 'STRM'])
+
+        subparser.add_argument(
+            '-sd',
+            '--start-date',
+            type=str,
+            required=False,
+            default='19800101',
+            dest='start_date',
+            help='Date to start processing from.')
+
+        subparser.add_argument(
+            '-ed',
+            '--end-date',
+            type=str,
+            required=False,
+            default='20210831',
+            dest='end_date',
+            help='Date to end processing at.')
+
+    # general parsers
+    for subparser in [imerg_parser]:
+
+        # make this indicators a list of things you can add
+        subparser.add_argument(
+            '-i',
+            '--indicator',
+            type=int,
+            required=True,
+            default=None,
+            dest='indicator',
+            help='Indicator to process (goes from 1-113).')
 
         subparser.add_argument(
             '-sd',

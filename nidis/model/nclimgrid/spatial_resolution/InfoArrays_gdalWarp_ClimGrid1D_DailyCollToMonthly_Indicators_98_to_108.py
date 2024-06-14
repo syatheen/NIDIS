@@ -14,113 +14,160 @@ from calendar import monthrange
 from osgeo import gdal
 import shapely.speedups
 import fiona
+import logging
+from pathlib import Path
+from multiprocessing import Pool, cpu_count
 
 shapely.speedups.enable()
 
-#NOTE: sys.argv indices start at 1, not 0
-#Python arguments to this program will be (for now):
-#        ArgYearInt ArgMonthInt 
-#ArgNum   1          2          
+def main(ArgYearInt: int, ArgMonthInt: int):
 
-ssstart_Overall = datetime.now()
+  # NOTE: sys.argv indices start at 1, not 0
+  # Python arguments to this program will be (for now):
+  #        ArgYearInt ArgMonthInt 
+  # ArgNum   1          2          
 
-#######BEGIN ANY EDITS REQUIRED#######
+  ssstart_Overall = datetime.now()
 
-ClimGrid1DShpFile = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/nClimGrid/nClimGrid_as_poly_NoNans.shp'
+  #######BEGIN ANY EDITS REQUIRED#######
 
-ArgYearInt = int(round(float(sys.argv[1])))
-ArgMonthInt = int(round(float(sys.argv[2])))
+  ClimGrid1DShpFile = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/nClimGrid/nClimGrid_as_poly_NoNans.shp'
 
-cmd = 'mkdir -p /discover/nobackup/projects/nca/syatheen/IMERG_Npzs/daily_Final_V06/'
-os.system(cmd)
+  # ArgYearInt = int(round(float(sys.argv[1])))
+  # ArgMonthInt = int(round(float(sys.argv[2])))
 
-ArrayFileName = '/discover/nobackup/projects/nca/syatheen/IMERG_Npzs/daily_Final_V06/IMERG_' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + '_ClimGrid1D.npz'
+  # cmd = 'mkdir -p /discover/nobackup/projects/nca/syatheen/IMERG_Npzs/daily_Final_V06/'
+  # os.system(cmd)
+  path_to_save_data = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/IMERG_Npzs/daily_Final_V06'
+  os.makedirs(path_to_save_data, exist_ok=True)
 
-SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs/'
+  ArrayFileName = os.path.join(
+     path_to_save_data, 'IMERG_' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + '_ClimGrid1D.npz')
 
-#IMERG_daily_LowerLimit = 0.
-#IMERG_daily_UpperLimit = 272478720.000000
+  SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs'
+  SourceFileBasePathWrite = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/IMERG/daily_Final_V06_Tifs'
 
-xres=0.125000000000/3
-yres=0.125000000000/3
-resample_alg = 'near'
-Width = 1385
-Height = 596
-output_bounds = [-124 - 17*xres, 24 + 13*yres, -67, 49 + 9*yres]
+  os.makedirs(os.path.join(SourceFileBasePathWrite, 'TempCreatedFiles'))
 
-#######END ANY EDITS REQUIRED#########
+  # IMERG_daily_LowerLimit = 0.
+  # IMERG_daily_UpperLimit = 272478720.000000
 
-#BEGIN GETTING PxlRowCol ETC SHAPEFILE DATA
-ClimGrid1DShp = gpd.read_file(ClimGrid1DShpFile)
-PxlRowCol_SortedList_FrmShpFile = sorted(ClimGrid1DShp.PxlRowCol.values.tolist())
-PxlRowCol_SortedArr_FrmShpFile = np.array(PxlRowCol_SortedList_FrmShpFile)
-PxlRow_SortedArr_FrmShpFile = (np.around(PxlRowCol_SortedArr_FrmShpFile // 10000)).astype(int)
-PxlCol_SortedArr_FrmShpFile = (np.around(PxlRowCol_SortedArr_FrmShpFile % 10000)).astype(int)
-#END GETTING PxlRowCol ETC SHAPEFILE DATA
+  xres=0.125000000000/3
+  yres=0.125000000000/3
+  resample_alg = 'near'
+  Width = 1385
+  Height = 596
+  output_bounds = [-124 - 17*xres, 24 + 13*yres, -67, 49 + 9*yres]
 
-NumDaysInMonth = int(round(float(monthrange(ArgYearInt, ArgMonthInt)[1]))) 
+  #######END ANY EDITS REQUIRED#########
 
-YYYYMMDD_Of_RefArrayForPrcntl = np.empty((NumDaysInMonth, 1), dtype=np.int32)
-YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
-RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
-RefArrayForPrcntl[:] = np.NaN
+  #BEGIN GETTING PxlRowCol ETC SHAPEFILE DATA
+  ClimGrid1DShp = gpd.read_file(ClimGrid1DShpFile)
+  PxlRowCol_SortedList_FrmShpFile = sorted(ClimGrid1DShp.PxlRowCol.values.tolist())
+  PxlRowCol_SortedArr_FrmShpFile = np.array(PxlRowCol_SortedList_FrmShpFile)
+  PxlRow_SortedArr_FrmShpFile = (np.around(PxlRowCol_SortedArr_FrmShpFile // 10000)).astype(int)
+  PxlCol_SortedArr_FrmShpFile = (np.around(PxlRowCol_SortedArr_FrmShpFile % 10000)).astype(int)
+  #END GETTING PxlRowCol ETC SHAPEFILE DATA
 
-for WhichDayInMonth in range(1, NumDaysInMonth+1):
+  NumDaysInMonth = int(round(float(monthrange(ArgYearInt, ArgMonthInt)[1]))) 
 
-  YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
-  SourceFile = SourceFileBasePath + 'IMERG' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.tif'
+  YYYYMMDD_Of_RefArrayForPrcntl = np.empty((NumDaysInMonth, 1), dtype=np.int32)
+  YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
+  RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
+  RefArrayForPrcntl[:] = np.NaN
 
-  IfTifFileExists = os.path.exists(SourceFile)
-  if IfTifFileExists:
+  for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
-    BaseFileName =  'IMERG' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') 
+    YYYYMMDD_Of_RefArrayForPrcntl[WhichDayInMonth-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayInMonth 
+    SourceFile = os.path.join(SourceFileBasePath, 'IMERG' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') + '.tif')
 
-    outfn = SourceFileBasePath + 'TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
+    IfTifFileExists = os.path.exists(SourceFile)
+    if IfTifFileExists:
+
+      BaseFileName =  'IMERG' + format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayInMonth,'02') 
+
+      outfn = os.path.join(SourceFileBasePathWrite, 'TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif')
+
+      try:
+          os.remove(outfn)
+      except OSError:
+          pass
+
+      ds = gdal.Warp(outfn, SourceFile, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
+      ds = None
+
+      with rasterio.Env():
+        with rasterio.open(outfn) as SrcInfo:
+          ImageInfo = SrcInfo.read()
+
+          ImageInfo = np.flip(ImageInfo, axis = 1)
+
+          RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+
+        #end of with rasterio.open(..
+      #end of with rasterio.Env()
+
+    #end of if IfTifFileExists
 
     try:
-        os.remove('/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+        os.remove(outfn)
     except OSError:
         pass
 
-    ds = gdal.Warp(outfn, SourceFile, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
-    ds = None
+  #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
 
-    with rasterio.Env():
-      with rasterio.open('/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
-        ImageInfo = SrcInfo.read()
+  print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
+  print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
+  print("RefArrayForPrcntl.shape is ",RefArrayForPrcntl.shape)
+  print("RefArrayForPrcntl is ",RefArrayForPrcntl)
+  print("np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)) is ",np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)))
+  print("np.amax(np.isnan(RefArrayForPrcntl).sum(axis=0)) is ",np.amax(np.isnan(RefArrayForPrcntl).sum(axis=0)))
+  print("np.amin(np.isnan(RefArrayForPrcntl).sum(axis=1)) is ",np.amin(np.isnan(RefArrayForPrcntl).sum(axis=1)))
+  print("np.amax(np.isnan(RefArrayForPrcntl).sum(axis=1)) is ",np.amax(np.isnan(RefArrayForPrcntl).sum(axis=1)))
+  print('overall min is ',np.nanmin(RefArrayForPrcntl),', overall max is ',np.nanmax(RefArrayForPrcntl))
 
-        ImageInfo = np.flip(ImageInfo, axis = 1)
+  np.savez_compressed(ArrayFileName,
+                      YYYYMMDD_Of_RefArrayForPrcntl = YYYYMMDD_Of_RefArrayForPrcntl,
+                      RefArrayForPrcntl = RefArrayForPrcntl)
 
-        RefArrayForPrcntl[WhichDayInMonth-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+  eeend_Overall = datetime.now()
+  eeelapsed_Overall = eeend_Overall - ssstart_Overall
+  print(eeelapsed_Overall.seconds,"sec:",eeelapsed_Overall.microseconds,"microsec")
 
-      #end of with rasterio.open(..
-    #end of with rasterio.Env()
-
-  #end of if IfTifFileExists
-
-  try:
-      os.remove('/discover/nobackup/projects/nca/syatheen/IMERG/daily_Final_V06_Tifs/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
-  except OSError:
-      pass
-
-#end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
-
-print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
-print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
-print("RefArrayForPrcntl.shape is ",RefArrayForPrcntl.shape)
-print("RefArrayForPrcntl is ",RefArrayForPrcntl)
-print("np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)) is ",np.amin(np.isnan(RefArrayForPrcntl).sum(axis=0)))
-print("np.amax(np.isnan(RefArrayForPrcntl).sum(axis=0)) is ",np.amax(np.isnan(RefArrayForPrcntl).sum(axis=0)))
-print("np.amin(np.isnan(RefArrayForPrcntl).sum(axis=1)) is ",np.amin(np.isnan(RefArrayForPrcntl).sum(axis=1)))
-print("np.amax(np.isnan(RefArrayForPrcntl).sum(axis=1)) is ",np.amax(np.isnan(RefArrayForPrcntl).sum(axis=1)))
-print('overall min is ',np.nanmin(RefArrayForPrcntl),', overall max is ',np.nanmax(RefArrayForPrcntl))
-
-np.savez_compressed(ArrayFileName,
-                    YYYYMMDD_Of_RefArrayForPrcntl = YYYYMMDD_Of_RefArrayForPrcntl,
-                    RefArrayForPrcntl = RefArrayForPrcntl)
-
-eeend_Overall = datetime.now()
-eeelapsed_Overall = eeend_Overall - ssstart_Overall
-print(eeelapsed_Overall.seconds,"sec:",eeelapsed_Overall.microseconds,"microsec")
+  return
 
 
+def main_wrapper(args):
+  return main(*args)
+
+
+def main_multiprocessing(
+            StartDate,
+            EndDate,
+            n_processes: int = 100
+        ):
+
+  logging.info("Inside main multiprocessing")
+
+  # Generate date combinations
+  date_list = pd.date_range(start=StartDate, end=EndDate, freq='MS')
+
+  # Generating combination of parameters
+  multiprocessing_arguments = []
+  for mdate in date_list:
+    multiprocessing_arguments.append([mdate.year, mdate.month])
+
+  # Start processing
+  logging.info(f'Initiating {len(multiprocessing_arguments)} processes.')
+
+  # temporary for testing
+  # multiprocessing_arguments = multiprocessing_arguments[:1]
+  # logging.info(f'Only processing {multiprocessing_arguments}')
+
+  p = Pool(processes=n_processes)
+  p.starmap(
+    main_wrapper,
+    zip(multiprocessing_arguments)
+  )
+
+  return
