@@ -5,43 +5,15 @@ from __future__ import division
 from datetime import date, datetime, timedelta
 import numpy as np
 import sys
+from calendar import monthrange
+import time
+import os
 #NOTE: sys.argv indices start at 1, not 0
 #Python arguments to this program will be (for now):
 #        NumMonthsStr 
 #ArgNum   1      
 
-# BEGIN code arguments / editable section
 
-NumMonthsStr = sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month' 
-
-if NumMonthsStr == '1Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG1MonthsMean_20000630To20210531.npz'
-elif NumMonthsStr == '2Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG2MonthsMean_20000730To20210531.npz'
-elif NumMonthsStr == '3Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG3MonthsMean_20000829To20210531.npz'
-elif NumMonthsStr == '6Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG6MonthsMean_20001127To20210531.npz'
-elif NumMonthsStr == '9Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG9MonthsMean_20010225To20210531.npz'
-elif NumMonthsStr == '12Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG12MonthsMean_20010531To20210531.npz'
-elif NumMonthsStr == '24Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG24MonthsMean_20020531To20210531.npz'
-elif NumMonthsStr == '36Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG36MonthsMean_20030531To20210531.npz'
-elif NumMonthsStr == '48Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG48MonthsMean_20040531To20210531.npz'
-elif NumMonthsStr == '60Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG60MonthsMean_20050531To20210531.npz'
-elif NumMonthsStr == '72Month':
-  IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG72MonthsMean_20060531To20210531.npz'
-#end of if NumMonthsStr == '1Month'
-
-IMERG_nMonth_Info = np.load(IMERG_nMonth_InfoFilename)
-
-IMERG_nMonth_YYYYMMDD_Of_InfoArray  = IMERG_nMonth_Info['YYYYMMDD_Of_InfoArrayForPrcntl']
-IMERG_nMonth_InfoArray  = IMERG_nMonth_Info['InfoArrayForPrcntl']
 
 def FindTuesdayAfter(ThisYYYYMMDD):
 
@@ -89,39 +61,6 @@ def FindTuesdayBefore(ThisYYYYMMDD):
 
 #end of def FindTuesdayBefore(ThisYYYYMMDD)
 
-IMERG_nMonth_Ref_BeginDateVecList = FindTuesdayAfter(IMERG_nMonth_YYYYMMDD_Of_InfoArray[0,0])  # 1Month IMERG beginning year, month, day of month, this is also a Tuesday
-IMERG_nMonth_Ref_EndDateVecList = FindTuesdayBefore(IMERG_nMonth_YYYYMMDD_Of_InfoArray[-1,0])  # 1Month IMERG ending year, month, day of month, this is also a Tuesday
-
-IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(IMERG_nMonth_Ref_BeginDateVecList[0],'04')+format(IMERG_nMonth_Ref_BeginDateVecList[1],'02')+format(IMERG_nMonth_Ref_BeginDateVecList[2],'02')+'To'+format(IMERG_nMonth_Ref_EndDateVecList[0],'04')+format(IMERG_nMonth_Ref_EndDateVecList[1],'02')+format(IMERG_nMonth_Ref_EndDateVecList[2],'02')+'.npz'
-
-# END code arguments / editable section
-
-#np.set_printoptions(threshold=np.inf)
-from calendar import monthrange
-import time
-import os
-
-start_time = time.time()
-
-IMERG_nMonth_Ref_BeginDate = date(IMERG_nMonth_Ref_BeginDateVecList[0], IMERG_nMonth_Ref_BeginDateVecList[1], IMERG_nMonth_Ref_BeginDateVecList[2])
-IMERG_nMonth_Ref_EndDate = date(IMERG_nMonth_Ref_EndDateVecList[0], IMERG_nMonth_Ref_EndDateVecList[1], IMERG_nMonth_Ref_EndDateVecList[2])
-
-#BEGIN check whether the beginning and ending days are indeed Tuesdays
-if IMERG_nMonth_Ref_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-  print('Beginning Date Vector for IMERG_nMonth_Ref needs to be a Tuesday!!')
-  sys.exit(0)
-if IMERG_nMonth_Ref_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-  print('Ending Date Vector for IMERG_nMonth_Ref needs to be a Tuesday!!')
-  sys.exit(0)
-#END check whether the beginning and ending days are indeed Tuesdays
-
-if IMERG_nMonth_Ref_BeginDate > IMERG_nMonth_Ref_EndDate:
-  print('IMERG_nMonth_Ref_BeginDate should not be later than IMERG_nMonth_Ref_EndDate!!!')
-  sys.exit(0)
-#end of if IMERG_nMonth_Ref_BeginDate > IMERG_nMonth_Ref_EndDate
-
-#BEGIN section for time-interpolating info arrays to desired temporal resolution
-
 def GetRealDatesListOfInfoArray(YYYYMMEtc_Of_InfoArray, NumDateElements, VariabNameForErrStr, WhereDayForNumDateElements2):
   # NumDateElements is 2 if YYYYMMEtc is in YYYYMM format, and 3 if in YYYYMMDD format
   # WhereDayForNumDateElements2 is 'mid' if value representative at mid-month, and 'end' if at end-month (e.g., accumulation)
@@ -152,10 +91,6 @@ def GetRealDatesListOfInfoArray(YYYYMMEtc_Of_InfoArray, NumDateElements, VariabN
   return RealDatesList_Of_InfoArray
 #end of def GetRealDatesListOfInfoArray(YYYYMMEtc_Of_InfoArray, NumDateElements, VariabNameForErrStr, WhereDayForNumDateElements2):
 
-IMERG_nMonth_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(IMERG_nMonth_YYYYMMDD_Of_InfoArray, 3, 'IMERG' + NumMonthsStr, np.NaN)
-
-#Begin calculating real dates list for reference arrays
-
 def GetTimeInfoOfRefArray(Ref_BeginDate, Ref_EndDate):
   TotalNumDaysDiff = abs(Ref_EndDate-Ref_BeginDate).days
   TotalNumWeeksDiff = TotalNumDaysDiff//7
@@ -169,13 +104,6 @@ def GetTimeInfoOfRefArray(Ref_BeginDate, Ref_EndDate):
   YYYYMMDD_Of_RefArray = np.expand_dims(YYYYMMDD_Of_RefArray, axis=1)
   return RealDatesList_Of_RefArray, YYYYMMDD_Of_RefArray
 #end of def GetTimeInfoOfRefArray(Ref_BeginDate, Ref_EndDate):
-
-IMERG_nMonth_RealDatesList_Of_RefArray, IMERG_nMonth_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(IMERG_nMonth_Ref_BeginDate, IMERG_nMonth_Ref_EndDate)
-
-#End calculating real dates list for reference arrays
-
-IMERG_nMonth_RefArray = np.empty([ IMERG_nMonth_YYYYMMDD_Of_RefArray.shape[0], IMERG_nMonth_InfoArray.shape[1]])
-IMERG_nMonth_RefArray[:] = np.NaN
 
 def TimeMeanValues(SourceDatesList, DestinationDatesList, SourceArray, DestinationArray, EndingWindowSizeForMean):
   for DestinationDateIdx in range(len(DestinationDatesList)):
@@ -193,12 +121,6 @@ def TimeMeanValues(SourceDatesList, DestinationDatesList, SourceArray, Destinati
   return DestinationArray
 #end of def TimeMeanValues(SourceDatesList, DestinationDatesList, SourceArray, DestinationArray, EndingWindowSizeForMean):
 
-IMERG_nMonth_RefArray = TimeMeanValues(IMERG_nMonth_RealDatesList_Of_InfoArray, IMERG_nMonth_RealDatesList_Of_RefArray, IMERG_nMonth_InfoArray, IMERG_nMonth_RefArray, 7)
-
-print("--- %s seconds ---" % (time.time() - start_time))
-
-np.savez_compressed(IMERG_nMonth_RefFileName, IMERG_nMonth_RefArray = IMERG_nMonth_RefArray, IMERG_nMonth_YYYYMMDD_Of_RefArray = IMERG_nMonth_YYYYMMDD_Of_RefArray)
-
 def PrintArrayInfo_3(ThisArray, ThisArray_Str, VariabNameStr):
   print('')
   print('For '+VariabNameStr+":")
@@ -214,8 +136,91 @@ def PrintArrayInfo_3(ThisArray, ThisArray_Str, VariabNameStr):
   print('')
 #end of def PrintArrayInfo_3(ThisArray, ThisArray_Str, VariabNameStr)
 
-PrintArrayInfo_3(IMERG_nMonth_YYYYMMDD_Of_RefArray, 'IMERG_nMonth_YYYYMMDD_Of_RefArray', 'IMERG_nMonth_YYYYMMDD')
 
-PrintArrayInfo_3(IMERG_nMonth_RefArray, 'IMERG_nMonth_RefArray', 'IMERG_nMonth')
+def main():
 
+  # BEGIN code arguments / editable section
 
+  NumMonthsStr = sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month' 
+
+  if NumMonthsStr == '1Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG1MonthsMean_20000630To20210531.npz'
+  elif NumMonthsStr == '2Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG2MonthsMean_20000730To20210531.npz'
+  elif NumMonthsStr == '3Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG3MonthsMean_20000829To20210531.npz'
+  elif NumMonthsStr == '6Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG6MonthsMean_20001127To20210531.npz'
+  elif NumMonthsStr == '9Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG9MonthsMean_20010225To20210531.npz'
+  elif NumMonthsStr == '12Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG12MonthsMean_20010531To20210531.npz'
+  elif NumMonthsStr == '24Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG24MonthsMean_20020531To20210531.npz'
+  elif NumMonthsStr == '36Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG36MonthsMean_20030531To20210531.npz'
+  elif NumMonthsStr == '48Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG48MonthsMean_20040531To20210531.npz'
+  elif NumMonthsStr == '60Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG60MonthsMean_20050531To20210531.npz'
+  elif NumMonthsStr == '72Month':
+    IMERG_nMonth_InfoFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/IMERG/InfoArrsDailyMean/ClimGrid1D/IMERG72MonthsMean_20060531To20210531.npz'
+  #end of if NumMonthsStr == '1Month'
+
+  IMERG_nMonth_Info = np.load(IMERG_nMonth_InfoFilename)
+
+  IMERG_nMonth_YYYYMMDD_Of_InfoArray  = IMERG_nMonth_Info['YYYYMMDD_Of_InfoArrayForPrcntl']
+  IMERG_nMonth_InfoArray  = IMERG_nMonth_Info['InfoArrayForPrcntl']
+
+  IMERG_nMonth_Ref_BeginDateVecList = FindTuesdayAfter(IMERG_nMonth_YYYYMMDD_Of_InfoArray[0,0])  # 1Month IMERG beginning year, month, day of month, this is also a Tuesday
+  IMERG_nMonth_Ref_EndDateVecList = FindTuesdayBefore(IMERG_nMonth_YYYYMMDD_Of_InfoArray[-1,0])  # 1Month IMERG ending year, month, day of month, this is also a Tuesday
+
+  IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(IMERG_nMonth_Ref_BeginDateVecList[0],'04')+format(IMERG_nMonth_Ref_BeginDateVecList[1],'02')+format(IMERG_nMonth_Ref_BeginDateVecList[2],'02')+'To'+format(IMERG_nMonth_Ref_EndDateVecList[0],'04')+format(IMERG_nMonth_Ref_EndDateVecList[1],'02')+format(IMERG_nMonth_Ref_EndDateVecList[2],'02')+'.npz'
+
+  # END code arguments / editable section
+
+  #np.set_printoptions(threshold=np.inf)
+
+  start_time = time.time()
+
+  IMERG_nMonth_Ref_BeginDate = date(IMERG_nMonth_Ref_BeginDateVecList[0], IMERG_nMonth_Ref_BeginDateVecList[1], IMERG_nMonth_Ref_BeginDateVecList[2])
+  IMERG_nMonth_Ref_EndDate = date(IMERG_nMonth_Ref_EndDateVecList[0], IMERG_nMonth_Ref_EndDateVecList[1], IMERG_nMonth_Ref_EndDateVecList[2])
+
+  #BEGIN check whether the beginning and ending days are indeed Tuesdays
+  if IMERG_nMonth_Ref_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
+    print('Beginning Date Vector for IMERG_nMonth_Ref needs to be a Tuesday!!')
+    sys.exit(0)
+  if IMERG_nMonth_Ref_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
+    print('Ending Date Vector for IMERG_nMonth_Ref needs to be a Tuesday!!')
+    sys.exit(0)
+  #END check whether the beginning and ending days are indeed Tuesdays
+
+  if IMERG_nMonth_Ref_BeginDate > IMERG_nMonth_Ref_EndDate:
+    print('IMERG_nMonth_Ref_BeginDate should not be later than IMERG_nMonth_Ref_EndDate!!!')
+    sys.exit(0)
+  #end of if IMERG_nMonth_Ref_BeginDate > IMERG_nMonth_Ref_EndDate
+
+  #BEGIN section for time-interpolating info arrays to desired temporal resolution
+
+  IMERG_nMonth_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(IMERG_nMonth_YYYYMMDD_Of_InfoArray, 3, 'IMERG' + NumMonthsStr, np.NaN)
+
+  #Begin calculating real dates list for reference arrays
+
+  IMERG_nMonth_RealDatesList_Of_RefArray, IMERG_nMonth_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(IMERG_nMonth_Ref_BeginDate, IMERG_nMonth_Ref_EndDate)
+
+  #End calculating real dates list for reference arrays
+
+  IMERG_nMonth_RefArray = np.empty([ IMERG_nMonth_YYYYMMDD_Of_RefArray.shape[0], IMERG_nMonth_InfoArray.shape[1]])
+  IMERG_nMonth_RefArray[:] = np.NaN
+
+  IMERG_nMonth_RefArray = TimeMeanValues(IMERG_nMonth_RealDatesList_Of_InfoArray, IMERG_nMonth_RealDatesList_Of_RefArray, IMERG_nMonth_InfoArray, IMERG_nMonth_RefArray, 7)
+
+  print("--- %s seconds ---" % (time.time() - start_time))
+
+  np.savez_compressed(IMERG_nMonth_RefFileName, IMERG_nMonth_RefArray = IMERG_nMonth_RefArray, IMERG_nMonth_YYYYMMDD_Of_RefArray = IMERG_nMonth_YYYYMMDD_Of_RefArray)
+
+  PrintArrayInfo_3(IMERG_nMonth_YYYYMMDD_Of_RefArray, 'IMERG_nMonth_YYYYMMDD_Of_RefArray', 'IMERG_nMonth_YYYYMMDD')
+
+  PrintArrayInfo_3(IMERG_nMonth_RefArray, 'IMERG_nMonth_RefArray', 'IMERG_nMonth')
+
+  return

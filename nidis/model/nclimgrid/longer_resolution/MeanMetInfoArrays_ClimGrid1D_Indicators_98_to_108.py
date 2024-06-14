@@ -125,7 +125,12 @@ def main():
     EndMonth = int(np.round((YYYYMMDD_Of_InfoArrayForPrcntl[-1] - 10000 * EndYear) // 100))
     EndDayOfMonth = int(np.round(YYYYMMDD_Of_InfoArrayForPrcntl[-1] % 100))
 
-    np.savez_compressed(OutFilePath + 'IMERG' + str(int(round(NumMonthsMean))) + 'MonthsMean_'  + format(BeginYear, '04') + format(BeginMonth, '02') + format(BeginDayOfMonth, '02') + 'To' + format(EndYear, '04') + format(EndMonth, '02') + format(EndDayOfMonth, '02') + '.npz', YYYYMMDD_Of_InfoArrayForPrcntl = YYYYMMDD_Of_InfoArrayForPrcntl, InfoArrayForPrcntl = InfoArrayForPrcntl) 
+    np.savez_compressed(
+      os.path.join(
+        OutFilePath, 
+        'IMERG' + str(int(round(NumMonthsMean))) + 'MonthsMean_'  + format(BeginYear, '04') + format(BeginMonth, '02') + format(BeginDayOfMonth, '02') + 'To' + format(EndYear, '04') + format(EndMonth, '02') + format(EndDayOfMonth, '02') + '.npz', YYYYMMDD_Of_InfoArrayForPrcntl = YYYYMMDD_Of_InfoArrayForPrcntl, InfoArrayForPrcntl = InfoArrayForPrcntl
+      )
+    )
 
   #end of if (np.isnan(InfoArrayForPrcntl).sum() != 0)
 
