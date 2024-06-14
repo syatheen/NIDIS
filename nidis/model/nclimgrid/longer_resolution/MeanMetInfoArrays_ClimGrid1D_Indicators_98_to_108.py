@@ -45,7 +45,7 @@ def main():
     NumMonthsMean = 72
 
   OutFilePath = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/IMERG_Npzs/InfoArrsDailyMean/ClimGrid1D'
-  os.makedirs(OutFilePath, exists_ok=True)
+  os.makedirs(OutFilePath, exist_ok=True)
 
   #######END ANY EDITS REQUIRED#########
 
