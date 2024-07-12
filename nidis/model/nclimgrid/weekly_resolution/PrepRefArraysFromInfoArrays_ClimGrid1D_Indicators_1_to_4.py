@@ -5,10 +5,10 @@ import numpy as np
 from calendar import monthrange
 import time
 
-ZIndex_InfoFilename = '/att/nobackup/syatheen/Data/ML_Testcases/Drought_USDM/Palmer/monthly/private/RefArr_1MonthAccumzndx_193201To202001.npz' 
-ZIndex60month_InfoFilename = '/att/nobackup/syatheen/Data/ML_Testcases/Drought_USDM/Palmer/monthly/private/RefArr_60MonthAccumzndx_193201To202001.npz' 
-PMDI_InfoFilename = '/att/nobackup/syatheen/Data/ML_Testcases/Drought_USDM/Palmer/weekly/private/pdiRefArray_20050101To20200104.npz' 
-PHDI_InfoFilename = '/att/nobackup/syatheen/Data/ML_Testcases/Drought_USDM/Palmer/weekly/private/phdRefArray_20050604To20200104.npz'
+ZIndex_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/RefArr_1MonthAccumzndx_193201To202001.npz' 
+ZIndex60month_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/RefArr_60MonthAccumzndx_193201To202001.npz' 
+PMDI_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/pdiRefArray_20050101To20200104_ClmGrd1D.npz' 
+PHDI_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/phdRefArray_20050604To20200104_ClmGrd1D.npz'
 
 ZIndex_Ref_BeginDateVecList = [1932, 1, 19]  # ZIndex beginning year, month, day of month, this is also a Tuesday
 ZIndex_Ref_EndDateVecList = [2019, 12, 31]  # ZIndex ending year, month, day of month, this is also a Tuesday
@@ -18,10 +18,10 @@ PHDI_Ref_BeginDateVecList = [2005, 6, 7]  # PHDI beginning year, month, day of m
 PHDI_Ref_EndDateVecList = [2019, 12, 31]  # PHDI ending year, month, day of month, this is also a Tuesday
 
 
-ZIndex_RefFileName = 'RefArrays/ClimDiv_ZIndex_'+format(ZIndex_Ref_BeginDateVecList[0],'04')+format(ZIndex_Ref_BeginDateVecList[1],'02')+format(ZIndex_Ref_BeginDateVecList[2],'02')+'To'+format(ZIndex_Ref_EndDateVecList[0],'04')+format(ZIndex_Ref_EndDateVecList[1],'02')+format(ZIndex_Ref_EndDateVecList[2],'02')+'.npz'
-ZIndex60month_RefFileName = 'RefArrays/ClimDiv_ZIndex60month_'+format(ZIndex_Ref_BeginDateVecList[0],'04')+format(ZIndex_Ref_BeginDateVecList[1],'02')+format(ZIndex_Ref_BeginDateVecList[2],'02')+'To'+format(ZIndex_Ref_EndDateVecList[0],'04')+format(ZIndex_Ref_EndDateVecList[1],'02')+format(ZIndex_Ref_EndDateVecList[2],'02')+'.npz'
-PMDI_RefFileName = 'RefArrays/ClimDiv_PMDI_'+format(PMDI_Ref_BeginDateVecList[0],'04')+format(PMDI_Ref_BeginDateVecList[1],'02')+format(PMDI_Ref_BeginDateVecList[2],'02')+'To'+format(PMDI_Ref_EndDateVecList[0],'04')+format(PMDI_Ref_EndDateVecList[1],'02')+format(PMDI_Ref_EndDateVecList[2],'02')+'.npz'
-PHDI_RefFileName = 'RefArrays/ClimDiv_PHDI_'+format(PHDI_Ref_BeginDateVecList[0],'04')+format(PHDI_Ref_BeginDateVecList[1],'02')+format(PHDI_Ref_BeginDateVecList[2],'02')+'To'+format(PHDI_Ref_EndDateVecList[0],'04')+format(PHDI_Ref_EndDateVecList[1],'02')+format(PHDI_Ref_EndDateVecList[2],'02')+'.npz'
+ZIndex_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/weekly_resolution_output/ClimGrid_ZIndex_'+format(ZIndex_Ref_BeginDateVecList[0],'04')+format(ZIndex_Ref_BeginDateVecList[1],'02')+format(ZIndex_Ref_BeginDateVecList[2],'02')+'To'+format(ZIndex_Ref_EndDateVecList[0],'04')+format(ZIndex_Ref_EndDateVecList[1],'02')+format(ZIndex_Ref_EndDateVecList[2],'02')+'.npz'
+ZIndex60month_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/weekly_resolution_output/ClimGrid_ZIndex60month_'+format(ZIndex_Ref_BeginDateVecList[0],'04')+format(ZIndex_Ref_BeginDateVecList[1],'02')+format(ZIndex_Ref_BeginDateVecList[2],'02')+'To'+format(ZIndex_Ref_EndDateVecList[0],'04')+format(ZIndex_Ref_EndDateVecList[1],'02')+format(ZIndex_Ref_EndDateVecList[2],'02')+'.npz'
+PMDI_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/weekly_resolution_output/ClimGrid_PMDI_'+format(PMDI_Ref_BeginDateVecList[0],'04')+format(PMDI_Ref_BeginDateVecList[1],'02')+format(PMDI_Ref_BeginDateVecList[2],'02')+'To'+format(PMDI_Ref_EndDateVecList[0],'04')+format(PMDI_Ref_EndDateVecList[1],'02')+format(PMDI_Ref_EndDateVecList[2],'02')+'.npz'
+PHDI_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/weekly_resolution_output/ClimGrid_PHDI_'+format(PHDI_Ref_BeginDateVecList[0],'04')+format(PHDI_Ref_BeginDateVecList[1],'02')+format(PHDI_Ref_BeginDateVecList[2],'02')+'To'+format(PHDI_Ref_EndDateVecList[0],'04')+format(PHDI_Ref_EndDateVecList[1],'02')+format(PHDI_Ref_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 
@@ -140,8 +140,6 @@ def GetTimeInfoOfRefArray(Ref_BeginDate, Ref_EndDate):
 ZIndex_RealDatesList_Of_RefArray, ZIndex_YYYYMMDD_Of_RefArray  = GetTimeInfoOfRefArray(ZIndex_Ref_BeginDate, ZIndex_Ref_EndDate)
 PMDI_RealDatesList_Of_RefArray, PMDI_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(PMDI_Ref_BeginDate, PMDI_Ref_EndDate)
 PHDI_RealDatesList_Of_RefArray, PHDI_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(PHDI_Ref_BeginDate, PHDI_Ref_EndDate)
-Pcpn_RealDatesList_Of_RefArray, Pcpn_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(Pcpn_Ref_BeginDate, Pcpn_Ref_EndDate)
-CPCsoilmoist_RealDatesList_Of_RefArray, CPCsoilmoist_YYYYMMDD_Of_RefArray = GetTimeInfoOfRefArray(CPCsoilmoist_Ref_BeginDate, CPCsoilmoist_Ref_EndDate)
 #End calculating real dates list for reference arrays
 
 ZIndex_RefArray = np.empty([ ZIndex_YYYYMMDD_Of_RefArray.shape[0], ZIndex_InfoArray.shape[1]])
