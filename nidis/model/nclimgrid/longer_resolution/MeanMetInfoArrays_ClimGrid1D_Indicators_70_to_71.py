@@ -2,7 +2,7 @@ from __future__ import division
 import sys
 import numpy as np
 from datetime import datetime
-#import os
+import os
 from calendar import monthrange
 
 #NOTE: sys.argv indices start at 1, not 0
