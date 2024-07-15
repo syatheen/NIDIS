@@ -178,7 +178,7 @@ def run_main():
 
   print(combinations_list)
 
-   return
+  return
 
 
 if __name__ == "__main__":
