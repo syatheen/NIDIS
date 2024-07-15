@@ -2,18 +2,11 @@
 # BEGIN code arguments / editable section
 
 Training_BeginDateVecList = [2006, 1, 3] # Beginning training year, month, day of month, this is also a Tuesday
-Training_EndDateVecList = [2018, 12, 25] # Ending training year, month, day of month, this is also a Tuesday
-
-Eval_BeginDateVecList = [2019, 1, 1] # Beginning evaluation year, month, day of month, this is also a Tuesday
-Eval_EndDateVecList = [2019, 12, 31] # Ending evaluation year, month, day of month, this is also a Tuesday
+Training_EndDateVecList = [2019, 12, 31] # Ending training year, month, day of month, this is also a Tuesday
 
 CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/weekly_resolution/RefArrays/ClimGrid_CPCsoilmoist_20080205To20191231.npz'
 
-
-TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/percentile_creation/PreppedTrainNEvalNpzs/Train_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
-
-DevDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/percentile_creation/PreppedTrainNEvalNpzs/PreppedTrainNEvalNpzs/Dev_'+str(Eval_BeginDateVecList[0])+format(Eval_BeginDateVecList[1],'02')+format(Eval_BeginDateVecList[2],'02')+'To'+str(Eval_EndDateVecList[0])+format(Eval_EndDateVecList[1],'02')+format(Eval_EndDateVecList[2],'02')+'.npz'
-TestDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/percentile_creation/PreppedTrainNEvalNpzs/PreppedTrainNEvalNpzs/Test_'+str(Eval_BeginDateVecList[0])+format(Eval_BeginDateVecList[1],'02')+format(Eval_BeginDateVecList[2],'02')+'To'+str(Eval_EndDateVecList[0])+format(Eval_EndDateVecList[1],'02')+format(Eval_EndDateVecList[2],'02')+'.npz'
+TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 
@@ -27,8 +20,7 @@ ssstart_Overall = datetime.now()
 
 Training_BeginDate = date(Training_BeginDateVecList[0], Training_BeginDateVecList[1], Training_BeginDateVecList[2])
 Training_EndDate = date(Training_EndDateVecList[0], Training_EndDateVecList[1], Training_EndDateVecList[2])
-Eval_BeginDate = date(Eval_BeginDateVecList[0], Eval_BeginDateVecList[1], Eval_BeginDateVecList[2])
-Eval_EndDate = date(Eval_EndDateVecList[0], Eval_EndDateVecList[1], Eval_EndDateVecList[2])
+
 
 #BEGIN check whether the beginning and ending days are indeed Tuesdays
 if Training_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
@@ -37,19 +29,10 @@ if Training_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
 if Training_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
   print('Ending Date Vector for training needs to be a Tuesday!!')
   sys.exit(0)
-if Eval_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-  print('Beginning Date Vector for evaluation needs to be a Tuesday!!')
-  sys.exit(0)
-if Eval_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-  print('Ending Date Vector for evaluation needs to be a Tuesday!!')
-  sys.exit(0)
 #END check whether the beginning and ending days are indeed Tuesdays
 
 if Training_BeginDate > Training_EndDate:
   print('Training_BeginDate should not be later than Training_EndDate!!!')
-  sys.exit(0)
-if Eval_BeginDate > Eval_EndDate:
-  print('Eval_BeginDate should not be later than Eval_EndDate!!!')
   sys.exit(0)
 
 CPCsoilmoist_RefObject = np.load(CPCsoilmoist_RefFileName)
@@ -191,33 +174,6 @@ np.savez_compressed(TrainDataFilename, YYYYMMDD_Of_Array = CPCsoilmoist_YYYYMMDD
 
 #END section for training
 
-#BEGIN section for evaluation
-
-Dev_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray = CPCsoilmoist_YYYYMMDD_Of_PrcntlArray[::2]
-Test_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray = CPCsoilmoist_YYYYMMDD_Of_PrcntlArray[1::2]
-
-
-CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray = TimeSlice_YYYYMMDDAndRefArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray, Eval_BeginDateVecList, Eval_EndDateVecList)
-
-MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray)
-
-MonthlyList_CPCsoilmoist_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_CPCsoilmoist_RefArray, MonthlyList_CPCsoilmoist_PrcntlArray)
-
-CPCsoilmoist_PrcntlArray = ReAssembleArraysFromMonthlyList(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray, MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray)
-
-Dev_CPCsoilmoist_PrcntlArray = CPCsoilmoist_PrcntlArray[::2]
-
-Test_CPCsoilmoist_PrcntlArray = CPCsoilmoist_PrcntlArray[1::2]
-
-PrintInfoAboutArray(Dev_CPCsoilmoist_PrcntlArray, 'Dev_CPCsoilmoist_PrcntlArray')
-
-PrintInfoAboutArray(Test_CPCsoilmoist_PrcntlArray, 'Test_CPCsoilmoist_PrcntlArray')
-
-np.savez_compressed(DevDataFilename, YYYYMMDD_Of_Array = Dev_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray = Dev_CPCsoilmoist_PrcntlArray) 
-
-np.savez_compressed(TestDataFilename, YYYYMMDD_Of_Array = Test_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray = Test_CPCsoilmoist_PrcntlArray) 
-
-#END section for evaluation
 
 eeend_Overall = datetime.now()
 eeelapsed_Overall = eeend_Overall - ssstart_Overall
