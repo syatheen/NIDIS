@@ -76,6 +76,8 @@ def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
 
 MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray, MonthlyList_CPCsoilmoist_RefArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray)
 
+print("Done with MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray", MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray.shape, MonthlyList_CPCsoilmoist_RefArray.shape)
+
 def CreateYYYYMMDD_Of_Array(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
   TotalNumWeeksDiff = TotalNumDaysDiff//7
