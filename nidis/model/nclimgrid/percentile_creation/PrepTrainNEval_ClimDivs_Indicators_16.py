@@ -100,23 +100,34 @@ def TimeSlice_YYYYMMDDAndRefArray(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecLi
 
 def FindPercentilesForValues(RefArray_1d, Values_1d):
   RefArray_1d_NotNaN = RefArray_1d[~np.isnan(RefArray_1d)]
-  SortedRef_1d = np.sort(RefArray_1d_NotNaN) 
-  SortedRef_1d_size = SortedRef_1d.size
-  QuantileInverses_OrdinalTieRanks = (rankdata(SortedRef_1d, method='ordinal') - 1) / \
-                                     float(SortedRef_1d_size - 1) 
-  QuantileInverses_AverageTieRanks = (rankdata(SortedRef_1d, method='average') - 1) / \
-                                     float(SortedRef_1d_size - 1) 
-  
-  if SortedRef_1d.size == 0:
-    print(SortedRef_1d.size)
-
-  Percentiles_1d = np.interp(Values_1d, SortedRef_1d, QuantileInverses_OrdinalTieRanks) 
-  IfValuesInSortedRef = np.isin(Values_1d, SortedRef_1d) 
-  ValuesInSortedRef = Values_1d[np.where(IfValuesInSortedRef)] 
-  Idxs_ValuesInSortedRef_In_SortedRef = np.searchsorted(SortedRef_1d, ValuesInSortedRef) 
-  Percentiles_AverageTieRanks = QuantileInverses_AverageTieRanks[Idxs_ValuesInSortedRef_In_SortedRef] 
-  Percentiles_1d[np.where(IfValuesInSortedRef)] = Percentiles_AverageTieRanks
-  return Percentiles_1d
+  Values_1d_NotNaN = Values_1d[~np.isnan(Values_1d)]
+  if RefArray_1d_NotNaN.size > 0:
+    if Values_1d_NotNaN.size > 0:
+      SortedRef_1d = np.sort(RefArray_1d_NotNaN)
+      SortedRef_1d_size = SortedRef_1d.size
+      QuantileInverses_OrdinalTieRanks = (rankdata(SortedRef_1d, method='ordinal') - 1) / \
+                                         float(SortedRef_1d_size - 1)
+      QuantileInverses_AverageTieRanks = (rankdata(SortedRef_1d, method='average') - 1) / \
+                                         float(SortedRef_1d_size - 1)
+      Percentiles_1d = np.interp(Values_1d, SortedRef_1d, QuantileInverses_OrdinalTieRanks)
+      IfValuesInSortedRef = np.isin(Values_1d, SortedRef_1d)
+      ValuesInSortedRef = Values_1d[np.where(IfValuesInSortedRef)]
+      Idxs_ValuesInSortedRef_In_SortedRef = np.searchsorted(SortedRef_1d, ValuesInSortedRef)
+      Percentiles_AverageTieRanks = QuantileInverses_AverageTieRanks[Idxs_ValuesInSortedRef_In_SortedRef]
+      Percentiles_1d[np.where(IfValuesInSortedRef)] = Percentiles_AverageTieRanks
+      return Percentiles_1d
+    else: # if Values_1d_NotNaN.size > 0
+      return Values_1d
+    #end of if Values_1d_NotNaN.size > 0
+  else: # if RefArray_1d_NotNaN.size > 0
+    print('RefArray_1d_NotNaN.size == 0!!!')
+    if Values_1d_NotNaN.size > 0:
+      print('Values_1d_NotNaN.size > 0 when RefArray_1d_NotNaN.size == 0!!')
+      sys.exit(0)
+    else: # if Values_1d_NotNaN.size > 0
+      return Values_1d
+    #end of if Values_1d_NotNaN.size > 0
+  #end of if RefArray_1d_NotNaN.size > 0
 #end of def FindPercentilesForValues(RefArray_1d, Values_1d):
 
 def LoopPercentileCalcOverSpatialUnits(RefArray, PrcntlArray):
