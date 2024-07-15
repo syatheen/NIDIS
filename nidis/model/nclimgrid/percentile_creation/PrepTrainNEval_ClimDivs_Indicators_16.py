@@ -106,6 +106,10 @@ def FindPercentilesForValues(RefArray_1d, Values_1d):
                                      float(SortedRef_1d_size - 1) 
   QuantileInverses_AverageTieRanks = (rankdata(SortedRef_1d, method='average') - 1) / \
                                      float(SortedRef_1d_size - 1) 
+  
+  if SortedRef_1d.size == 0:
+    print(SortedRef_1d.size)
+
   Percentiles_1d = np.interp(Values_1d, SortedRef_1d, QuantileInverses_OrdinalTieRanks) 
   IfValuesInSortedRef = np.isin(Values_1d, SortedRef_1d) 
   ValuesInSortedRef = Values_1d[np.where(IfValuesInSortedRef)] 
