@@ -57,6 +57,9 @@ CPCsoilmoist_YYYYMMDD_Of_RefArray = CPCsoilmoist_RefObject['CPCsoilmoist_YYYYMMD
 
 CPCsoilmoist_RefArray = CPCsoilmoist_RefObject['CPCsoilmoist_RefArray']
 
+print(CPCsoilmoist_YYYYMMDD_Of_RefArray.shape)
+print(CPCsoilmoist_RefArray.shape)
+
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
   MonthlyList_YYYYMMDD_Of_Array = []
