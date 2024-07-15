@@ -672,6 +672,12 @@ def main(
 
             SingleUnifiedDataFilename_GlobSnow3_OverallPerc = 'Placeholder.npz'
 
+        # adding PMDI and PHDI
+        if ('PMDI' in InpLayersCombination) or ('PHDI' in InpLayersCombination):
+            # what is the input file
+            print('We need to load PMDI and PHDI')
+            
+
         else: # if TargetVariable == 'USDM'
 
             sys.exit("Invalid TargetVariable choice, add relevant code lines!!!")
@@ -1069,10 +1075,9 @@ def main(
     #  XYData = XYDatas['XYData']
     ##end of if ( ('PMDI' in InpLayersCombination) or....
     #
-    #  if ( ('PMDI' in InpLayersCombination) or
+    #if ( ('PMDI' in InpLayersCombination) or
     #               ('PHDI' in InpLayersCombination) ):
     #        XYData_OverallPerc = XYDatas['XYData_OverallPerc']
-    #  #end of if ( ('PMDI' in InpLayersCombination) or....
 
         if ( ('prcp_01_nCG' in InpLayersCombination) or
                 ('prcp_02_nCG' in InpLayersCombination) or
