@@ -5,8 +5,8 @@ import numpy as np
 from calendar import monthrange
 import time
 
-ZIndex_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/RefArr_1MonthAccumzndx_193201To202001.npz' 
-ZIndex60month_InfoFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/RefArr_60MonthAccumzndx_193201To202001.npz' 
+ZIndex_InfoFilename = '/discover/nobackup/projects/nca/syatheen/Palmer_monthly_Npzs/RefArr_1MonthAccumzndx_193201To202001_ClmGrd1D.npz' 
+ZIndex60month_InfoFilename = '/discover/nobackup/projects/nca/syatheen/Palmer_monthly_Npzs/RefArr_60MonthAccumzndx_193201To202001_ClmGrd1D.npz' 
 
 ZIndex_Ref_BeginDateVecList = [1932, 1, 19]  # ZIndex beginning year, month, day of month, this is also a Tuesday
 ZIndex_Ref_EndDateVecList = [2019, 12, 31]  # ZIndex ending year, month, day of month, this is also a Tuesday
