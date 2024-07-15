@@ -9,6 +9,9 @@ from datetime import date, datetime, timedelta
 import glob
 import time
 from calendar import monthrange
+from osgeo import gdal
+from pathlib import Path
+
 
 #NOTE: sys.argv indices start at 1, not 0
 #Python arguments to this program will be (for now):
@@ -34,11 +37,6 @@ InitialNumDaysOfMonthToProcess = int(round(float(sys.argv[3]))) # if -ve number 
 
 ArrayFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_70_to_71/spatial_resolution/InfoArrsDaily/'+format(ThisYear,'04')+format(ThisMonth,'02')+'.npz'
 
-NLDAS_2_daily_LowerLimit = 0.
-NLDAS_2_daily_ZerosLowerLimit = 50.49504470825193 # 50.495044708251945
-#                                50.49504470825195312500 in Python
-NLDAS_2_daily_ZerosUpperLimit = 50.49504470825198 # 50.49504470825197
-NLDAS_2_daily_UpperLimit = 100.
 
 xres = 0.125000000000/3
 yres = 0.125000000000/3
@@ -82,6 +80,9 @@ BeginDate = date(BeginDateVecList[0], BeginDateVecList[1], BeginDateVecList[2])
 #RefArrayForPrcntl = np.empty((days_in_month,len(CLIMDIV_SortedList_FrmShpFile)))
 #RefArrayForPrcntl[:] = np.NaN
 
+path_to_save_data = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_70_to_71/spatial_resolution'
+os.makedirs(path_to_save_data, exist_ok=True)
+
 for WhichDayFromStart in range(1, NumDaysInMonth+1):
 
   IntermediateDate = BeginDate + timedelta(days=WhichDayFromStart)
@@ -97,36 +98,35 @@ for WhichDayFromStart in range(1, NumDaysInMonth+1):
   
     IfTifFileExists = os.path.exists(FileName_ESI)
     if IfTifFileExists:
-      with rasterio.Env():
-        with rasterio.open(FileName_ESI) as SrcInfo:
-          ImageInfo = SrcInfo.read()
-          results = ( {'properties': {'raster_val': vv}, 'geometry': ss}
-                     for ii, (ss, vv) in enumerate( shapes(ImageInfo, mask = mask,
-                                                           transform = SrcInfo.transform)))
-          geoms = list(results)
-          gpd_polygonized_raster  = gpd.GeoDataFrame.from_features(geoms)
-          gpd_polygonized_raster.crs = SrcInfo.crs
-      
-          Intrsct = gpd.overlay(df1 = gpd_polygonized_raster, df2 = ClimDivShp)
-      
-          for iClimDiv in range(len(CLIMDIV_SortedList_FrmShpFile)):
-      
-            Sel_Intrsct = Intrsct.loc[ (Intrsct.CLIMDIV == CLIMDIV_SortedList_FrmShpFile[iClimDiv]) &
-                                       ( ~(Intrsct.geometry.is_empty | Intrsct.geometry.isna()) ) &
-                                       ( ~(Intrsct.raster_val.isnull()) ) &
-                                       ~np.isnan( Intrsct.raster_val ) &
-                                       (Intrsct.geometry.area > 0) ]
-            if len(Sel_Intrsct.index) > 0:
-              RefArrayForPrcntl[WhichDayFromStart, iClimDiv] = (Sel_Intrsct.raster_val*Sel_Intrsct.geometry.area).sum()/Sel_Intrsct.geometry.area.sum()
-  
-          #end of for iClimDiv in range(len(CLIMDIV_SortedList_FrmShpFile))
-        #with rasterio.open(FileName_ESI) as SrcInfo
-      #with rasterio.Env()
-    #end of if IfTifFileExists
-  
-  #end of if (len(FileNames_ESI) == 1)
 
-#end of for WhichDayFromStart in range(days_in_month)
+        BaseFileName = format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(ThisDoM,'02') 
+        # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
+        outfn = os.path.join(path_to_save_data, 'TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
+        os.makedirs(Path(outfn).parent, exist_ok=True)
+
+        try:
+            # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+            os.remove(outfn)
+        except OSError:
+            pass
+
+        ds = gdal.Warp(outfn, FileName_ESI, options = gdal.WarpOptions(resampleAlg=resample_alg, width=Width, height=Height, outputBounds=output_bounds, dstNodata = np.NaN))
+        ds = None
+
+        with rasterio.Env():
+            # with rasterio.open('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName)) as SrcInfo:
+            with rasterio.open(outfn) as SrcInfo:
+                ImageInfo = SrcInfo.read()
+
+                ImageInfo = np.flip(ImageInfo, axis = 1)
+
+                RefArrayForPrcntl[WhichDayFromStart-1, :] = ImageInfo[0, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile]
+
+    try:
+        # os.remove('/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily/TempCreatedFiles/{}_upsampTo_nCG.tif'.format(BaseFileName))
+        os.remove(outfn)
+    except OSError:
+        pass
 
 print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
 print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
