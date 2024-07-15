@@ -167,9 +167,16 @@ def main(ArgYearInt, ArgMonthInt, InitialNumDaysOfMonthToProcess):
 
 def run_main():
    
-   for year in range(2000, 2020):
-      for month in range(1, 13):
-         print(year, month)
+  combinations_list = []
+  for year in range(2000, 2020):
+    for month in range(1, 13):
+        combinations_list.append([year, month, -9999])
+  #final year which is shorter
+  for month in range(1, 5):
+    combinations_list.append([2020, month, -9999])
+  combinations_list.append([2020, 5, 30])
+
+  print(combinations_list)
 
    return
 
