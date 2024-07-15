@@ -11,6 +11,7 @@ import time
 from calendar import monthrange
 from osgeo import gdal
 from pathlib import Path
+from multiprocessing import Pool, cpu_count
 
 """
 ./RunProcess.sh 2000 1 -9999
@@ -164,6 +165,8 @@ def main(ArgYearInt, ArgMonthInt, InitialNumDaysOfMonthToProcess):
 
   return
 
+def main_wrapper(args):
+  return main(*args)
 
 def run_main():
    
@@ -178,8 +181,16 @@ def run_main():
 
   print(combinations_list)
 
+
+  p = Pool(processes=100)
+  p.starmap(
+      main_wrapper,
+      zip(combinations_list)
+  )
+
   return
 
 
 if __name__ == "__main__":
    run_main()
+
