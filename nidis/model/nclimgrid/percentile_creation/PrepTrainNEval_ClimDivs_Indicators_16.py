@@ -76,7 +76,7 @@ def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
 
 MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray, MonthlyList_CPCsoilmoist_RefArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray)
 
-print("Done with MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray", type(MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray), type(MonthlyList_CPCsoilmoist_RefArray.shape))
+print("Done with MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray", type(MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray), type(MonthlyList_CPCsoilmoist_RefArray))
 
 def CreateYYYYMMDD_Of_Array(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
@@ -176,6 +176,7 @@ def PrintInfoAboutArray(ThisArray, ThisArray_Str):
 #BEGIN section for training
 
 CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray = TimeSlice_YYYYMMDDAndRefArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray, Training_BeginDateVecList, Training_EndDateVecList)
+print("After CPCsoilmoist_YYYYMMDD_Of_PrcntlArray CPCsoilmoist_PrcntlArray")
 
 MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray)
 
