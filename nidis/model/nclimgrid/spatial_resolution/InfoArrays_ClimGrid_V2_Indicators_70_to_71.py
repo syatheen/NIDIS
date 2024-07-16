@@ -57,6 +57,7 @@ def main(ArgYearInt, ArgMonthInt, InitialNumDaysOfMonthToProcess):
   #InitialNumDaysOfMonthToProcess = int(round(float(sys.argv[3]))) # if -ve number like -9999, then processes all days of the month
 
   ArrayFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_70_to_71/spatial_resolution/InfoArrsDaily/'+format(ArgYearInt,'04')+format(ArgMonthInt,'02')+'.npz'
+  print("ArrayFileName", ArrayFileName)
 
 
   xres = 0.125000000000/3
@@ -81,6 +82,7 @@ def main(ArgYearInt, ArgMonthInt, InitialNumDaysOfMonthToProcess):
   #END GETTING CLIMDIV SHAPEFILE DATA
 
   NumDaysInMonth = int(round(float(monthrange(ArgYearInt, ArgMonthInt)[1]))) 
+  print("NumDaysInMonth", NumDaysInMonth)
 
   YYYYMMDD_Of_RefArrayForPrcntl = np.empty((NumDaysInMonth, 1), dtype=np.int32)
   YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
@@ -110,17 +112,18 @@ def main(ArgYearInt, ArgMonthInt, InitialNumDaysOfMonthToProcess):
 
     ThisDoM = IntermediateDate.day
 
-    YYYYMMDD_Of_RefArrayForPrcntl[WhichDayFromStart] = 10000*ArgYearInt + 100*ArgMonthInt + ThisDoM
+    YYYYMMDD_Of_RefArrayForPrcntl[WhichDayFromStart-1] = 10000*ArgYearInt + 100*ArgMonthInt + WhichDayFromStart # ThisDoM
     
-    FileNames_ESI=glob.glob(SourceFilePath+format(ArgYearInt,'04')+format(ArgMonthInt,'02')+format(ThisDoM,'02')+'.tif')
-    
+    FileNames_ESI=glob.glob(SourceFilePath+format(ArgYearInt,'04')+format(ArgMonthInt,'02')+format(WhichDayFromStart,'02')+'.tif')
+    print("FileNames_ESI", FileNames_ESI)    
+
     if (len(FileNames_ESI) == 1):
       FileName_ESI = FileNames_ESI[0]
     
       IfTifFileExists = os.path.exists(FileName_ESI)
       if IfTifFileExists:
 
-          BaseFileName = format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(ThisDoM,'02') 
+          BaseFileName = format(ArgYearInt,'04') + format(ArgMonthInt,'02') + format(WhichDayFromStart,'02') 
           # outfn = SourceFileBasePath + 'NLDAS_2_daily/TempCreatedFiles/' + BaseFileName + '_upsampTo_nCG.tif'
           outfn = os.path.join(path_to_save_data, 'TempCreatedFiles/', BaseFileName + '_upsampTo_nCG.tif')
           os.makedirs(Path(outfn).parent, exist_ok=True)
@@ -180,6 +183,9 @@ def run_main():
   combinations_list.append([2020, 5, 30])
 
   print(combinations_list)
+
+  # temp test
+  # main_wrapper([2000, 1, -9999])
 
 
   p = Pool(processes=100)
