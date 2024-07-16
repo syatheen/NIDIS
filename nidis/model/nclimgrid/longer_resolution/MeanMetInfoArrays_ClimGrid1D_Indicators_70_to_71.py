@@ -53,7 +53,7 @@ def main():
 
       # TODO: I LEFT HERE FIXING THE PATHS
       # where is the spatial resolution stuff for here
-      InfoArrayFile_Info = np.load('./InfoArrsDaily/' + format(WhichYear,'04') + format(WhichMonth,'02') + '.npz')
+      InfoArrayFile_Info = np.load('/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_70_to_71/spatial_resolution/InfoArrsDaily/' + format(WhichYear,'04') + format(WhichMonth,'02') + '.npz')
   
       # TODO: double check because the other one has YYYYMMDD_Of_RefArrayForPrcntl
       This_YYYYMMDD_Of_RefArrayForPrcntl = InfoArrayFile_Info['YYYYMMDD_Of_RefPrcntlArray']
