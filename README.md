@@ -23,7 +23,7 @@ Python environment creation here:
 (include environment.yml file in repo)
 
 ```bash
-# Create the environment from the environment.yml file <strong>(REMINDER TO UPLOAD environment.yml FILE!)</strong> :
+# Create the environment from the environment.yml file:
 conda env create -f environment.yml
 
 # Activate the new environment:
