@@ -10,7 +10,7 @@ PHDI_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicato
 #USDM_InfoFileName = '/discover/nobackup/syatheen/NIDIS/Data/usdm_shapefiles/private/InfoArrWeekly_20000104To20200428.npz'
 #USDM_InfoFileName = '/att/nobackup/syatheen/Data/ML_Testcases/Drought_USDM/usdm_shapefiles/private/InfoArrWeekly_20000104To20200428.npz'
 
-TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
+TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/indicators_3_to_4/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 

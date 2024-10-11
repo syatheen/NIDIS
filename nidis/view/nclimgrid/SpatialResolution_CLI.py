@@ -15,7 +15,8 @@ from nidis.model.nclimgrid.spatial_resolution import \
     InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_64_to_67 as indicators_64_to_67
 from nidis.model.nclimgrid.spatial_resolution import \
     InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_98_to_108 as indicators_98_to_108
-
+from nidis.model.nclimgrid.spatial_resolution import \
+    InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_113 as indicators_113
 
 def main():
 
@@ -57,6 +58,10 @@ def main():
             args.start_date, args.end_date, args.huc_value)
     elif indicator >= 98 and indicator <= 108:
         indicators_98_to_108.main_multiprocessing(
+            args.start_date, args.end_date
+        )
+    elif indicator == 113:
+        indicators_113.main_multiprocessing(
             args.start_date, args.end_date
         )
     logging.info(f'End time: {time.time() - start_time}')

@@ -145,3 +145,12 @@ def PrepTrainPortion_ClimDivs_MonthlyPercBased(YYYYMMDD_Of_RefArray, RefArray, T
   PrcntlArray = ReAssembleArraysFromMonthlyList(YYYYMMDD_Of_PrcntlArray, PrcntlArray, MonthlyList_YYYYMMDD_Of_PrcntlArray, MonthlyList_PrcntlArray)
 
   return YYYYMMDD_Of_PrcntlArray, PrcntlArray
+
+
+def PrepTrainPortion_ClimDivs_OverallPercBased(YYYYMMDD_Of_RefArray, RefArray, Training_BeginDateVecList, Training_EndDateVecList):
+
+  YYYYMMDD_Of_PrcntlArray, PrcntlArray = TimeSlice_YYYYMMDDAndRefArrays(YYYYMMDD_Of_RefArray, RefArray, Training_BeginDateVecList, Training_EndDateVecList)
+
+  PrcntlArray = LoopPercentileCalcOverSpatialUnits(RefArray, PrcntlArray)
+
+  return YYYYMMDD_Of_PrcntlArray, PrcntlArray

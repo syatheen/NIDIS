@@ -10,7 +10,7 @@ import sys
 
 # BEGIN code arguments / editable section
 
-NumMonthsStr = sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month'
+NumMonthsStr = '72Month' #sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month'
 
 if NumMonthsStr == '1Month':
   SingleUnified_BeginDateVecList = [2000, 7, 4] # Beginning single-unified year, month, day of month, this is also a Tuesday
@@ -48,9 +48,13 @@ elif NumMonthsStr == '72Month':
 #end of if NumMonthsStr == '1Month'
 
 
-IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG' + NumMonthsStr + '_' + format(SingleUnified_BeginDateVecList[0], '04') + format(SingleUnified_BeginDateVecList[1], '02') + format(SingleUnified_BeginDateVecList[2], '02') + 'To' + format(SingleUnified_EndDateVecList[0], '04') + format(SingleUnified_EndDateVecList[1], '02') + format(SingleUnified_EndDateVecList[2], '02') + '.npz'
+#IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG' + NumMonthsStr + '_' + format(SingleUnified_BeginDateVecList[0], '04') + format(SingleUnified_BeginDateVecList[1], '02') + format(SingleUnified_BeginDateVecList[2], '02') + 'To' + format(SingleUnified_EndDateVecList[0], '04') + format(SingleUnified_EndDateVecList[1], '02') + format(SingleUnified_EndDateVecList[2], '02') + '.npz'
+IMERG_nMonth_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(SingleUnified_BeginDateVecList[0],'04')+format(SingleUnified_BeginDateVecList[1],'02')+format(SingleUnified_BeginDateVecList[2],'02')+'To'+format(SingleUnified_EndDateVecList[0],'04')+format(SingleUnified_EndDateVecList[1],'02')+format(SingleUnified_EndDateVecList[2],'02')+'.npz'
 
-SingleUnifiedDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG' + NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
+
+#SingleUnifiedDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG' + NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
+SingleUnifiedDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_98_to_108/percentile_output/PreppedTrainNEvalNpzs/indicators_108/SingleUnified_IMERG'+ NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
+
 
 # END code arguments / editable section
 
@@ -58,11 +62,19 @@ from datetime import date, datetime, timedelta
 import numpy as np
 from scipy.interpolate import interp1d
 from scipy.stats import rankdata
-from CreateMonthlyLists_YYYYMMDDAndArray_File import CreateMonthlyLists_YYYYMMDDAndArray
-from PrepTrainPortion_ClimDivs_OverallPercBased_File import PrepTrainPortion_ClimDivs_OverallPercBased
-from PrepTrainPortion_ClimDivs_MonthlyPercBased_File import PrepTrainPortion_ClimDivs_MonthlyPercBased
-from PrintInfoAboutArray_File import PrintInfoAboutArray
-from PrintInfoAboutArray_2_File import PrintInfoAboutArray_2
+
+from nidis.model.nclimgrid.percentile_creation.Utils import \
+  CreateMonthlyLists_YYYYMMDDAndArray, \
+  PrepTrainPortion_ClimDivs_MonthlyPercBased, \
+  PrintInfoAboutArray, \
+  PrepTrainPortion_ClimDivs_OverallPercBased
+
+
+#from CreateMonthlyLists_YYYYMMDDAndArray_File import CreateMonthlyLists_YYYYMMDDAndArray
+#from PrepTrainPortion_ClimDivs_OverallPercBased_File import PrepTrainPortion_ClimDivs_OverallPercBased
+#from PrepTrainPortion_ClimDivs_MonthlyPercBased_File import PrepTrainPortion_ClimDivs_MonthlyPercBased
+#from PrintInfoAboutArray_File import PrintInfoAboutArray
+#from PrintInfoAboutArray_2_File import PrintInfoAboutArray_2
 
 ssstart_Overall = datetime.now()
 
@@ -116,7 +128,7 @@ print('Single-unified: NumDates = ', IMERG_nMonth_PrcntlArray.shape[0], ', NumSp
 
 PrintInfoAboutArray(IMERG_nMonth_YYYYMMDD_Of_PrcntlArray, 'IMERG_nMonth_YYYYMMDD_Of_PrcntlArray')
 
-PrintInfoAboutArray_2(IMERG_nMonth_PrcntlArray, 'IMERG_nMonth_PrcntlArray')
+#PrintInfoAboutArray_2(IMERG_nMonth_PrcntlArray, 'IMERG_nMonth_PrcntlArray')
 
 np.savez_compressed(SingleUnifiedDataFilename, 
                     YYYYMMDD_Of_Array = IMERG_nMonth_YYYYMMDD_Of_PrcntlArray, 

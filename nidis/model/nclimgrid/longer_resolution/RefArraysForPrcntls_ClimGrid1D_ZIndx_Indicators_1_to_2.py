@@ -18,7 +18,7 @@ def main():
   BeginYYYYMM = [1932, 1]
   EndYYYYMM = [2020, 1]
 
-  """
+
   # int(round(float(sys.argv[1])))
   NumDaysMean = 2191 # indicator 108
   
@@ -44,9 +44,10 @@ def main():
     NumMonthsMean = 60
   elif NumDaysMean == 2191:
     NumMonthsMean = 72
-  """
+
 
   VariabStr = 'zndx' # possible values are 'pmdi', 'phdi', 'zndx', 'pcpn'
+  
   if VariabStr == 'pcpn':
     VariabNum = 1
   elif VariabStr == 'phdi':

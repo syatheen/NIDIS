@@ -45,7 +45,7 @@ def ConcatMonthlyArraysContainingDailyInfo(NLDAS_2_daily_Info_BeginYYYYMMVecList
       #  ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
       #elif (WhichVariable == 'STRM') :
       #  ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_' + WhichHUC + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
-      ThisYYYYMM_Info = np.load(InfoFilesDir + 'GlobSnow3_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.npz')
+      ThisYYYYMM_Info = np.load(InfoFilesDir + 'ESA_CCI_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.npz')
       ThisYYYYMMDD_Of_InfoArrayForPrcntl = ThisYYYYMM_Info['YYYYMMDD_Of_RefArrayForPrcntl']
       ThisInfoArrayForPrcntl = ThisYYYYMM_Info['RefArrayForPrcntl']
   
@@ -196,7 +196,7 @@ def main():
 
     # needs the / at the end because of concatenation
     # move to os.path.join to remove this dependency
-    InfoFilesDir = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/GlobSnow3_Npzs/'
+    InfoFilesDir = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/ESA_CCI_Npzs/'
 
     NLDAS_2_daily_Info_BeginYYYYMMVecList = [1980, 1] # Beginning year and month 
     NLDAS_2_daily_Info_EndYYYYMMVecList = [2021, 8] # Ending year and month 
@@ -233,7 +233,7 @@ def main():
     NLDAS_2_Ref_EndDateVecList = FindTuesdayBefore(LSM_Variable_daily_YYYYMMDD_Of_InfoArray[-1,0])  # NLDAS_2_daily ending year, month, day of month, this is also a Tuesday
     print("After NLDAS_2_Ref_BeginDateVecList")
 
-    save_data_path = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/GlobSnow3'
+    save_data_path = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ESA_CCI'
     os.makedirs(save_data_path, exist_ok=True)
 
     # this will cause problems, it is expecting a RefArrays directory from the 
@@ -250,7 +250,7 @@ def main():
     #    )
     LSM_Variable_RefFileName = os.path.join(
           save_data_path,
-          'ClimGrid1D_' + 'GlobSnow3_' + format(NLDAS_2_Ref_BeginDateVecList[0],'04') + format(NLDAS_2_Ref_BeginDateVecList[1],'02') + format(NLDAS_2_Ref_BeginDateVecList[2],'02') + 'To' + format(NLDAS_2_Ref_EndDateVecList[0],'04') + format(NLDAS_2_Ref_EndDateVecList[1],'02') + format(NLDAS_2_Ref_EndDateVecList[2],'02') + '.npz'
+          'ClimGrid1D_' + 'ESA_CCI_' + format(NLDAS_2_Ref_BeginDateVecList[0],'04') + format(NLDAS_2_Ref_BeginDateVecList[1],'02') + format(NLDAS_2_Ref_BeginDateVecList[2],'02') + 'To' + format(NLDAS_2_Ref_EndDateVecList[0],'04') + format(NLDAS_2_Ref_EndDateVecList[1],'02') + format(NLDAS_2_Ref_EndDateVecList[2],'02') + '.npz'
         )
     #Mosaic_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_Mosaic_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
     #Noah_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_Noah_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
@@ -295,7 +295,7 @@ def main():
     #BEGIN section for time-interpolating info arrays to desired temporal resolution
 
 
-    NLDAS_2_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(LSM_Variable_daily_YYYYMMDD_Of_InfoArray, 3, 'GlobSnow3', np.NaN)
+    NLDAS_2_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(LSM_Variable_daily_YYYYMMDD_Of_InfoArray, 3, 'ESA_CCI', np.NaN)
 
     #Begin calculating real dates list for reference arrays
 
@@ -388,14 +388,14 @@ def main():
         #np.savez_compressed(SAC_STRM_H08_RefFileName, SAC_STRM_H08_RefArray = SAC_STRM_H08_RefArray, SAC_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
         #np.savez_compressed(VIC_STRM_H08_RefFileName, VIC_STRM_H08_RefArray = VIC_STRM_H08_RefArray, VIC_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
     """
-    np.savez_compressed(LSM_Variable_RefFileName, GlobSnow3_RefArray = LSM_Variable_RefArray, GlobSnow3_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
+    np.savez_compressed(LSM_Variable_RefFileName, ESA_CCI_RefArray = LSM_Variable_RefArray, ESA_CCI_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
     PrintArrayInfo(NLDAS_2_YYYYMMDD_Of_RefArray, 'YYYYMMDD')
 
     #if (ArgVariable == 'STRM') :
     #    PrintArrayInfo(LSM_Variable_RefArray, ArgLSM + '_' + ArgVariable + '_' + ArgHUC)
     #else:
     #    PrintArrayInfo(LSM_Variable_RefArray, ArgLSM + '_' + ArgVariable)
-    PrintArrayInfo(LSM_Variable_RefArray, 'GlobSnow3')
+    PrintArrayInfo(LSM_Variable_RefArray, 'ESA_CCI')
 
     return
 

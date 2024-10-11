@@ -12,6 +12,7 @@ def spatial_resolution_api():
     nldas2_parser = subparsers.add_parser("NLDAS2")
     nldas2huc_parser = subparsers.add_parser("NLDAS2HUC")
     imerg_parser = subparsers.add_parser("IMERG")
+    globsnow_parser = subparsers.add_parser("GlobSnow")
 
     for subparser in [nldas2_parser, nldas2huc_parser]:
 
@@ -68,7 +69,7 @@ def spatial_resolution_api():
             help='Date to end processing at.')
 
     # general parsers
-    for subparser in [imerg_parser]:
+    for subparser in [imerg_parser, globsnow_parser]:
 
         # make this indicators a list of things you can add
         subparser.add_argument(
