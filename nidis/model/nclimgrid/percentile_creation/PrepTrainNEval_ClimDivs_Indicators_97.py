@@ -4,7 +4,7 @@
 Training_BeginDateVecList = [2006, 1, 3] # Beginning training year, month, day of month, this is also a Tuesday
 Training_EndDateVecList = [2019, 12, 31] # Ending training year, month, day of month, this is also a Tuesday
 
-CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ESA_CCI/ClimGrid1D_ESA_CCI_20090428To20200804.npz'
+CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ClimGrid1D_ESA_CCI_19800101To20210831.npz'
 
 TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_97/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
 

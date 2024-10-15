@@ -4,9 +4,9 @@
 Training_BeginDateVecList = [2006, 1, 3] # Beginning training year, month, day of month, this is also a Tuesday
 Training_EndDateVecList = [2019, 12, 31] # Ending training year, month, day of month, this is also a Tuesday
 
-CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ClimGrid1D_GlobSnow3_19800101To20210831.npz'
+CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_69/RefArrays/ClimGrid1D_QuickDRI_20000125To20201229.npz'
 
-TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_113/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
+TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_69/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 
@@ -36,9 +36,9 @@ if Training_BeginDate > Training_EndDate:
   sys.exit(0)
 
 CPCsoilmoist_RefObject = np.load(CPCsoilmoist_RefFileName)
-CPCsoilmoist_YYYYMMDD_Of_RefArray = CPCsoilmoist_RefObject['GlobSnow3_YYYYMMDD_Of_RefArray']
+CPCsoilmoist_YYYYMMDD_Of_RefArray = CPCsoilmoist_RefObject['QuickDRI_YYYYMMDD_Of_RefArray']
 
-CPCsoilmoist_RefArray = CPCsoilmoist_RefObject['GlobSnow3_RefArray']
+CPCsoilmoist_RefArray = CPCsoilmoist_RefObject['QuickDRI_RefArray']
 
 print(CPCsoilmoist_YYYYMMDD_Of_RefArray.shape)
 print(CPCsoilmoist_RefArray.shape)
@@ -182,10 +182,10 @@ MonthlyList_CPCsoilmoist_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(Mon
 
 CPCsoilmoist_PrcntlArray = ReAssembleArraysFromMonthlyList(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray, MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray)
 
-PrintInfoAboutArray(CPCsoilmoist_PrcntlArray, 'GlobSnow3_PrcntlArray')
+PrintInfoAboutArray(CPCsoilmoist_PrcntlArray, 'QuickDRI_PrcntlArray')
 
 
-np.savez_compressed(TrainDataFilename, YYYYMMDD_Of_Array = CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, GlobSnow3_PrcntlArray = CPCsoilmoist_PrcntlArray) 
+np.savez_compressed(TrainDataFilename, YYYYMMDD_Of_Array = CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray = CPCsoilmoist_PrcntlArray) 
 
 #END section for training
 

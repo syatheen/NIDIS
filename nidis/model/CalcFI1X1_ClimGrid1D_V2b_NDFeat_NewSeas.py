@@ -647,9 +647,9 @@ def main(
 
             #SingleUnifiedDataFilename_NLDAS_2_daily = 'Placeholder.npz'
 
-            SingleUnifiedDataFilename_VegDRI_MonthlyPerc = 'Placeholder.npz'
+            SingleUnifiedDataFilename_VegDRI_MonthlyPerc = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_68/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_20060103To20191231.npz'
 
-            SingleUnifiedDataFilename_QuickDRI_MonthlyPerc = 'Placeholder.npz'
+            SingleUnifiedDataFilename_QuickDRI_MonthlyPerc = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_69/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_20060103To20191231.npz'
 
             SingleUnifiedDataFilename_ESImultiWeek_MonthlyPerc = 'Placeholder.npz'
 
@@ -670,12 +670,18 @@ def main(
 
             SingleUnifiedDataFilename_BlendedVHP_MonthlyPerc = f'{temp_path_npz}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_BlendedVHP_Corr2MonthlyPerc_20030930To20201229.npz'
 
-            SingleUnifiedDataFilename_GlobSnow3_OverallPerc = 'Placeholder.npz'
+            SingleUnifiedDataFilename_GlobSnow3_OverallPerc = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_113/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_Z_index = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/indicators_1_to_2/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_Z_index_60_month = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/indicators_1_to_2/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_CPC_soil_moisture = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_16/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_PMDI = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/indicators_3_to_4/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_PHDI = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_1_to_4/percentile_output/PreppedTrainNEvalNpzs/indicators_3_to_4/SingleUnified_20060103To20191231.npz'
+            SingleUnifiedDataFilename_ESA_CCI = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_97/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_20060103To20191231.npz'
 
         # adding PMDI and PHDI
-        if ('PMDI' in InpLayersCombination) or ('PHDI' in InpLayersCombination):
-            # what is the input file
-            print('We need to load PMDI and PHDI')
+        #if ('PMDI' in InpLayersCombination) or ('PHDI' in InpLayersCombination):
+        #    # what is the input file
+        #    print('We need to load PMDI and PHDI')
             
 
         else: # if TargetVariable == 'USDM'
@@ -748,12 +754,29 @@ def main(
     # SingleUnifiedDatas['XYData'] = SingleUnifiedData
     # #end of if ( ('Z_index' in InpLayersCombination) or....
     #
-    # if ( ('PMDI' in InpLayersCombination) or
+    #if ( ('PMDI' in InpLayersCombination) or
     #           ('PHDI' in InpLayersCombination) ):
     #  SingleUnifiedData_OverallPerc = np.load(SingleUnifiedDataFilename_OverallPerc)
     #  SingleUnifiedDatas['XYData_OverallPerc'] = SingleUnifiedData_OverallPerc
     # #end of if ( ('PMDI' in InpLayersCombination) or....
     #
+    if ('Z_index' in InpLayersCombination):
+        SingleUnifiedData_Z_index = np.load(SingleUnifiedDataFilename_Z_index)
+        SingleUnifiedDatas['XYData_Z_index'] = SingleUnifiedData_Z_index
+    if ('Z_index_60_month' in InpLayersCombination):
+        SingleUnifiedData_Z_index_60_month = np.load(SingleUnifiedDataFilename_Z_index_60_month)
+        SingleUnifiedDatas['XYData_Z_index_60_month'] = SingleUnifiedData_Z_index_60_month
+    if ('CPC_soil_moisture' in InpLayersCombination):
+        SingleUnifiedData_CPC_soil_moisture = np.load(SingleUnifiedDataFilename_CPC_soil_moisture)
+        SingleUnifiedDatas['XYData_CPC_soil_moisture'] = SingleUnifiedData_CPC_soil_moisture
+    if ('PMDI' in InpLayersCombination):
+        SingleUnifiedData_PMDI = np.load(SingleUnifiedDataFilename_PMDI)
+        SingleUnifiedDatas['XYData_PMDI'] = SingleUnifiedData_PMDI
+    #end of if ('GRACE_DA_gw' in InpLayersCombination)
+    if ('PHDI' in InpLayersCombination):
+        SingleUnifiedData_PHDI = np.load(SingleUnifiedDataFilename_PHDI)
+        SingleUnifiedDatas['XYData_PHDI'] = SingleUnifiedData_PHDI
+
     if ( ('prcp_01_nCG' in InpLayersCombination) or
             ('prcp_02_nCG' in InpLayersCombination) or
             ('prcp_03_nCG' in InpLayersCombination) or
@@ -978,14 +1001,19 @@ def main(
         del SingleUnifiedData_NLDAS_2_daily
     #end of if ( ('NLDAS2D_1MSM_Mosaic' in InpLayersCombination) or...
 
-    #if ('VegDRI' in InpLayersCombination):
-    #  SingleUnifiedData_VegDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_VegDRI_MonthlyPerc)
-    #  SingleUnifiedDatas['XYData_VegDRI_MonthlyPerc'] = SingleUnifiedData_VegDRI_MonthlyPerc
+    if ('VegDRI' in InpLayersCombination):
+      SingleUnifiedData_VegDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_VegDRI_MonthlyPerc)
+      SingleUnifiedDatas['XYData_VegDRI_MonthlyPerc'] = SingleUnifiedData_VegDRI_MonthlyPerc
     ##end of if ('VegDRI' in InpLayersCombination)
-    #
-    #if ('QuickDRI' in InpLayersCombination):
-    #  SingleUnifiedData_QuickDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_QuickDRI_MonthlyPerc)
-    #  SingleUnifiedDatas['XYData_QuickDRI_MonthlyPerc'] = SingleUnifiedData_QuickDRI_MonthlyPerc
+    
+    if ('ESA_CCI' in InpLayersCombination):
+      SingleUnifiedData_ESA_CCI = np.load(SingleUnifiedDataFilename_ESA_CCI)
+      SingleUnifiedDatas['XYData_ESA_CCI'] = SingleUnifiedData_ESA_CCI
+    ##end of if ('VegDRI' in InpLayersCombination)
+
+    if ('QuickDRI' in InpLayersCombination):
+      SingleUnifiedData_QuickDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_QuickDRI_MonthlyPerc)
+      SingleUnifiedDatas['XYData_QuickDRI_MonthlyPerc'] = SingleUnifiedData_QuickDRI_MonthlyPerc
     ##end of if ('QuickDRI' in InpLayersCombination)
     #
     #if ( ('ESI_4wk' in InpLayersCombination) or
@@ -1058,9 +1086,9 @@ def main(
         SingleUnifiedDatas['XYData_BlendedVHP_MonthlyPerc'] = SingleUnifiedData_BlendedVHP_MonthlyPerc
     #end of if ('SmNDVI_BlendedVHP' in InpLayersCombination) or...
 
-    #if ('GlobSnow3' in InpLayersCombination):
-    #  SingleUnifiedData_GlobSnow3_OverallPerc = np.load(SingleUnifiedDataFilename_GlobSnow3_OverallPerc)
-    #  SingleUnifiedDatas['XYData_GlobSnow3_OverallPerc'] = SingleUnifiedData_GlobSnow3_OverallPerc
+    if ('GlobSnow3' in InpLayersCombination):
+      SingleUnifiedData_GlobSnow3_OverallPerc = np.load(SingleUnifiedDataFilename_GlobSnow3_OverallPerc)
+      SingleUnifiedDatas['XYData_GlobSnow3_OverallPerc'] = SingleUnifiedData_GlobSnow3_OverallPerc
     ##end of if ('GlobSnow3' in InpLayersCombination)
 
     def GetInpAndTargArraysFromFile_ClmGrd1D(XYDatas, InpLayersCombination, IfMakeTargetBinary, IfIncludeD0AsDrought, WhichSeason, MinimumWindowSize, MaximumWindowSize, MinSamplesForFracI, ThisPxlRow, ThisPxlCol, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile):
@@ -1362,16 +1390,19 @@ def main(
     
         #Begin input percentile arrays
         if 'Z_index' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, ZIndex_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'Z_index', XYData, 'YYYYMMDD_Of_Array', 'ZIndex_PrcntlArray')
-            ZIndex_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            #ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD_Arg, EndYYYYMMDD_Arg, VariableArg, XYDataObj, KeyInObj_YYYYMMDD_Of_RefArray, KeyInObj_RefArray)
+            #SingleUnifiedData_Z_index = np.load(SingleUnifiedDataFilename_Z_index)
+            #SingleUnifiedDatas['XYData_Z_index'] = SingleUnifiedData_Z_index
+            YYYYMMDD_Of_Array, ZIndex_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'Z_index', SingleUnifiedDatas['XYData_Z_index'], 'YYYYMMDD_Of_Array', 'ZIndex_PrcntlArray')
+            #ZIndex_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'Z_index_60_month' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, ZIndex60month_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'Z_index_60_month', XYData, 'YYYYMMDD_Of_Array', 'ZIndex60month_PrcntlArray')
-            ZIndex60month_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, ZIndex60month_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'Z_index_60_month', SingleUnifiedDatas['XYData_Z_index_60_month'], 'YYYYMMDD_Of_Array', 'ZIndex60month_PrcntlArray')
+            #ZIndex60month_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'PMDI' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, PMDI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'PMDI', XYData_OverallPerc, 'YYYYMMDD_Of_Array', 'PMDI_PrcntlArray')
-            PMDI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, PMDI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'PMDI', SingleUnifiedDatas['XYData_PMDI'], 'YYYYMMDD_Of_Array', 'PMDI_PrcntlArray')
+            #PMDI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'PHDI' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, PHDI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'PHDI', XYData_OverallPerc, 'YYYYMMDD_Of_Array', 'PHDI_PrcntlArray')
+            YYYYMMDD_Of_Array, PHDI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'PHDI', SingleUnifiedDatas['XYData_PHDI'], 'YYYYMMDD_Of_Array', 'PHDI_PrcntlArray')
             PHDI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'prcp_01_nCG' in InpLayersCombination:
             YYYYMMDD_Of_Array, prcp_01_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'prcp_01_nCG', XYData_AllnCG, 'YYYYMMDD_Of_Array', 'Variable_PrcntlArray')
@@ -1396,8 +1427,8 @@ def main(
         if 'prcp_72_nCG' in InpLayersCombination:
             YYYYMMDD_Of_Array, prcp_72_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'prcp_72_nCG', XYData_AllnCG, 'YYYYMMDD_Of_Array', 'Variable_PrcntlArray')
         if 'CPC_soil_moisture' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, CPCsoilmoist_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'CPC_soil_moisture', XYData, 'YYYYMMDD_Of_Array', 'CPCsoilmoist_PrcntlArray')
-            CPCsoilmoist_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, CPCsoilmoist_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'CPC_soil_moisture', SingleUnifiedDatas['XYData_CPC_soil_moisture'], 'YYYYMMDD_Of_Array', 'CPCsoilmoist_PrcntlArray')
+            #CPCsoilmoist_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'GRACE_DA_gw' in InpLayersCombination:
             YYYYMMDD_Of_Array, GRACE_DA_gw_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'GRACE_DA_gw', XYData_GRACEDA, 'YYYYMMDD_Of_Array', 'GRACEDA_gws_inst_PrcntlArray')
         if 'GRACE_DA_sfsm' in InpLayersCombination:
@@ -1501,11 +1532,11 @@ def main(
         if 'NLDAS2D_STRMH04_VIC' in InpLayersCombination:
             YYYYMMDD_Of_Array, VIC_STRM_H04_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'NLDAS2D_STRMH04_VIC', XYData_NLDAS_2_daily, 'YYYYMMDD_Of_Array', 'NLDAS_2_daily_PrcntlArray')
         if 'VegDRI' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, VegDRI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'VegDRI', XYData_VegDRI_MonthlyPerc, 'YYYYMMDD_Of_Array', 'VegDRI_PrcntlArray')
-            VegDRI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, VegDRI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'VegDRI', SingleUnifiedDatas['XYData_VegDRI_MonthlyPerc'], 'YYYYMMDD_Of_Array', 'VegDRI_PrcntlArray')
+            #VegDRI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'QuickDRI' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, QuickDRI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'QuickDRI', XYData_QuickDRI_MonthlyPerc, 'YYYYMMDD_Of_Array', 'QuickDRI_PrcntlArray')
-            QuickDRI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, QuickDRI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'QuickDRI', SingleUnifiedDatas['XYData_QuickDRI_MonthlyPerc'], 'YYYYMMDD_Of_Array', 'QuickDRI_PrcntlArray')
+            #QuickDRI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'ESI_4wk' in InpLayersCombination:
     #        YYYYMMDD_Of_Array, ESI4Week_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'ESI_4wk', XYData_ESImultiWeek_MonthlyPerc, 'YYYYMMDD_Of_Array', 'ESI4Week_PrcntlArray')
             ESI4Week_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
@@ -1563,8 +1594,8 @@ def main(
         if 'SNODAS' in InpLayersCombination:
             YYYYMMDD_Of_Array, SNODAS_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'SNODAS', XYData_SNODAS, 'YYYYMMDD_Of_Array', 'SNODAS_PrcntlArray')
         if 'ESA_CCI' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, ESA_CCI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'ESA_CCI', XYData_SNODASnESACCI, 'YYYYMMDD_Of_Array', 'ESA_CCI_PrcntlArray')
-            ESA_CCI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, ESA_CCI_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'ESA_CCI', SingleUnifiedDatas['XYData_ESA_CCI'], 'YYYYMMDD_Of_Array', 'ESA_CCI_PrcntlArray')
+            #ESA_CCI_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'IMERG_01' in InpLayersCombination:
             YYYYMMDD_Of_Array, IMERG_01_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'IMERG_01', XYData_IMERG_01, 'YYYYMMDD_Of_Array', 'IMERG_nMonth_PrcntlArray')
         if 'IMERG_02' in InpLayersCombination:
@@ -1600,8 +1631,8 @@ def main(
             YYYYMMDD_Of_Array, VHI_BlendedVHP_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'VHI_BlendedVHP', XYData_BlendedVHP_MonthlyPerc, 'YYYYMMDD_Of_Array', 'BlendedVHP_VHI_PrcntlArray')
     #        VHI_BlendedVHP_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         if 'GlobSnow3' in InpLayersCombination:
-    #        YYYYMMDD_Of_Array, GlobSnow3_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'GlobSnow3', XYData_GlobSnow3_OverallPerc, 'YYYYMMDD_Of_Array', 'GlobSnow3_PrcntlArray')
-            GlobSnow3_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
+            YYYYMMDD_Of_Array, GlobSnow3_PrcntlArray = ExtractArraysOfNpz_And_TimeSliceStrict(BeginYYYYMMDD, EndYYYYMMDD, 'GlobSnow3', SingleUnifiedDatas['XYData_GlobSnow3_OverallPerc'], 'YYYYMMDD_Of_Array', 'GlobSnow3_PrcntlArray')
+            #GlobSnow3_PrcntlArray = np.ones(Target_Array.shape, dtype=np.float32)
         #End input percentile arrays
         del YYYYMMDD_Of_Array
 
