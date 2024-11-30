@@ -35,6 +35,6 @@ Python codes and corresponding indicator numbers/names:
                                    93: 'SPEI_pear_72_nCG',
                                    94: 'tavg_01_nCG',
                                    95: 'tmax_01_nCG'
-
+     Note that this NCEI/InfoArrays_ClimGrid1D.py is the initial code format, have to convert this to final format.
 
  
