@@ -43,6 +43,8 @@ Scripts and corresponding indicator numbers/names:
          --> Execfile_CreateTifs_spei-?? (for 'SPEI_pear_??_nCG' indicators) that're finally called by respective scripts sbatchpods_CreateTifs_spei-??.sh;
          --> Execfile_CreateTifs_tavgNtmax (for 'tavg_01_nCG' & 'tmax_01_nCG' indicators) that's finally called by script sbatchpods_CreateTifs_tavgNtmax.sh;  
 
--> 
+-> ESIs script bash_submission_indicators_70_to_71.sh :   70: 'ESI_4wk',
+                                                          71: 'ESI_12wk',
+   
  
  
