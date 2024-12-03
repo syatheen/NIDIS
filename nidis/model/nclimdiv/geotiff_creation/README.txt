@@ -1,5 +1,11 @@
 Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
+-> No GeoTiffs created for : 1. 'Z_index',
+                             2: 'Z_index_60_month',
+                             3: 'PMDI',
+                             4: 'PHDI' 
+     Because original tabular/CSV format were already at nClimDiv resolution
+
 -> NCEI/InfoArrays_ClimGrid1D.py :  5: 'prcp_01_nCG',
                                     6: 'prcp_02_nCG',
                                     7: 'prcp_03_nCG',

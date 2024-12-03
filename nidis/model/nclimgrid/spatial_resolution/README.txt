@@ -37,4 +37,9 @@ Python codes and corresponding indicator numbers/names:
                                    95: 'tmax_01_nCG'
      Note that this NCEI/InfoArrays_ClimGrid1D.py is the initial code format, have to convert this to final format.
 
+-> GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py :  17: 'GRACE_DA_gw',
+                                                      18: 'GRACE_DA_sfsm',
+                                                      19: 'GRACE_DA_rtzsm'
+     Note that this GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py is the initial code format, I have to convert this to final format.
+
  
