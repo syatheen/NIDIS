@@ -1,6 +1,7 @@
 Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
--> No GeoTiffs created for : 1. 'Z_index',
+-> No Python code because no GeoTiffs created for : 
+                             1. 'Z_index',
                              2: 'Z_index_60_month',
                              3: 'PMDI',
                              4: 'PHDI' 
