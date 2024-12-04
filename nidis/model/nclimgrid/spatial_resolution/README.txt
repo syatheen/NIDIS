@@ -47,6 +47,9 @@ Python codes and corresponding indicator numbers/names:
                                    95: 'tmax_01_nCG'
      Note that this NCEI/InfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
 
+-> CPC_soil_moisture/RefArraysForPrcntls_gdalWarp_ClimGrid1D.py : 16: 'CPC_soil_moisture'
+      Note that this CPC_soil_moisture/RefArraysForPrcntls_gdalWarp_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+ 
 -> GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py :  17: 'GRACE_DA_gw',
                                                       18: 'GRACE_DA_sfsm',
                                                       19: 'GRACE_DA_rtzsm'
