@@ -33,8 +33,7 @@ Python codes and corresponding indicator numbers/names:
                                                           94: 'tavg_01_nCG',
                                                           95: 'tmax_01_nCG'
 
--> NCEI/MeanMetInfoArrays.py :  5: 'prcp_01_nCG',
-                                6: 'prcp_02_nCG',
+-> NCEI/MeanMetInfoArrays.py :  6: 'prcp_02_nCG',
                                 7: 'prcp_03_nCG',
                                 8: 'prcp_06_nCG',
                                 9: 'prcp_09_nCG',

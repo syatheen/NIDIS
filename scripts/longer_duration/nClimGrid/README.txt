@@ -11,6 +11,6 @@ Scripts and corresponding indicator numbers/names:
                     13: 'prcp_48_nCG',
                     14: 'prcp_60_nCG',
                     15: 'prcp_72_nCG',
-       Note that the script here calling nidis/nidis/model/nclimdiv/longer_duration/NCEI/MeanMetInfoArrays.py is the initial code structure, have to change this to final structure.
-       MeanMetInfoArrays.py is called Exec_CreateMeanMetInfoArrays;
+       Note that the script here calling nidis/nidis/model/nclimgrid/longer_duration/NCEI/MeanMetInfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+       MeanMetInfoArrays_ClimGrid1D.py is called ExecPoDS_CreateMeanMetInfoArrays_ClimGrid1D, inturn called by sbatchpods_CreateMeanMetInfoArrays_ClimGrid1D.sh;
 
