@@ -44,6 +44,9 @@ Python codes and corresponding indicator numbers/names:
                                    95: 'tmax_01_nCG'
      Note that this NCEI/CreateTifs_V2.py is the initial code structure, have to change this to final structure.
 
+-> NO code for : 16: 'CPC_soil_moisture'
+     Because it's already in Tiff format.
+
 -> GRACEDA/CreateTifs.py :  17: 'GRACE_DA_gw',
                             18: 'GRACE_DA_sfsm',
                             19: 'GRACE_DA_rtzsm'

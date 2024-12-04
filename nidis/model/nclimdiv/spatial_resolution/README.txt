@@ -46,4 +46,5 @@ Python codes and corresponding indicator numbers/names:
 #                                   95: 'tmax_01_nCG'
 #     Note that this NCEI/CreateTifs_V2.py is the initial code format, have to convert this to final format.
 
- 
+-> CPC_soil_moisture/RefArraysForPrcntls_ClimDivs.py: 16: 'CPC_soil_moisture'
+      Note that this CPC_soil_moisture/RefArraysForPrcntls_ClimDivs.py is the initial code structure, have to change this to final structure.
