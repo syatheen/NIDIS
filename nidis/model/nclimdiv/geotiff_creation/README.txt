@@ -42,6 +42,12 @@ Python codes and corresponding indicator numbers/names:
                                    93: 'SPEI_pear_72_nCG',
                                    94: 'tavg_01_nCG',
                                    95: 'tmax_01_nCG'
-     Note that this NCEI/CreateTifs_V2.py is the initial code format, have to convert this to final format.
+     Note that this NCEI/CreateTifs_V2.py is the initial code structure, have to change this to final structure.
+
+-> GRACEDA/CreateTifs.py :  17: 'GRACE_DA_gw',
+                            18: 'GRACE_DA_sfsm',
+                            19: 'GRACE_DA_rtzsm'
+     Note that this GRACEDA/CreateTifs.py is the initial code structure, I have to change this to final structure.
+
 
  

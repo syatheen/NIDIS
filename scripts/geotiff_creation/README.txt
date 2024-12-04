@@ -1,5 +1,6 @@
 Scripts and corresponding indicator numbers/names:
 ------------------------------------------------------
+
 -> NCEI directory :  5: 'prcp_01_nCG',
                      6: 'prcp_02_nCG',
                      7: 'prcp_03_nCG',
@@ -35,7 +36,7 @@ Scripts and corresponding indicator numbers/names:
                     93: 'SPEI_pear_72_nCG',
                     94: 'tavg_01_nCG',
                     95: 'tmax_01_nCG'
-       Note that the scripts here calling nidis/nidis/model/nclimdiv/geotiff_creation/NCEI/CreateTifs_V2.py are the initial code format, have to convert this to final format.
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/geotiff_creation/NCEI/CreateTifs_V2.py are the initial code structure., have to change this to final structure.
        CreateTifs_V2.py is called by RunProcess_CreateTifs_V2.sh;
        This RunProcess_CreateTifs_V2.sh is in turn called by one of : 
          --> Execfile_CreateTifs_petNprcp (for 'prcp_??_nCG' indicators) that's finally called by script sbatchpods_CreateTifs_petNprcp.sh
