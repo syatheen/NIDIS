@@ -1,5 +1,15 @@
 Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
+
+-> NO Python code for :   1. 'Z_index',
+                          2: 'Z_index_60_month'
+     Because conversion to nClimGrid spatial resolution included in the code for next step of longer duration value, using the corresponding nClimDiv resolution longer duration Npz file as input 
+
+-> PalmerIndices/RefArraysForPrcntls_ClimGrid1D_PhdOrPdi.py:  3: 'PMDI',
+                                                              4: 'PHDI' 
+     This code simply uses the corresponding nClimDiv resolution Npz file as input.
+     Note that this PalmerIndices/RefArraysForPrcntls_ClimGrid1D_PhdOrPdi.py is the initial code format, I have to convert this to final format.
+
 -> NCEI/InfoArrays_ClimGrid1D.py :  5: 'prcp_01_nCG',
                                     6: 'prcp_02_nCG',
                                     7: 'prcp_03_nCG',
