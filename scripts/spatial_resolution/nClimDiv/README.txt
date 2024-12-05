@@ -74,9 +74,48 @@ Scripts and corresponding indicator numbers/names:
                       41: 'EDDI_10mn',
                       42: 'EDDI_11mn',
                       43: 'EDDI_12mn',
-     Note that the scripts here calling nidis/nidis/model/nclimdiv/spatial_resolution/EDDI/RefPrcntlArrays_ClimDivs_V2.py is the initial code structure, I have to change this to final structure.
-     RefPrcntlArrays_ClimDivs_V2.py called by RunProcess.sh;
-     RunProcess.sh is in turn called by the example file Execfile_06wk_1Test;
-     & finally Execfile_06wk_1Test is in turn called by sbatchpods_RefPrcntlArrays_ClimDivs.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/spatial_resolution/EDDI/RefPrcntlArrays_ClimDivs_V2.py is the initial code structure, I have to change this to final structure.
+       RefPrcntlArrays_ClimDivs_V2.py called by RunProcess.sh;
+       RunProcess.sh is in turn called by the example file Execfile_06wk_1Test;
+       & finally Execfile_06wk_1Test is in turn called by sbatchpods_RefPrcntlArrays_ClimDivs.sh; 
+
+-> NLDAS2 directory :    44: 'NLDAS2D_1MSM_Mosaic',
+                         45: 'NLDAS2D_1MSM_Noah',
+                         46: 'NLDAS2D_1MSM_SAC',
+                         47: 'NLDAS2D_1MSM_VIC',
+                         48: 'NLDAS2D_TCSM_Mosaic',
+                         49: 'NLDAS2D_TCSM_Noah',
+                         50: 'NLDAS2D_TCSM_SAC',
+                         51: 'NLDAS2D_TCSM_VIC',
+                         52: 'NLDAS2D_EVAP_Mosaic',
+                         53: 'NLDAS2D_EVAP_Noah',
+                         54: 'NLDAS2D_EVAP_SAC',
+                         55: 'NLDAS2D_EVAP_VIC',
+                         56: 'NLDAS2D_SWE_Mosaic',
+                         57: 'NLDAS2D_SWE_Noah',
+                         58: 'NLDAS2D_SWE_SAC',
+                         59: 'NLDAS2D_SWE_VIC',
+                         60: 'NLDAS2D_RUN_Mosaic',
+                         61: 'NLDAS2D_RUN_Noah',
+                         62: 'NLDAS2D_RUN_SAC',
+                         63: 'NLDAS2D_RUN_VIC',
+                         64: 'NLDAS2D_STRMH04_Mosaic',
+                         65: 'NLDAS2D_STRMH04_Noah',
+                         66: 'NLDAS2D_STRMH04_SAC',
+                         67: 'NLDAS2D_STRMH04_VIC',
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/spatial_resolution/NLDAS2/InfoArrays_ClimDivs_*.py are the initial code structure, have to change this to final structure.
+         -->  InfoArrays_ClimDivs_DailyCollToMonthly.py (for 'NLDAS2D_1MSM_*' & 'NLDAS2D_TCSM_*' indicators):
+           ---> This InfoArrays_ClimDivs_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh; 
+           ---> this RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by  Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[1/2];
+           ---> & these Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[1/2] in turn are called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly_[1/2].sh;  
+         -->  InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py (for 'NLDAS2D_EVAP_*', 'NLDAS2D_SWE_*' & 'NLDAS2D_RUN_*' indicators):
+           ---> This InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.50AdjustTo0.sh; 
+           ---> this RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.50AdjustTo0.sh is in turn called by Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[3/4/5/6]_50AdjustTo0;
+           ---> & these Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[3/4/5/6]_50AdjustTo0 in turn are called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly_?_50AdjustTo0.sh;  
+         -->  InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py (for 'NLDAS2D_STRMH04_*' indicators):
+           ---> This InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py is called by RunProcess_InfoArrs_ClmDvs_DyCllToMnth.50AdjTo0_HUCAvg.sh; 
+           ---> this RunProcess_InfoArrs_ClmDvs_DyCllToMnth.50AdjTo0_HUCAvg.sh is in turn called by Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg;
+           ---> & these Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg in turn are called by sbatchpods_InfArrs_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg.sh;  
+
 
 
