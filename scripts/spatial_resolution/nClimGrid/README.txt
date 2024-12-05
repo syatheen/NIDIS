@@ -49,4 +49,14 @@ Scripts and corresponding indicator numbers/names:
        RefArraysForPrcntls_gdalWarp_ClimGrid1D.py is called by RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh;
        RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh is in turn called by tasks.conf;
        & finally tasks.conf is in turn called by sbatchMultiProg_RefArraysForPrcntls_gdalWarp_ClimGrid1D.sh; 
- 
+
+-> GRACEDA directory : 17: 'GRACE_DA_gw',
+                       18: 'GRACE_DA_sfsm',
+                       19: 'GRACE_DA_rtzsm'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       RefArrsForPrcntl_gdalWarp_ClimGrid1D.py is called by RunProcess_RefArrsForPrcntl_ClimGrid1D.sh;
+       RunProcess_RefArrsForPrcntl_ClimGrid1D.sh is in turn called by Execfile_GRACE_ClimGrid1D;
+       & finally Execfile_GRACE_ClimGrid1D is in turn called by sbatchpods_RefArrsForPrcntl_ClimGrid1D.sh; 
+
+
+

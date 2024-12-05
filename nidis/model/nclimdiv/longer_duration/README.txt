@@ -9,6 +9,9 @@ Python codes and corresponding indicator numbers/names:
                                                            4: 'PHDI' 
                                                            5: 'prcp_01_nCG',
                                                           16: 'CPC_soil_moisture',
+                                                          17: 'GRACE_DA_gw',
+                                                          18: 'GRACE_DA_sfsm',
+                                                          19: 'GRACE_DA_rtzsm',
                                                           72: 'SPI_gamma_01_nCG',
                                                           73: 'SPI_gamma_02_nCG',
                                                           74: 'SPI_gamma_03_nCG',

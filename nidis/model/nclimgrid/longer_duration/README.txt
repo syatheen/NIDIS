@@ -7,8 +7,12 @@ Python codes and corresponding indicator numbers/names:
      Note that this Z_Indices/PrepInfoArraysForPercentiles_ClimGrid1D.py is the initial code format, I have to convert this to final format.
 
 -> NO Python code because no longer duration needed for :  3: 'PMDI',
-                                                           4: 'PHDI'
+                                                           4: 'PHDI',
                                                            5: 'prcp_01_nCG',
+                                                          16: 'CPC_soil_moisture',
+                                                          17: 'GRACE_DA_gw',
+                                                          18: 'GRACE_DA_sfsm',
+                                                          19: 'GRACE_DA_rtzsm',
                                                           72: 'SPI_gamma_01_nCG',
                                                           73: 'SPI_gamma_02_nCG',
                                                           74: 'SPI_gamma_03_nCG',
@@ -47,9 +51,5 @@ Python codes and corresponding indicator numbers/names:
 
      Note that this NCEI/MeanMetInfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
 
-#->                                                 :  17: 'GRACE_DA_gw',
-#                                                      18: 'GRACE_DA_sfsm',
-#                                                      19: 'GRACE_DA_rtzsm'
-#     Note that this XXXX is the initial code format, I have to convert this to final format.
 
  
