@@ -44,6 +44,40 @@ Scripts and corresponding indicator numbers/names:
          --> Execfile_CreateTifs_spei-?? (for 'SPEI_pear_??_nCG' indicators) that're finally called by respective scripts sbatchpods_CreateTifs_spei-??.sh;
          --> Execfile_CreateTifs_tavgNtmax (for 'tavg_01_nCG' & 'tmax_01_nCG' indicators) that's finally called by script sbatchpods_CreateTifs_tavgNtmax.sh;  
 
+-> NLDAS2 directory:    44: 'NLDAS2D_1MSM_Mosaic',
+                        45: 'NLDAS2D_1MSM_Noah',
+                        46: 'NLDAS2D_1MSM_SAC',
+                        47: 'NLDAS2D_1MSM_VIC',
+                        48: 'NLDAS2D_TCSM_Mosaic',
+                        49: 'NLDAS2D_TCSM_Noah',
+                        50: 'NLDAS2D_TCSM_SAC',
+                        51: 'NLDAS2D_TCSM_VIC',
+                        52: 'NLDAS2D_EVAP_Mosaic',
+                        53: 'NLDAS2D_EVAP_Noah',
+                        54: 'NLDAS2D_EVAP_SAC',
+                        55: 'NLDAS2D_EVAP_VIC',
+                        56: 'NLDAS2D_SWE_Mosaic',
+                        57: 'NLDAS2D_SWE_Noah',
+                        58: 'NLDAS2D_SWE_SAC',
+                        59: 'NLDAS2D_SWE_VIC',
+                        60: 'NLDAS2D_RUN_Mosaic',
+                        61: 'NLDAS2D_RUN_Noah',
+                        62: 'NLDAS2D_RUN_SAC',
+                        63: 'NLDAS2D_RUN_VIC',
+                        64: 'NLDAS2D_STRMH04_Mosaic',
+                        65: 'NLDAS2D_STRMH04_Noah',
+                        66: 'NLDAS2D_STRMH04_SAC',
+                        67: 'NLDAS2D_STRMH04_VIC',
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/geotiff_creation/NLDAS2/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
+       CreateTifs_V2_2.py is called by RunProcess_CreateTifs_2.sh;
+       This RunProcess_CreateTifs_2.sh is in turn called by one of : 
+         --> Execfile_CreateTifs_1 (for 'NLDAS2D_1MSM_Mosaic', 'NLDAS2D_1MSM_Noah', 'NLDAS2D_1MSM_SAC', 'NLDAS2D_TCSM_Mosaic', 'NLDAS2D_TCSM_Noah', & 'NLDAS2D_TCSM_SAC' indicators) that's finally called by script sbatchpods_CreateTifs_1.sh
+         --> Execfile_CreateTifs_2 (for 'NLDAS2D_1MSM_VIC' & 'NLDAS2D_TCSM_VIC' indicators) that's finally called by script sbatchpods_CreateTifs_2.sh
+         --> Execfile_CreateTifs_3 (for 'NLDAS2D_EVAP_Mosaic', 'NLDAS2D_EVAP_Noah', 'NLDAS2D_EVAP_SAC', 'NLDAS2D_SWE_Mosaic', 'NLDAS2D_SWE_Noah', & 'NLDAS2D_SWE_SAC' indicators) 
+         --> Execfile_CreateTifs_4 (for 'NLDAS2D_EVAP_VIC' & 'NLDAS2D_SWE_VIC' indicators) 
+         --> Execfile_CreateTifs_5 (for 'NLDAS2D_RUN_Mosaic', 'NLDAS2D_RUN_Noah', 'NLDAS2D_RUN_SAC', 'NLDAS2D_STRMH04_Mosaic', 'NLDAS2D_STRMH04_Noah' & 'NLDAS2D_STRMH04_Noah' indicators) that's finally called by script sbatchpods_CreateTifs_5.sh
+         --> Execfile_CreateTifs_6 (for 'NLDAS2D_RUN_VIC' & 'NLDAS2D_STRMH04_VIC' indicators) that's finally called by script sbatchpods_CreateTifs_6.sh
+     
 -> ESIs script bash_submission_indicators_70_to_71.sh :   70: 'ESI_4wk',
                                                           71: 'ESI_12wk',
    
