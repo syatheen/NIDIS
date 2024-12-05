@@ -55,4 +55,29 @@ Python codes and corresponding indicator numbers/names:
                                                       19: 'GRACE_DA_rtzsm'
      Note that this GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py is the initial code structure, I have to change this to final structure.
 
+-> EDDI/InfoArrays_gdalWarp_ClimGrid1D.py :   20: 'EDDI_1wk',
+                                              21: 'EDDI_2wk',
+                                              22: 'EDDI_3wk',
+                                              23: 'EDDI_4wk',
+                                              24: 'EDDI_5wk',
+                                              25: 'EDDI_6wk',
+                                              26: 'EDDI_7wk',
+                                              27: 'EDDI_8wk',
+                                              28: 'EDDI_9wk',
+                                              29: 'EDDI_10wk',
+                                              30: 'EDDI_11wk',
+                                              31: 'EDDI_12wk',
+                                              32: 'EDDI_1mn',
+                                              33: 'EDDI_2mn',
+                                              34: 'EDDI_3mn',
+                                              35: 'EDDI_4mn',
+                                              36: 'EDDI_5mn',
+                                              37: 'EDDI_6mn',
+                                              38: 'EDDI_7mn',
+                                              39: 'EDDI_8mn',
+                                              40: 'EDDI_9mn',
+                                              41: 'EDDI_10mn',
+                                              42: 'EDDI_11mn',
+                                              43: 'EDDI_12mn',
+     Note that this EDDI/InfoArrays_gdalWarp_ClimGrid1D.py is the initial code structure, I have to change this to final structure.
  
