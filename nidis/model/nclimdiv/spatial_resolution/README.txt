@@ -49,4 +49,8 @@ Python codes and corresponding indicator numbers/names:
 -> CPC_soil_moisture/RefArraysForPrcntls_ClimDivs.py: 16: 'CPC_soil_moisture'
       Note that this CPC_soil_moisture/RefArraysForPrcntls_ClimDivs.py is the initial code structure, have to change this to final structure.
 
+-> GRACEDA/RefPrcntlArrays_ClimDivs.py :  17: 'GRACE_DA_gw',
+                                          18: 'GRACE_DA_sfsm',
+                                          19: 'GRACE_DA_rtzsm'
+     Note that this GRACEDA/RefPrcntlArrays_ClimDivs.py is the initial code structure, I have to change this to final structure.
 

@@ -45,7 +45,7 @@ Scripts and corresponding indicator numbers/names:
        And finally these Execfile_* are in turn called by sbatchpods_InfoArrays_ClimGrid1D.sh
 
 -> CPC_soil_moisture directory : 16: 'CPC_soil_moisture'
-       Note that the scripts here calling /nidis/nidis/model/nclimgrid/spatial_resolution/CPC_soil_moisture/RefArraysForPrcntls_gdalWarp_ClimGrid1D.py are the initial code format, have to convert this to final format.
+       Note that the scripts here calling /nidis/nidis/model/nclimgrid/spatial_resolution/CPC_soil_moisture/RefArraysForPrcntls_gdalWarp_ClimGrid1D.py are the initial code structure., have to change this to final structure.
        RefArraysForPrcntls_gdalWarp_ClimGrid1D.py is called by RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh;
        RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh is in turn called by tasks.conf;
        & finally tasks.conf is in turn called by sbatchMultiProg_RefArraysForPrcntls_gdalWarp_ClimGrid1D.sh; 

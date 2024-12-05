@@ -1,5 +1,6 @@
 Scripts and corresponding indicator numbers/names:
 ------------------------------------------------------
+
 -> NCEI directory :  5: 'prcp_01_nCG',
                      6: 'prcp_02_nCG',
                      7: 'prcp_03_nCG',
@@ -43,6 +44,10 @@ Scripts and corresponding indicator numbers/names:
          --> Execfile_InfoArrays_ClimDivs_spei-?? (for 'SPEI_pear_??_nCG' indicators), in turn called by sbatchpods_InfoArrays_ClimDivs_spei-??.sh 
          --> Execfile_InfoArrays_ClimDivs_tavgNtmax (for 'tavg_01_nCG' and 'tmax_01_nCG' indicators), in turn called by sbatchpods_InfoArrays_ClimDivs_tavgNtmax.sh; 
 
--> 
+-> GRACEDA directory : 17: 'GRACE_DA_gw',
+                       18: 'GRACE_DA_sfsm',
+                       19: 'GRACE_DA_rtzsm'
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/spatial_resolution/GRACEDA/RefPrcntlArrays_ClimDivs.py are the initial code structure, have to change this to final structure. 
+       RefPrcntlArrays_ClimDivs.py is called by DoRefArrays_gws.sh; 
  
  

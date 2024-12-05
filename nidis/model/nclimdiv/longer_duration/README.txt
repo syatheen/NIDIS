@@ -8,6 +8,7 @@ Python codes and corresponding indicator numbers/names:
 -> NO Python code because no longer duration needed for :  3: 'PMDI',
                                                            4: 'PHDI' 
                                                            5: 'prcp_01_nCG',
+                                                          16: 'CPC_soil_moisture',
                                                           72: 'SPI_gamma_01_nCG',
                                                           73: 'SPI_gamma_02_nCG',
                                                           74: 'SPI_gamma_03_nCG',
