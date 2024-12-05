@@ -26,8 +26,8 @@ ssstart_Overall = datetime.now()
 
 SourceFilePath = '/discover/nobackup/projects/nca/syatheen/GRACE/'
 ClimGrid1DShpFile = '/discover/nobackup/syatheen/Sujay/DeepLearning/Data/ML_Testcases/Drought_USDM/nClimGrid/nClimGrid_as_poly_NoNans.shp'
-#LowerLimit = 0.0
-#UpperLimit =  100.0
+LowerLimit = 0.0
+UpperLimit =  100.0
 WhichVar = sys.argv[1] # choices are gws_inst, rtzsm_inst and sfsm_inst
 ArgYear = int(round(float(sys.argv[2]))) 
 ArrayFileName = 'RefPctlArrsWeekly/'+sys.argv[2]+'_'+WhichVar+'_ClimGrid1D.npz'
@@ -187,6 +187,9 @@ for WhichWeek in range(NumWeeks):
   #end of if (len(FileNames_GRACE) == 1)
 
 #end of for WhichWeek in range(NumWeeks)
+
+Idxs =  np.where( (RefArrayForPrcntl < LowerLimit) | (RefArrayForPrcntl > UpperLimit)  )
+RefArrayForPrcntl[Idxs] = np.nan
 
 print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
 print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
