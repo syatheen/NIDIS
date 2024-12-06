@@ -54,8 +54,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
 
     SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/'
 
-    # NLDAS_2_daily_LowerLimit = 0.
-    # NLDAS_2_daily_UpperLimit = 100.
+    NLDAS_2_daily_LowerLimit = 0.
+    NLDAS_2_daily_UpperLimit = 100.
 
     NLDAS_2_daily_LowerLimit = 0.
     NLDAS_2_daily_ZerosLowerLimit = 50.49504470825193 # 50.495044708251945
@@ -142,6 +142,11 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt):
             pass
 
     #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
+
+    Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl < NLDAS_2_daily_LowerLimit) )
+    RefArrayForPrcntl[Idxs] = np.nan
+    Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl > NLDAS_2_daily_UpperLimit) )
+    RefArrayForPrcntl[Idxs] = np.nan
 
     print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
     # print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)

@@ -28,7 +28,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
     # Python arguments to this program will be (for now):
     #        ArgLSM ArgVariable ArgYearInt ArgMonthInt ArgHUC
     # ArgNum   1      2           3          4         5
-    logging.info(f'{ArgLSM}, {ArgVariable}, {ArgYearInt}, {ArgMonthInt}')
+    logging.info(f'{ArgLSM}, {ArgVariable}, {ArgYearInt}, {ArgMonthInt}, {ArgHUC}')
 
     ssstart_Overall = datetime.now()
 
@@ -71,8 +71,8 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
 
     SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/'
 
-    # NLDAS_2_daily_LowerLimit = 0.
-    # NLDAS_2_daily_UpperLimit = 100.
+    NLDAS_2_daily_LowerLimit = 0.
+    NLDAS_2_daily_UpperLimit = 100.
 
     NLDAS_2_daily_LowerLimit = 0.
     NLDAS_2_daily_ZerosLowerLimit = 50.49504470825193 # 50.495044708251945
@@ -102,7 +102,7 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
     YYYYMMDD_Of_RefArrayForPrcntl = np.empty((NumDaysInMonth, 1), dtype=np.int32)
     YYYYMMDD_Of_RefArrayForPrcntl[:] = -9999
     RefArrayForPrcntl = np.empty((NumDaysInMonth, len(PxlRowCol_SortedList_FrmShpFile)))
-    RefArrayForPrcntl[:] = np.NaN
+    RefArrayForPrcntl[:] = np.nan
 
     # new addition from climdiv
     # TODO: What is this looking for????
@@ -189,6 +189,11 @@ def main(ArgLSM, ArgVariable, ArgYearInt, ArgMonthInt, ArgHUC):
             pass
 
     #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
+
+    Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl < NLDAS_2_daily_LowerLimit) )
+    RefArrayForPrcntl[Idxs] = np.nan
+    Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl > NLDAS_2_daily_UpperLimit) )
+    RefArrayForPrcntl[Idxs] = np.nan
 
     print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
     # print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)

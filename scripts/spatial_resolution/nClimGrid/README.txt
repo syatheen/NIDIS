@@ -87,4 +87,17 @@ Scripts and corresponding indicator numbers/names:
        RunProc_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
        & Execfile_InfoArrays_gdalWarp_ClimGrid1D is in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
 
+-> NLDAS2 directory : 44: 'NLDAS2D_1MSM_Mosaic',
+                      45: 'NLDAS2D_1MSM_Noah',
+                      46: 'NLDAS2D_1MSM_SAC',
+                      47: 'NLDAS2D_1MSM_VIC',
+                      48: 'NLDAS2D_TCSM_Mosaic',
+                      49: 'NLDAS2D_TCSM_Noah',
+                      50: 'NLDAS2D_TCSM_SAC',
+                      51: 'NLDAS2D_TCSM_VIC'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_44_to_51.py are the initial code structure, have to change this to final structure.
+       InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_44_to_51.py is called by RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh;
+       RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1;
+       & Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1 is in turn called by sbatchpods_InfArrs_ClmGrd1D_DlyCllToMnthly_1.sh; 
+
 

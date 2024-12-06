@@ -41,8 +41,8 @@ ArrayFileName = '/discover/nobackup/projects/nca/syatheen/NLDAS_2_daily_Npzs/' +
 
 SourceFileBasePath = '/discover/nobackup/projects/nca/syatheen/'
 
-#NLDAS_2_daily_LowerLimit = 0.
-#NLDAS_2_daily_UpperLimit = 100.
+NLDAS_2_daily_LowerLimit = 0.
+NLDAS_2_daily_UpperLimit = 100.
 
 xres=0.125000000000/3
 yres=0.125000000000/3
@@ -108,6 +108,11 @@ for WhichDayInMonth in range(1, NumDaysInMonth+1):
       pass
 
 #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
+
+Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl < NLDAS_2_daily_LowerLimit) )
+RefArrayForPrcntl[Idxs] = np.nan
+Idxs =  np.where( ~np.isnan(RefArrayForPrcntl) & (RefArrayForPrcntl > NLDAS_2_daily_UpperLimit) )
+RefArrayForPrcntl[Idxs] = np.nan
 
 print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
 print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
