@@ -105,12 +105,18 @@ if IfTifFileExists:
 del PxlRow_SortedArr_FrmShpFile 
 del PxlCol_SortedArr_FrmShpFile
 
-#Idxs =  np.where( (InfoArray < Variable_LowerLimit) | (InfoArray > Variable_UpperLimit)  )
-#InfoArray[Idxs] = np.nan
 Idxs =  np.where( ~np.isnan(InfoArray) & (InfoArray < Variable_LowerLimit) )
-InfoArray[Idxs] = Variable_LowerLimit
+if ArgVariable == 'prcp':
+  InfoArray[Idxs] = Variable_LowerLimit
+else:
+  InfoArray[Idxs] = np.nan
+#end of if ArgVariable == 'prcp'
 Idxs =  np.where( ~np.isnan(InfoArray) & (InfoArray > Variable_UpperLimit) )
-InfoArray[Idxs] = Variable_UpperLimit
+if ArgVariable == 'prcp':
+  InfoArray[Idxs] = Variable_UpperLimit
+else:
+  InfoArray[Idxs] = np.nan
+#end of if ArgVariable == 'prcp'
 
 print("YYYYMMDD_Of_InfoArray.shape is ",YYYYMMDD_Of_InfoArray.shape)
 print("YYYYMMDD_Of_InfoArray is ",YYYYMMDD_Of_InfoArray)
