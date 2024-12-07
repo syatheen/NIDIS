@@ -46,6 +46,8 @@ Python codes and corresponding indicator numbers/names:
      Note that this NCEI/CreateTifs_V2.py is the initial code structure, have to change this to final structure.
 
 -> NO code for : 16: 'CPC_soil_moisture'
+                 68: 'VegDRI',
+                 69: 'QuickDRI',
      Because it's already in Tiff format.
 
 -> GRACEDA/CreateTifs.py :  17: 'GRACE_DA_gw',

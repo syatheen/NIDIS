@@ -2,7 +2,7 @@ Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
 -> NO Python code because no spatial resolution to nClimDiv resolution done for : 
                              1. 'Z_index',
-                             2: 'Z_index_60_month',
+                             2: 'Z_index_60_month'
      Because original tabular format were already at nClimDiv resolution, and reading + accumulation + first conversion to Npz format done only in the next step of 'longer_duration' for these indicators  
 
 -> PalmerIndices/RefArraysForPrcntls_ClimDivs_PhdOrPdi.py: 3: 'PMDI',
@@ -77,7 +77,7 @@ Python codes and corresponding indicator numbers/names:
                                            40: 'EDDI_9mn',
                                            41: 'EDDI_10mn',
                                            42: 'EDDI_11mn',
-                                           43: 'EDDI_12mn',
+                                           43: 'EDDI_12mn'
      Note that this EDDI/RefPrcntlArrays_ClimDivs_V2.py is the initial code structure, I have to change this to final structure.
 
 -> NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly.py :    44: 'NLDAS2D_1MSM_Mosaic',
@@ -87,7 +87,7 @@ Python codes and corresponding indicator numbers/names:
                                                          48: 'NLDAS2D_TCSM_Mosaic',
                                                          49: 'NLDAS2D_TCSM_Noah',
                                                          50: 'NLDAS2D_TCSM_SAC',
-                                                         51: 'NLDAS2D_TCSM_VIC',
+                                                         51: 'NLDAS2D_TCSM_VIC'
      Note that this NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
 
 
@@ -102,14 +102,18 @@ Python codes and corresponding indicator numbers/names:
                                                                      60: 'NLDAS2D_RUN_Mosaic',
                                                                      61: 'NLDAS2D_RUN_Noah',
                                                                      62: 'NLDAS2D_RUN_SAC',
-                                                                     63: 'NLDAS2D_RUN_VIC',
+                                                                     63: 'NLDAS2D_RUN_VIC'
      Note that this NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py is the initial code structure, I have to change this to final structure.
 
 -> NLDAS2/InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py:      64: 'NLDAS2D_STRMH04_Mosaic',
                                                                      65: 'NLDAS2D_STRMH04_Noah',
                                                                      66: 'NLDAS2D_STRMH04_SAC',
-                                                                     67: 'NLDAS2D_STRMH04_VIC',
+                                                                     67: 'NLDAS2D_STRMH04_VIC'
      Note that this NLDAS2/InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py is the initial code structure, have to change this to final structure.
 
+-> VegDRI/RefArrays_ClimDivs_V3.py : 68: 'VegDRI'
+     Note that this VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
 
+
+                                     69: 'QuickDRI'
 

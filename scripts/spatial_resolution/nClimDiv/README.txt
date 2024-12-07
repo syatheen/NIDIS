@@ -117,5 +117,10 @@ Scripts and corresponding indicator numbers/names:
            ---> this RunProcess_InfoArrs_ClmDvs_DyCllToMnth.50AdjTo0_HUCAvg.sh is in turn called by Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg;
            ---> & these Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg in turn are called by sbatchpods_InfArrs_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg.sh;  
 
+-> VegDRI directory : 68: 'VegDRI'
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
+       This RefArrays_ClimDivs_V3.py is called by RunProcess.sh;
+
+ 
 
 
