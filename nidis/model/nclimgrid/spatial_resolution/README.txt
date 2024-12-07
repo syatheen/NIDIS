@@ -109,6 +109,8 @@ Python codes and corresponding indicator numbers/names:
                                                                                  66: 'NLDAS2D_STRMH04_SAC',
                                                                                  67: 'NLDAS2D_STRMH04_VIC',
 
+-> VegDRI/RefArraysForPrcntl_ClimGrid.py : 68: 'VegDRI'
+     Note that this VegDRI/RefArraysForPrcntl_ClimGrid.py is still the initial code structure, I have to change this to final structure.
 
 
 

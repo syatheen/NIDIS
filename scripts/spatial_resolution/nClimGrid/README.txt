@@ -100,4 +100,14 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1;
        & Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1 is in turn called by sbatchpods_InfArrs_ClmGrd1D_DlyCllToMnthly_1.sh; 
 
+-> VegDRI directory : 68: 'VegDRI'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/VegDRI/RefArraysForPrcntl_ClimGrid.py are the initial code structure, have to change this to final structure.
+       RefArraysForPrcntl_ClimGrid.py is called by RunProc_RefArraysForPrcntl_ClimGrid_mil.sh;
+       RunProc_RefArraysForPrcntl_ClimGrid_mil.sh is in turn called by RefArraysForPrcntl_ClimGrid_tasks_*.conf;
+       & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil.sh; 
+
+
+
+
+
 
