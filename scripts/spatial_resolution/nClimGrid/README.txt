@@ -104,7 +104,7 @@ Scripts and corresponding indicator numbers/names:
        Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/VegDRI/RefArraysForPrcntl_ClimGrid.py are the initial code structure, have to change this to final structure.
        RefArraysForPrcntl_ClimGrid.py is called by RunProc_RefArraysForPrcntl_ClimGrid_mil.sh;
        RunProc_RefArraysForPrcntl_ClimGrid_mil.sh is in turn called by RefArraysForPrcntl_ClimGrid_tasks_*.conf;
-       & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil.sh; 
+       & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil*.sh; 
 
 
 

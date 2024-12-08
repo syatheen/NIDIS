@@ -84,8 +84,6 @@ if (len(FileNames_VegDRI) == 1):
 
           ImageInfo = SrcInfo.read()
   
-          ImageInfo = np.flip(ImageInfo, axis = 1)
-  
           VegDRI1DArrInt = ImageInfo[0, VegDriPxlRow_Arr_FrmVegDRIShpFile, VegDriPxlCol_Arr_FrmVegDRIShpFile]
           VegDRI1DArr = VegDRI1DArrInt.astype(np.float32)
           del ImageInfo
@@ -95,11 +93,13 @@ if (len(FileNames_VegDRI) == 1):
   
             Idxs = np.where( (nClimGridPxlRowCol_Arr_FrmVegDRIShpFile == PxlRowCol_SortedArr_FrmShpFile[WhichNClimGridRowCol] ) & ~np.isnan(VegDRI1DArr) & ( VegDRI1DArr >= VegDRI_LowerLimit ) & (VegDRI1DArr <= VegDRI_UpperLimit) )[0] 
 
+
             if Idxs.size: 
               RefArrayForPrcntl[0, WhichNClimGridRowCol] = np.nanmean(VegDRI1DArr[Idxs])  
             #ende of if Idxs.size
 
             del Idxs
+
  
           #end of for WhichNClimGridRowCol in range(PxlRowCol_SortedArr_FrmShpFile.shape)
 

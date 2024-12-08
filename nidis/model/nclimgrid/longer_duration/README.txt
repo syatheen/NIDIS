@@ -61,6 +61,8 @@ Python codes and corresponding indicator numbers/names:
                                                           65: 'NLDAS2D_STRMH04_Noah',
                                                           66: 'NLDAS2D_STRMH04_SAC',
                                                           67: 'NLDAS2D_STRMH04_VIC',
+                                                          68: 'VegDRI',
+                                                          69: 'QuickDRI',
                                                           72: 'SPI_gamma_01_nCG',
                                                           73: 'SPI_gamma_02_nCG',
                                                           74: 'SPI_gamma_03_nCG',
