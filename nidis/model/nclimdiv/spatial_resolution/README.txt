@@ -114,6 +114,8 @@ Python codes and corresponding indicator numbers/names:
 -> VegDRI/RefArrays_ClimDivs_V3.py : 68: 'VegDRI'
      Note that this VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
 
+-> QuickDRI/InfoArrays_ClimDivs_V3.py : 69: 'QuickDRI'
+     Note that this QuickDRI/InfoArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
 
-                                     69: 'QuickDRI'
+
 

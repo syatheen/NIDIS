@@ -121,6 +121,11 @@ Scripts and corresponding indicator numbers/names:
        Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
        This RefArrays_ClimDivs_V3.py is called by RunProcess.sh;
 
- 
+-> QuickDRI directory : 69: 'QuickDRI'
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/QuickDRI/InfoArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
+       This InfoArrays_ClimDivs_V3.py is called by RunProcess.sh;
+       This RunProcess.sh is in turn called by Execfile_All_*;
+       & finally Execfile_All_* are in turn called by sbatchpods_InfoArrays_ClimDivs_V3.sh; 
+
 
 
