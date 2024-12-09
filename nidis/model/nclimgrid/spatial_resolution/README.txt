@@ -112,6 +112,9 @@ Python codes and corresponding indicator numbers/names:
 -> VegDRI/RefArraysForPrcntl_ClimGrid.py : 68: 'VegDRI'
      Note that this VegDRI/RefArraysForPrcntl_ClimGrid.py is still the initial code structure, I have to change this to final structure.
 
+-> QuickDRI/InfoArraysForPrcntl_ClimGrid.py : 69: 'QuickDRI'
+     Note that this QuickDRI/InfoArraysForPrcntl_ClimGrid.py is still the initial code structure, I have to change this to final structure.
+
 
 
  
