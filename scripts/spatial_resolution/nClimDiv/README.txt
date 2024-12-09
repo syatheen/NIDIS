@@ -127,5 +127,11 @@ Scripts and corresponding indicator numbers/names:
        This RunProcess.sh is in turn called by Execfile_All_*;
        & finally Execfile_All_* are in turn called by sbatchpods_InfoArrays_ClimDivs_V3.sh; 
 
+-> ESIs directory : 70: 'ESI_4wk',
+                    71: 'ESI_12wk',
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
+       This InfoArrays_ClimDivs_V2.py is called by RunProcess.sh;
+       This RunProcess.sh is in turn called by Execfile_All;
+       & finally Execfile_All are in turn called by sbatchpods_RefArrays_ClimDivs.sh; 
 
 
