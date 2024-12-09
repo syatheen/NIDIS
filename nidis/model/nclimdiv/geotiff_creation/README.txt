@@ -106,6 +106,9 @@ Python codes and corresponding indicator numbers/names:
                                  66: 'NLDAS2D_STRMH04_SAC',
                                  67: 'NLDAS2D_STRMH04_VIC',
      Note that this NLDAS2/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
- 
+
+-> ../../nclimgrid/geotiff_creation/CreateTifs_ESI_Indicators_70_to_71.py :  70: 'ESI_4wk',
+                                                                             71: 'ESI_12wk'
+     Note that this ../../nclimgrid/geotiff_creation/CreateTifs_ESI_Indicators_70_to_71.py is the initial code structure, have to change this to final structure.
 
  

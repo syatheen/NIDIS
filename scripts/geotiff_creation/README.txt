@@ -78,8 +78,9 @@ Scripts and corresponding indicator numbers/names:
          --> Execfile_CreateTifs_5 (for 'NLDAS2D_RUN_Mosaic', 'NLDAS2D_RUN_Noah', 'NLDAS2D_RUN_SAC', 'NLDAS2D_STRMH04_Mosaic', 'NLDAS2D_STRMH04_Noah' & 'NLDAS2D_STRMH04_Noah' indicators) that's finally called by script sbatchpods_CreateTifs_5.sh
          --> Execfile_CreateTifs_6 (for 'NLDAS2D_RUN_VIC' & 'NLDAS2D_STRMH04_VIC' indicators) that's finally called by script sbatchpods_CreateTifs_6.sh
      
--> ESIs script bash_submission_indicators_70_to_71.sh :   70: 'ESI_4wk',
+-> bash_submission_indicators_70_to_71.sh :   70: 'ESI_4wk',
                                                           71: 'ESI_12wk',
+       This bash_submission_indicators_70_to_71.sh calls nidis/nidis/model/nclimgrid/geotiff_creation/CreateTifs_ESI_Indicators_70_to_71.py;
    
  
  
