@@ -112,9 +112,12 @@ Scripts and corresponding indicator numbers/names:
        RunProc_RefArraysForPrcntl_ClimGrid_mil.sh is in turn called by RefArraysForPrcntl_ClimGrid_tasks_*.conf;
        & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil*.sh; 
 
-InfoArraysForPrcntl_ClimGrid_tasks_1.conf    sbatchpods_InfoArraysForPrcntl_ClimGrid_mil_2.sh
-InfoArraysForPrcntl_ClimGrid_tasks_2.conf    sbatchpods_InfoArraysForPrcntl_ClimGrid_mil.sh
-RunProc_InfoArraysForPrcntl_ClimGrid_mil.sh
+-> ESIs directory :  70: 'ESI_4wk',
+                     71: 'ESI_12wk'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESIs/InfoArrays_gdalWarp_ClimGrid1D_V2.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_gdalWarp_ClimGrid1D_V2.py is called by RunProcess_ClimGrid1D_Mil.sh;
+       RunProcess_ClimGrid1D_Mil.sh is in turn called by Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf;
+       & Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf is  in turn called by sbatchMultiProg_InfoArrays_gdalWarp_ClimGrid1D_V2.sh; 
 
 
 

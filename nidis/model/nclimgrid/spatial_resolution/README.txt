@@ -115,6 +115,9 @@ Python codes and corresponding indicator numbers/names:
 -> QuickDRI/InfoArraysForPrcntl_ClimGrid.py : 69: 'QuickDRI'
      Note that this QuickDRI/InfoArraysForPrcntl_ClimGrid.py is still the initial code structure, I have to change this to final structure.
 
+-> ESIs/InfoArrays_gdalWarp_ClimGrid1D_V2.py : 70: 'ESI_4wk',
+                                               71: 'ESI_12wk'
+     Note that this ESIs/InfoArrays_gdalWarp_ClimGrid1D_V2.py is the initial code structure, I have to change this to final structure.
 
 
  
