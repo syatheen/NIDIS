@@ -101,5 +101,8 @@ Python codes and corresponding indicator numbers/names:
 
      Note that this NCEI/MeanMetInfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
 
-
+-> ESIs/MeanMetInfoArrays_InclNans_ClimGrid1D.py  :  70: 'ESI_4wk',
+                                                     71: 'ESI_12wk'
+     Note that this ESIs/MeanMetInfoArrays_InclNans_ClimGrid1D.py is the initial code structure, have to change this to final structure.
  
+

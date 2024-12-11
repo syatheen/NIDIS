@@ -12,5 +12,12 @@ Scripts and corresponding indicator numbers/names:
                     14: 'prcp_60_nCG',
                     15: 'prcp_72_nCG',
        Note that the script here calling nidis/nidis/model/nclimgrid/longer_duration/NCEI/MeanMetInfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
-       MeanMetInfoArrays_ClimGrid1D.py is called ExecPoDS_CreateMeanMetInfoArrays_ClimGrid1D, inturn called by sbatchpods_CreateMeanMetInfoArrays_ClimGrid1D.sh;
+       MeanMetInfoArrays_ClimGrid1D.py is called ExecPoDS_CreateMeanMetInfoArrays_ClimGrid1D, in turn called by sbatchpods_CreateMeanMetInfoArrays_ClimGrid1D.sh;
+
+-> ESIs directory :  70: 'ESI_4wk',
+                     71: 'ESI_12wk'
+       Note that the script here calling nidis/nidis/model/nclimgrid/longer_duration/ESIs/MeanMetInfoArrays_InclNans_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+       This MeanMetInfoArrays_InclNans_ClimGrid1D.py is called by MeanMetInfoArrays_InclNans_ClimGrid1D_Conf.conf;
+       this MeanMetInfoArrays_InclNans_ClimGrid1D_Conf.conf is in turn called by Run_MeanMetInfoArrays_InclNans_ClimGrid1D.sh;
+       & finally this Run_MeanMetInfoArrays_InclNans_ClimGrid1D.sh is in turn called by bsbatchMultiProg_MeanMetInfoArrays_InclNans_ClimGrid1D_mil.sh
 
