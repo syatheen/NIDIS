@@ -121,4 +121,8 @@ Python codes and corresponding indicator numbers/names:
                                      71: 'ESI_12wk',
      Note that this ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
 
+-> SNODAS/InfoArrays_ClimDivsSplit_V3.py  : 96: 'SNODAS'
+     Note that this SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
+
+
 

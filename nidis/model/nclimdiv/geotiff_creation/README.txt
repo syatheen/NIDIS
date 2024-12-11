@@ -48,6 +48,7 @@ Python codes and corresponding indicator numbers/names:
 -> NO code for : 16: 'CPC_soil_moisture'
                  68: 'VegDRI',
                  69: 'QuickDRI',
+                 96: 'SNODAS'
      Because it's already in Tiff format.
 
 -> GRACEDA/CreateTifs.py :  17: 'GRACE_DA_gw',
