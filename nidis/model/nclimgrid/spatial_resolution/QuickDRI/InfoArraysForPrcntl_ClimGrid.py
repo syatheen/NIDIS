@@ -84,7 +84,7 @@ YYYYMMDD_Of_RefArrayForPrcntl[0] = 10000*ThisYear + 100*ThisMonth + ThisDoM
 
 FileNames_QuickDRI=glob.glob(SourceFilePath + r'Data/qdri_'+format(ThisYear,'04')+'wk'+format(ThisWeek,'02')+'.tif')
 
-if (len(FileNames_QuickDRI) == 1) and (ThisYear != 2014) and (ThisWeek != 14):
+if (len(FileNames_QuickDRI) == 1) and not ( (ThisYear == 2014) and (ThisWeek == 14) ):
 
   FileName_QuickDRI = FileNames_QuickDRI[0]
   
