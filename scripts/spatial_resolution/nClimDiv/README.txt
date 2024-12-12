@@ -134,11 +134,17 @@ Scripts and corresponding indicator numbers/names:
        This RunProcess.sh is in turn called by Execfile_All;
        & finally Execfile_All are in turn called by sbatchpods_RefArrays_ClimDivs.sh; 
 
--> SNODAS : 96: 'SNODAS'
+-> SNODAS directory : 96: 'SNODAS'
        Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivsSplit_V3.py is called by RunProcess_InfoArrays_ClimDivsSplit.sh;
        This RunProcess_InfoArrays_ClimDivsSplit.sh is in turn called by Execfile_InfoArrays_ClimDivsSplit_?Of4;
        & finally Execfile_InfoArrays_ClimDivsSplit_?Of4 are in turn called by sbatchpods_InfoArrays_ClimDivsSplit_?Of4.sh; 
+
+-> ESA_CCI directory : 97: 'ESA_CCI'
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
+       This InfoArrays_ClimDivs_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh;
+       This RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmDvs_DlyCllToMnthly;
+       & finally Execfile_InfoArrays_ClmDvs_DlyCllToMnthly in turn called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly.sh; 
 
 
 

@@ -124,5 +124,9 @@ Python codes and corresponding indicator numbers/names:
 -> SNODAS/InfoArrays_ClimDivsSplit_V3.py  : 96: 'SNODAS'
      Note that this SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
 
+-> ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py  :  97: 'ESA_CCI'
+     Note that this ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
+ 
+
 
 
