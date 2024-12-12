@@ -86,7 +86,8 @@ Python codes and corresponding indicator numbers/names:
                                                           92: 'SPEI_pear_60_nCG',
                                                           93: 'SPEI_pear_72_nCG',
                                                           94: 'tavg_01_nCG',
-                                                          95: 'tmax_01_nCG'
+                                                          95: 'tmax_01_nCG',
+                                                          96: 'SNODAS'
 
 -> NCEI/MeanMetInfoArrays_ClimGrid1D.py :  6: 'prcp_02_nCG',
                                            7: 'prcp_03_nCG',

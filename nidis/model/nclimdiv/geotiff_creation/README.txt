@@ -112,4 +112,9 @@ Python codes and corresponding indicator numbers/names:
                                                                              71: 'ESI_12wk'
      Note that this ../../nclimgrid/geotiff_creation/CreateTifs_ESI_Indicators_70_to_71.py is the initial code structure, have to change this to final structure.
 
- 
+-> ESA_CCI/CreateTifs_V2_2.py :  97: 'ESA_CCI'
+     Note that this ESA_CCI/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
+
+
+
+  

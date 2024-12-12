@@ -79,8 +79,14 @@ Scripts and corresponding indicator numbers/names:
          --> Execfile_CreateTifs_6 (for 'NLDAS2D_RUN_VIC' & 'NLDAS2D_STRMH04_VIC' indicators) that's finally called by script sbatchpods_CreateTifs_6.sh
      
 -> bash_submission_indicators_70_to_71.sh :   70: 'ESI_4wk',
-                                                          71: 'ESI_12wk',
+                                              71: 'ESI_12wk'
        This bash_submission_indicators_70_to_71.sh calls nidis/nidis/model/nclimgrid/geotiff_creation/CreateTifs_ESI_Indicators_70_to_71.py;
-   
+ 
+-> ESA_CCI directory :   97: 'ESA_CCI'  
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/ESA_CCI/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
+       This CreateTifs_V2_2.py is called by RunProcess_CreateTifs_2.sh;
+       RunProcess_CreateTifs_2.sh is in turn called by Execfile_CreateTifs_2;
+       & finally Execfile_CreateTifs_2 is called by sbatchpods_CreateTifs_2.sh
+ 
  
  
