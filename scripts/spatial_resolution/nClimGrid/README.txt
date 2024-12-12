@@ -125,6 +125,13 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
        & Execfile_InfoArrays_gdalWarp_ClimGrid1D is  in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
 
+-> ESA_CCI directory  :  97: 'ESA_CCI'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is called by RunProc_InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.sh;
+       RunProc_InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf;
+       & InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+
+
 
 
 

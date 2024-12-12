@@ -122,6 +122,6 @@ Python codes and corresponding indicator numbers/names:
 -> SNODAS/InfoArrays_gdalWarp_ClimGrid1D_V3.py : 96: 'SNODAS'
      Note that this SNODAS/InfoArrays_gdalWarp_ClimGrid1D_V3.py is the initial code structure, I have to change this to final structure.
  
-
-
+-> ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py  :   97: 'ESA_CCI' 
+     Note that this ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
  
