@@ -119,6 +119,12 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_ClimGrid1D_Mil.sh is in turn called by Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf;
        & Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf is  in turn called by sbatchMultiProg_InfoArrays_gdalWarp_ClimGrid1D_V2.sh; 
 
+-> SNODAS directory  : 96: 'SNODAS'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/SNODAS/InfoArrays_gdalWarp_ClimGrid1D_V3.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_gdalWarp_ClimGrid1D_V3.py is called by RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh;
+       RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
+       & Execfile_InfoArrays_gdalWarp_ClimGrid1D is  in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
+
 
 
 
