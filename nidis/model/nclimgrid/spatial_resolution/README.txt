@@ -124,4 +124,19 @@ Python codes and corresponding indicator numbers/names:
  
 -> ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py  :   97: 'ESA_CCI' 
      Note that this ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
+
+-> IMERG/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py  :   98: 'IMERG_01',
+                                                                   99: 'IMERG_02',
+                                                                  100: 'IMERG_03',
+                                                                  101: 'IMERG_06',
+                                                                  102: 'IMERG_09',
+                                                                  103: 'IMERG_12',
+                                                                  104: 'IMERG_24',
+                                                                  105: 'IMERG_36',
+                                                                  106: 'IMERG_48',
+                                                                  107: 'IMERG_60',
+                                                                  108: 'IMERG_72'
+     Note that this IMERG/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
+
+ 
  

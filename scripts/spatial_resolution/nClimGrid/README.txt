@@ -131,7 +131,21 @@ Scripts and corresponding indicator numbers/names:
        RunProc_InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf;
        & InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
 
-
+-> IMERG directory  :  98: 'IMERG_01',
+                       99: 'IMERG_02',
+                      100: 'IMERG_03',
+                      101: 'IMERG_06',
+                      102: 'IMERG_09',
+                      103: 'IMERG_12',
+                      104: 'IMERG_24',
+                      105: 'IMERG_36',
+                      106: 'IMERG_48',
+                      107: 'IMERG_60',
+                      108: 'IMERG_72'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/IMERG/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh;
+       RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly;
+       & Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly is  in turn called by sbatchpods_InfArrs_ClmGrd1D_DlyCllToMnthly_1.sh; 
 
 
 
