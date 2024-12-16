@@ -140,5 +140,11 @@ Python codes and corresponding indicator numbers/names:
                                                        108: 'IMERG_72'
      Note that this IMERG/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
 
+-> BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py :  109: 'SmNDVI_BlendedVHP',
+                                                  110: 'TCI_BlendedVHP',
+                                                  111: 'VCI_BlendedVHP',
+                                                  112: 'VHI_BlendedVHP' 
+     Note that this BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py is the initial code structure, have to change this to final structure.
+
 
 

@@ -104,7 +104,14 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_CreateTifs.sh is in turn called by Execfile_CreateTifs;
        & finally Execfile_CreateTifs is called by sbatchpods_CreateTifs.sh
 
-Execfile_CreateTifs  RunProcess_CreateTifs.sh  sbatchpods_CreateTifs.sh
- 
+-> BlendedVHP directory  :  109: 'SmNDVI_BlendedVHP',
+                            110: 'TCI_BlendedVHP',
+                            111: 'VCI_BlendedVHP',
+                            112: 'VHI_BlendedVHP'
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/BlendedVHP/CreateTifs.py is the initial code structure, have to change this to final structure.
+       This CreateTifs.py is called by RunProcess_CreateTifs.sh;
+       RunProcess_CreateTifs.sh is in turn called by Execfile_CreateTifs;
+       & finally Execfile_CreateTifs is called by sbatchpods_CreateTifs.sh
+
  
  

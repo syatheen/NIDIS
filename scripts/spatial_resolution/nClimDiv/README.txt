@@ -162,5 +162,15 @@ Scripts and corresponding indicator numbers/names:
        This RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClimDivs_DailyCollToMonthly;
        & finally Execfile_InfoArrays_ClimDivs_DailyCollToMonthly in turn called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly.sh; 
 
+-> BlendedVHP directory  :  109: 'SmNDVI_BlendedVHP',
+                            110: 'TCI_BlendedVHP',
+                            111: 'VCI_BlendedVHP',
+                            112: 'VHI_BlendedVHP'
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py is the initial code structure, have to change this to final structure.
+       This InfoArrays_ClimDivsSplit_V3_b.py is called by RunProcess_InfoArrays_ClimDivsSplit.sh;
+       This RunProcess_InfoArrays_ClimDivsSplit.sh is in turn called by  Execfile_InfoArrays_ClimDivsSplit_?Of6;
+       & finally  Execfile_InfoArrays_ClimDivsSplit_?Of6 in turn called by sbatchpods_InfoArrays_ClimDivsSplit_; 
+
+
 
 

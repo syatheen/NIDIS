@@ -99,7 +99,7 @@ Python codes and corresponding indicator numbers/names:
                                           12: 'prcp_36_nCG',
                                           13: 'prcp_48_nCG',
                                           14: 'prcp_60_nCG',
-                                          15: 'prcp_72_nCG',
+                                          15: 'prcp_72_nCG'
 
      Note that this NCEI/MeanMetInfoArrays_ClimGrid1D.py is the initial code structure, have to change this to final structure.
 
@@ -107,4 +107,16 @@ Python codes and corresponding indicator numbers/names:
                                                      71: 'ESI_12wk'
      Note that this ESIs/MeanMetInfoArrays_InclNans_ClimGrid1D.py is the initial code structure, have to change this to final structure.
  
+-> MeanMetInfoArrays_ClimGrid1D_Indicators_98_to_108.py   : 98: 'IMERG_01',
+                       99: 'IMERG_02',
+                      100: 'IMERG_03',
+                      101: 'IMERG_06',
+                      102: 'IMERG_09',
+                      103: 'IMERG_12',
+                      104: 'IMERG_24',
+                      105: 'IMERG_36',
+                      106: 'IMERG_48',
+                      107: 'IMERG_60',
+                      108: 'IMERG_72'
+
 
