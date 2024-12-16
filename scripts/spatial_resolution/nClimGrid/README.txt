@@ -120,10 +120,10 @@ Scripts and corresponding indicator numbers/names:
        & Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf is  in turn called by sbatchMultiProg_InfoArrays_gdalWarp_ClimGrid1D_V2.sh; 
 
 -> SNODAS directory  : 96: 'SNODAS'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/SNODAS/InfoArrays_gdalWarp_ClimGrid1D_V3.py are the initial code structure, have to change this to final structure.
-       This InfoArrays_gdalWarp_ClimGrid1D_V3.py is called by RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh;
-       RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
-       & Execfile_InfoArrays_gdalWarp_ClimGrid1D is  in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/SNODAS/InfoArrays_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_ClimGrid1D.py is called by RunProc_InfoArrays_ClimGrid1D_mil.sh;
+       RunProc_InfoArrays_ClimGrid1D_mil.sh is in turn called by InfoArrays_ClimGrid1D_Conf.conf;
+       & InfoArrays_ClimGrid1D_Conf.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D.sh; 
 
 -> ESA_CCI directory  :  97: 'ESA_CCI'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
@@ -161,5 +161,4 @@ Scripts and corresponding indicator numbers/names:
        This InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py is called by RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
        RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
        & InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
-
 

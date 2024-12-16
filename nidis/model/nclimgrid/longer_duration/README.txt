@@ -92,7 +92,8 @@ Python codes and corresponding indicator numbers/names:
                                                          109: 'SmNDVI_BlendedVHP',
                                                          110: 'TCI_BlendedVHP',
                                                          111: 'VCI_BlendedVHP',
-                                                         112: 'VHI_BlendedVHP'
+                                                         112: 'VHI_BlendedVHP',
+                                                         113: 'GlobSnow3'
 
 -> NCEI/MeanMetInfoArrays_ClimGrid1D.py :  6: 'prcp_02_nCG',
                                            7: 'prcp_03_nCG',
