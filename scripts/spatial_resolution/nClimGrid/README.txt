@@ -156,5 +156,10 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
        & Execfile_InfoArrays_gdalWarp_ClimGrid1D is  in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
 
+-> GlobSnow3 directory  :  113: 'GlobSnow3'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py is called by RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
+       RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
+       & InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
 
 

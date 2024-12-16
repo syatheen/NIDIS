@@ -144,6 +144,8 @@ Python codes and corresponding indicator numbers/names:
                                                        112: 'VHI_BlendedVHP' 
      Note that this BlendedVHP/InfoArrays_gdalWarp_ClimGrid1D_V3_b.py is the initial code structure, I have to change this to final structure.
 
+-> GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py  :  113: 'GlobSnow3'
+     Note that this GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
 
 
  
