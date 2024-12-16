@@ -146,5 +146,8 @@ Python codes and corresponding indicator numbers/names:
                                                   112: 'VHI_BlendedVHP' 
      Note that this BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py is the initial code structure, have to change this to final structure.
 
+-> GlobSnow3/InfoArrays_ClimDivs.py :  113: 'GlobSnow3'
+     Note that this GlobSnow3/InfoArrays_ClimDivs.py is the initial code structure, have to change this to final structure.
+
 
 

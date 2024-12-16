@@ -171,6 +171,12 @@ Scripts and corresponding indicator numbers/names:
        This RunProcess_InfoArrays_ClimDivsSplit.sh is in turn called by  Execfile_InfoArrays_ClimDivsSplit_?Of6;
        & finally  Execfile_InfoArrays_ClimDivsSplit_?Of6 in turn called by sbatchpods_InfoArrays_ClimDivsSplit_; 
 
+-> GlobSnow3 directory :  113: 'GlobSnow3'
+       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/GlobSnow3/InfoArrays_ClimDivs.py is the initial code structure, have to change this to final structure.
+       This GlobSnow3/InfoArrays_ClimDivs.py is called by RunProcess_InfoArrays_ClimDivs.sh;
+       This RunProcess_InfoArrays_ClimDivs.sh is in turn called by Execfile_InfoArrays_ClimDivs_Part?;
+       & finally Execfile_InfoArrays_ClimDivs_Part? in turn called by sbatchpods_InfoArrays_ClimDivs_Part?.sh; 
+
 
 
 
