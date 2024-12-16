@@ -147,6 +147,14 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly;
        & Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly is  in turn called by sbatchpods_InfArrs_ClmGrd1D_DlyCllToMnthly_1.sh; 
 
+-> BlendedVHP directory : 109: 'SmNDVI_BlendedVHP',
+                          110: 'TCI_BlendedVHP',
+                          111: 'VCI_BlendedVHP',
+                          112: 'VHI_BlendedVHP'
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/BlendedVHP/InfoArrays_gdalWarp_ClimGrid1D_V3_b.py are the initial code structure, have to change this to final structure.
+       This InfoArrays_gdalWarp_ClimGrid1D_V3_b.py is called by RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh;
+       RunProcess_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
+       & Execfile_InfoArrays_gdalWarp_ClimGrid1D is  in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
 
 
 

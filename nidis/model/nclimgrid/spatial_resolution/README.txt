@@ -138,5 +138,12 @@ Python codes and corresponding indicator numbers/names:
                                                                   108: 'IMERG_72'
      Note that this IMERG/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
 
- 
+-> BlendedVHP/InfoArrays_gdalWarp_ClimGrid1D_V3_b.py : 109: 'SmNDVI_BlendedVHP',
+                                                       110: 'TCI_BlendedVHP',
+                                                       111: 'VCI_BlendedVHP',
+                                                       112: 'VHI_BlendedVHP' 
+     Note that this BlendedVHP/InfoArrays_gdalWarp_ClimGrid1D_V3_b.py is the initial code structure, I have to change this to final structure.
+
+
+
  

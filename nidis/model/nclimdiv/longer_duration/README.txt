@@ -87,7 +87,11 @@ Python codes and corresponding indicator numbers/names:
                                                           94: 'tavg_01_nCG',
                                                           95: 'tmax_01_nCG',
                                                           96: 'SNODAS',
-                                                          97: 'ESA_CCI'
+                                                          97: 'ESA_CCI',
+                                                         109: 'SmNDVI_BlendedVHP',
+                                                         110: 'TCI_BlendedVHP',
+                                                         111: 'VCI_BlendedVHP',
+                                                         112: 'VHI_BlendedVHP'
 
 -> NCEI/MeanMetInfoArrays.py :  6: 'prcp_02_nCG',
                                 7: 'prcp_03_nCG',
