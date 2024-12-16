@@ -1,1 +1,1 @@
--> Refer to nidis/nidis/model/nclimgrid/geotiff_creation, because codes here are the same as codes there.
+-> Refer to nidis/nidis/model/nclimgrid/geotiff_creation, because geotiff creation happens before spatial resolutioning step and so should be same for whichever spatial resolution.

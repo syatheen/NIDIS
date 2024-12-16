@@ -87,6 +87,24 @@ Scripts and corresponding indicator numbers/names:
        This CreateTifs_V2_2.py is called by RunProcess_CreateTifs_2.sh;
        RunProcess_CreateTifs_2.sh is in turn called by Execfile_CreateTifs_2;
        & finally Execfile_CreateTifs_2 is called by sbatchpods_CreateTifs_2.sh
+
+-> IMERG directory :  98: 'IMERG_01',
+                      99: 'IMERG_02',
+                     100: 'IMERG_03',
+                     101: 'IMERG_06',
+                     102: 'IMERG_09',
+                     103: 'IMERG_12',
+                     104: 'IMERG_24',
+                     105: 'IMERG_36',
+                     106: 'IMERG_48',
+                     107: 'IMERG_60',
+                     108: 'IMERG_72'
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/IMERG/CreateTifs_V2.py is the initial code structure, have to change this to final structure.
+       This CreateTifs_V2.py is called by RunProcess_CreateTifs.sh;
+       RunProcess_CreateTifs.sh is in turn called by Execfile_CreateTifs;
+       & finally Execfile_CreateTifs is called by sbatchpods_CreateTifs.sh
+
+Execfile_CreateTifs  RunProcess_CreateTifs.sh  sbatchpods_CreateTifs.sh
  
  
  

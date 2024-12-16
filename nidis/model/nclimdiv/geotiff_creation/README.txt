@@ -115,6 +115,19 @@ Python codes and corresponding indicator numbers/names:
 -> ESA_CCI/CreateTifs_V2_2.py :  97: 'ESA_CCI'
      Note that this ESA_CCI/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
 
+-> IMERG/CreateTifs_V2.py :  98: 'IMERG_01',
+                             99: 'IMERG_02',
+                            100: 'IMERG_03',
+                            101: 'IMERG_06',
+                            102: 'IMERG_09',
+                            103: 'IMERG_12',
+                            104: 'IMERG_24',
+                            105: 'IMERG_36',
+                            106: 'IMERG_48',
+                            107: 'IMERG_60',
+                            108: 'IMERG_72'
+     Note that this IMERG/CreateTifs_V2.py is the initial code structure, have to change this to final structure.
 
 
-  
+
+
