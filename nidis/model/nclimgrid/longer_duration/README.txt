@@ -88,7 +88,11 @@ Python codes and corresponding indicator numbers/names:
                                                           94: 'tavg_01_nCG',
                                                           95: 'tmax_01_nCG',
                                                           96: 'SNODAS',
-                                                          97: 'ESA_CCI'
+                                                          97: 'ESA_CCI',
+                                                         109: 'SmNDVI_BlendedVHP',
+                                                         110: 'TCI_BlendedVHP',
+                                                         111: 'VCI_BlendedVHP',
+                                                         112: 'VHI_BlendedVHP'
 
 -> NCEI/MeanMetInfoArrays_ClimGrid1D.py :  6: 'prcp_02_nCG',
                                            7: 'prcp_03_nCG',
@@ -108,15 +112,15 @@ Python codes and corresponding indicator numbers/names:
      Note that this ESIs/MeanMetInfoArrays_InclNans_ClimGrid1D.py is the initial code structure, have to change this to final structure.
  
 -> MeanMetInfoArrays_ClimGrid1D_Indicators_98_to_108.py   : 98: 'IMERG_01',
-                       99: 'IMERG_02',
-                      100: 'IMERG_03',
-                      101: 'IMERG_06',
-                      102: 'IMERG_09',
-                      103: 'IMERG_12',
-                      104: 'IMERG_24',
-                      105: 'IMERG_36',
-                      106: 'IMERG_48',
-                      107: 'IMERG_60',
-                      108: 'IMERG_72'
+                                                            99: 'IMERG_02',
+                                                           100: 'IMERG_03',
+                                                           101: 'IMERG_06',
+                                                           102: 'IMERG_09',
+                                                           103: 'IMERG_12',
+                                                           104: 'IMERG_24',
+                                                           105: 'IMERG_36',
+                                                           106: 'IMERG_48',
+                                                           107: 'IMERG_60',
+                                                           108: 'IMERG_72'
 
 

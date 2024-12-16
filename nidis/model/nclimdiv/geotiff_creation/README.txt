@@ -134,5 +134,8 @@ Python codes and corresponding indicator numbers/names:
                                 112: 'VHI_BlendedVHP'
      Note that this BlendedVHP/CreateTifs.py is the initial code structure, have to change this to final structure.
   
+-> GlobSnow3/CreateTifs_V2_2.py :   113: 'GlobSnow3'
+     Note that this GlobSnow3/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
+
 
 

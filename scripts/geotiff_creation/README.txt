@@ -113,5 +113,12 @@ Scripts and corresponding indicator numbers/names:
        RunProcess_CreateTifs.sh is in turn called by Execfile_CreateTifs;
        & finally Execfile_CreateTifs is called by sbatchpods_CreateTifs.sh
 
+-> GlobSnow3 directory   :   113: 'GlobSnow3'
+       Note that the scripts here calling nidis/nidis/model/nclimdiv/GlobSnow3/CreateTifs_V2_2.py is the initial code structure, have to change this to final structure.
+       This CreateTifs_V2_2.py is called by RunProcess_CreateTifs_2.sh;
+       RunProcess_CreateTifs_2.sh is in turn called by Execfile_CreateTifs;
+       & finally Execfile_CreateTifs is called by sbatchpods_CreateTifs_Part?.sh
+
+
  
  
