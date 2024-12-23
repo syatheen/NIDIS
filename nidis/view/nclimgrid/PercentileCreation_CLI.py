@@ -11,8 +11,11 @@ from nidis.model.Parsers import percentile_creation_api
 
 from nidis.model.Metadata import DictofSpatialAndWeeklyResolutionMapping
 from nidis.model.nclimgrid.percentile_creation import \
-    PrepSingle_ClimGrid1D_NLDAS_2_daily_CorrToMonthlyPerc_Indicators_44_to_67 \
-    as indicators_44_to_67
+    PrepSingle_ClimGrid1D_NLDAS_2_daily_CorrToMonthlyPerc_Indicators_44_to_55 \
+    as indicators_44_to_55
+from nidis.model.nclimgrid.percentile_creation import \
+    PrepSingle_ClimGrid1D_NLDAS_2_daily_Indicators_56_to_67 \
+    as indicators_56_to_67
 
 
 def main():
@@ -45,14 +48,20 @@ def main():
     logging.info(f'Processing indicator: {indicator}')
 
     # select indicator to process
-    if indicator >= 44 and indicator <= 63:
-        indicators_44_to_67.main(
+    if indicator >= 44 and indicator <= 55:
+        indicators_44_to_55.main(
+            DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgLSM'],
+            DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgVariable'],
+            'NA'
+        )
+    elif indicator >= 56 and indicator <= 63:
+        indicators_56_to_67.main(
             DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgLSM'],
             DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgVariable'],
             'NA'
         )
     elif indicator >= 64 and indicator <= 67:
-        indicators_44_to_67.main(
+        indicators_56_to_67.main(
             DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgLSM'],
             DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgVariable'],
             DictofSpatialAndWeeklyResolutionMapping[indicator]['ArgHUC'],
