@@ -13,56 +13,42 @@ from calendar import monthrange
 from datetime import date, datetime, timedelta
 from multiprocessing import Pool, cpu_count
 
-# NOTE: sys.argv indices start at 1, not 0
-# Python arguments to this program will be (for now):
-#        ArgLSM ArgVariable ArgHUC
-# ArgNum   1      2           3
+def ConcatMonthlyArraysContainingDailyInfo(ESA_CCI_Info_BeginYYYYMMVecList, ESA_CCI_Info_EndYYYYMMVecList, InfoFilesDir):
 
-def ConcatMonthlyArraysContainingDailyInfo(NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir):
-
-  for WhichYear in range(NLDAS_2_daily_Info_BeginYYYYMMVecList[0], NLDAS_2_daily_Info_EndYYYYMMVecList[0]+1):
+  for WhichYear in range(ESA_CCI_Info_BeginYYYYMMVecList[0], ESA_CCI_Info_EndYYYYMMVecList[0]+1):
   
-    if WhichYear == NLDAS_2_daily_Info_BeginYYYYMMVecList[0]:
-      BeginMonth = NLDAS_2_daily_Info_BeginYYYYMMVecList[1]
+    if WhichYear == ESA_CCI_Info_BeginYYYYMMVecList[0]:
+      BeginMonth = ESA_CCI_Info_BeginYYYYMMVecList[1]
     else:
       BeginMonth = 1
-    #end of if WhichYear == NLDAS_2_daily_Info_BeginYYYYMMVecList[0]
+    #end of if WhichYear == ESA_CCI_Info_BeginYYYYMMVecList[0]
   
-    if WhichYear == NLDAS_2_daily_Info_EndYYYYMMVecList[0]:
-      EndMonth = NLDAS_2_daily_Info_EndYYYYMMVecList[1]
+    if WhichYear == ESA_CCI_Info_EndYYYYMMVecList[0]:
+      EndMonth = ESA_CCI_Info_EndYYYYMMVecList[1]
     else:
       EndMonth = 12
-    #end of if WhichYear == NLDAS_2_daily_Info_EndYYYYMMVecList[0]
+    #end of if WhichYear == ESA_CCI_Info_EndYYYYMMVecList[0]
   
     for WhichMonth in range(BeginMonth, EndMonth+1):
 
-      #if ( (WhichVariable == '1MSM') or 
-      #     (WhichVariable == 'TCSM') ):
-      #  ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.PERW.npz')
-      #elif ( (WhichVariable == 'EVAP') or 
-      #       (WhichVariable == 'SWE') or
-      #       (WhichVariable == 'RUN') ):
-      #  ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
-      #elif (WhichVariable == 'STRM') :
-      #  ThisYYYYMM_Info = np.load(InfoFilesDir + WhichLSM + '_' + WhichVariable + '_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_' + WhichHUC + '_ClimGrid1D.PERW.npz') # removed .50AdjustTo0
       ThisYYYYMM_Info = np.load(InfoFilesDir + 'ESA_CCI_' + format(WhichYear, '04') + format(WhichMonth, '02') + '_ClimGrid1D.npz')
       ThisYYYYMMDD_Of_InfoArrayForPrcntl = ThisYYYYMM_Info['YYYYMMDD_Of_RefArrayForPrcntl']
       ThisInfoArrayForPrcntl = ThisYYYYMM_Info['RefArrayForPrcntl']
   
-      if ( (WhichYear == NLDAS_2_daily_Info_BeginYYYYMMVecList[0]) and
-           (WhichMonth == NLDAS_2_daily_Info_BeginYYYYMMVecList[1]) ):
-        NLDAS_2_daily_YYYYMMDD_Of_InfoArray = np.copy(ThisYYYYMMDD_Of_InfoArrayForPrcntl)
-        NLDAS_2_daily_InfoArray = np.copy(ThisInfoArrayForPrcntl)
-      else: #of if ( (WhichYear == NLDAS_2_daily_Info_BeginYYYYMMVecList[0]) and....
-        NLDAS_2_daily_YYYYMMDD_Of_InfoArray = np.concatenate((NLDAS_2_daily_YYYYMMDD_Of_InfoArray, ThisYYYYMMDD_Of_InfoArrayForPrcntl), axis = 0)
-        NLDAS_2_daily_InfoArray = np.concatenate((NLDAS_2_daily_InfoArray, ThisInfoArrayForPrcntl), axis = 0)
-      #end of if ( (WhichYear == NLDAS_2_daily_Info_BeginYYYYMMVecList[0]) and....
+      if ( (WhichYear == ESA_CCI_Info_BeginYYYYMMVecList[0]) and
+           (WhichMonth == ESA_CCI_Info_BeginYYYYMMVecList[1]) ):
+        ESA_CCI_YYYYMMDD_Of_InfoArray = np.copy(ThisYYYYMMDD_Of_InfoArrayForPrcntl)
+        ESA_CCI_InfoArray = np.copy(ThisInfoArrayForPrcntl)
+      else: #of if ( (WhichYear == ESA_CCI_Info_BeginYYYYMMVecList[0]) and....
+        ESA_CCI_YYYYMMDD_Of_InfoArray = np.concatenate((ESA_CCI_YYYYMMDD_Of_InfoArray, ThisYYYYMMDD_Of_InfoArrayForPrcntl), axis = 0)
+        ESA_CCI_InfoArray = np.concatenate((ESA_CCI_InfoArray, ThisInfoArrayForPrcntl), axis = 0)
+      #end of if ( (WhichYear == ESA_CCI_Info_BeginYYYYMMVecList[0]) and....
   
     #end of for WhichMonth in range(BeginMonth, EndMonth+1)
   
-  #end of for WhichYear in range(NLDAS_2_daily_Info_BeginYYYYMMVecList[0], NLDAS_2_daily_Info_EndYYYYMMVecList[0]+1)
+  #end of for WhichYear in range(ESA_CCI_Info_BeginYYYYMMVecList[0], ESA_CCI_Info_EndYYYYMMVecList[0]+1)
 
-  return NLDAS_2_daily_YYYYMMDD_Of_InfoArray, NLDAS_2_daily_InfoArray
+  return ESA_CCI_YYYYMMDD_Of_InfoArray, ESA_CCI_InfoArray
 
 def FindTuesdayAfter(ThisYYYYMMDD):
 
@@ -188,214 +174,70 @@ def PrintArrayInfo(ThisArray, VariabNameStr):
 
 def main():
 
-    # ArgLSM = sys.argv[1] # Choices are 'Mosaic', 'Noah', 'SAC', 'VIC'
-    # ArgVariable = sys.argv[2] # Choices currently implemented are '1MSM', 'TCSM'
-    # ArgHUC = sys.argv[3] # Choices currently implemented are 'NA' (for "Not Applicable")
-
-    # BEGIN code arguments / editable section
-
     # needs the / at the end because of concatenation
     # move to os.path.join to remove this dependency
-    InfoFilesDir = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/ESA_CCI_Npzs/'
+    InfoFilesDir = '/discover/nobackup/projects/nca/syatheen/ESA_CCI_Npzs/'
 
-    NLDAS_2_daily_Info_BeginYYYYMMVecList = [1980, 1] # Beginning year and month 
-    NLDAS_2_daily_Info_EndYYYYMMVecList = [2021, 8] # Ending year and month 
+    ESA_CCI_Info_BeginYYYYMMVecList = [1978, 11] # Beginning year and month 
+    ESA_CCI_Info_EndYYYYMMVecList = [2020, 12] # Ending year and month 
 
-    #if (ArgVariable == 'STRM') :
-    #    print('Inside STRM LSM_Variable_daily_YYYYMMDD_Of_InfoArray')
-    #    LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ArgLSM, ArgVariable, ArgHUC, NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
-    #else:
-    #    print('Inside ELSE LSM_Variable_daily_YYYYMMDD_Of_InfoArray')
-    #    LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ArgLSM, ArgVariable, '', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
-    LSM_Variable_daily_YYYYMMDD_Of_InfoArray, LSM_Variable_daily_InfoArray = ConcatMonthlyArraysContainingDailyInfo(NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList, InfoFilesDir)
+    ESA_CCI_YYYYMMDD_Of_InfoArray, ESA_CCI_InfoArray = ConcatMonthlyArraysContainingDailyInfo(ESA_CCI_Info_BeginYYYYMMVecList, ESA_CCI_Info_EndYYYYMMVecList, InfoFilesDir)
 
+    ESA_CCI_Ref_BeginDateVecList = FindTuesdayAfter(ESA_CCI_YYYYMMDD_Of_InfoArray[0,0])  # ESA_CCI beginning year, month, day of month, this is also a Tuesday
+    ESA_CCI_Ref_EndDateVecList = FindTuesdayBefore(ESA_CCI_YYYYMMDD_Of_InfoArray[-1,0])  # ESA_CCI ending year, month, day of month, this is also a Tuesday
+    print("After ESA_CCI_Ref_BeginDateVecList")
 
-    #Mosaic_STRM_daily_H02_YYYYMMDD_Of_InfoArray, Mosaic_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Mosaic', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Noah_STRM_daily_H02_YYYYMMDD_Of_InfoArray, Noah_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Noah', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #SAC_STRM_daily_H02_YYYYMMDD_Of_InfoArray, SAC_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('SAC', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #VIC_STRM_daily_H02_YYYYMMDD_Of_InfoArray, VIC_STRM_daily_H02_InfoArray = ConcatMonthlyArraysContainingDailyInfo('VIC', 'STRM', 'H02', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Mosaic_STRM_daily_H04_YYYYMMDD_Of_InfoArray, Mosaic_STRM_daily_H04_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Mosaic', 'STRM', 'H04', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Noah_STRM_daily_H04_YYYYMMDD_Of_InfoArray, Noah_STRM_daily_H04_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Noah', 'STRM', 'H04', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #SAC_STRM_daily_H04_YYYYMMDD_Of_InfoArray, SAC_STRM_daily_H04_InfoArray = ConcatMonthlyArraysContainingDailyInfo('SAC', 'STRM', 'H04', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #VIC_STRM_daily_H04_YYYYMMDD_Of_InfoArray, VIC_STRM_daily_H04_InfoArray = ConcatMonthlyArraysContainingDailyInfo('VIC', 'STRM', 'H04', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Mosaic_STRM_daily_H06_YYYYMMDD_Of_InfoArray, Mosaic_STRM_daily_H06_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Mosaic', 'STRM', 'H06', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Noah_STRM_daily_H06_YYYYMMDD_Of_InfoArray, Noah_STRM_daily_H06_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Noah', 'STRM', 'H06', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #SAC_STRM_daily_H06_YYYYMMDD_Of_InfoArray, SAC_STRM_daily_H06_InfoArray = ConcatMonthlyArraysContainingDailyInfo('SAC', 'STRM', 'H06', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #VIC_STRM_daily_H06_YYYYMMDD_Of_InfoArray, VIC_STRM_daily_H06_InfoArray = ConcatMonthlyArraysContainingDailyInfo('VIC', 'STRM', 'H06', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Mosaic_STRM_daily_H08_YYYYMMDD_Of_InfoArray, Mosaic_STRM_daily_H08_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Mosaic', 'STRM', 'H08', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #Noah_STRM_daily_H08_YYYYMMDD_Of_InfoArray, Noah_STRM_daily_H08_InfoArray = ConcatMonthlyArraysContainingDailyInfo('Noah', 'STRM', 'H08', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #SAC_STRM_daily_H08_YYYYMMDD_Of_InfoArray, SAC_STRM_daily_H08_InfoArray = ConcatMonthlyArraysContainingDailyInfo('SAC', 'STRM', 'H08', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-    #VIC_STRM_daily_H08_YYYYMMDD_Of_InfoArray, VIC_STRM_daily_H08_InfoArray = ConcatMonthlyArraysContainingDailyInfo('VIC', 'STRM', 'H08', NLDAS_2_daily_Info_BeginYYYYMMVecList, NLDAS_2_daily_Info_EndYYYYMMVecList)
-
-    #END subsection for concatenating monthly-containing-daily Arrays
-
-    NLDAS_2_Ref_BeginDateVecList = FindTuesdayAfter(LSM_Variable_daily_YYYYMMDD_Of_InfoArray[0,0])  # NLDAS_2_daily beginning year, month, day of month, this is also a Tuesday
-    NLDAS_2_Ref_EndDateVecList = FindTuesdayBefore(LSM_Variable_daily_YYYYMMDD_Of_InfoArray[-1,0])  # NLDAS_2_daily ending year, month, day of month, this is also a Tuesday
-    print("After NLDAS_2_Ref_BeginDateVecList")
-
-    save_data_path = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ESA_CCI'
+    save_data_path = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/PreppedTrainNEvalNpzs/ClimGrid1D'
     os.makedirs(save_data_path, exist_ok=True)
 
-    # this will cause problems, it is expecting a RefArrays directory from the 
-    # place the script is running from
-    #if (ArgVariable == 'STRM') :
-    #    LSM_Variable_RefFileName = os.path.join(
-    #      save_data_path,
-    #      'ClimGrid1D_' + ArgLSM + '_' + ArgVariable + '_' + ArgHUC + '_' + format(NLDAS_2_Ref_BeginDateVecList[0],'04') + format(NLDAS_2_Ref_BeginDateVecList[1],'02') + format(NLDAS_2_Ref_BeginDateVecList[2],'02') + 'To' + format(NLDAS_2_Ref_EndDateVecList[0],'04') + format(NLDAS_2_Ref_EndDateVecList[1],'02') + format(NLDAS_2_Ref_EndDateVecList[2],'02') + '.npz'
-    #    )
-    #else:
-    #    LSM_Variable_RefFileName = os.path.join(
-    #      save_data_path,
-    #      'ClimGrid1D_' + ArgLSM + '_' + ArgVariable + '_' + format(NLDAS_2_Ref_BeginDateVecList[0],'04') + format(NLDAS_2_Ref_BeginDateVecList[1],'02') + format(NLDAS_2_Ref_BeginDateVecList[2],'02') + 'To' + format(NLDAS_2_Ref_EndDateVecList[0],'04') + format(NLDAS_2_Ref_EndDateVecList[1],'02') + format(NLDAS_2_Ref_EndDateVecList[2],'02') + '.npz'
-    #    )
-    LSM_Variable_RefFileName = os.path.join(
+    ESA_CCI_RefFileName = os.path.join(
           save_data_path,
-          'ClimGrid1D_' + 'ESA_CCI_' + format(NLDAS_2_Ref_BeginDateVecList[0],'04') + format(NLDAS_2_Ref_BeginDateVecList[1],'02') + format(NLDAS_2_Ref_BeginDateVecList[2],'02') + 'To' + format(NLDAS_2_Ref_EndDateVecList[0],'04') + format(NLDAS_2_Ref_EndDateVecList[1],'02') + format(NLDAS_2_Ref_EndDateVecList[2],'02') + '.npz'
+          'ClimGrid1D_' + 'ESA_CCI_' + format(ESA_CCI_Ref_BeginDateVecList[0],'04') + format(ESA_CCI_Ref_BeginDateVecList[1],'02') + format(ESA_CCI_Ref_BeginDateVecList[2],'02') + 'To' + format(ESA_CCI_Ref_EndDateVecList[0],'04') + format(ESA_CCI_Ref_EndDateVecList[1],'02') + format(ESA_CCI_Ref_EndDateVecList[2],'02') + '.npz'
         )
-    #Mosaic_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_Mosaic_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Noah_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_Noah_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #SAC_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_SAC_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #VIC_STRM_H02_RefFileName = 'RefArrays/ClimGrid1D_VIC_STRM_H02_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Mosaic_STRM_H04_RefFileName = 'RefArrays/ClimGrid1D_Mosaic_STRM_H04_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Noah_STRM_H04_RefFileName = 'RefArrays/ClimGrid1D_Noah_STRM_H04_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #SAC_STRM_H04_RefFileName = 'RefArrays/ClimGrid1D_SAC_STRM_H04_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #VIC_STRM_H04_RefFileName = 'RefArrays/ClimGrid1D_VIC_STRM_H04_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Mosaic_STRM_H06_RefFileName = 'RefArrays/ClimGrid1D_Mosaic_STRM_H06_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Noah_STRM_H06_RefFileName = 'RefArrays/ClimGrid1D_Noah_STRM_H06_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #SAC_STRM_H06_RefFileName = 'RefArrays/ClimGrid1D_SAC_STRM_H06_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #VIC_STRM_H06_RefFileName = 'RefArrays/ClimGrid1D_VIC_STRM_H06_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Mosaic_STRM_H08_RefFileName = 'RefArrays/ClimGrid1D_Mosaic_STRM_H08_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #Noah_STRM_H08_RefFileName = 'RefArrays/ClimGrid1D_Noah_STRM_H08_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #SAC_STRM_H08_RefFileName = 'RefArrays/ClimGrid1D_SAC_STRM_H08_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-    #VIC_STRM_H08_RefFileName = 'RefArrays/ClimGrid1D_VIC_STRM_H08_'+format(NLDAS_2_Ref_BeginDateVecList[0],'04')+format(NLDAS_2_Ref_BeginDateVecList[1],'02')+format(NLDAS_2_Ref_BeginDateVecList[2],'02')+'To'+format(NLDAS_2_Ref_EndDateVecList[0],'04')+format(NLDAS_2_Ref_EndDateVecList[1],'02')+format(NLDAS_2_Ref_EndDateVecList[2],'02')+'.npz'
-
-    # END code arguments / editable section
 
     start_time = time.time()
 
-    NLDAS_2_Ref_BeginDate = date(NLDAS_2_Ref_BeginDateVecList[0], NLDAS_2_Ref_BeginDateVecList[1], NLDAS_2_Ref_BeginDateVecList[2])
-    NLDAS_2_Ref_EndDate = date(NLDAS_2_Ref_EndDateVecList[0], NLDAS_2_Ref_EndDateVecList[1], NLDAS_2_Ref_EndDateVecList[2])
+    ESA_CCI_Ref_BeginDate = date(ESA_CCI_Ref_BeginDateVecList[0], ESA_CCI_Ref_BeginDateVecList[1], ESA_CCI_Ref_BeginDateVecList[2])
+    ESA_CCI_Ref_EndDate = date(ESA_CCI_Ref_EndDateVecList[0], ESA_CCI_Ref_EndDateVecList[1], ESA_CCI_Ref_EndDateVecList[2])
 
     #BEGIN check whether the beginning and ending days are indeed Tuesdays
 
-    if NLDAS_2_Ref_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-        print('Beginning Date Vector for NLDAS_2_Ref needs to be a Tuesday!!')
+    if ESA_CCI_Ref_BeginDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
+        print('Beginning Date Vector for ESA_CCI_Ref needs to be a Tuesday!!')
         sys.exit(0)
-    if NLDAS_2_Ref_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
-        print('Ending Date Vector for NLDAS_2_Ref needs to be a Tuesday!!')
+    if ESA_CCI_Ref_EndDate.weekday() != 1:  # 0 for Monday, 1 for Tuesday
+        print('Ending Date Vector for ESA_CCI_Ref needs to be a Tuesday!!')
         sys.exit(0)
 
     #END check whether the beginning and ending days are indeed Tuesdays
 
-
-    if NLDAS_2_Ref_BeginDate > NLDAS_2_Ref_EndDate:
-        print('NLDAS_2_Ref_BeginDate should not be later than NLDAS_2_Ref_EndDate!!!')
+    if ESA_CCI_Ref_BeginDate > ESA_CCI_Ref_EndDate:
+        print('ESA_CCI_Ref_BeginDate should not be later than ESA_CCI_Ref_EndDate!!!')
         sys.exit(0)
 
     #BEGIN section for time-interpolating info arrays to desired temporal resolution
 
 
-    NLDAS_2_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(LSM_Variable_daily_YYYYMMDD_Of_InfoArray, 3, 'ESA_CCI', np.NaN)
+    ESA_CCI_RealDatesList_Of_InfoArray = GetRealDatesListOfInfoArray(ESA_CCI_YYYYMMDD_Of_InfoArray, 3, 'ESA_CCI', np.NaN)
 
     #Begin calculating real dates list for reference arrays
 
 
-    NLDAS_2_RealDatesList_Of_RefArray, NLDAS_2_YYYYMMDD_Of_RefArray  = GetTimeInfoOfRefArray(NLDAS_2_Ref_BeginDate, NLDAS_2_Ref_EndDate)
+    ESA_CCI_RealDatesList_Of_RefArray, ESA_CCI_YYYYMMDD_Of_RefArray  = GetTimeInfoOfRefArray(ESA_CCI_Ref_BeginDate, ESA_CCI_Ref_EndDate)
 
     #End calculating real dates list for reference arrays
 
-    LSM_Variable_RefArray = np.empty([ NLDAS_2_YYYYMMDD_Of_RefArray.shape[0], LSM_Variable_daily_InfoArray.shape[1]])
-    LSM_Variable_RefArray[:] = np.NaN
+    ESA_CCI_RefArray = np.empty([ ESA_CCI_YYYYMMDD_Of_RefArray.shape[0], ESA_CCI_InfoArray.shape[1]])
+    ESA_CCI_RefArray[:] = np.NaN
 
-    LSM_Variable_RefArray = TimeMeanValues(NLDAS_2_RealDatesList_Of_InfoArray, NLDAS_2_RealDatesList_Of_RefArray, LSM_Variable_daily_InfoArray, LSM_Variable_RefArray, 7)
+    ESA_CCI_RefArray = TimeMeanValues(ESA_CCI_RealDatesList_Of_InfoArray, ESA_CCI_RealDatesList_Of_RefArray, ESA_CCI_InfoArray, ESA_CCI_RefArray, 7)
 
     print("--- %s seconds ---" % (time.time() - start_time))
 
-    """
-    if ArgVariable == '1MSM':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_1MSM_RefArray = LSM_Variable_RefArray, Mosaic_1MSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_1MSM_RefArray = LSM_Variable_RefArray, Noah_1MSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_1MSM_RefArray = LSM_Variable_RefArray, SAC_1MSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_1MSM_RefArray = LSM_Variable_RefArray, VIC_1MSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #end of if ArgLSM == 'Mosaic'
-    elif ArgVariable == 'TCSM':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_TCSM_RefArray = LSM_Variable_RefArray, Mosaic_TCSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_TCSM_RefArray = LSM_Variable_RefArray, Noah_TCSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_TCSM_RefArray = LSM_Variable_RefArray, SAC_TCSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_TCSM_RefArray = LSM_Variable_RefArray, VIC_TCSM_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    elif ArgVariable == 'EVAP':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_EVAP_RefArray = LSM_Variable_RefArray, Mosaic_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_EVAP_RefArray = LSM_Variable_RefArray, Noah_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_EVAP_RefArray = LSM_Variable_RefArray, SAC_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_EVAP_RefArray = LSM_Variable_RefArray, VIC_EVAP_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    elif ArgVariable == 'SWE':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_SWE_RefArray = LSM_Variable_RefArray, Mosaic_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_SWE_RefArray = LSM_Variable_RefArray, Noah_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_SWE_RefArray = LSM_Variable_RefArray, SAC_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_SWE_RefArray = LSM_Variable_RefArray, VIC_SWE_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    elif ArgVariable == 'RUN':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_RUN_RefArray = LSM_Variable_RefArray, Mosaic_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_RUN_RefArray = LSM_Variable_RefArray, Noah_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_RUN_RefArray = LSM_Variable_RefArray, SAC_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_RUN_RefArray = LSM_Variable_RefArray, VIC_RUN_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    elif ArgVariable == 'STRM':
-        if ArgLSM == 'Mosaic':
-            np.savez_compressed(LSM_Variable_RefFileName, Mosaic_STRM_H04_RefArray = LSM_Variable_RefArray, Mosaic_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'Noah':
-            np.savez_compressed(LSM_Variable_RefFileName, Noah_STRM_H04_RefArray = LSM_Variable_RefArray, Noah_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'SAC':
-            np.savez_compressed(LSM_Variable_RefFileName, SAC_STRM_H04_RefArray = LSM_Variable_RefArray, SAC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        elif ArgLSM == 'VIC':
-            np.savez_compressed(LSM_Variable_RefFileName, VIC_STRM_H04_RefArray = LSM_Variable_RefArray, VIC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    else: #of if ArgVariable == '1MSM'
-        print('Add remaining np.savez_compressed code lines for other variables!!')
-        sys.exit(0)
-        #end of if ArgVariable == '1MSM'
-        #np.savez_compressed(Mosaic_STRM_H02_RefFileName, Mosaic_STRM_H02_RefArray = Mosaic_STRM_H02_RefArray, Mosaic_STRM_H02_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Noah_STRM_H02_RefFileName, Noah_STRM_H02_RefArray = Noah_STRM_H02_RefArray, Noah_STRM_H02_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(SAC_STRM_H02_RefFileName, SAC_STRM_H02_RefArray = SAC_STRM_H02_RefArray, SAC_STRM_H02_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(VIC_STRM_H02_RefFileName, VIC_STRM_H02_RefArray = VIC_STRM_H02_RefArray, VIC_STRM_H02_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Mosaic_STRM_H04_RefFileName, Mosaic_STRM_H04_RefArray = Mosaic_STRM_H04_RefArray, Mosaic_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Noah_STRM_H04_RefFileName, Noah_STRM_H04_RefArray = Noah_STRM_H04_RefArray, Noah_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(SAC_STRM_H04_RefFileName, SAC_STRM_H04_RefArray = SAC_STRM_H04_RefArray, SAC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(VIC_STRM_H04_RefFileName, VIC_STRM_H04_RefArray = VIC_STRM_H04_RefArray, VIC_STRM_H04_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Mosaic_STRM_H06_RefFileName, Mosaic_STRM_H06_RefArray = Mosaic_STRM_H06_RefArray, Mosaic_STRM_H06_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Noah_STRM_H06_RefFileName, Noah_STRM_H06_RefArray = Noah_STRM_H06_RefArray, Noah_STRM_H06_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(SAC_STRM_H06_RefFileName, SAC_STRM_H06_RefArray = SAC_STRM_H06_RefArray, SAC_STRM_H06_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(VIC_STRM_H06_RefFileName, VIC_STRM_H06_RefArray = VIC_STRM_H06_RefArray, VIC_STRM_H06_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Mosaic_STRM_H08_RefFileName, Mosaic_STRM_H08_RefArray = Mosaic_STRM_H08_RefArray, Mosaic_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(Noah_STRM_H08_RefFileName, Noah_STRM_H08_RefArray = Noah_STRM_H08_RefArray, Noah_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(SAC_STRM_H08_RefFileName, SAC_STRM_H08_RefArray = SAC_STRM_H08_RefArray, SAC_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-        #np.savez_compressed(VIC_STRM_H08_RefFileName, VIC_STRM_H08_RefArray = VIC_STRM_H08_RefArray, VIC_STRM_H08_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    """
-    np.savez_compressed(LSM_Variable_RefFileName, ESA_CCI_RefArray = LSM_Variable_RefArray, ESA_CCI_YYYYMMDD_Of_RefArray = NLDAS_2_YYYYMMDD_Of_RefArray)
-    PrintArrayInfo(NLDAS_2_YYYYMMDD_Of_RefArray, 'YYYYMMDD')
+    np.savez_compressed(ESA_CCI_RefFileName, ESA_CCI_RefArray = ESA_CCI_RefArray, ESA_CCI_YYYYMMDD_Of_RefArray = ESA_CCI_YYYYMMDD_Of_RefArray)
+    PrintArrayInfo(ESA_CCI_YYYYMMDD_Of_RefArray, 'YYYYMMDD')
 
-    #if (ArgVariable == 'STRM') :
-    #    PrintArrayInfo(LSM_Variable_RefArray, ArgLSM + '_' + ArgVariable + '_' + ArgHUC)
-    #else:
-    #    PrintArrayInfo(LSM_Variable_RefArray, ArgLSM + '_' + ArgVariable)
-    PrintArrayInfo(LSM_Variable_RefArray, 'ESA_CCI')
+    PrintArrayInfo(ESA_CCI_RefArray, 'ESA_CCI')
 
     return
 
