@@ -1,12 +1,13 @@
+from __future__ import division
 
 # BEGIN code arguments / editable section
 
 Training_BeginDateVecList = [2006, 1, 3] # Beginning training year, month, day of month, this is also a Tuesday
 Training_EndDateVecList = [2019, 12, 31] # Ending training year, month, day of month, this is also a Tuesday
 
-CPCsoilmoist_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_69/RefArrays/ClimGrid1D_QuickDRI_20000125To20201229.npz'
+QuickDRI_RefFileName = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/RefArrays/ClimGrid1D_QuickDRI_20000125To20201229.npz'
 
-TrainDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicator_69/percentile_creation/PreppedTrainNEvalNpzs/SingleUnified_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
+TrainDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_QuickDRI_'+str(Training_BeginDateVecList[0])+format(Training_BeginDateVecList[1],'02')+format(Training_BeginDateVecList[2],'02')+'To'+str(Training_EndDateVecList[0])+format(Training_EndDateVecList[1],'02')+format(Training_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 
@@ -35,13 +36,14 @@ if Training_BeginDate > Training_EndDate:
   print('Training_BeginDate should not be later than Training_EndDate!!!')
   sys.exit(0)
 
-CPCsoilmoist_RefObject = np.load(CPCsoilmoist_RefFileName)
-CPCsoilmoist_YYYYMMDD_Of_RefArray = CPCsoilmoist_RefObject['QuickDRI_YYYYMMDD_Of_RefArray']
+QuickDRI_RefObject = np.load(QuickDRI_RefFileName)
 
-CPCsoilmoist_RefArray = CPCsoilmoist_RefObject['QuickDRI_RefArray']
+QuickDRI_YYYYMMDD_Of_RefArray = QuickDRI_RefObject['QuickDRI_YYYYMMDD_Of_RefArray']
 
-print(CPCsoilmoist_YYYYMMDD_Of_RefArray.shape)
-print(CPCsoilmoist_RefArray.shape)
+QuickDRI_RefArray = QuickDRI_RefObject['QuickDRI_RefArray']
+
+#print(QuickDRI_YYYYMMDD_Of_RefArray.shape)
+#print(QuickDRI_RefArray.shape)
 
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
@@ -57,9 +59,9 @@ def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   return MonthlyList_YYYYMMDD_Of_Array, MonthlyList_Array
 #end of def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
 
-MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray, MonthlyList_CPCsoilmoist_RefArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray)
+MonthlyList_QuickDRI_YYYYMMDD_Of_RefArray, MonthlyList_QuickDRI_RefArray = MonthlyList_YYYYMMDDAndArray(QuickDRI_YYYYMMDD_Of_RefArray, QuickDRI_RefArray)
 
-print("Done with MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray", type(MonthlyList_CPCsoilmoist_YYYYMMDD_Of_RefArray), type(MonthlyList_CPCsoilmoist_RefArray))
+#print("Done with MonthlyList_QuickDRI_YYYYMMDD_Of_RefArray", type(MonthlyList_QuickDRI_YYYYMMDD_Of_RefArray), type(MonthlyList_QuickDRI_RefArray))
 
 def CreateYYYYMMDD_Of_Array(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
@@ -173,19 +175,20 @@ def PrintInfoAboutArray(ThisArray, ThisArray_Str):
 
 #BEGIN section for training
 
-CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray = TimeSlice_YYYYMMDDAndRefArray(CPCsoilmoist_YYYYMMDD_Of_RefArray, CPCsoilmoist_RefArray, Training_BeginDateVecList, Training_EndDateVecList)
-print("After CPCsoilmoist_YYYYMMDD_Of_PrcntlArray CPCsoilmoist_PrcntlArray")
+QuickDRI_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray = TimeSlice_YYYYMMDDAndRefArray(QuickDRI_YYYYMMDD_Of_RefArray, QuickDRI_RefArray, Training_BeginDateVecList, Training_EndDateVecList)
+#print("After QuickDRI_YYYYMMDD_Of_PrcntlArray QuickDRI_PrcntlArray")
 
-MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray = MonthlyList_YYYYMMDDAndArray(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray)
+MonthlyList_QuickDRI_YYYYMMDD_Of_PrcntlArray, MonthlyList_QuickDRI_PrcntlArray = MonthlyList_YYYYMMDDAndArray(QuickDRI_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray)
 
-MonthlyList_CPCsoilmoist_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_CPCsoilmoist_RefArray, MonthlyList_CPCsoilmoist_PrcntlArray)
+MonthlyList_QuickDRI_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_QuickDRI_RefArray, MonthlyList_QuickDRI_PrcntlArray)
 
-CPCsoilmoist_PrcntlArray = ReAssembleArraysFromMonthlyList(CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, CPCsoilmoist_PrcntlArray, MonthlyList_CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, MonthlyList_CPCsoilmoist_PrcntlArray)
+QuickDRI_PrcntlArray = ReAssembleArraysFromMonthlyList(QuickDRI_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray, MonthlyList_QuickDRI_YYYYMMDD_Of_PrcntlArray, MonthlyList_QuickDRI_PrcntlArray)
 
-PrintInfoAboutArray(CPCsoilmoist_PrcntlArray, 'QuickDRI_PrcntlArray')
+print('Training: NumDates = ', QuickDRI_PrcntlArray.shape[0], ', NumSpatialUnits = ',QuickDRI_PrcntlArray.shape[1])
+PrintInfoAboutArray(QuickDRI_YYYYMMDD_Of_PrcntlArray, 'QuickDRI_YYYYMMDD_Of_PrcntlArray')
+PrintInfoAboutArray(QuickDRI_PrcntlArray, 'QuickDRI_PrcntlArray')
 
-
-np.savez_compressed(TrainDataFilename, YYYYMMDD_Of_Array = CPCsoilmoist_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray = CPCsoilmoist_PrcntlArray) 
+np.savez_compressed(TrainDataFilename, YYYYMMDD_Of_Array = QuickDRI_YYYYMMDD_Of_PrcntlArray, QuickDRI_PrcntlArray = QuickDRI_PrcntlArray) 
 
 #END section for training
 
