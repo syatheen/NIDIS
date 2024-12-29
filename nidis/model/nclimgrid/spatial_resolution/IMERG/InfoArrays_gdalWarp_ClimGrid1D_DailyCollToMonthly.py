@@ -105,6 +105,9 @@ for WhichDayInMonth in range(1, NumDaysInMonth+1):
 
 #end of for WhichDayInMonth in range(1, NumDaysInMonth+1)
 
+Idxs =  np.where( (RefArrayForPrcntl < IMERG_daily_LowerLimit) | (RefArrayForPrcntl < IMERG_daily_UpperLimit) )
+RefArrayForPrcntl[Idxs] = np.nan
+
 print("YYYYMMDD_Of_RefArrayForPrcntl.shape is ",YYYYMMDD_Of_RefArrayForPrcntl.shape)
 print("YYYYMMDD_Of_RefArrayForPrcntl is ",YYYYMMDD_Of_RefArrayForPrcntl)
 print("RefArrayForPrcntl.shape is ",RefArrayForPrcntl.shape)
