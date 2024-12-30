@@ -731,12 +731,14 @@ def main(
          ('Z_index_60_month' in InpLayersCombination) ):
         SingleUnifiedData_Z_indices = np.load(SingleUnifiedDataFilename_Z_indices)
         SingleUnifiedDatas['XYData_Z_indices'] = SingleUnifiedData_Z_indices
+        del SingleUnifiedData_Z_indices
     #end of if ( ('Z_index' in InpLayersCombination) or .... 
 
     if ( ('PMDI' in InpLayersCombination) or 
          ('PHDI' in InpLayersCombination) ):
         SingleUnifiedData_PalmerIndices = np.load(SingleUnifiedDataFilename_PalmerIndices)
         SingleUnifiedDatas['XYData_PalmerIndices'] = SingleUnifiedData_PalmerIndices
+        del SingleUnifiedData_PalmerIndices
     #end of if ( ('PMDI' in InpLayersCombination) or .... 
 
     if ( ('prcp_01_nCG' in InpLayersCombination) or
@@ -782,16 +784,20 @@ def main(
     if ('CPC_soil_moisture' in InpLayersCombination):
         SingleUnifiedData_CPC_soil_moisture = np.load(SingleUnifiedDataFilename_CPC_soil_moisture)
         SingleUnifiedDatas['XYData_CPC_soil_moisture'] = SingleUnifiedData_CPC_soil_moisture
+        del SingleUnifiedData_CPC_soil_moisture
+    #end of if ('CPC_soil_moisture' in InpLayersCombination)
 
     if ('GRACE_DA_gw' in InpLayersCombination):
         SingleUnifiedData_GRACEDA = np.load(SingleUnifiedDataFilename_GRACEDA)
         SingleUnifiedDatas['XYData_GRACEDA'] = SingleUnifiedData_GRACEDA
+        del SingleUnifiedData_GRACEDA
     #end of if ('GRACE_DA_gw' in InpLayersCombination)
 
     if ( ('GRACE_DA_sfsm' in InpLayersCombination) or
-            ('GRACE_DA_rtzsm' in InpLayersCombination) ):
+         ('GRACE_DA_rtzsm' in InpLayersCombination) ):
         SingleUnifiedData_GRACEDA_MonthlyPerc = np.load(SingleUnifiedDataFilename_GRACEDA_MonthlyPerc)
         SingleUnifiedDatas['XYData_GRACEDA_MonthlyPerc'] = SingleUnifiedData_GRACEDA_MonthlyPerc
+        del SingleUnifiedData_GRACEDA_MonthlyPerc
     #end of if ( ('GRACE_DA_sfsm' in InpLayersCombination) or...
 
     if ('EDDI_1wk' in InpLayersCombination):
@@ -970,72 +976,88 @@ def main(
     if ('VegDRI' in InpLayersCombination):
       SingleUnifiedData_VegDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_VegDRI_MonthlyPerc)
       SingleUnifiedDatas['XYData_VegDRI_MonthlyPerc'] = SingleUnifiedData_VegDRI_MonthlyPerc
+      del SingleUnifiedData_VegDRI_MonthlyPerc
     ##end of if ('VegDRI' in InpLayersCombination)
     
     if ('QuickDRI' in InpLayersCombination):
       SingleUnifiedData_QuickDRI_MonthlyPerc = np.load(SingleUnifiedDataFilename_QuickDRI_MonthlyPerc)
       SingleUnifiedDatas['XYData_QuickDRI_MonthlyPerc'] = SingleUnifiedData_QuickDRI_MonthlyPerc
+      del SingleUnifiedData_QuickDRI_MonthlyPerc
     ##end of if ('QuickDRI' in InpLayersCombination)
 
     if ( ('ESI_4wk' in InpLayersCombination) or
          ('ESI_12wk' in InpLayersCombination) ):
       SingleUnifiedData_ESImultiWeek_MonthlyPerc = np.load(SingleUnifiedDataFilename_ESImultiWeek_MonthlyPerc)
       SingleUnifiedDatas['XYData_ESImultiWeek_MonthlyPerc'] = SingleUnifiedData_ESImultiWeek_MonthlyPerc
+      del SingleUnifiedData_ESImultiWeek_MonthlyPerc
     #end of if ('ESI' in InpLayersCombination)
 
     if ( 'SNODAS' in InpLayersCombination ): 
         SingleUnifiedData_SNODAS = np.load(SingleUnifiedDataFilename_SNODAS)
         SingleUnifiedDatas['XYData_SNODAS'] = SingleUnifiedData_SNODAS
+        del SingleUnifiedData_SNODAS
     #end of if ( 'SNODAS' in InpLayersCombination )
 
     if ('ESA_CCI' in InpLayersCombination):
       SingleUnifiedData_ESA_CCI = np.load(SingleUnifiedDataFilename_ESA_CCI)
       SingleUnifiedDatas['XYData_ESA_CCI'] = SingleUnifiedData_ESA_CCI
+      del SingleUnifiedData_ESA_CCI
     ##end of if ('VegDRI' in InpLayersCombination)
 
     if ('IMERG_01' in InpLayersCombination):
         SingleUnifiedData_IMERG_01 = np.load(SingleUnifiedDataFilename_IMERG_01)
         SingleUnifiedDatas['XYData_IMERG_01'] = SingleUnifiedData_IMERG_01
+        del SingleUnifiedData_IMERG_01
     #end of if ('IMERG_01' in InpLayersCombination)
     if ('IMERG_02' in InpLayersCombination):
         SingleUnifiedData_IMERG_02 = np.load(SingleUnifiedDataFilename_IMERG_02)
         SingleUnifiedDatas['XYData_IMERG_02'] = SingleUnifiedData_IMERG_02
+        del SingleUnifiedData_IMERG_02
     #end of if ('IMERG_02' in InpLayersCombination)
     if ('IMERG_03' in InpLayersCombination):
         SingleUnifiedData_IMERG_03 = np.load(SingleUnifiedDataFilename_IMERG_03)
         SingleUnifiedDatas['XYData_IMERG_03'] = SingleUnifiedData_IMERG_03
+        del SingleUnifiedData_IMERG_03
     #end of if ('IMERG_03' in InpLayersCombination)
     if ('IMERG_06' in InpLayersCombination):
         SingleUnifiedData_IMERG_06 = np.load(SingleUnifiedDataFilename_IMERG_06)
         SingleUnifiedDatas['XYData_IMERG_06'] = SingleUnifiedData_IMERG_06
+        del SingleUnifiedData_IMERG_06
     #end of if ('IMERG_06' in InpLayersCombination)
     if ('IMERG_09' in InpLayersCombination):
         SingleUnifiedData_IMERG_09 = np.load(SingleUnifiedDataFilename_IMERG_09)
         SingleUnifiedDatas['XYData_IMERG_09'] = SingleUnifiedData_IMERG_09
+        del SingleUnifiedData_IMERG_09
     #end of if ('IMERG_09' in InpLayersCombination)
     if ('IMERG_12' in InpLayersCombination):
         SingleUnifiedData_IMERG_12 = np.load(SingleUnifiedDataFilename_IMERG_12)
         SingleUnifiedDatas['XYData_IMERG_12'] = SingleUnifiedData_IMERG_12
+        del SingleUnifiedData_IMERG_12
     #end of if ('IMERG_12' in InpLayersCombination)
     if ('IMERG_24' in InpLayersCombination):
         SingleUnifiedData_IMERG_24 = np.load(SingleUnifiedDataFilename_IMERG_24)
         SingleUnifiedDatas['XYData_IMERG_24'] = SingleUnifiedData_IMERG_24
+        del SingleUnifiedData_IMERG_24
     #end of if ('IMERG_24' in InpLayersCombination)
     if ('IMERG_36' in InpLayersCombination):
         SingleUnifiedData_IMERG_36 = np.load(SingleUnifiedDataFilename_IMERG_36)
         SingleUnifiedDatas['XYData_IMERG_36'] = SingleUnifiedData_IMERG_36
+        del SingleUnifiedData_IMERG_36
     #end of if ('IMERG_36' in InpLayersCombination)
     if ('IMERG_48' in InpLayersCombination):
         SingleUnifiedData_IMERG_48 = np.load(SingleUnifiedDataFilename_IMERG_48)
         SingleUnifiedDatas['XYData_IMERG_48'] = SingleUnifiedData_IMERG_48
+        del SingleUnifiedData_IMERG_48
     #end of if ('IMERG_48' in InpLayersCombination)
     if ('IMERG_60' in InpLayersCombination):
         SingleUnifiedData_IMERG_60 = np.load(SingleUnifiedDataFilename_IMERG_60)
         SingleUnifiedDatas['XYData_IMERG_60'] = SingleUnifiedData_IMERG_60
+        del SingleUnifiedData_IMERG_60
     #end of if ('IMERG_60' in InpLayersCombination)
     if ('IMERG_72' in InpLayersCombination):
         SingleUnifiedData_IMERG_72 = np.load(SingleUnifiedDataFilename_IMERG_72)
         SingleUnifiedDatas['XYData_IMERG_72'] = SingleUnifiedData_IMERG_72
+        del SingleUnifiedData_IMERG_72
     #end of if ('IMERG_72' in InpLayersCombination)
 
     if ( ('SmNDVI_BlendedVHP' in InpLayersCombination) or
@@ -1044,11 +1066,13 @@ def main(
             ('VHI_BlendedVHP' in InpLayersCombination) ):
         SingleUnifiedData_BlendedVHP_MonthlyPerc = np.load(SingleUnifiedDataFilename_BlendedVHP_MonthlyPerc)
         SingleUnifiedDatas['XYData_BlendedVHP_MonthlyPerc'] = SingleUnifiedData_BlendedVHP_MonthlyPerc
+        del SingleUnifiedData_BlendedVHP_MonthlyPerc
     #end of if ('SmNDVI_BlendedVHP' in InpLayersCombination) or...
 
     if ('GlobSnow3' in InpLayersCombination):
       SingleUnifiedData_GlobSnow3_OverallPerc = np.load(SingleUnifiedDataFilename_GlobSnow3_OverallPerc)
       SingleUnifiedDatas['XYData_GlobSnow3_OverallPerc'] = SingleUnifiedData_GlobSnow3_OverallPerc
+      del SingleUnifiedData_GlobSnow3_OverallPerc
     ##end of if ('GlobSnow3' in InpLayersCombination)
 
     def GetInpAndTargArraysFromFile_ClmGrd1D(XYDatas, InpLayersCombination, IfMakeTargetBinary, IfIncludeD0AsDrought, WhichSeason, MinimumWindowSize, MaximumWindowSize, MinSamplesForFracI, ThisPxlRow, ThisPxlCol, PxlRow_SortedArr_FrmShpFile, PxlCol_SortedArr_FrmShpFile):
@@ -1310,7 +1334,7 @@ def main(
         YYYYMMDD_Of_Array = XYData_USDM['YYYYMMDD_Of_InfoArray']
         Target_Array = XYData_USDM['InfoArray'] # Target data array
 
-        YYYYMMDD_Of_Array, Target_Array = TimeSliceStrict_YYYYMMDDAndRefArrays(YYYYMMDD_Of_Array, Target_Array, BeginYYYYMMDD, EndYYYYMMDD, 'USDM') # SY: replacing this by the following few lines
+        YYYYMMDD_Of_Array, Target_Array = TimeSliceStrict_YYYYMMDDAndRefArrays(YYYYMMDD_Of_Array, Target_Array, BeginYYYYMMDD, EndYYYYMMDD, 'USDM') 
 
         YYYY_Of_Array = YYYYMMDD_Of_Array // 10000
         MM_Of_Array = (YYYYMMDD_Of_Array - YYYY_Of_Array * 10000) // 100
