@@ -110,12 +110,12 @@ Python codes and corresponding indicator numbers/names:
 -> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py : 69: 'QuickDRI'
      Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
 
--> ESIs/InfoArrays_ClimDivs_V2.py :  70: 'ESI_4wk',
-                                     71: 'ESI_12wk',
-     Note that this ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
+-> ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek.py :  70: 'ESI_4wk',
+                                                        71: 'ESI_12wk',
+     Note that this ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek.py is the initial code structure, have to change this to final structure.
 
--> SNODAS/InfoArrays_ClimDivsSplit_V3.py  : 96: 'SNODAS'
-     Note that this SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
+-> SNODAS/PrepRefArraysFromInfoArrays_SNODAS.py  : 96: 'SNODAS'
+     Note that this SNODAS/PrepRefArraysFromInfoArrays_SNODAS.py is the initial code structure, have to change this to final structure.
 
 -> ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py  :  97: 'ESA_CCI'
      Note that this ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.

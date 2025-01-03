@@ -42,13 +42,6 @@ Scripts and corresponding indicator numbers/names:
        Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
        This PrepRefArraysFromInfoArrays_QuickDRI.py is called by QuickDRI/Run_PrepRefArraysFromInfoArrays_QuickDRI.sh;
 
--> ESIs directory : 70: 'ESI_4wk',
-                    71: 'ESI_12wk',
-       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
-       This InfoArrays_ClimDivs_V2.py is called by RunProcess.sh;
-       This RunProcess.sh is in turn called by Execfile_All;
-       & finally Execfile_All are in turn called by sbatchpods_RefArrays_ClimDivs.sh; 
-
 -> SNODAS directory : 96: 'SNODAS'
        Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivsSplit_V3.py is called by RunProcess_InfoArrays_ClimDivsSplit.sh;
