@@ -31,72 +31,32 @@ Scripts and corresponding indicator numbers/names:
                       41: 'EDDI_10mn',
                       42: 'EDDI_11mn',
                       43: 'EDDI_12mn',
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/EDDI/PrepRefArraysFromInfoArrays_EDDI.py is the initial code structure, I have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/EDDI/PrepRefArraysFromInfoArrays_EDDI.py is the initial code structure, I have to change this to final structure.
        This PrepRefArraysFromInfoArrays_EDDI.py is called by EDDI/Run_PrepRefArraysFromInfoArrays_EDDI.sh;
 
--> NLDAS2 directory :    44: 'NLDAS2D_1MSM_Mosaic',
-                         45: 'NLDAS2D_1MSM_Noah',
-                         46: 'NLDAS2D_1MSM_SAC',
-                         47: 'NLDAS2D_1MSM_VIC',
-                         48: 'NLDAS2D_TCSM_Mosaic',
-                         49: 'NLDAS2D_TCSM_Noah',
-                         50: 'NLDAS2D_TCSM_SAC',
-                         51: 'NLDAS2D_TCSM_VIC',
-                         52: 'NLDAS2D_EVAP_Mosaic',
-                         53: 'NLDAS2D_EVAP_Noah',
-                         54: 'NLDAS2D_EVAP_SAC',
-                         55: 'NLDAS2D_EVAP_VIC',
-                         56: 'NLDAS2D_SWE_Mosaic',
-                         57: 'NLDAS2D_SWE_Noah',
-                         58: 'NLDAS2D_SWE_SAC',
-                         59: 'NLDAS2D_SWE_VIC',
-                         60: 'NLDAS2D_RUN_Mosaic',
-                         61: 'NLDAS2D_RUN_Noah',
-                         62: 'NLDAS2D_RUN_SAC',
-                         63: 'NLDAS2D_RUN_VIC',
-                         64: 'NLDAS2D_STRMH04_Mosaic',
-                         65: 'NLDAS2D_STRMH04_Noah',
-                         66: 'NLDAS2D_STRMH04_SAC',
-                         67: 'NLDAS2D_STRMH04_VIC',
-       Note that the scripts here calling nidis/nidis/model/nclimdiv/spatial_resolution/NLDAS2/InfoArrays_ClimDivs_*.py are the initial code structure, have to change this to final structure.
-         -->  InfoArrays_ClimDivs_DailyCollToMonthly.py (for 'NLDAS2D_1MSM_*' & 'NLDAS2D_TCSM_*' indicators):
-           ---> This InfoArrays_ClimDivs_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh; 
-           ---> this RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by  Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[1/2];
-           ---> & these Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[1/2] in turn are called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly_[1/2].sh;  
-         -->  InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py (for 'NLDAS2D_EVAP_*', 'NLDAS2D_SWE_*' & 'NLDAS2D_RUN_*' indicators):
-           ---> This InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.50AdjustTo0.sh; 
-           ---> this RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.50AdjustTo0.sh is in turn called by Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[3/4/5/6]_50AdjustTo0;
-           ---> & these Execfile_InfoArrays_ClmDvs_DlyCllToMnthly_[3/4/5/6]_50AdjustTo0 in turn are called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly_?_50AdjustTo0.sh;  
-         -->  InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py (for 'NLDAS2D_STRMH04_*' indicators):
-           ---> This InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py is called by RunProcess_InfoArrs_ClmDvs_DyCllToMnth.50AdjTo0_HUCAvg.sh; 
-           ---> this RunProcess_InfoArrs_ClmDvs_DyCllToMnth.50AdjTo0_HUCAvg.sh is in turn called by Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg;
-           ---> & these Execfile_InfoArrays_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg in turn are called by sbatchpods_InfArrs_ClmDvs_DyCllToMnth_[1/2]_50AdjTo0_HUCAvg.sh;  
-
 -> VegDRI directory : 68: 'VegDRI'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
-       This RefArrays_ClimDivs_V3.py is called by RunProcess.sh;
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/VegDRI/PrepRefArraysFromInfoArrays_VegDRI.py is the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_VegDRI.py is called by VegDRI/Run_PrepRefArraysFromInfoArrays_VegDRI.sh;
 
 -> QuickDRI directory : 69: 'QuickDRI'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/QuickDRI/InfoArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
-       This InfoArrays_ClimDivs_V3.py is called by RunProcess.sh;
-       This RunProcess.sh is in turn called by Execfile_All_*;
-       & finally Execfile_All_* are in turn called by sbatchpods_InfoArrays_ClimDivs_V3.sh; 
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_QuickDRI.py is called by QuickDRI/Run_PrepRefArraysFromInfoArrays_QuickDRI.sh;
 
 -> ESIs directory : 70: 'ESI_4wk',
                     71: 'ESI_12wk',
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/ESIs/InfoArrays_ClimDivs_V2.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivs_V2.py is called by RunProcess.sh;
        This RunProcess.sh is in turn called by Execfile_All;
        & finally Execfile_All are in turn called by sbatchpods_RefArrays_ClimDivs.sh; 
 
 -> SNODAS directory : 96: 'SNODAS'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/SNODAS/InfoArrays_ClimDivsSplit_V3.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivsSplit_V3.py is called by RunProcess_InfoArrays_ClimDivsSplit.sh;
        This RunProcess_InfoArrays_ClimDivsSplit.sh is in turn called by Execfile_InfoArrays_ClimDivsSplit_?Of4;
        & finally Execfile_InfoArrays_ClimDivsSplit_?Of4 are in turn called by sbatchpods_InfoArrays_ClimDivsSplit_?Of4.sh; 
 
 -> ESA_CCI directory : 97: 'ESA_CCI'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/ESA_CCI/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivs_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh;
        This RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmDvs_DlyCllToMnthly;
        & finally Execfile_InfoArrays_ClmDvs_DlyCllToMnthly in turn called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly.sh; 
@@ -112,7 +72,7 @@ Scripts and corresponding indicator numbers/names:
                      106: 'IMERG_48',
                      107: 'IMERG_60',
                      108: 'IMERG_72'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/IMERG/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/IMERG/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivs_DailyCollToMonthly.py is called by RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh;
        This RunProcess_InfoArrs_ClmDvs_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClimDivs_DailyCollToMonthly;
        & finally Execfile_InfoArrays_ClimDivs_DailyCollToMonthly in turn called by sbatchpods_InfArrs_ClmDvs_DlyCllToMnthly.sh; 
@@ -121,13 +81,13 @@ Scripts and corresponding indicator numbers/names:
                             110: 'TCI_BlendedVHP',
                             111: 'VCI_BlendedVHP',
                             112: 'VHI_BlendedVHP'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/BlendedVHP/InfoArrays_ClimDivsSplit_V3_b.py is the initial code structure, have to change this to final structure.
        This InfoArrays_ClimDivsSplit_V3_b.py is called by RunProcess_InfoArrays_ClimDivsSplit.sh;
        This RunProcess_InfoArrays_ClimDivsSplit.sh is in turn called by  Execfile_InfoArrays_ClimDivsSplit_?Of6;
        & finally  Execfile_InfoArrays_ClimDivsSplit_?Of6 in turn called by sbatchpods_InfoArrays_ClimDivsSplit_; 
 
 -> GlobSnow3 directory :  113: 'GlobSnow3'
-       Note that the script here calling nidis/nidis/model/nclimdiv/spatial_resolution/GlobSnow3/InfoArrays_ClimDivs.py is the initial code structure, have to change this to final structure.
+       Note that the script here calling nidis/nidis/model/nclimdiv/weekly_resolution/GlobSnow3/InfoArrays_ClimDivs.py is the initial code structure, have to change this to final structure.
        This GlobSnow3/InfoArrays_ClimDivs.py is called by RunProcess_InfoArrays_ClimDivs.sh;
        This RunProcess_InfoArrays_ClimDivs.sh is in turn called by Execfile_InfoArrays_ClimDivs_Part?;
        & finally Execfile_InfoArrays_ClimDivs_Part? in turn called by sbatchpods_InfoArrays_ClimDivs_Part?.sh; 

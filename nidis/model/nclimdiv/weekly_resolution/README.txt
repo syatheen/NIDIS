@@ -104,11 +104,11 @@ Python codes and corresponding indicator numbers/names:
                                                             67: 'NLDAS2D_STRMH04_VIC'
      Note that this NLDAS2/PrepRefArraysFromInfoArrays_NLDAS_2_daily.py is the initial code structure, have to change this to final structure.
 
--> VegDRI/RefArrays_ClimDivs_V3.py : 68: 'VegDRI'
-     Note that this VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
+-> VegDRI/PrepRefArraysFromInfoArrays_VegDRI.py : 68: 'VegDRI'
+     Note that this VegDRI/PrepRefArraysFromInfoArrays_VegDRI.py is the initial code structure, have to change this to final structure.
 
--> QuickDRI/InfoArrays_ClimDivs_V3.py : 69: 'QuickDRI'
-     Note that this QuickDRI/InfoArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
+-> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py : 69: 'QuickDRI'
+     Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
 
 -> ESIs/InfoArrays_ClimDivs_V2.py :  70: 'ESI_4wk',
                                      71: 'ESI_12wk',
