@@ -78,36 +78,31 @@ Python codes and corresponding indicator numbers/names:
                                                 43: 'EDDI_12mn'
      Note that this EDDI/PrepRefArraysFromInfoArrays_EDDI.py is the initial code structure, I have to change this to final structure.
 
--> NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly.py :    44: 'NLDAS2D_1MSM_Mosaic',
-                                                         45: 'NLDAS2D_1MSM_Noah',
-                                                         46: 'NLDAS2D_1MSM_SAC',
-                                                         47: 'NLDAS2D_1MSM_VIC',
-                                                         48: 'NLDAS2D_TCSM_Mosaic',
-                                                         49: 'NLDAS2D_TCSM_Noah',
-                                                         50: 'NLDAS2D_TCSM_SAC',
-                                                         51: 'NLDAS2D_TCSM_VIC'
-     Note that this NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly.py is the initial code structure, I have to change this to final structure.
-
-
--> NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py :    52: 'NLDAS2D_EVAP_Mosaic',
-                                                                     53: 'NLDAS2D_EVAP_Noah',
-                                                                     54: 'NLDAS2D_EVAP_SAC',
-                                                                     55: 'NLDAS2D_EVAP_VIC',
-                                                                     56: 'NLDAS2D_SWE_Mosaic',
-                                                                     57: 'NLDAS2D_SWE_Noah',
-                                                                     58: 'NLDAS2D_SWE_SAC',
-                                                                     59: 'NLDAS2D_SWE_VIC',
-                                                                     60: 'NLDAS2D_RUN_Mosaic',
-                                                                     61: 'NLDAS2D_RUN_Noah',
-                                                                     62: 'NLDAS2D_RUN_SAC',
-                                                                     63: 'NLDAS2D_RUN_VIC'
-     Note that this NLDAS2/InfoArrays_ClimDivs_DailyCollToMonthly_50AdjustTo0.py is the initial code structure, I have to change this to final structure.
-
--> NLDAS2/InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py:      64: 'NLDAS2D_STRMH04_Mosaic',
-                                                                     65: 'NLDAS2D_STRMH04_Noah',
-                                                                     66: 'NLDAS2D_STRMH04_SAC',
-                                                                     67: 'NLDAS2D_STRMH04_VIC'
-     Note that this NLDAS2/InfoArrays_ClimDivs_DyCollToMnth_50AdjTo0_HUCAvg.py is the initial code structure, have to change this to final structure.
+-> NLDAS2/PrepRefArraysFromInfoArrays_NLDAS_2_daily.py :    44: 'NLDAS2D_1MSM_Mosaic',
+                                                            45: 'NLDAS2D_1MSM_Noah',
+                                                            46: 'NLDAS2D_1MSM_SAC',
+                                                            47: 'NLDAS2D_1MSM_VIC',
+                                                            48: 'NLDAS2D_TCSM_Mosaic',
+                                                            49: 'NLDAS2D_TCSM_Noah',
+                                                            50: 'NLDAS2D_TCSM_SAC',
+                                                            51: 'NLDAS2D_TCSM_VIC'
+                                                            52: 'NLDAS2D_EVAP_Mosaic',
+                                                            53: 'NLDAS2D_EVAP_Noah',
+                                                            54: 'NLDAS2D_EVAP_SAC',
+                                                            55: 'NLDAS2D_EVAP_VIC',
+                                                            56: 'NLDAS2D_SWE_Mosaic',
+                                                            57: 'NLDAS2D_SWE_Noah',
+                                                            58: 'NLDAS2D_SWE_SAC',
+                                                            59: 'NLDAS2D_SWE_VIC',
+                                                            60: 'NLDAS2D_RUN_Mosaic',
+                                                            61: 'NLDAS2D_RUN_Noah',
+                                                            62: 'NLDAS2D_RUN_SAC',
+                                                            63: 'NLDAS2D_RUN_VIC'
+                                                            64: 'NLDAS2D_STRMH04_Mosaic',
+                                                            65: 'NLDAS2D_STRMH04_Noah',
+                                                            66: 'NLDAS2D_STRMH04_SAC',
+                                                            67: 'NLDAS2D_STRMH04_VIC'
+     Note that this NLDAS2/PrepRefArraysFromInfoArrays_NLDAS_2_daily.py is the initial code structure, have to change this to final structure.
 
 -> VegDRI/RefArrays_ClimDivs_V3.py : 68: 'VegDRI'
      Note that this VegDRI/RefArrays_ClimDivs_V3.py is the initial code structure, have to change this to final structure.
