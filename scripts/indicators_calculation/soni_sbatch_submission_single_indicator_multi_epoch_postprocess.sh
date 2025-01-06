@@ -1,6 +1,7 @@
 #!/bin/bash
 ##SBATCH --time=2:00:00
-#SBATCH --time=00:18:00
+##SBATCH --time=00:18:00
+SBATCH --time=01:30:00
 #SBATCH --constraint=mil
 #SBATCH --ntasks-per-node=126
 #SBATCH --nodes=1
@@ -10,7 +11,7 @@
 #SBATCH --error=postprocess_%x_%j.err       # Error file
 #SBATCH --mail-user=soni.yatheendradas-1@nasa.gov
 
-module purge
+#module purge
 module load python/GEOSpyD/Min23.5.2-0_py3.11
 ##source activate /discover/nobackup/jacaraba/.conda/envs/amy-rf
 ulimit -s unlimited
