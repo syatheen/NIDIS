@@ -35,8 +35,10 @@ Scripts and corresponding indicator numbers/names:
        Note that the script here calling nidis/nidis/model/nclimdiv/percentile_creation/VegDRI/PrepTrainNEval_ClimDivs_VegDRI_MonthlyPerc.py is the initial code structure, have to change this to final structure.
        This Run_PrepTrainNEval_ClimDivs_VegDRI_MonthlyPerc.sh is called by VegDRI/Run_PrepTrainNEval_ClimDivs_VegDRI_MonthlyPerc.sh;
 
+-> QuickDRI/Run_PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.sh : 69: 'QuickDRI'
+       Note that the script here calling nidis/nidis/model/nclimdiv/percentile_creation/QuickDRI/PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.py is the initial code structure, have to change this to final structure.
+       This PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.py is called by QuickDRI/Run_PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.sh;
+
 ?????
--> QuickDRI directory : 69: 'QuickDRI'
-       Note that the script here calling nidis/nidis/model/nclimdiv/percentile_creation/QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_QuickDRI.py is called by QuickDRI/Run_PrepRefArraysFromInfoArrays_QuickDRI.sh;
+
 
