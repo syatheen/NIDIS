@@ -108,11 +108,11 @@ Python codes and corresponding indicator numbers/names:
                                                         66: 'NLDAS2D_STRMH04_SAC',
                                                         67: 'NLDAS2D_STRMH04_VIC'
      Note that this NLDAS2/PrepTrainNEval_ClimDivs_NLDAS_2_daily.py is the initial code structure, have to change this to final structure.
+
+-> VegDRI/PrepTrainNEval_ClimDivs_VegDRI_MonthlyPerc.py : 68: 'VegDRI'
+     Note that this VegDRI/PrepTrainNEval_ClimDivs_VegDRI_MonthlyPerc.py is the initial code structure, have to change this to final structure.
+
 ????
-
--> VegDRI/PrepRefArraysFromInfoArrays_VegDRI.py : 68: 'VegDRI'
-     Note that this VegDRI/PrepRefArraysFromInfoArrays_VegDRI.py is the initial code structure, have to change this to final structure.
-
 -> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py : 69: 'QuickDRI'
      Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
 
