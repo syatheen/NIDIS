@@ -115,11 +115,11 @@ Python codes and corresponding indicator numbers/names:
 -> QuickDRI/PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.py : 69: 'QuickDRI'
      Note that this QuickDRI/PrepTrainNEval_ClimDivs_QuickDRI_MonthlyPerc.py is the initial code structure, have to change this to final structure.
 
-????
--> ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek.py :  70: 'ESI_4wk',
-                                                        71: 'ESI_12wk',
-     Note that this ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek.py is the initial code structure, have to change this to final structure.
+-> ESIs/PrepTrainNEval_ClimDivs_ESImultiweek_MonthlyPerc.py :  70: 'ESI_4wk',
+                                                               71: 'ESI_12wk',
+     Note that this ESIs/PrepTrainNEval_ClimDivs_ESImultiweek_MonthlyPerc.py is the initial code structure, have to change this to final structure.
 
+????
 -> SNODAS/PrepRefArraysFromInfoArrays_SNODAS.py  : 96: 'SNODAS'
      Note that this SNODAS/PrepRefArraysFromInfoArrays_SNODAS.py is the initial code structure, have to change this to final structure.
 
