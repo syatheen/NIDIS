@@ -137,16 +137,15 @@ Python codes and corresponding indicator numbers/names:
                                               107: 'IMERG_60',
                                               108: 'IMERG_72'
      Note that this IMERG/PrepTrainNEval_ClimDivs_IMERG.py is the initial code structure, have to change this to final structure.
-????
 
--> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP.py :  109: 'SmNDVI_BlendedVHP',
-                                                           110: 'TCI_BlendedVHP',
-                                                           111: 'VCI_BlendedVHP',
-                                                           112: 'VHI_BlendedVHP' 
-     Note that this BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP.py is the initial code structure, have to change this to final structure.
+-> BlendedVHP/PrepTrainNEval_ClimDivs_BlendedVHP_MonthlyPerc.py :  109: 'SmNDVI_BlendedVHP',
+                                                                   110: 'TCI_BlendedVHP',
+                                                                   111: 'VCI_BlendedVHP',
+                                                                   112: 'VHI_BlendedVHP' 
+     Note that this BlendedVHP/PrepTrainNEval_ClimDivs_BlendedVHP_MonthlyPerc.py is the initial code structure, have to change this to final structure.
 
--> GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3.py :  113: 'GlobSnow3'
-     Note that this GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3.py is the initial code structure, have to change this to final structure.
+-> GlobSnow3/PrepTrainNEval_ClimDivs_GlobSnow3_OverallPerc.py :  113: 'GlobSnow3'
+     Note that this GlobSnow3/PrepTrainNEval_ClimDivs_GlobSnow3_OverallPerc.py is the initial code structure, have to change this to final structure.
 
 
 
