@@ -124,20 +124,20 @@ Python codes and corresponding indicator numbers/names:
 
 -> ESA_CCI/PrepTrainNEval_ClimDivs_SNODASnESACCI_OverallPerc.py  :  97: 'ESA_CCI'
      Note that this ESA_CCI/PrepTrainNEval_ClimDivs_SNODASnESACCI_OverallPerc.py is the initial code structure, have to change this to final structure.
-????
  
--> IMERG/PrepRefArraysFromInfoArrays_IMERG.py :    98: 'IMERG_01',
-                                                   99: 'IMERG_02',
-                                                  100: 'IMERG_03',
-                                                  101: 'IMERG_06',
-                                                  102: 'IMERG_09',
-                                                  103: 'IMERG_12',
-                                                  104: 'IMERG_24',
-                                                  105: 'IMERG_36',
-                                                  106: 'IMERG_48',
-                                                  107: 'IMERG_60',
-                                                  108: 'IMERG_72'
-     Note that this IMERG/PrepRefArraysFromInfoArrays_IMERG.py is the initial code structure, have to change this to final structure.
+-> IMERG/PrepTrainNEval_ClimDivs_IMERG.py :    98: 'IMERG_01',
+                                               99: 'IMERG_02',
+                                              100: 'IMERG_03',
+                                              101: 'IMERG_06',
+                                              102: 'IMERG_09',
+                                              103: 'IMERG_12',
+                                              104: 'IMERG_24',
+                                              105: 'IMERG_36',
+                                              106: 'IMERG_48',
+                                              107: 'IMERG_60',
+                                              108: 'IMERG_72'
+     Note that this IMERG/PrepTrainNEval_ClimDivs_IMERG.py is the initial code structure, have to change this to final structure.
+????
 
 -> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP.py :  109: 'SmNDVI_BlendedVHP',
                                                            110: 'TCI_BlendedVHP',
