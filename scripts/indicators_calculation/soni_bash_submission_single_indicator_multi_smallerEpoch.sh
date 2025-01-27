@@ -31,32 +31,34 @@
 # provides acceptable performance.
 #
 # Provide the number of nodes you would like to use
-NUMBER_NODES=10
-PATH_TO_TASKS=`pwd`
-TASK_FILENAMES=(`ls ${PATH_TO_TASKS}/tasks*.conf`)
-TASK_FILENAMES_COUNT=${#TASK_FILENAMES[@]}
-FILES_PER_NODE=$(( (TASK_FILENAMES_COUNT / NUMBER_NODES) + (TASK_FILENAMES_COUNT % NUMBER_NODES > 0 ) ))
+NUMBER_NODES=65
+TOTAL_NUMBER_OF_TASKS=469758
 
-echo "Total number of task filenames ${#TASK_FILENAMES[@]}"
+#PATH_TO_TASKS=`pwd`
+#TASK_FILENAMES=(`ls ${PATH_TO_TASKS}/tasks*.conf`)
+#TASK_FILENAMES_COUNT=${#TASK_FILENAMES[@]}
+TASKS_PER_NODE=$(( (TOTAL_NUMBER_OF_TASKS / NUMBER_NODES) + (TOTAL_NUMBER_OF_TASKS % NUMBER_NODES > 0 ) ))
+
 echo "Starting sbatch submission with ${NUMBER_NODES} nodes"
-echo "Splitting task config files from ${PATH_TO_TASKS}"
-echo "Processing ${TASK_FILENAMES_COUNT} task filenames"
-echo "Tasks filenames per node ${FILES_PER_NODE}"
+echo "Processing ${TOTAL_NUMBER_OF_TASKS} tasks"
+echo "Tasks filenames per node ${TASKS_PER_NODE}"
+echo "Running indicator: ${1}, for seasons ${2}, and saving under ${3}"
 
-counter=1
+counter=0
 for (( i=0; i < NUMBER_NODES; i++))
 do
     # gather task ids
     start_task=$counter
-    end_task=$((counter + FILES_PER_NODE))
-    if [[ $end_task -gt $TASK_FILENAMES_COUNT ]]
+    end_task=$((counter + TASKS_PER_NODE))
+    if [[ $end_task -gt $TOTAL_NUMBER_OF_TASKS ]]
     then
-        end_task=$((TASK_FILENAMES_COUNT + 1))
+        end_task=$((TOTAL_NUMBER_OF_TASKS))
     fi
     echo "START AND END TASK" $start_task $end_task
-    counter=$((counter + FILES_PER_NODE))
+    counter=$((counter + TASKS_PER_NODE))
 
     # call sbatch script
-    sbatch sbatch_submission.sh $start_task $end_task $PATH_TO_TASKS
+    # 1 - indicator, 2 - seasons, 3 - filesystem
+    sbatch -J "NID_${1}" /discover/nobackup/syatheen/development/nidis/scripts/indicators_calculation/soni_sbatch_submission_single_indicator_multi_smallerEpoch.sh $1 "$2" $3 $start_task $end_task $4
 
 done

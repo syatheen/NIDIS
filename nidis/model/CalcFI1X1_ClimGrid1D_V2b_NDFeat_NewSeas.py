@@ -528,9 +528,11 @@ def main(
 
             # end of if ( ('prcp_01_nCG' in InpLayersCombination) or...
 
-            SingleUnifiedDataFilename_GRACEDA = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_20020402To20201020.npz'
+            #SingleUnifiedDataFilename_GRACEDA = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_20020402To20201020.npz'
+            SingleUnifiedDataFilename_GRACEDA = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_20060103To20191231.npz'
 
-            SingleUnifiedDataFilename_GRACEDA_MonthlyPerc = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_Corr2MonthlyPerc_20020402To20201020.npz'
+            #SingleUnifiedDataFilename_GRACEDA_MonthlyPerc = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_Corr2MonthlyPerc_20020402To20201020.npz'
+            SingleUnifiedDataFilename_GRACEDA_MonthlyPerc = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_Corr2MonthlyPerc_20060103To20191231.npz'
 
             SingleUnifiedDataFilename_EDDI1wk_MonthlyPerc = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_EDDI01wk_Corr2MonthlyPerc_20060103To20191231.npz'   #YYYYMMDD_Of_Array, EDDI_PrcntlArray
             SingleUnifiedDataFilename_EDDI2wk_MonthlyPerc = f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_EDDI02wk_Corr2MonthlyPerc_20060103To20191231.npz'
@@ -3049,7 +3051,8 @@ def main(
         Idxs = np.where((~np.isnan(XX)) & (~np.isnan(YY)))
         Percentiles_for_n_neighbors = np.empty((3,), dtype=np.float32)
         Percentiles_for_n_neighbors[:] = np.NaN
-        if len(Idxs[0]) > 0:
+        #print("len(Idxs[0]) is ", len(Idxs[0]))
+        if len(Idxs[0]) > 5:
             XX = XX[Idxs[0]]
             YY = YY[Idxs[0]]
             YY = YY[:,0]

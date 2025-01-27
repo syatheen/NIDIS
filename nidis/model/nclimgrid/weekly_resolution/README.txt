@@ -1,14 +1,15 @@
 Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
 
--> Z_Indices/PrepRefArraysFromInfoArrays.py OR
-   PalmerIndices/PrepRefArraysFromInfoArrays.py OR
-   CPC_soil_moisture/PrepRefArraysFromInfoArrays.py :  1: 'Z_index',
-                                                       2: 'Z_index_60_month',
-                                                       3: 'PMDI',
-                                                       4: 'PHDI' 
+-> PrepRefArraysFromInfoArrays_ClimGrid1D_Indicators_1_to_2.py :  1: 'Z_index',
+                                                                  2: 'Z_index_60_month'
+     Note that this PrepRefArraysFromInfoArrays_ClimGrid1D_Indicators_1_to_2.py file  is the initial code structure, have to convert this to final structure.
+
+-> PrepRefArraysFromInfoArrays_ClimGrid1D_Indicators_3_to_4.py : 3: 'PMDI',
+                                                                 4: 'PHDI' 
+     Note that this PrepRefArraysFromInfoArrays_ClimGrid1D_Indicators_3_to_4.py file  is the initial code structure, have to convert this to final structure.
+
                                                       16: 'CPC_soil_moisture'
-     Note that this {directory}/PrepRefArraysFromInfoArrays.py file  is the initial code structure, have to convert this to final structure.
 
 -> NCEI/PrepRefArraysFromInfoArrays_nClimGrid.py :  5: 'prcp_01_nCG',
                                                     6: 'prcp_02_nCG',
