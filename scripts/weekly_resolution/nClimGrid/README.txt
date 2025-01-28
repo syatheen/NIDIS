@@ -39,21 +39,6 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py is called by NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh;
        This NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh is in turn called by NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes: 
        And finally this NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes in turn called by NCEI/sbatchpods_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh .
-???
-
--> CPC_soil_moisture directory : 16: 'CPC_soil_moisture'
-       Note that the scripts here calling /nidis/nidis/model/nclimgrid/spatial_resolution/CPC_soil_moisture/RefArraysForPrcntls_gdalWarp_ClimGrid1D.py are the initial code structure., have to change this to final structure.
-       RefArraysForPrcntls_gdalWarp_ClimGrid1D.py is called by RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh;
-       RunProc_RefArraysForPrcntls_gdalWarp_ClimGrid1D_mil.sh is in turn called by tasks.conf;
-       & finally tasks.conf is in turn called by sbatchMultiProg_RefArraysForPrcntls_gdalWarp_ClimGrid1D.sh; 
-
--> GRACEDA directory : 17: 'GRACE_DA_gw',
-                       18: 'GRACE_DA_sfsm',
-                       19: 'GRACE_DA_rtzsm'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/GRACEDA/RefArrsForPrcntl_gdalWarp_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       RefArrsForPrcntl_gdalWarp_ClimGrid1D.py is called by RunProcess_RefArrsForPrcntl_ClimGrid1D.sh;
-       RunProcess_RefArrsForPrcntl_ClimGrid1D.sh is in turn called by Execfile_GRACE_ClimGrid1D;
-       & finally Execfile_GRACE_ClimGrid1D is in turn called by sbatchpods_RefArrsForPrcntl_ClimGrid1D.sh; 
 
 -> EDDI directory : 20: 'EDDI_1wk',
                     21: 'EDDI_2wk',
@@ -79,10 +64,11 @@ Scripts and corresponding indicator numbers/names:
                     41: 'EDDI_10mn',
                     42: 'EDDI_11mn',
                     43: 'EDDI_12mn',
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/EDDI/InfoArrays_gdalWarp_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       InfoArrays_gdalWarp_ClimGrid1D.py is called by RunProc_InfoArrays_gdalWarp_ClimGrid1D.sh;
-       RunProc_InfoArrays_gdalWarp_ClimGrid1D.sh is in turn called by Execfile_InfoArrays_gdalWarp_ClimGrid1D;
-       & Execfile_InfoArrays_gdalWarp_ClimGrid1D is in turn called by sbatchpods_InfoArrays_gdalWarp_ClimGrid1D.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/EDDI/PrepRefArraysFromInfoArrays_EDDI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_EDDI_ClimGrid1D.py is called by EDDI/RunProc_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh;
+       EDDI/RunProc_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh is in turn called by EDDI/Execfile_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D;
+       & EDDI/Execfile_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D is in turn called by sbatchpods_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh; 
+???
 
 -> NLDAS2 directory : 44: 'NLDAS2D_1MSM_Mosaic',
                       45: 'NLDAS2D_1MSM_Noah',
