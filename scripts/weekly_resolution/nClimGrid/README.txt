@@ -68,26 +68,13 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_EDDI_ClimGrid1D.py is called by EDDI/RunProc_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh;
        EDDI/RunProc_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh is in turn called by EDDI/Execfile_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D;
        & EDDI/Execfile_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D is in turn called by sbatchpods_PrepRefArrsFromInfoArrs_EDDI_ClmGrd1D.sh; 
-???
-
--> NLDAS2 directory : 44: 'NLDAS2D_1MSM_Mosaic',
-                      45: 'NLDAS2D_1MSM_Noah',
-                      46: 'NLDAS2D_1MSM_SAC',
-                      47: 'NLDAS2D_1MSM_VIC',
-                      48: 'NLDAS2D_TCSM_Mosaic',
-                      49: 'NLDAS2D_TCSM_Noah',
-                      50: 'NLDAS2D_TCSM_SAC',
-                      51: 'NLDAS2D_TCSM_VIC'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_44_to_51.py are the initial code structure, have to change this to final structure.
-       InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly_Indicators_44_to_51.py is called by RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh;
-       RunProcess_InfoArrs_ClmGrd1D_DlyCllToMnthly.sh is in turn called by Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1;
-       & Execfile_InfoArrays_ClmGrd1D_DlyCllToMnthly_1 is in turn called by sbatchpods_InfArrs_ClmGrd1D_DlyCllToMnthly_1.sh; 
 
 -> VegDRI directory : 68: 'VegDRI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/VegDRI/RefArraysForPrcntl_ClimGrid.py are the initial code structure, have to change this to final structure.
-       This RefArraysForPrcntl_ClimGrid.py is called by RunProc_RefArraysForPrcntl_ClimGrid_mil.sh;
-       RunProc_RefArraysForPrcntl_ClimGrid_mil.sh is in turn called by RefArraysForPrcntl_ClimGrid_tasks_*.conf;
-       & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil*.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is called by RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh;
+       RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh is in turn called by PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf;
+       & PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf is in turn called by sbatchMultiProg_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh; 
+???
 
 -> QuickDRI directory : 69: 'QuickDRI'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/QuickDRI/InfoArraysForPrcntl_ClimGrid.py are the initial code structure, have to change this to final structure.
