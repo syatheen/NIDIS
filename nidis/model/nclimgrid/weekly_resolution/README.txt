@@ -46,14 +46,14 @@ Python codes and corresponding indicator numbers/names:
                                                                    95: 'tmax_01_nCG'
      Note that this NCEI/PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py is the initial code structure, have to convert this to final structure.
 
+-> PrepRefArraysFromInfoArrays_Indicators_16.py : 16: 'CPC_soil_moisture'
+     Note that this PrepRefArraysFromInfoArrays_Indicators_16.py file  is the initial code structure, have to convert this to final structure.
+
+-> GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA_ClimGrid1D.py :  17: 'GRACE_DA_gw',
+                                                                18: 'GRACE_DA_sfsm',
+                                                                19: 'GRACE_DA_rtzsm'
+     Note that this GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA_ClimGrid1D.py is the initial code structure, I have to change this to final structure.
 ??????
-
-                                                      16: 'CPC_soil_moisture'
-
--> GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA.py :  17: 'GRACE_DA_gw',
-                                                     18: 'GRACE_DA_sfsm',
-                                                     19: 'GRACE_DA_rtzsm'
-     Note that this GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA.py is the initial code structure, I have to change this to final structure.
 
 -> EDDI/PrepRefArraysFromInfoArrays_EDDI.py :   20: 'EDDI_1wk',
                                                 21: 'EDDI_2wk',
