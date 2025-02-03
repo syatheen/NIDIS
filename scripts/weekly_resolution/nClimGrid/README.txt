@@ -93,13 +93,13 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is called by SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh;
        SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh is in turn called by SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf;
        & SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf is in turn called by SNODAS/sbatchMProg_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh; 
-???
 
 -> ESA_CCI directory  :  97: 'ESA_CCI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
-       This InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py is called by RunProc_InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.sh;
-       RunProc_InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf;
-       & InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthlyTasks_?.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is called by ESA_CCI/Run_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Mil.sh;
+       ESA_CCI/Run_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Mil.sh is in turn called by ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Conf.conf;
+       & ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Conf.conf is in turn called by ESA_CCI/sbatchMProg_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.sh; 
+???
 
 -> IMERG directory  :  98: 'IMERG_01',
                        99: 'IMERG_02',
