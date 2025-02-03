@@ -71,16 +71,16 @@ Scripts and corresponding indicator numbers/names:
 
 -> VegDRI directory : 68: 'VegDRI'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is called by RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh;
-       RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh is in turn called by PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf;
-       & PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf is in turn called by sbatchMultiProg_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh; 
-???
+       This PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is called by VegDRI/RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh;
+       VegDRI/RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh is in turn called by VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf;
+       & VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf is in turn called by VegDRI/sbatchMultiProg_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh; 
 
 -> QuickDRI directory : 69: 'QuickDRI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/QuickDRI/InfoArraysForPrcntl_ClimGrid.py are the initial code structure, have to change this to final structure.
-       This InfoArraysForPrcntl_ClimGrid.py is called by RunProc_RefArraysForPrcntl_ClimGrid_mil.sh;
-       RunProc_RefArraysForPrcntl_ClimGrid_mil.sh is in turn called by RefArraysForPrcntl_ClimGrid_tasks_*.conf;
-       & RefArraysForPrcntl_ClimGrid_tasks_*.conf are in turn called by sbatchpods_RefArraysForPrcntl_ClimGrid_mil*.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py is called by QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh;
+       QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh is in turn called by QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf;
+       & QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf are in turn called by QuickDRI/sbatchMultiProg_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh; 
+???
 
 -> ESIs directory :  70: 'ESI_4wk',
                      71: 'ESI_12wk'

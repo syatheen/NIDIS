@@ -108,10 +108,10 @@ Python codes and corresponding indicator numbers/names:
 
 -> VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py : 68: 'VegDRI'
      Note that this VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is the initial code structure, have to change this to final structure.
-??????
 
--> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py : 69: 'QuickDRI'
-     Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI.py is the initial code structure, have to change this to final structure.
+-> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py : 69: 'QuickDRI'
+     Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+??????
 
 -> ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek.py :  70: 'ESI_4wk',
                                                         71: 'ESI_12wk',
