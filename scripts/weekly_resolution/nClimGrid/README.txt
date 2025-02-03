@@ -87,13 +87,13 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py is called by ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh;
        ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh is in turn called by ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf;
        & ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf is in turn called by ESIs/sbatchMProg_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.sh; 
-???
 
 -> SNODAS directory  : 96: 'SNODAS'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/SNODAS/InfoArrays_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This InfoArrays_ClimGrid1D.py is called by RunProc_InfoArrays_ClimGrid1D_mil.sh;
-       RunProc_InfoArrays_ClimGrid1D_mil.sh is in turn called by InfoArrays_ClimGrid1D_Conf.conf;
-       & InfoArrays_ClimGrid1D_Conf.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is called by SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh;
+       SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh is in turn called by SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf;
+       & SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf is in turn called by SNODAS/sbatchMProg_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh; 
+???
 
 -> ESA_CCI directory  :  97: 'ESA_CCI'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESA_CCI/InfoArrays_gdalWarp_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
