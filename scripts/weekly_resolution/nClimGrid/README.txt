@@ -80,14 +80,14 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py is called by QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh;
        QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh is in turn called by QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf;
        & QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf are in turn called by QuickDRI/sbatchMultiProg_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh; 
-???
 
 -> ESIs directory :  70: 'ESI_4wk',
                      71: 'ESI_12wk'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/ESIs/InfoArrays_gdalWarp_ClimGrid1D_V2.py are the initial code structure, have to change this to final structure.
-       This InfoArrays_gdalWarp_ClimGrid1D_V2.py is called by RunProcess_ClimGrid1D_Mil.sh;
-       RunProcess_ClimGrid1D_Mil.sh is in turn called by Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf;
-       & Task_InfoArrays_gdalWarp_ClimGrid1D_V2.conf is  in turn called by sbatchMultiProg_InfoArrays_gdalWarp_ClimGrid1D_V2.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py is called by ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh;
+       ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh is in turn called by ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf;
+       & ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf is in turn called by ESIs/sbatchMProg_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.sh; 
+???
 
 -> SNODAS directory  : 96: 'SNODAS'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/SNODAS/InfoArrays_ClimGrid1D.py are the initial code structure, have to change this to final structure.
