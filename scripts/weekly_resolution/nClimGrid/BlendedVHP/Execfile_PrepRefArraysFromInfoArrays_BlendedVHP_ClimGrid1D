@@ -1,0 +1,4 @@
+  ./RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh SMN
+  ./RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh TCI
+  ./RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh VCI
+  ./RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh VHI

@@ -121,7 +121,6 @@ Python codes and corresponding indicator numbers/names:
 
 -> ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py  :  97: 'ESA_CCI'
      Note that this ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is the initial code structure, have to change this to final structure.
-??????
  
 -> IMERG/PrepRefArraysFromInfoArrays_IMERG.py :    98: 'IMERG_01',
                                                    99: 'IMERG_02',
@@ -134,13 +133,14 @@ Python codes and corresponding indicator numbers/names:
                                                   106: 'IMERG_48',
                                                   107: 'IMERG_60',
                                                   108: 'IMERG_72'
-     Note that this IMERG/PrepRefArraysFromInfoArrays_IMERG.py is the initial code structure, have to change this to final structure.
+     Note that this PrepRefArraysFromInfoArrays_IMERG_ClimGrid1D_2_Indicators_98_to_108.py is the initial code structure, have to change this to final structure.
 
--> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP.py :  109: 'SmNDVI_BlendedVHP',
-                                                           110: 'TCI_BlendedVHP',
-                                                           111: 'VCI_BlendedVHP',
-                                                           112: 'VHI_BlendedVHP' 
-     Note that this BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP.py is the initial code structure, have to change this to final structure.
+-> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py :  109: 'SmNDVI_BlendedVHP',
+                                                                      110: 'TCI_BlendedVHP',
+                                                                      111: 'VCI_BlendedVHP',
+                                                                      112: 'VHI_BlendedVHP' 
+     Note that this BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+??????
 
 -> GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3.py :  113: 'GlobSnow3'
      Note that this GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3.py is the initial code structure, have to change this to final structure.
