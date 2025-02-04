@@ -108,11 +108,11 @@ Scripts and corresponding indicator numbers/names:
        This PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py is called by BlendedVHP/RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh;
        BlendedVHP/RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh is in turn called by BlendedVHP/Execfile_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D;
        & BlendedVHP/Execfile_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D is in turn called by BlendedVHP/sbatchpods_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh; 
-???
 
 -> GlobSnow3 directory  :  113: 'GlobSnow3'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/spatial_resolution/GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py are the initial code structure, have to change this to final structure.
-       This InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.py is called by RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
-       RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
-       & InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is  in turn called by sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py are the initial code structure, have to change this to final structure.
+       This PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is called by GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
+       GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
+       & GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is in turn called by GlobSnow3/sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+
 
