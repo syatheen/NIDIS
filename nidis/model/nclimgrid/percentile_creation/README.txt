@@ -1,9 +1,9 @@
 Python codes and corresponding indicator numbers/names:
 ------------------------------------------------------
 
--> PrepTrainNEval_ClimDivs_Indicators_1_to_2.py :  1: 'Z_index',
+-> PrepTrainNEval_ClimGrid1D_Indicators_1_to_2.py :  1: 'Z_index',
                                                    2: 'Z_index_60_month'
-     Note that this PrepTrainNEval_ClimDivs_Indicators_1_to_2.py file is the initial code structure, have to convert this to final structure.
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_1_to_2.py file is the initial code structure, have to convert this to final structure.
 
 -> PrepTrainNEval_ClimGrid_Indicators_3_to_4.py : 3: 'PMDI',
                                                   4: 'PHDI' 
@@ -45,41 +45,41 @@ Python codes and corresponding indicator numbers/names:
                                               94: 'tavg_01_nCG',
                                               95: 'tmax_01_nCG'
      Note that this NCEI/PrepSingle_ClimGrid1D_nClimGrid.py is the initial code structure, have to convert this to final structure.
+
+-> PrepTrainNEval_ClimGrid1D_Indicators_16.py : 16: 'CPC_soil_moisture'
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_16.py file is the initial code structure, have to convert this to final structure.
+
+-> GRACEDA/PrepSingle_ClimGrid1D_GRACEDA.py :  17: 'GRACE_DA_gw',
+-> GRACEDA/PrepSingle_ClimGrid1D_GRACEDA_CorrToMonthlyPerc.py  :   18: 'GRACE_DA_sfsm',
+                                                                   19: 'GRACE_DA_rtzsm'
+     Note that these GRACEDA files is the initial code structure, I have to change this to final structure.
+
+-> EDDI/PrepSingle_ClimGrid1D_GRACEDA_CorrToMonthlyPerc.py :   20: 'EDDI_1wk',
+                                                               21: 'EDDI_2wk',
+                                                               22: 'EDDI_3wk',
+                                                               23: 'EDDI_4wk',
+                                                               24: 'EDDI_5wk',
+                                                               25: 'EDDI_6wk',
+                                                               26: 'EDDI_7wk',
+                                                               27: 'EDDI_8wk',
+                                                               28: 'EDDI_9wk',
+                                                               29: 'EDDI_10wk',
+                                                               30: 'EDDI_11wk',
+                                                               31: 'EDDI_12wk',
+                                                               32: 'EDDI_1mn',
+                                                               33: 'EDDI_2mn',
+                                                               34: 'EDDI_3mn',
+                                                               35: 'EDDI_4mn',
+                                                               36: 'EDDI_5mn',
+                                                               37: 'EDDI_6mn',
+                                                               38: 'EDDI_7mn',
+                                                               39: 'EDDI_8mn',
+                                                               40: 'EDDI_9mn',
+                                                               41: 'EDDI_10mn',
+                                                               42: 'EDDI_11mn',
+-> EDDI/PrepSingle_ClimGrid1D_GRACEDA.py :                     43: 'EDDI_12mn'
+     Note that these EDDI files is the initial code structure, I have to change this to final structure.
 ?????
-
--> PrepRefArraysFromInfoArrays_Indicators_16.py : 16: 'CPC_soil_moisture'
-     Note that this PrepRefArraysFromInfoArrays_Indicators_16.py file  is the initial code structure, have to convert this to final structure.
-
--> GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA_ClimGrid1D.py :  17: 'GRACE_DA_gw',
-                                                                18: 'GRACE_DA_sfsm',
-                                                                19: 'GRACE_DA_rtzsm'
-     Note that this GRACEDA/PrepRefArraysFromInfoArrays_GRACEDA_ClimGrid1D.py is the initial code structure, I have to change this to final structure.
-
--> EDDI/PrepRefArraysFromInfoArrays_EDDI_ClimGrid1D.py :   20: 'EDDI_1wk',
-                                                           21: 'EDDI_2wk',
-                                                           22: 'EDDI_3wk',
-                                                           23: 'EDDI_4wk',
-                                                           24: 'EDDI_5wk',
-                                                           25: 'EDDI_6wk',
-                                                           26: 'EDDI_7wk',
-                                                           27: 'EDDI_8wk',
-                                                           28: 'EDDI_9wk',
-                                                           29: 'EDDI_10wk',
-                                                           30: 'EDDI_11wk',
-                                                           31: 'EDDI_12wk',
-                                                           32: 'EDDI_1mn',
-                                                           33: 'EDDI_2mn',
-                                                           34: 'EDDI_3mn',
-                                                           35: 'EDDI_4mn',
-                                                           36: 'EDDI_5mn',
-                                                           37: 'EDDI_6mn',
-                                                           38: 'EDDI_7mn',
-                                                           39: 'EDDI_8mn',
-                                                           40: 'EDDI_9mn',
-                                                           41: 'EDDI_10mn',
-                                                           42: 'EDDI_11mn',
-                                                           43: 'EDDI_12mn'
-     Note that this EDDI/PrepRefArraysFromInfoArrays_EDDI_ClimGrid1D.py is the initial code structure, I have to change this to final structure.
 
 -> PrepRefArraysFromInfoArrays_NLDAS_2_daily_ClimGrid1D_2_Indicators_44_to_67.py :    44: 'NLDAS2D_1MSM_Mosaic',
                                                                                       45: 'NLDAS2D_1MSM_Noah',
