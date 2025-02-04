@@ -8,8 +8,6 @@ Scripts and corresponding indicator numbers/names:
        This PalmerIndices/Run_PrepTrainNEval_ClimGrid_Indicators_3_to_4_mil.sh is in turn called by PalmerIndices/PrepTrainNEval_ClimGrid_Indicators_3_to_4_Conf.conf: 
        And finally this PalmerIndices/PrepTrainNEval_ClimGrid_Indicators_3_to_4_Conf.conf in turn called by PalmerIndices/sbatchMultiProg_PrepTrainNEval_ClimGrid_Indicators_3_to_4.sh .
 
-?????
-
 -> NCEI directory :  5: 'prcp_01_nCG',
                      6: 'prcp_02_nCG',
                      7: 'prcp_03_nCG',
@@ -45,10 +43,11 @@ Scripts and corresponding indicator numbers/names:
                     93: 'SPEI_pear_72_nCG',
                     94: 'tavg_01_nCG',
                     95: 'tmax_01_nCG'
-       Note that the scripts here calling /nidis/nidis/model/nclimgrid/weekly_resolution/NCEI/PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py are the initial code format, have to convert this to final format.
-       This PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py is called by NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh;
-       This NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh is in turn called by NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes: 
-       And finally this NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes in turn called by NCEI/sbatchpods_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh .
+       Note that the scripts here calling /nidis/nidis/model/nclimgrid/percentile_creation/NCEI/PrepSingle_ClimGrid1D_nClimGrid.py are the initial code format, have to convert this to final format.
+       This PrepSingle_ClimGrid1D_nClimGrid.py is called by NCEI/RunProc_PrepSingle_ClimGrid1D_nClimGrid_Mil.sh;
+       This NCEI/RunProc_PrepSingle_ClimGrid1D_nClimGrid_Mil.sh is in turn called by NCEI/PrepSingle_ClimGrid1D_nClimGrid_prcp.conf: 
+       And finally this NCEI/PrepSingle_ClimGrid1D_nClimGrid_prcp.conf in turn called by NCEI/sbatchMultiProg_dummy_Mil.sh .
+?????
 
 -> EDDI directory : 20: 'EDDI_1wk',
                     21: 'EDDI_2wk',
