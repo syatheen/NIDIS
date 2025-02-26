@@ -28,16 +28,19 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
   # BEGIN code arguments / editable section
 
   SingleUnified_BeginDateVecList = [2006, 1, 3] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 8, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
+  #SingleUnified_EndDateVecList = [2021, 8, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
+  SingleUnified_EndDateVecList = [2019, 12, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
 
   #ArgLSM = sys.argv[1] # Choices are 'Mosaic', 'Noah', 'SAC', 'VIC'
   #ArgVariable = sys.argv[2] # Choices currently implemented are '1MSM', 'TCSM'
   #ArgHUC = sys.argv[3] # Choices currently implemented are 'NA' (for "Not Applicable")
 
   input_path_weekly = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays'
+  #input_path_weekly = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/RefArrays'
   os.makedirs(input_path_weekly, exist_ok=True)
 
-  output_path_percentile = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/PreppedTrainNEvalNpzs/ClimGrid1D'
+  #output_path_percentile = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/PreppedTrainNEvalNpzs/ClimGrid1D'
+  output_path_percentile = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/PreppedTrainNEvalNpzs/ClimGrid1D'
   os.makedirs(output_path_percentile, exist_ok=True)
 
   if (ArgVariable == 'STRM') :
@@ -131,6 +134,12 @@ def main(ArgLSM='Mosaic', ArgVariable='EVAP', ArgHUC='NA'):
     print('Add remaining np.savez_compressed code lines for other variables!!')
     sys.exit(0)
   #end of if ArgVariable == '1MSM'
+
+  EndIdx_Pre = np.where( NLDAS_2_daily_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+
+  NLDAS_2_daily_YYYYMMDD_Of_RefArray = NLDAS_2_daily_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+  NLDAS_2_daily_RefArray = NLDAS_2_daily_RefArray[:EndIdx_Pre+1]
 
   MonthlyList_NLDAS_2_daily_YYYYMMDD_Of_RefArray, MonthlyList_NLDAS_2_daily_RefArray = CreateMonthlyLists_YYYYMMDDAndArray(NLDAS_2_daily_YYYYMMDD_Of_RefArray, NLDAS_2_daily_RefArray)
 
