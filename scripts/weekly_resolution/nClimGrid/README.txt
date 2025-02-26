@@ -35,7 +35,7 @@ Scripts and corresponding indicator numbers/names:
                     93: 'SPEI_pear_72_nCG',
                     94: 'tavg_01_nCG',
                     95: 'tmax_01_nCG'
-       Note that the scripts here calling /nidis/nidis/model/nclimgrid/weekly_resolution/NCEI/PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py are the initial code format, have to convert this to final format.
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/NCEI/PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py are the initial code format, have to convert this to final format.
        This PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes_WArg.py is called by NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh;
        This NCEI/RunProc_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh is in turn called by NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes: 
        And finally this NCEI/Exec_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes in turn called by NCEI/sbatchpods_PrepRefArraysFromInfoArrays_nClimGrid_At_nCGRes.sh .
@@ -111,8 +111,8 @@ Scripts and corresponding indicator numbers/names:
 
 -> GlobSnow3 directory  :  113: 'GlobSnow3'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is called by GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
-       GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
-       & GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is in turn called by GlobSnow3/sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+       This PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is called by GlobSnow3/Run_PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Mil.sh;
+       GlobSnow3/Run_PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Mil.sh is in turn called by GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Conf.conf;
+       & GlobSnow3/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Conf.conf is in turn called by GlobSnow3/sbatchMProg_PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Mil.sh; 
 
 

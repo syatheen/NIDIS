@@ -119,6 +119,14 @@ DictofNumNamePairs_Channels = {1: 'Z_index',
                                113: 'GlobSnow3'}
 
 DictofSpatialAndWeeklyResolutionMapping = {
+    44: {'ArgLSM': 'Mosaic', 'ArgVariable': '1MSM'},
+    45: {'ArgLSM': 'Noah', 'ArgVariable': '1MSM'},
+    46: {'ArgLSM': 'SAC', 'ArgVariable': '1MSM'},
+    47: {'ArgLSM': 'VIC', 'ArgVariable': '1MSM'},
+    48: {'ArgLSM': 'Mosaic', 'ArgVariable': 'TCSM'},
+    49: {'ArgLSM': 'Noah', 'ArgVariable': 'TCSM'},
+    50: {'ArgLSM': 'SAC', 'ArgVariable': 'TCSM'},
+    51: {'ArgLSM': 'VIC', 'ArgVariable': 'TCSM'},
     52: {'ArgLSM': 'Mosaic', 'ArgVariable': 'EVAP'},
     53: {'ArgLSM': 'Noah', 'ArgVariable': 'EVAP'},
     54: {'ArgLSM': 'SAC', 'ArgVariable': 'EVAP'},

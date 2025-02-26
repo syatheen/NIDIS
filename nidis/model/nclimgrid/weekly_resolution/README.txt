@@ -122,17 +122,17 @@ Python codes and corresponding indicator numbers/names:
 -> ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py  :  97: 'ESA_CCI'
      Note that this ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is the initial code structure, have to change this to final structure.
  
--> IMERG/PrepRefArraysFromInfoArrays_IMERG.py :    98: 'IMERG_01',
-                                                   99: 'IMERG_02',
-                                                  100: 'IMERG_03',
-                                                  101: 'IMERG_06',
-                                                  102: 'IMERG_09',
-                                                  103: 'IMERG_12',
-                                                  104: 'IMERG_24',
-                                                  105: 'IMERG_36',
-                                                  106: 'IMERG_48',
-                                                  107: 'IMERG_60',
-                                                  108: 'IMERG_72'
+-> PrepRefArraysFromInfoArrays_IMERG_ClimGrid1D_2_Indicators_98_to_108.py :    98: 'IMERG_01',
+                                                                               99: 'IMERG_02',
+                                                                              100: 'IMERG_03',
+                                                                              101: 'IMERG_06',
+                                                                              102: 'IMERG_09',
+                                                                              103: 'IMERG_12',
+                                                                              104: 'IMERG_24',
+                                                                              105: 'IMERG_36',
+                                                                              106: 'IMERG_48',
+                                                                              107: 'IMERG_60',
+                                                                              108: 'IMERG_72'
      Note that this PrepRefArraysFromInfoArrays_IMERG_ClimGrid1D_2_Indicators_98_to_108.py is the initial code structure, have to change this to final structure.
 
 -> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py :  109: 'SmNDVI_BlendedVHP',
