@@ -1,24 +1,28 @@
 #!/usr/bin/env python
 # Coded by Soni Yatheendradas
-#         on Apr 30, 2023
+#         on Jan 26, 2025
 from __future__ import division
+import sys
+#NOTE: sys.argv indices start at 1, not 0
+#Python arguments to this program will be (for now):
+#        EDDI_WhichPastPeriod
+#ArgNum   1
 
 # BEGIN code arguments / editable section
 
-#SingleUnified_BeginDateVecList = [2002, 4, 2]  # Beginning single-unified year, month, day of month, this is also a Tuesday
-SingleUnified_BeginDateVecList = [2006, 1, 3]  # Beginning single-unified year, month, day of month, this is also a Tuesday
-#SingleUnified_EndDateVecList = [2020, 10, 20]  # Ending single-unified year, month, day of month, this is also a Tuesday
-SingleUnified_EndDateVecList = [2019, 12, 31]  # Ending single-unified year, month, day of month, this is also a Tuesday
+SingleUnified_BeginDateVecList = [2006, 1, 3] # Beginning single-unified year, month, day of month, this is also a Tuesday
+SingleUnified_EndDateVecList = [2019, 12, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
 
-GRACEDA_rtzsm_inst_RefFileName = 'RefArrays/ClimGrid1D_GRACEDA_rtzsm_inst_20020402To20201020.npz'
-GRACEDA_sfsm_inst_RefFileName = 'RefArrays/ClimGrid1D_GRACEDA_sfsm_inst_20020402To20201020.npz'
+EDDI_WhichPastPeriod = sys.argv[1] # Choices range from '01wk' till '12wk' in 1-week increments, and '01mn' till '12mn' in 1-month increments
 
-SingleUnifiedDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GRACEDA_Corr2MonthlyPerc_'+str(SingleUnified_BeginDateVecList[0])+format(SingleUnified_BeginDateVecList[1],'02')+format(SingleUnified_BeginDateVecList[2],'02')+'To'+str(SingleUnified_EndDateVecList[0])+format(SingleUnified_EndDateVecList[1],'02')+format(SingleUnified_EndDateVecList[2],'02')+'.npz'
+EDDI_RefFileName = '/discover/nobackup/projects/nca/syatheen/EDDI_Npzs/RefArrays/ClimGrid1D_EDDI_'+EDDI_WhichPastPeriod+'_19800108To20201229.npz'
+
+SingleUnifiedDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_EDDI'+EDDI_WhichPastPeriod+'_Corr2MonthlyPerc_'+str(SingleUnified_BeginDateVecList[0])+format(SingleUnified_BeginDateVecList[1],'02')+format(SingleUnified_BeginDateVecList[2],'02')+'To'+str(SingleUnified_EndDateVecList[0])+format(SingleUnified_EndDateVecList[1],'02')+format(SingleUnified_EndDateVecList[2],'02')+'.npz'
 
 # END code arguments / editable section
 
 from datetime import date, datetime, timedelta
-import sys
+#import sys
 import numpy as np
 from scipy.interpolate import interp1d
 from scipy.stats import rankdata
@@ -41,22 +45,19 @@ if SingleUnified_BeginDate > SingleUnified_EndDate:
   print('SingleUnified_BeginDate should not be later than SingleUnified_EndDate!!!')
   sys.exit(0)
 
-GRACEDA_rtzsm_inst_RefObject = np.load(GRACEDA_rtzsm_inst_RefFileName)
-GRACEDA_sfsm_inst_RefObject = np.load(GRACEDA_sfsm_inst_RefFileName)
+EDDI_RefObject = np.load(EDDI_RefFileName)
 
-GRACEDA_YYYYMMDD_Of_RefArray = GRACEDA_rtzsm_inst_RefObject['GRACEDA_YYYYMMDD_Of_RefArray']
+EDDI_YYYYMMDD_Of_RefArray = EDDI_RefObject['EDDI_YYYYMMDD_Of_RefArray']
 
-GRACEDA_rtzsm_inst_RefArray = GRACEDA_rtzsm_inst_RefObject['GRACEDA_RefArray']
-GRACEDA_sfsm_inst_RefArray = GRACEDA_sfsm_inst_RefObject['GRACEDA_RefArray']
+EDDI_RefArray = EDDI_RefObject['EDDI_RefArray']
 
-EndIdx_Pre = np.where( GRACEDA_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+EndIdx_Pre = np.where( EDDI_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
 
-GRACEDA_YYYYMMDD_Of_RefArray = GRACEDA_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+EDDI_YYYYMMDD_Of_RefArray = EDDI_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
 
-GRACEDA_rtzsm_inst_RefArray = GRACEDA_rtzsm_inst_RefArray[:EndIdx_Pre+1]
-GRACEDA_sfsm_inst_RefArray = GRACEDA_sfsm_inst_RefArray[:EndIdx_Pre+1]
+EDDI_RefArray = EDDI_RefArray[:EndIdx_Pre+1]
 
-def CreateMonthlyLists_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
+def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
   MonthlyList_YYYYMMDD_Of_Array = []
   MonthlyList_Array = []
@@ -68,12 +69,11 @@ def CreateMonthlyLists_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
     MonthlyList_Array.append(ThisArray_ThisMonth)
   #end of for WhichMonth in range(1,12+1):
   return MonthlyList_YYYYMMDD_Of_Array, MonthlyList_Array
-#end of def CreateMonthlyLists_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray)
+#end of def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
 
-MonthlyList_GRACEDA_YYYYMMDD_Of_RefArray, MonthlyList_GRACEDA_rtzsm_inst_RefArray = CreateMonthlyLists_YYYYMMDDAndArray(GRACEDA_YYYYMMDD_Of_RefArray, GRACEDA_rtzsm_inst_RefArray)
-MonthlyList_GRACEDA_YYYYMMDD_Of_RefArray, MonthlyList_GRACEDA_sfsm_inst_RefArray = CreateMonthlyLists_YYYYMMDDAndArray(GRACEDA_YYYYMMDD_Of_RefArray, GRACEDA_sfsm_inst_RefArray)
+MonthlyList_EDDI_YYYYMMDD_Of_RefArray, MonthlyList_EDDI_RefArray = MonthlyList_YYYYMMDDAndArray(EDDI_YYYYMMDD_Of_RefArray, EDDI_RefArray)
 
-def CreateYYYYMMDD_Of_Array_FromEndpointdates(BeginDate, EndDate):
+def CreateYYYYMMDD_Of_Array(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
   TotalNumWeeksDiff = TotalNumDaysDiff//7
   HumanDatesList_Of_Array = []
@@ -83,9 +83,9 @@ def CreateYYYYMMDD_Of_Array_FromEndpointdates(BeginDate, EndDate):
   YYYYMMDD_Of_Array = np.array(HumanDatesList_Of_Array, dtype = np.int32)
   YYYYMMDD_Of_Array = np.expand_dims(YYYYMMDD_Of_Array, axis=1)
   return YYYYMMDD_Of_Array
-#end of def CreateYYYYMMDD_Of_Array_FromEndpointdates(BeginDate, EndDate)
+#end of def CreateYYYYMMDD_Of_Array(BeginDate, EndDate)
 
-def TimeSlice_YYYYMMDDAndRefArrays(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecList, EndDateVecList):
+def TimeSlice_YYYYMMDDAndRefArray(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecList, EndDateVecList):
   BeginYYYYMMDD = 10000*BeginDateVecList[0] + 100*BeginDateVecList[1] + BeginDateVecList[2]
   EndYYYYMMDD = 10000*EndDateVecList[0] + 100*EndDateVecList[1] + EndDateVecList[2]
   if ( ( BeginYYYYMMDD in list(YYYYMMDD_Of_RefArray) ) and
@@ -97,7 +97,7 @@ def TimeSlice_YYYYMMDDAndRefArrays(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecL
   else: # if ( (BeginYYYYMMDD in list(YYYYMMDD_Of_RefArray) and...
     BeginDate = date(BeginDateVecList[0], BeginDateVecList[1], BeginDateVecList[2])
     EndDate = date(EndDateVecList[0], EndDateVecList[1], EndDateVecList[2])
-    YYYYMMDD_Of_PrcntlArray = CreateYYYYMMDD_Of_Array_FromEndpointdates(BeginDate, EndDate)
+    YYYYMMDD_Of_PrcntlArray = CreateYYYYMMDD_Of_Array(BeginDate, EndDate)
     PrcntlArray = np.empty([YYYYMMDD_Of_PrcntlArray.shape[0], RefArray.shape[1]]) 
     PrcntlArray[:] = np.NaN
     if ( BeginYYYYMMDD in list(YYYYMMDD_Of_RefArray) ):
@@ -108,7 +108,7 @@ def TimeSlice_YYYYMMDDAndRefArrays(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecL
       PrcntlArray[ PrcntlArray.shape[0]-(EndIdx+1) : ] = RefArray[ : EndIdx+1 ] 
   #end of if ( (BeginYYYYMMDD in list(YYYYMMDD_Of_RefArray) and...
   return YYYYMMDD_Of_PrcntlArray, PrcntlArray
-#end of def TimeSlice_YYYYMMDDAndRefArrays(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecList, EndDateVecList)
+#end of def TimeSlice_YYYYMMDDAndRefArray(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecList, EndDateVecList):
 
 def FindPercentilesForValues(RefArray_1d, Values_1d):
   RefArray_1d_NotNaN = RefArray_1d[~np.isnan(RefArray_1d)]
@@ -146,11 +146,11 @@ def LoopPercentileCalcOverSpatialUnits(RefArray, PrcntlArray):
   for WhichSpatialUnit in range(PrcntlArray.shape[1]):
     RefArray_ThisSpatialUnit = RefArray[:, WhichSpatialUnit]
     PrcntlArray_ThisSpatialUnit = PrcntlArray[:, WhichSpatialUnit]
-    PrcntlArray_ThisSpatialUnit = FindPercentilesForValues(RefArray_ThisSpatialUnit, PrcntlArray_ThisSpatialUnit)
+    PrcntlArray_ThisSpatialUnit = FindPercentilesForValues(RefArray_ThisSpatialUnit, PrcntlArray_ThisSpatialUnit) 
     PrcntlArray[:, WhichSpatialUnit] = PrcntlArray_ThisSpatialUnit
   #end of for WhichSpatialUnit in range(PrcntlArray.shape[1]):
   return PrcntlArray
-#end of def LoopPercentileCalcOverSpatialUnits(RefArray, PrcntlArray)
+#end of def LoopPercentileCalcOverSpatialUnits(RefArray, PrcntlArray):
 
 def LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_RefArray, MonthlyList_PrcntlArray):
   for WhichMonth in range(1,12+1):
@@ -160,7 +160,7 @@ def LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_RefArray, MonthlyList_Prcn
     MonthlyList_PrcntlArray[WhichMonth-1] = PrcntlArray
   #end of for WhichMonth in range(1,12+1):
   return MonthlyList_PrcntlArray
-#end of def LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_RefArray, MonthlyList_PrcntlArray)
+#end of def LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_RefArray, MonthlyList_PrcntlArray):
 
 def ReAssembleArraysFromMonthlyList(YYYYMMDD_Of_PrcntlArray, PrcntlArray, MonthlyList_YYYYMMDD_Of_PrcntlArray, MonthlyList_PrcntlArray):
   YYYYMMDD_Of_PrcntlArray_1d = np.squeeze(YYYYMMDD_Of_PrcntlArray, axis = 1)
@@ -170,12 +170,11 @@ def ReAssembleArraysFromMonthlyList(YYYYMMDD_Of_PrcntlArray, PrcntlArray, Monthl
     ThisMonth_pos = np.searchsorted(YYYYMMDD_Of_PrcntlArray_1d[all_sorted], YYYYMMDD_Of_PrcntlArray_ThisMonth_1d)
     indices = all_sorted[ThisMonth_pos]
     PrcntlArray[indices, :] = MonthlyList_PrcntlArray[WhichMonth-1]
-  #end of for WhichMonth in range(1,12+1)
+  #end of for WhichMonth in range(1,12+1):
   return PrcntlArray
-#end of def ReAssembleArraysFromMonthlyList(YYYYMMDD_Of_PrcntlArray, PrcntlArray, MonthlyList_YYYYMMDD_Of_PrcntlArray, MonthlyList_PrcntlArray)
+#end of def ReAssembleArraysFromMonthlyList(YYYYMMDD_Of_PrcntlArray, PrcntlArray, MonthlyList_YYYYMMDD_Of_PrcntlArray, MonthlyList_PrcntlArray):
 
 def PrintInfoAboutArray(ThisArray, ThisArray_Str):
-  print('')
   print(ThisArray_Str,".shape is ",ThisArray.shape)
   print(ThisArray_Str,".dtype is ",ThisArray.dtype)
   print(ThisArray_Str," is ",ThisArray)
@@ -183,36 +182,27 @@ def PrintInfoAboutArray(ThisArray, ThisArray_Str):
   print("np.amax(np.isnan(",ThisArray_Str,").sum(axis=0)) is ",np.amax(np.isnan(ThisArray).sum(axis=0)))
   print("np.amin(np.isnan(",ThisArray_Str,").sum(axis=1)) is ",np.amin(np.isnan(ThisArray).sum(axis=1)))
   print("np.amax(np.isnan(",ThisArray_Str,").sum(axis=1)) is ",np.amax(np.isnan(ThisArray).sum(axis=1)))
-  print("np.isnan(np.nansum(ThisArray, axis = 0)).sum() is ",np.isnan(np.nansum(ThisArray, axis = 0)).sum())
-  print("np.isnan(np.nansum(ThisArray, axis = 1)).sum() is ",np.isnan(np.nansum(ThisArray, axis = 1)).sum())
   print('overall min is ',np.nanmin(ThisArray),', overall max is ',np.nanmax(ThisArray))
-  print('')
 #end of def PrintInfoAboutArray(ThisArray, ThisArray_Str):
 
-#BEGIN section for SingleUnified
+#BEGIN section for single-unified
 
-GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_rtzsm_inst_PrcntlArray = TimeSlice_YYYYMMDDAndRefArrays(GRACEDA_YYYYMMDD_Of_RefArray, GRACEDA_rtzsm_inst_RefArray, SingleUnified_BeginDateVecList, SingleUnified_EndDateVecList)
-GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_sfsm_inst_PrcntlArray = TimeSlice_YYYYMMDDAndRefArrays(GRACEDA_YYYYMMDD_Of_RefArray, GRACEDA_sfsm_inst_RefArray, SingleUnified_BeginDateVecList, SingleUnified_EndDateVecList)
+EDDI_YYYYMMDD_Of_PrcntlArray, EDDI_PrcntlArray = TimeSlice_YYYYMMDDAndRefArray(EDDI_YYYYMMDD_Of_RefArray, EDDI_RefArray, SingleUnified_BeginDateVecList, SingleUnified_EndDateVecList)
 
-MonthlyList_GRACEDA_YYYYMMDD_Of_PrcntlArray, MonthlyList_GRACEDA_rtzsm_inst_PrcntlArray = CreateMonthlyLists_YYYYMMDDAndArray(GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_rtzsm_inst_PrcntlArray)
-MonthlyList_GRACEDA_YYYYMMDD_Of_PrcntlArray, MonthlyList_GRACEDA_sfsm_inst_PrcntlArray = CreateMonthlyLists_YYYYMMDDAndArray(GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_sfsm_inst_PrcntlArray)
+MonthlyList_EDDI_YYYYMMDD_Of_PrcntlArray, MonthlyList_EDDI_PrcntlArray = MonthlyList_YYYYMMDDAndArray(EDDI_YYYYMMDD_Of_PrcntlArray, EDDI_PrcntlArray)
 
-MonthlyList_GRACEDA_rtzsm_inst_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_GRACEDA_rtzsm_inst_RefArray, MonthlyList_GRACEDA_rtzsm_inst_PrcntlArray)
-MonthlyList_GRACEDA_sfsm_inst_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_GRACEDA_sfsm_inst_RefArray, MonthlyList_GRACEDA_sfsm_inst_PrcntlArray)
+MonthlyList_EDDI_PrcntlArray = LoopPrcntlCalcOverMonthsNSpatialUnits(MonthlyList_EDDI_RefArray, MonthlyList_EDDI_PrcntlArray)
 
-GRACEDA_rtzsm_inst_PrcntlArray = ReAssembleArraysFromMonthlyList(GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_rtzsm_inst_PrcntlArray, MonthlyList_GRACEDA_YYYYMMDD_Of_PrcntlArray, MonthlyList_GRACEDA_rtzsm_inst_PrcntlArray)
-GRACEDA_sfsm_inst_PrcntlArray = ReAssembleArraysFromMonthlyList(GRACEDA_YYYYMMDD_Of_PrcntlArray, GRACEDA_sfsm_inst_PrcntlArray, MonthlyList_GRACEDA_YYYYMMDD_Of_PrcntlArray, MonthlyList_GRACEDA_sfsm_inst_PrcntlArray)
+EDDI_PrcntlArray = ReAssembleArraysFromMonthlyList(EDDI_YYYYMMDD_Of_PrcntlArray, EDDI_PrcntlArray, MonthlyList_EDDI_YYYYMMDD_Of_PrcntlArray, MonthlyList_EDDI_PrcntlArray)
 
-print('SingleUnified: NumDates = ', GRACEDA_rtzsm_inst_PrcntlArray.shape[0], ', NumSpatialUnits = ',GRACEDA_rtzsm_inst_PrcntlArray.shape[1])
-PrintInfoAboutArray(GRACEDA_rtzsm_inst_PrcntlArray, 'GRACEDA_rtzsm_inst_PrcntlArray')
-PrintInfoAboutArray(GRACEDA_sfsm_inst_PrcntlArray, 'GRACEDA_sfsm_inst_PrcntlArray')
+print('Single-unified: NumDates = ', EDDI_PrcntlArray.shape[0], ', NumSpatialUnits = ',EDDI_PrcntlArray.shape[1])
+PrintInfoAboutArray(EDDI_PrcntlArray, 'EDDI_PrcntlArray')
 
 np.savez_compressed(SingleUnifiedDataFilename, 
-                    YYYYMMDD_Of_Array = GRACEDA_YYYYMMDD_Of_PrcntlArray, 
-                    GRACEDA_rtzsm_inst_PrcntlArray = GRACEDA_rtzsm_inst_PrcntlArray, 
-                    GRACEDA_sfsm_inst_PrcntlArray = GRACEDA_sfsm_inst_PrcntlArray)
+                    YYYYMMDD_Of_Array = EDDI_YYYYMMDD_Of_PrcntlArray, 
+                    EDDI_PrcntlArray = EDDI_PrcntlArray)
 
-#END section for SingleUnified
+#END section for single-unified
 
 eeend_Overall = datetime.now()
 eeelapsed_Overall = eeend_Overall - ssstart_Overall

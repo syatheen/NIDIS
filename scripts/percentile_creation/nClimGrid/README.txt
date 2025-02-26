@@ -3,7 +3,7 @@ Scripts and corresponding indicator numbers/names:
 
 -> PalmerIndices directory : 3: 'PMDI',
                              4: 'PHDI'
-       Note that the scripts here calling /nidis/nidis/model/nclimgrid/percentile_creation/PrepTrainNEval_ClimGrid_Indicators_3_to_4.py are the initial code format, have to convert this to final format.
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/PrepTrainNEval_ClimGrid_Indicators_3_to_4.py are the initial code format, have to convert this to final format.
        This PrepTrainNEval_ClimGrid_Indicators_3_to_4.py is called by PalmerIndices/Run_PrepTrainNEval_ClimGrid_Indicators_3_to_4_mil.sh;
        This PalmerIndices/Run_PrepTrainNEval_ClimGrid_Indicators_3_to_4_mil.sh is in turn called by PalmerIndices/PrepTrainNEval_ClimGrid_Indicators_3_to_4_Conf.conf: 
        And finally this PalmerIndices/PrepTrainNEval_ClimGrid_Indicators_3_to_4_Conf.conf in turn called by PalmerIndices/sbatchMultiProg_PrepTrainNEval_ClimGrid_Indicators_3_to_4.sh .
@@ -71,14 +71,14 @@ Scripts and corresponding indicator numbers/names:
                     40: 'EDDI_9mn',
                     41: 'EDDI_10mn',
                     42: 'EDDI_11mn',
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/EDDI/PrepSingle_ClimGrid1D_GRACEDA_CorrToMonthlyPerc.py are the initial code structure, have to change this to final structure.
-       This PrepSingle_ClimGrid1D_GRACEDA_CorrToMonthlyPerc.py is called by EDDI/RunProc_PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Mil.sh;
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/EDDI/PrepSingle_ClimGrid1D_EDDI_CorrToMonthlyPerc.py are the initial code structure, have to change this to final structure.
+       This PrepSingle_ClimGrid1D_EDDI_CorrToMonthlyPerc.py is called by EDDI/RunProc_PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Mil.sh;
        EDDI/RunProc_PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Mil.sh is in turn called by EDDI/PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Conf.conf;
        & EDDI/PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Conf.conf is in turn called by EDDI/sbatchpods_PrepSingle_ClmGrd1D_EDDI_CrrToMnthlyPrc_Mil.sh; 
 
 -> EDDI directory :  43: 'EDDI_12mn',
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/EDDI/PrepSingle_ClimGrid1D_GRACEDA.py are the initial code structure, have to change this to final structure.
-       This PrepSingle_ClimGrid1D_GRACEDA.py is called by EDDI/RunProc_PrepSingle_ClimGrid1D_EDDI_Mil.sh;
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/EDDI/PrepSingle_ClimGrid1D_EDDI.py are the initial code structure, have to change this to final structure.
+       This PrepSingle_ClimGrid1D_EDDI.py is called by EDDI/RunProc_PrepSingle_ClimGrid1D_EDDI_Mil.sh;
        EDDI/RunProc_PrepSingle_ClimGrid1D_EDDI_Mil.sh is in turn called by EDDI/PrepSingle_ClimGrid1D_EDDI_Conf.conf;
        & EDDI/PrepSingle_ClimGrid1D_EDDI_Conf.conf is in turn called by EDDI/sbatchpods_PrepSingle_ClmGrd1D_EDDI_Mil.sh; 
 ?????
