@@ -94,14 +94,14 @@ Scripts and corresponding indicator numbers/names:
        This PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py is called by SNODAS/Run_PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Mil.sh;
        SNODAS/Run_PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Mil.sh is in turn called by SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Conf.conf;
        & SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Conf.conf is in turn called by SNODAS/sbatchMProg_PrepSingle_ClimGrid1D_SNODAS_OverallPerc.sh; 
-?????
 
 -> ESA_CCI directory  :  97: 'ESA_CCI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is called by ESA_CCI/Run_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Mil.sh;
-       ESA_CCI/Run_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Mil.sh is in turn called by ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Conf.conf;
-       & ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI_Conf.conf is in turn called by ESA_CCI/sbatchMProg_PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/PrepTrainNEval_ClimGrid1D_Indicators_97.py are the initial code structure, have to change this to final structure.
+       This PrepTrainNEval_ClimGrid1D_Indicators_97.py is called by ESA_CCI/Run_PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Mil.sh;
+       ESA_CCI/Run_PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Mil.sh is in turn called by ESA_CCI/PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Conf.conf;
+       & ESA_CCI/PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Conf.conf is in turn called by ESA_CCI/sbatchMProg_PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI.sh; 
 
+?????
 -> BlendedVHP directory : 109: 'SmNDVI_BlendedVHP',
                           110: 'TCI_BlendedVHP',
                           111: 'VCI_BlendedVHP',

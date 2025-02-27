@@ -139,7 +139,7 @@ ESA_CCI_YYYYMMDD_Of_PrcntlArray, ESA_CCI_PrcntlArray = TimeSlice_YYYYMMDDAndRefA
 
 ESA_CCI_PrcntlArray = LoopPercentileCalcOverSpatialUnits(ESA_CCI_RefArray, ESA_CCI_PrcntlArray)
 
-print('Training: NumDates = ', SNODAS_PrcntlArray.shape[0], ', NumSpatialUnits = ',SNODAS_PrcntlArray.shape[1])
+print('Training: NumDates = ', ESA_CCI_PrcntlArray.shape[0], ', NumSpatialUnits = ',ESA_CCI_PrcntlArray.shape[1])
 PrintInfoAboutArray(ESA_CCI_YYYYMMDD_Of_PrcntlArray, 'ESA_CCI_YYYYMMDD_Of_PrcntlArray')
 PrintInfoAboutArray(ESA_CCI_PrcntlArray, 'ESA_CCI_PrcntlArray')
 

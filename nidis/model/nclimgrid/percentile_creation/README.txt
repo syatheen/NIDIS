@@ -119,10 +119,10 @@ Python codes and corresponding indicator numbers/names:
 -> SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py  : 96: 'SNODAS'
      Note that this SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py is the initial code structure, have to change this to final structure.
 
-?????
--> ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py  :  97: 'ESA_CCI'
-     Note that this ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is the initial code structure, have to change this to final structure.
+-> PrepTrainNEval_ClimGrid1D_Indicators_97.py  :  97: 'ESA_CCI'
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_97.py is the initial code structure, have to change this to final structure.
  
+?????
 -> IMERG/PrepRefArraysFromInfoArrays_IMERG.py :    98: 'IMERG_01',
                                                    99: 'IMERG_02',
                                                   100: 'IMERG_03',
