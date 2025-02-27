@@ -140,10 +140,9 @@ Python codes and corresponding indicator numbers/names:
                                                                  111: 'VCI_BlendedVHP',
                                                                  112: 'VHI_BlendedVHP' 
      Note that this BlendedVHP/PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py is the initial code structure, have to change this to final structure.
-?????
 
--> PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py :  113: 'GlobSnow3'
-     Note that this PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is the initial code structure, have to change this to final structure.
+-> PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3.py :  113: 'GlobSnow3'
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3.py is the initial code structure, have to change this to final structure.
 
 
 

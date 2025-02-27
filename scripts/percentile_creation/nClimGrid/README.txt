@@ -109,12 +109,11 @@ Scripts and corresponding indicator numbers/names:
        This PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py is called by BlendedVHP/RunProc_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh;
        BlendedVHP/RunProc_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh is in turn called by BlendedVHP/Execfile_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc;
        & BlendedVHP/Execfile_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc is in turn called by BlendedVHP/sbatchpods_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh; 
-?????
 
 -> GlobSnow3 directory  :  113: 'GlobSnow3'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is called by GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh;
-       GlobSnow3/RunProc_InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthly.sh is in turn called by GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf;
-       & GlobSnow3/InfoArrays_ArcMap_ClimGrid1D_DailyCollToMonthlyTasks*.conf is in turn called by GlobSnow3/sbatchMultiProg_InfoArrays_ClimGrid1D_DailyCollToMonthlyTasks_Mil.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3.py are the initial code structure, have to change this to final structure.
+       This PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3.py is called by GlobSnow3/Run_PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3_Mil.sh;
+       GlobSnow3/Run_PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3_Mil.sh is in turn called by GlobSnow3/PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3_Conf.conf;
+       & GlobSnow3/PrepTrainNEval_ClimGrid1D_Indicators_113_GlobSnow3_Conf.conf is in turn called by GlobSnow3/sbatchMProg_PrepTrainNEval_ClimDivs_Indicators_113_GlobSnow3_Mil.sh; 
 
 
