@@ -105,17 +105,17 @@ Python codes and corresponding indicator numbers/names:
                                                                 66: 'NLDAS2D_STRMH04_SAC',
                                                                 67: 'NLDAS2D_STRMH04_VIC'
      Note that these PrepSingle_ClimGrid1D_NLDAS_2_daily_CorrToMonthlyPerc_Indicators_44_to_55.py & PrepSingle_ClimGrid1D_NLDAS_2_daily_Indicators_56_to_67.py are the final code structure that are called by the 'view' code nidis/nidis/view/nclimgrid/PercentileCreation_CLI.py
+
+-> PrepTrainNEval_ClimGrid1D_Indicators_68.py : 68: 'VegDRI'
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_68.py is the initial code structure, have to change this to final structure.
+
+-> PrepTrainNEval_ClimGrid1D_Indicators_69.py : 69: 'QuickDRI'
+     Note that this PrepTrainNEval_ClimGrid1D_Indicators_69.py is the initial code structure, have to change this to final structure.
+
+-> ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py :  70: 'ESI_4wk',
+                                                                 71: 'ESI_12wk',
+     Note that this ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py is the initial code structure, have to change this to final structure.
 ?????
-
--> VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py : 68: 'VegDRI'
-     Note that this VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is the initial code structure, have to change this to final structure.
-
--> QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py : 69: 'QuickDRI'
-     Note that this QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py is the initial code structure, have to change this to final structure.
-
--> ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py :  70: 'ESI_4wk',
-                                                                   71: 'ESI_12wk',
-     Note that this ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py is the initial code structure, have to change this to final structure.
 
 -> SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py  : 96: 'SNODAS'
      Note that this SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is the initial code structure, have to change this to final structure.

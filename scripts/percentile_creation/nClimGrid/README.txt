@@ -81,27 +81,15 @@ Scripts and corresponding indicator numbers/names:
        This PrepSingle_ClimGrid1D_EDDI.py is called by EDDI/RunProc_PrepSingle_ClimGrid1D_EDDI_Mil.sh;
        EDDI/RunProc_PrepSingle_ClimGrid1D_EDDI_Mil.sh is in turn called by EDDI/PrepSingle_ClimGrid1D_EDDI_Conf.conf;
        & EDDI/PrepSingle_ClimGrid1D_EDDI_Conf.conf is in turn called by EDDI/sbatchpods_PrepSingle_ClmGrd1D_EDDI_Mil.sh; 
-?????
-
--> VegDRI directory : 68: 'VegDRI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.py is called by VegDRI/RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh;
-       VegDRI/RunProc_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh is in turn called by VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf;
-       & VegDRI/PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1DTask.conf is in turn called by VegDRI/sbatchMultiProg_PrepRefArraysFromInfoArrays_VegDRI_ClimGrid1D.sh; 
-
--> QuickDRI directory : 69: 'QuickDRI'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.py is called by QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh;
-       QuickDRI/RunProc_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh is in turn called by QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf;
-       & QuickDRI/PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1DTask.conf are in turn called by QuickDRI/sbatchMultiProg_PrepRefArraysFromInfoArrays_QuickDRI_ClimGrid1D.sh; 
 
 -> ESIs directory :  70: 'ESI_4wk',
                      71: 'ESI_12wk'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.py is called by ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh;
-       ESIs/Run_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Mil.sh is in turn called by ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf;
-       & ESIs/PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D_Conf.conf is in turn called by ESIs/sbatchMProg_PrepRefArraysFromInfoArrays_ESI_Multiweek_ClimGrid1D.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py are the initial code structure, have to change this to final structure.
+       This PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py is called by ESIs/Run_PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Mil.sh;
+       ESIs/Run_PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Mil.sh is in turn called by ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Conf.conf;
+       & ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Conf.conf is in turn called by ESIs/sbatchMultiProg_PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.sh; 
 
+?????
 -> SNODAS directory  : 96: 'SNODAS'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py are the initial code structure, have to change this to final structure.
        This PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is called by SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh;
