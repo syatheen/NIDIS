@@ -115,11 +115,11 @@ Python codes and corresponding indicator numbers/names:
 -> ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py :  70: 'ESI_4wk',
                                                                  71: 'ESI_12wk',
      Note that this ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.py is the initial code structure, have to change this to final structure.
+
+-> SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py  : 96: 'SNODAS'
+     Note that this SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py is the initial code structure, have to change this to final structure.
+
 ?????
-
--> SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py  : 96: 'SNODAS'
-     Note that this SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is the initial code structure, have to change this to final structure.
-
 -> ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py  :  97: 'ESA_CCI'
      Note that this ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py is the initial code structure, have to change this to final structure.
  

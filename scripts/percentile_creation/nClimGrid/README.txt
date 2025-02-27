@@ -89,12 +89,12 @@ Scripts and corresponding indicator numbers/names:
        ESIs/Run_PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Mil.sh is in turn called by ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Conf.conf;
        & ESIs/PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc_Conf.conf is in turn called by ESIs/sbatchMultiProg_PrepTrainNEval_ClimGrid1D_ESImultiweek_MonthlyPerc.sh; 
 
-?????
 -> SNODAS directory  : 96: 'SNODAS'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D.py is called by SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh;
-       SNODAS/RunProc_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh is in turn called by SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf;
-       & SNODAS/PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Conf.conf is in turn called by SNODAS/sbatchMProg_PrepRefArraysFromInfoArrays_SNODAS_ClimGrid1D_Mil.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py are the initial code structure, have to change this to final structure.
+       This PrepSingle_ClimGrid1D_SNODAS_OverallPerc.py is called by SNODAS/Run_PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Mil.sh;
+       SNODAS/Run_PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Mil.sh is in turn called by SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Conf.conf;
+       & SNODAS/PrepSingle_ClimGrid1D_SNODAS_OverallPerc_Conf.conf is in turn called by SNODAS/sbatchMProg_PrepSingle_ClimGrid1D_SNODAS_OverallPerc.sh; 
+?????
 
 -> ESA_CCI directory  :  97: 'ESA_CCI'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/ESA_CCI/PrepRefArraysFromInfoArrays_Indicators_97_ESA_CCI.py are the initial code structure, have to change this to final structure.
