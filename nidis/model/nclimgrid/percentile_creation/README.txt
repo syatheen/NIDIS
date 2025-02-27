@@ -122,25 +122,25 @@ Python codes and corresponding indicator numbers/names:
 -> PrepTrainNEval_ClimGrid1D_Indicators_97.py  :  97: 'ESA_CCI'
      Note that this PrepTrainNEval_ClimGrid1D_Indicators_97.py is the initial code structure, have to change this to final structure.
  
-?????
--> IMERG/PrepRefArraysFromInfoArrays_IMERG.py :    98: 'IMERG_01',
-                                                   99: 'IMERG_02',
-                                                  100: 'IMERG_03',
-                                                  101: 'IMERG_06',
-                                                  102: 'IMERG_09',
-                                                  103: 'IMERG_12',
-                                                  104: 'IMERG_24',
-                                                  105: 'IMERG_36',
-                                                  106: 'IMERG_48',
-                                                  107: 'IMERG_60',
-                                                  108: 'IMERG_72'
+-> PrepSingle_ClimGrid1D_IMERG_Indicators_98_to_108.py :    98: 'IMERG_01',
+                                                            99: 'IMERG_02',
+                                                           100: 'IMERG_03',
+                                                           101: 'IMERG_06',
+                                                           102: 'IMERG_09',
+                                                           103: 'IMERG_12',
+                                                           104: 'IMERG_24',
+                                                           105: 'IMERG_36',
+                                                           106: 'IMERG_48',
+                                                           107: 'IMERG_60',
+                                                           108: 'IMERG_72'
      Note that this PrepRefArraysFromInfoArrays_IMERG_ClimGrid1D_2_Indicators_98_to_108.py is the initial code structure, have to change this to final structure.
 
--> BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py :  109: 'SmNDVI_BlendedVHP',
-                                                                      110: 'TCI_BlendedVHP',
-                                                                      111: 'VCI_BlendedVHP',
-                                                                      112: 'VHI_BlendedVHP' 
-     Note that this BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py is the initial code structure, have to change this to final structure.
+-> BlendedVHP/PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py :  109: 'SmNDVI_BlendedVHP',
+                                                                 110: 'TCI_BlendedVHP',
+                                                                 111: 'VCI_BlendedVHP',
+                                                                 112: 'VHI_BlendedVHP' 
+     Note that this BlendedVHP/PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py is the initial code structure, have to change this to final structure.
+?????
 
 -> PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py :  113: 'GlobSnow3'
      Note that this PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py is the initial code structure, have to change this to final structure.

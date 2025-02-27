@@ -101,15 +101,15 @@ Scripts and corresponding indicator numbers/names:
        ESA_CCI/Run_PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Mil.sh is in turn called by ESA_CCI/PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Conf.conf;
        & ESA_CCI/PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI_Conf.conf is in turn called by ESA_CCI/sbatchMProg_PrepTrainNEval_ClimGrid1D_Indicators_97_ESA_CCI.sh; 
 
-?????
 -> BlendedVHP directory : 109: 'SmNDVI_BlendedVHP',
                           110: 'TCI_BlendedVHP',
                           111: 'VCI_BlendedVHP',
                           112: 'VHI_BlendedVHP'
-       Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/BlendedVHP/PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py are the initial code structure, have to change this to final structure.
-       This PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.py is called by BlendedVHP/RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh;
-       BlendedVHP/RunProc_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh is in turn called by BlendedVHP/Execfile_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D;
-       & BlendedVHP/Execfile_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D is in turn called by BlendedVHP/sbatchpods_PrepRefArraysFromInfoArrays_BlendedVHP_ClimGrid1D.sh; 
+       Note that the scripts here calling nidis/nidis/model/nclimgrid/percentile_creation/BlendedVHP/PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py are the initial code structure, have to change this to final structure.
+       This PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py is called by BlendedVHP/RunProc_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh;
+       BlendedVHP/RunProc_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh is in turn called by BlendedVHP/Execfile_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc;
+       & BlendedVHP/Execfile_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc is in turn called by BlendedVHP/sbatchpods_PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.sh; 
+?????
 
 -> GlobSnow3 directory  :  113: 'GlobSnow3'
        Note that the scripts here calling nidis/nidis/model/nclimgrid/weekly_resolution/PrepRefArraysFromInfoArrays_GlobSnow3_nClimGrid_Indicator113.py are the initial code structure, have to change this to final structure.
