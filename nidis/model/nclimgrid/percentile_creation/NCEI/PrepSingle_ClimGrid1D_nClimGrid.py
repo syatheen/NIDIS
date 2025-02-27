@@ -11,7 +11,8 @@ import sys
 # BEGIN code arguments / editable section
 
 SingleUnified_BeginDateVecList = [2006, 1, 3] # Beginning single-unified year, month, day of month, this is also a Tuesday
-SingleUnified_EndDateVecList = [2021, 7, 27] # Ending single-unified year, month, day of month, this is also a Tuesday
+#SingleUnified_EndDateVecList = [2021, 7, 27] # Ending single-unified year, month, day of month, this is also a Tuesday
+SingleUnified_EndDateVecList = [2019, 12, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
 
 WhichVariable = sys.argv[1] # Choices are
        # 'spei-gamma-01', 'spei-gamma-02', 'spei-gamma-03', 'spei-gamma-06',
@@ -101,6 +102,12 @@ Variable_YYYYMMDD_Of_RefArray = Variable_RefObject['Variable_YYYYMMDD_Of_RefArra
 Variable_RefArray = Variable_RefObject['Variable_RefArray']
 
 del Variable_RefObject
+
+EndIdx_Pre = np.where( Variable_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+
+Variable_YYYYMMDD_Of_RefArray = Variable_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+Variable_RefArray = Variable_RefArray[:EndIdx_Pre+1]
 
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
