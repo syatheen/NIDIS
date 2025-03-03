@@ -1,6 +1,13 @@
-# Software for NASA project deliverables to National Integrated Drought Information System (NIDIS) 
+# Code deliverables of NASA drought indicator importances to National Integrated Drought Information System (NIDIS) 
 
-This repository contains software used to create the data deliverables hosted at this NASA NCCS portal [link](https://portal.nccs.nasa.gov/lisdata_pub/NLDAS/DroughtIndicatorImportanceData/ForSteve/).
+This repository contains software used to create the data deliverables hosted at this NASA NCCS portal [link](https://portal.nccs.nasa.gov/lisdata_pub/NLDAS/DroughtIndicatorImportanceData/ForSteve/). 
+
+The separate codes of all the processing steps that end in the final step of Fractional Indicator (FI) calculation at 2 spatial resolutions / scales are hosted here:
+1. FIs at USDM geographical region scale (and calculated based on Climate Division resolution percentile values): the pre-FI processing steps starting at the spatial resolutioning step are all at the Climate Division resolution; these were the codes used in [Yatheendradas et al. (2023)](https://doi.org/10.1175/JHM-D-22-0180.1) .   
+2. FIs at Climate Division resolution: the pre-FI processing steps starting at the spatial resolutioning step are all at the Climate Division resolution.   
+ 
+Note that the above codes have lot of redundancy because each processing step had a separate code written for each indicator; hence codes can be unified for indicators with similar processing at that processing step. As such, the code is provided right now only for reference, and can't be run as-is.
+
 
 ## RUNS ON DISCOVER
 
