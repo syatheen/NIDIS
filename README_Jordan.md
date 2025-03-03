@@ -1,6 +1,6 @@
 # National Integrated Drought Information System (NIDIS)
 
-This following software serves as an operational version for the NIDIS map outputs.
+The following software serves as an operational version for the NIDIS map outputs.
 Internal progress sheet can be located [here](https://nasa-my.sharepoint.com/:x:/r/personal/jacaraba_ndc_nasa_gov/Documents/WorkDocuments/Projects/ILAB/2024-SONI-Parallel/Indicators_Data_Dictionary_nClimGrid_Resolution_ILAB.xlsx?d=w4d5e4812cb06468d819235dcd8268571&csf=1&web=1&e=cnB6yV).
 
 ## RUNS ON DISCOVER
