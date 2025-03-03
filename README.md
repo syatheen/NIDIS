@@ -1,4 +1,4 @@
-# Code deliverables of NASA drought indicator importances to National Integrated Drought Information System (NIDIS) 
+# NASA's code deliverables regarding drought indicator importance data to National Integrated Drought Information System (NIDIS) 
 
 This repository contains software used to create the data deliverables hosted at this NASA NCCS portal [link](https://portal.nccs.nasa.gov/lisdata_pub/NLDAS/DroughtIndicatorImportanceData/ForSteve/). 
 
