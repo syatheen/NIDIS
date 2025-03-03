@@ -4,11 +4,16 @@ This repository contains software used to create the data deliverables hosted at
 
 The separate codes of all the processing steps that end in the final step of Fractional Indicator (FI) calculation at 2 spatial resolutions / scales are hosted here:
 1. FIs at USDM geographical region scale (and calculated based on Climate Division resolution percentile values): the pre-FI processing steps starting at the spatial resolutioning step are all at the Climate Division resolution; these were the codes used in [Yatheendradas et al. (2023)](https://doi.org/10.1175/JHM-D-22-0180.1) .   
-2. FIs at Climate Division resolution: the pre-FI processing steps starting at the spatial resolutioning step are all at the Climate Division resolution.   
+2. FIs at Climate Division resolution: the pre-FI processing steps starting at the spatial resolutioning step are also at the Climate Division resolution.   
  
-Note that the above codes have lot of redundancy because each processing step had a separate code written for each indicator; hence codes can be unified for indicators with similar processing at that processing step. As such, the code is provided right now only for reference, and can't be run as-is.
+Note that the above codes have lot of redundancy at each processing step because a separate code written for each indicator. Hence codes can be easily unified in the future for indicators with similar processing at that processing step, if needed. As such, the code provided right now is only for reference, and can't be run as-is.
 
+## Data flow and experimental design
 
+![Data flow and experimental design](/images/DataFlowNExperimentalDesign_Simplified.jpg)
+
+The above data flow and experimental design is a slightly simplified version of the same figure given in [Figure 1](https://journals.ametsoc.org/view/journals/hydr/24/9/JHM-D-22-0180.1.xml) of Yatheendradas et al. (2023). This shows the different processing steps in the data flow.
+ 
 ## RUNS ON DISCOVER
 
 - My current goal is 9 indicators per day completely done so we can finish with the current
