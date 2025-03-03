@@ -12,7 +12,7 @@ Note that the above codes have lot of redundancy at each processing step because
 
 ![Data flow and experimental design](/images/DataFlowNExperimentalDesign_Simplified.jpg)
 
-The above data flow and experimental design is a slightly simplified version of the same figure given in [Figure 1](https://journals.ametsoc.org/view/journals/hydr/24/9/JHM-D-22-0180.1.xml) of Yatheendradas et al. (2023). This shows the different processing steps in the data flow.
+The above data flow and experimental design is a slightly simplified version of the same figure given in Figure 1 of [Yatheendradas et al. (2023)](https://doi.org/10.1175/JHM-D-22-0180.1) . This shows the different processing steps in the data flow.
  
 ## RUNS ON DISCOVER
 
