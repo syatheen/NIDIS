@@ -42,8 +42,11 @@ QuickDRI_YYYYMMDD_Of_RefArray = QuickDRI_RefObject['QuickDRI_YYYYMMDD_Of_RefArra
 
 QuickDRI_RefArray = QuickDRI_RefObject['QuickDRI_RefArray']
 
-#print(QuickDRI_YYYYMMDD_Of_RefArray.shape)
-#print(QuickDRI_RefArray.shape)
+EndIdx_Pre = np.where( QuickDRI_YYYYMMDD_Of_RefArray == 10000 * Training_EndDateVecList[0] + 100 * Training_EndDateVecList[1] + Training_EndDateVecList[2] )[0][0]
+
+QuickDRI_YYYYMMDD_Of_RefArray = QuickDRI_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+QuickDRI_RefArray = QuickDRI_RefArray[:EndIdx_Pre+1]
 
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100

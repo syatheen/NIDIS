@@ -47,6 +47,14 @@ ESI12Week_YYYYMMDD_Of_RefArray = ESI12Week_RefObject['ESI12Week_YYYYMMDD_Of_RefA
 ESI4Week_RefArray = ESI4Week_RefObject['ESI4Week_RefArray']
 ESI12Week_RefArray = ESI12Week_RefObject['ESI12Week_RefArray']
 
+EndIdx_Pre = np.where( ESI4Week_YYYYMMDD_Of_RefArray == 10000 * Training_EndDateVecList[0] + 100 * Training_EndDateVecList[1] + Training_EndDateVecList[2] )[0][0]
+
+ESI4Week_YYYYMMDD_Of_RefArray = ESI4Week_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+ESI12Week_YYYYMMDD_Of_RefArray = ESI12Week_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+ESI4Week_RefArray = ESI4Week_RefArray[:EndIdx_Pre+1]
+ESI12Week_RefArray = ESI12Week_RefArray[:EndIdx_Pre+1]
+
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
   MonthlyList_YYYYMMDD_Of_Array = []

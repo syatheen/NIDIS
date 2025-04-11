@@ -42,6 +42,12 @@ ESA_CCI_YYYYMMDD_Of_RefArray = ESA_CCI_RefObject['ESA_CCI_YYYYMMDD_Of_RefArray']
 
 ESA_CCI_RefArray = ESA_CCI_RefObject['ESA_CCI_RefArray']
 
+EndIdx_Pre = np.where( ESA_CCI_YYYYMMDD_Of_RefArray == 10000 * Training_EndDateVecList[0] + 100 * Training_EndDateVecList[1] + Training_EndDateVecList[2] )[0][0]
+
+ESA_CCI_YYYYMMDD_Of_RefArray = ESA_CCI_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+ESA_CCI_RefArray = ESA_CCI_RefArray[:EndIdx_Pre+1]
+
 #print(ESA_CCI_YYYYMMDD_Of_RefArray.shape)
 #print(ESA_CCI_RefArray.shape)
 

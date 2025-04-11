@@ -74,11 +74,23 @@ def CombineMultipleFilesIntoSingle(
             n_pixels=469758
         ):
 
-    output_filename = os.path.join(
-        output_dir,
-        f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_In113_' +
-        f'{DictofNumNamePairs_Channels[indicator]}_{season}.npz'
-    )
+    if indicator > 0:
+
+        output_filename = os.path.join(
+            output_dir,
+            f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_In113_' +
+            f'{DictofNumNamePairs_Channels[indicator]}_{season}.npz'
+        )
+
+    else: # of if indicator > 0:
+
+        output_filename = os.path.join(
+            output_dir,
+            f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_' +
+            f'M{-1*indicator}_{season}.npz'
+        )
+
+    #end of if indicator > 0:
 
     if os.path.exists(output_filename):
         logging.info(f'Combined file exists, skipping {output_filename}')
@@ -96,12 +108,27 @@ def CombineMultipleFilesIntoSingle(
     # TODO: currently running in serial, I would like to make it parallel
     # End time:  406.6939799785614
     for WhichElem in range(n_pixels):
-        indicator_result = np.loadtxt(
-            os.path.join(
-                indicator_dir,
-                f'NN_U_C_{WhichElem}_In113_{indicator - 1}_{season}.txt'
+
+        if indicator > 0:
+    
+            indicator_result = np.loadtxt(
+                os.path.join(
+                    indicator_dir,
+                    f'NN_U_C_{WhichElem}_In113_{indicator - 1}_{season}.txt'
+                )
             )
-        )
+
+        else: # of if indicator > 0:
+
+            indicator_result = np.loadtxt(
+                os.path.join(
+                    indicator_dir,
+                    f'NN_U_C_{WhichElem}_InM{-1*indicator}_0_{season}.txt'
+                )
+            )
+
+        #end of if indicator > 0:
+
         FI1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[0]
         SSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[1]
         WSiz1X1_ClmGrd1D_V2b_New_Array[WhichElem] = indicator_result[2]
@@ -133,12 +160,25 @@ def ArrayToNetCDF(
         logging.info(f'NetCDF file exists, skipping {netcdf_filename}')
         return
 
-    # consider replacing with output from previous function
-    combined_indicator_filename = os.path.join(
-        combined_output_dir,
-        f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_In113_' +
-        f'{DictofNumNamePairs_Channels[indicator]}_{season}.npz'
-    )
+    if indicator > 0:
+    
+        # consider replacing with output from previous function
+        combined_indicator_filename = os.path.join(
+            combined_output_dir,
+            f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_In113_' +
+            f'{DictofNumNamePairs_Channels[indicator]}_{season}.npz'
+        )
+
+    else: # of if indicator > 0:
+
+        # consider replacing with output from previous function
+        combined_indicator_filename = os.path.join(
+            combined_output_dir,
+            f'NN_U_C_0To{str(int(round(float(n_pixels - 1))))}_' +
+            f'M{-1*indicator}_{season}.npz'
+        )
+
+    #end of if indicator > 0:
 
     # open nClimGrid_All
     nClimGrid_All = xr.open_dataset(nClimGrid_NC_File)
@@ -186,9 +226,22 @@ def ArrayToNetCDF(
     lat_dim = ncfile.createDimension('lat', len(lats))  # latitude axis
     lon_dim = ncfile.createDimension('lon', len(lons))  # longitude axis
 
-    ncfile.title = \
-        DictofNumNamePairs_Channels[indicator] + ' ' + \
-        DictofInitialToWord_Seasons[season] + ncfile_title_EndingSubstr
+    if indicator > 0:
+    
+        ncfile.title = \
+            DictofNumNamePairs_Channels[indicator] + ' ' + \
+            DictofInitialToWord_Seasons[season] + ncfile_title_EndingSubstr
+
+    else: # of if indicator > 0:
+
+        if indicator == -10:
+            MultiIndicatorName = 'Remotely_sensed_multi-indicator'
+
+        ncfile.title = \
+            MultiIndicatorName + ' ' + \
+            DictofInitialToWord_Seasons[season] + ncfile_title_EndingSubstr
+
+    #end of if indicator > 0:
 
     # Define two variables with the same names as dimensions,
     # a conventional way to define "coordinate variables".

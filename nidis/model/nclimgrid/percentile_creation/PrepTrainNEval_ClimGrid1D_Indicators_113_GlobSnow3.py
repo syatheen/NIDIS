@@ -41,9 +41,6 @@ GlobSnow3_YYYYMMDD_Of_RefArray = GlobSnow3_RefObject['GlobSnow3_YYYYMMDD_Of_RefA
 
 GlobSnow3_RefArray = GlobSnow3_RefObject['GlobSnow3_RefArray']
 
-#print(GlobSnow3_YYYYMMDD_Of_RefArray.shape)
-#print(GlobSnow3_RefArray.shape)
-
 def CreateYYYYMMDD_Of_Array(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
   TotalNumWeeksDiff = TotalNumDaysDiff//7
@@ -80,6 +77,21 @@ def TimeSlice_YYYYMMDDAndRefArray(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecLi
   #end of if ( (BeginYYYYMMDD in list(YYYYMMDD_Of_RefArray) and...
   return YYYYMMDD_Of_PrcntlArray, PrcntlArray
 #end of def TimeSlice_YYYYMMDDAndRefArray(YYYYMMDD_Of_RefArray, RefArray, BeginDateVecList, EndDateVecList):
+
+#SY: Begin extra because of RefArray ending 20180529 
+GlobSnow3_YYYYMMDD_Of_RefArray, GlobSnow3_RefArray = TimeSlice_YYYYMMDDAndRefArray(GlobSnow3_YYYYMMDD_Of_RefArray, GlobSnow3_RefArray, [1979, 1, 9], Training_EndDateVecList)
+#SY: End extra because of RefArray ending 20180529 
+
+# SY: Begin part taken over by above TimeSlice_YYYYMMDDAndRefArray call instead
+#EndIdx_Pre = np.where( GlobSnow3_YYYYMMDD_Of_RefArray == 10000 * Training_EndDateVecList[0] + 100 * Training_EndDateVecList[1] + Training_EndDateVecList[2] )[0][0]
+#
+#GlobSnow3_YYYYMMDD_Of_RefArray = GlobSnow3_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+#
+#GlobSnow3_RefArray = GlobSnow3_RefArray[:EndIdx_Pre+1]
+# SY: End part taken over by above TimeSlice_YYYYMMDDAndRefArray call instead
+
+#print(GlobSnow3_YYYYMMDD_Of_RefArray.shape)
+#print(GlobSnow3_RefArray.shape)
 
 def FindPercentilesForValues(RefArray_1d, Values_1d):
   RefArray_1d_NotNaN = RefArray_1d[~np.isnan(RefArray_1d)]

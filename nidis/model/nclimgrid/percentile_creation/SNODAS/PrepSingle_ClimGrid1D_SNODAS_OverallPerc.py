@@ -46,6 +46,12 @@ SNODAS_RefArray = SNODAS_RefObject['SNODAS_RefArray']
 
 del SNODAS_RefObject
 
+EndIdx_Pre = np.where( SNODAS_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+
+SNODAS_YYYYMMDD_Of_RefArray = SNODAS_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+SNODAS_RefArray = SNODAS_RefArray[:EndIdx_Pre+1]
+
 def CreateYYYYMMDD_Of_Array_FromEndpointdates(BeginDate, EndDate):
   TotalNumDaysDiff = abs(EndDate-BeginDate).days
   TotalNumWeeksDiff = TotalNumDaysDiff//7

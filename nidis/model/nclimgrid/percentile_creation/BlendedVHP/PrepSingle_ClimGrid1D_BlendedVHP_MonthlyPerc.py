@@ -6,7 +6,8 @@ from __future__ import division
 # BEGIN code arguments / editable section
 
 SingleUnified_BeginDateVecList = [2003, 9, 30]  # Beginning single-unified year, month, day of month, this is also a Tuesday
-SingleUnified_EndDateVecList = [2020, 12, 29]  # Ending single-unified year, month, day of month, this is also a Tuesday
+#SingleUnified_EndDateVecList = [2020, 12, 29]  # Ending single-unified year, month, day of month, this is also a Tuesday
+SingleUnified_EndDateVecList = [2019, 12, 31]  # Ending single-unified year, month, day of month, this is also a Tuesday
 
 BlendedVHP_SMN_RefFileName = 'RefArrays/ClimGrid1D_BlendedVHP_SMN_19810908To20210928.npz'
 BlendedVHP_TCI_RefFileName = 'RefArrays/ClimGrid1D_BlendedVHP_TCI_19810908To20210928.npz'
@@ -57,6 +58,15 @@ del BlendedVHP_SMN_RefObject
 del BlendedVHP_TCI_RefObject
 del BlendedVHP_VCI_RefObject
 del BlendedVHP_VHI_RefObject
+
+EndIdx_Pre = np.where( BlendedVHP_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+
+BlendedVHP_YYYYMMDD_Of_RefArray = BlendedVHP_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+BlendedVHP_SMN_RefArray = BlendedVHP_SMN_RefArray[:EndIdx_Pre+1]
+BlendedVHP_TCI_RefArray = BlendedVHP_TCI_RefArray[:EndIdx_Pre+1]
+BlendedVHP_VCI_RefArray = BlendedVHP_VCI_RefArray[:EndIdx_Pre+1]
+BlendedVHP_VHI_RefArray = BlendedVHP_VHI_RefArray[:EndIdx_Pre+1]
 
 def CreateMonthlyLists_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100

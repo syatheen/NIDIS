@@ -42,6 +42,12 @@ VegDRI_YYYYMMDD_Of_RefArray = VegDRI_RefObject['VegDRI_YYYYMMDD_Of_RefArray']
 
 VegDRI_RefArray = VegDRI_RefObject['VegDRI_RefArray']
 
+EndIdx_Pre = np.where( VegDRI_YYYYMMDD_Of_RefArray == 10000 * Training_EndDateVecList[0] + 100 * Training_EndDateVecList[1] + Training_EndDateVecList[2] )[0][0]
+
+VegDRI_YYYYMMDD_Of_RefArray = VegDRI_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+VegDRI_RefArray = VegDRI_RefArray[:EndIdx_Pre+1]
+
 def MonthlyList_YYYYMMDDAndArray(YYYYMMDD_Of_Array, ThisArray):
   MM_Of_Array = (YYYYMMDD_Of_Array % 10000) // 100
   MonthlyList_YYYYMMDD_Of_Array = []

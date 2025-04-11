@@ -92,25 +92,61 @@ def run_training(
         output_dir_indicator = os.path.join(output_dir, season)
         os.makedirs(output_dir_indicator, exist_ok=True)
 
-        for config_id in range(init_task, end_task):
+        if indicator > 0:
 
-            # general task command, go to documentation for
-            # additional details on each position
-            task = [
-                'N',
-                'N',
-                start_date,
-                end_date,
-                'USDM',
-                'CONUS',
-                '113',
-                '1',
-                indicator - 1,
-                config_id,
-                season,
-                output_dir_indicator
-            ]
-            all_tasks.append(task)
+            for config_id in range(init_task, end_task):
+    
+                # general task command, go to documentation for
+                # additional details on each position
+                task = [
+                    'N',
+                    'N',
+                    start_date,
+                    end_date,
+                    'USDM',
+                    'CONUS',
+                    '113',
+                    '1',
+                    indicator - 1,
+                    config_id,
+                    season,
+                    output_dir_indicator
+                ]
+                all_tasks.append(task)
+
+        else: # of if indicator > 0:
+
+            if indicator == -10:
+                NumInpLayers_Str = '-10'
+                NumInpsForNDFracMI_Str = '21'
+                WhichInpCombinForNDFracMI = 0   
+            elif indicator == -12:
+                NumInpLayers_Str = '-12'
+                NumInpsForNDFracMI_Str = '64'
+                WhichInpCombinForNDFracMI = 0   
+
+            for config_id in range(init_task, end_task):
+    
+                # general task command, go to documentation for
+                # additional details on each position
+                task = [
+                    'N',
+                    'N',
+                    start_date,
+                    end_date,
+                    'USDM',
+                    'CONUS',
+                    NumInpLayers_Str,
+                    NumInpsForNDFracMI_Str,
+                    0,
+                    config_id,
+                    season,
+                    output_dir_indicator
+                ]
+                all_tasks.append(task)
+
+
+        #end of if indicator > 0:
 
     logging.info(f'Prepared {len(all_tasks)}')
 
@@ -163,12 +199,25 @@ def run_postprocessing(
     # iterate over each provided season
     for season in seasons_list:
 
-        # if netcdf file exists, do not process
-        netcdf_filename = os.path.join(
-            postprocessed_output_dir,
-            f'NC2D_From_nCG1D_FIs1X1Etc_113_{season}_' +
-            f'{DictofNumNamePairs_Channels[indicator]}_V2.nc'
-        )
+        if indicator > 0:
+
+            # if netcdf file exists, do not process
+            netcdf_filename = os.path.join(
+                postprocessed_output_dir,
+                f'NC2D_From_nCG1D_FIs1X1Etc_113_{season}_' +
+                f'{DictofNumNamePairs_Channels[indicator]}_V2.nc'
+            )
+
+        else: # of if indicator > 0:
+
+            # if netcdf file exists, do not process
+            netcdf_filename = os.path.join(
+                postprocessed_output_dir,
+                f'NC2D_From_nCG1D_FIs1X1Etc_{season}_' +
+                f'M{-1*indicator}_V2.nc'
+            )
+
+        #end of if indicator > 0:
 
         if os.path.exists(netcdf_filename):
             logging.info(f'Skipping {netcdf_filename}, file exists.')

@@ -133,7 +133,7 @@ Python codes and corresponding indicator numbers/names:
                                                            106: 'IMERG_48',
                                                            107: 'IMERG_60',
                                                            108: 'IMERG_72'
-     Note that this PrepRefArraysFromInfoArrays_IMERG_ClimGrid1D_2_Indicators_98_to_108.py is the initial code structure, have to change this to final structure.
+     Note that this PrepSingle_ClimGrid1D_IMERG_Indicators_98_to_108.py is the initial code structure, have to change this to final structure.
 
 -> BlendedVHP/PrepSingle_ClimGrid1D_BlendedVHP_MonthlyPerc.py :  109: 'SmNDVI_BlendedVHP',
                                                                  110: 'TCI_BlendedVHP',

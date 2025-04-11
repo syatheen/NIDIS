@@ -10,51 +10,38 @@ import sys
 
 # BEGIN code arguments / editable section
 
-NumMonthsStr = '72Month' #sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month'
+NumMonthsStr = '1Month' #sys.argv[1] # Choices are '1Month', '2Month', '3Month', '6Month', '9Month', '12Month', '24Month', '36Month', '48Month', '60Month', '72Month'
 
 if NumMonthsStr == '1Month':
-  SingleUnified_BeginDateVecList = [2000, 7, 4] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2000, 7, 4]
 elif NumMonthsStr == '2Month':
-  SingleUnified_BeginDateVecList = [2000, 8, 1] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2000, 8, 1]
 elif NumMonthsStr == '3Month':
-  SingleUnified_BeginDateVecList = [2000, 8, 29] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2000, 8, 29]
 elif NumMonthsStr == '6Month':
-  SingleUnified_BeginDateVecList = [2000, 11, 28] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2000, 11, 28]
 elif NumMonthsStr == '9Month':
-  SingleUnified_BeginDateVecList = [2001, 2, 27] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2001, 2, 27]
 elif NumMonthsStr == '12Month':
-  SingleUnified_BeginDateVecList = [2001, 6, 5] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2001, 6, 5]
 elif NumMonthsStr == '24Month':
-  SingleUnified_BeginDateVecList = [2002, 6, 4] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2002, 6, 4]
 elif NumMonthsStr == '36Month':
-  SingleUnified_BeginDateVecList = [2003, 6, 3] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2003, 6, 3]
 elif NumMonthsStr == '48Month':
-  SingleUnified_BeginDateVecList = [2004, 6, 1] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2004, 6, 1]
 elif NumMonthsStr == '60Month':
-  SingleUnified_BeginDateVecList = [2005, 5, 31] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2005, 5, 31]
 elif NumMonthsStr == '72Month':
-  SingleUnified_BeginDateVecList = [2006, 6, 6] # Beginning single-unified year, month, day of month, this is also a Tuesday
-  SingleUnified_EndDateVecList = [2021, 5, 25] # Ending single-unified year, month, day of month, this is also a Tuesday
+  RefArray_BeginDateVecList = [2006, 6, 6]
 #end of if NumMonthsStr == '1Month'
 
+SingleUnified_BeginDateVecList = [2006, 1, 3] # Beginning single-unified year, month, day of month, this is also a Tuesday
+SingleUnified_EndDateVecList = [2019, 12, 31] # Ending single-unified year, month, day of month, this is also a Tuesday
 
-#IMERG_nMonth_RefFileName = 'RefArrays/ClimGrid1D_IMERG' + NumMonthsStr + '_' + format(SingleUnified_BeginDateVecList[0], '04') + format(SingleUnified_BeginDateVecList[1], '02') + format(SingleUnified_BeginDateVecList[2], '02') + 'To' + format(SingleUnified_EndDateVecList[0], '04') + format(SingleUnified_EndDateVecList[1], '02') + format(SingleUnified_EndDateVecList[2], '02') + '.npz'
-IMERG_nMonth_RefFileName = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(SingleUnified_BeginDateVecList[0],'04')+format(SingleUnified_BeginDateVecList[1],'02')+format(SingleUnified_BeginDateVecList[2],'02')+'To'+format(SingleUnified_EndDateVecList[0],'04')+format(SingleUnified_EndDateVecList[1],'02')+format(SingleUnified_EndDateVecList[2],'02')+'.npz'
+IMERG_nMonth_RefFileName = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/RefArrays/ClimGrid1D_IMERG'+NumMonthsStr+'_'+format(RefArray_BeginDateVecList[0],'04')+format(RefArray_BeginDateVecList[1],'02')+format(RefArray_BeginDateVecList[2],'02')+'To20210525.npz'
 
-
-#SingleUnifiedDataFilename = 'PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG' + NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
-SingleUnifiedDataFilename = '/discover/nobackup/projects/nca/jacaraba/NIDIS_Data/Indicators_98_to_108/percentile_output/PreppedTrainNEvalNpzs/indicators_108/SingleUnified_IMERG'+ NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
-
+SingleUnifiedDataFilename = '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG'+ NumMonthsStr + '_' + str(SingleUnified_BeginDateVecList[0]) + format(SingleUnified_BeginDateVecList[1],'02') + format(SingleUnified_BeginDateVecList[2],'02') + 'To' + str(SingleUnified_EndDateVecList[0]) + format(SingleUnified_EndDateVecList[1],'02') + format(SingleUnified_EndDateVecList[2],'02') + '.npz'
 
 # END code arguments / editable section
 
@@ -99,6 +86,12 @@ IMERG_nMonth_RefObject = np.load(IMERG_nMonth_RefFileName)
 IMERG_nMonth_YYYYMMDD_Of_RefArray = IMERG_nMonth_RefObject['IMERG_nMonth_YYYYMMDD_Of_RefArray']
 
 IMERG_nMonth_RefArray = IMERG_nMonth_RefObject['IMERG_nMonth_RefArray']
+
+EndIdx_Pre = np.where( IMERG_nMonth_YYYYMMDD_Of_RefArray == 10000 * SingleUnified_EndDateVecList[0] + 100 * SingleUnified_EndDateVecList[1] + SingleUnified_EndDateVecList[2] )[0][0]
+
+IMERG_nMonth_YYYYMMDD_Of_RefArray = IMERG_nMonth_YYYYMMDD_Of_RefArray[:EndIdx_Pre+1]
+
+IMERG_nMonth_RefArray = IMERG_nMonth_RefArray[:EndIdx_Pre+1]
 
 if ( (NumMonthsStr == '1Month') or
      (NumMonthsStr == '2Month') or
