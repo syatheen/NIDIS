@@ -6,7 +6,7 @@
 #SBATCH --no-requeue
 #SBATCH --output=%x_%j.out      # Output file
 #SBATCH --error=%x_%j.err       # Error file
-#SBATCH --mail-user=soni.yatheendradas-1@nasa.gov
+##SBATCH --mail-user=soni.yatheendradas-1@nasa.gov
 
 # module purge
 module load python/GEOSpyD/Min23.5.2-0_py3.11

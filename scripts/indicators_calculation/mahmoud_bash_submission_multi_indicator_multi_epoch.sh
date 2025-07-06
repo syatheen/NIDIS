@@ -31,7 +31,9 @@
 # provides acceptable performance.
 #
 # Provide the number of nodes you would like to use
-NUMBER_NODES=95
+##NUMBER_NODES=100 # for -10
+##NUMBER_NODES=175 # for -12
+NUMBER_NODES=250 # for -15
 TOTAL_NUMBER_OF_TASKS=469758
 
 #PATH_TO_TASKS=`pwd`
