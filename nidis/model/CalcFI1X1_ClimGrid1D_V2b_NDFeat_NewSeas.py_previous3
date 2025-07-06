@@ -25,8 +25,6 @@ from nidis.model.Split_YYYYMMDD_To_Components_File \
     import Split_YYYYMMDD_To_Components
 from nidis.model.TimeSliceStrict_YYYYMMDDAndRefArrays_File \
     import TimeSliceStrict_YYYYMMDDAndRefArrays
-from nidis.model.ResetUniquePercentileValuesToMid_File \
-    import ResetUniquePercentileValuesToMid
 
 __all__ = [
     "Split_YYYYMMDD_To_Components",
@@ -47,7 +45,7 @@ def main(
     TargetVariable, # Choices are 'USDM', 'CPC_S' (for short-term), 'CPC_LE' (for long-term Eastern), and 'CPC_LW' (for long-term Western)  
     SpatialDomain, # Choices are 'CONUS'
     WhichArgForNumInpLayers, # Which argument has info about number of input layers
-    NumInpLayers, # 113 for all input channels (SY: but current temporary implementation is -15), 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
+    NumInpLayers, # 113 for all input channels, 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
     NumInpsForNDFracMI,
     WhichInpCombinForNDFracMI, # 0-start
     Which_1D_Pixel, # Which 1D number of nClimGrid pixels # 0-start
@@ -136,9 +134,9 @@ def main(
 
     MinimumWindowSize = 1
     #MaximumWindowSize = 35
-    MaximumWindowSize = 1
+    MaximumWindowSize = 3
     #MinSamplesForFracI = 100
-    MinSamplesForFracI = 6
+    MinSamplesForFracI = 25
 
     # Inp channel info. 
         # 1: Z-index ;
@@ -266,8 +264,6 @@ def main(
             InpLayerNumsCombination = [*range(16, 68), 96]
         elif NumInpLayers == -12: # Modeled+PrecipObs
             InpLayerNumsCombination = [*range(5, 68), 96]
-        elif NumInpLayers == -15: # All 113   # SY: This needs to be changed later
-            InpLayerNumsCombination = list(range(1,113+1))
         elif NumInpLayers == -50: # All NDMC Blend input channels
             InpLayerNumsCombination = [45, 49, 72, *range(74, 79), 81, 83, 87, 92]
         else:
@@ -393,27 +389,16 @@ def main(
 
     #SY: Begin partially moved portion from that commented further below
     # TODO: this needs its own flexible path
-    if NumInpLayers >= 0:
-        ColCombinations = np.loadtxt(
-            os.path.join(
-              ##'/discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/Inputs',
-              '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS',
-              'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpLayers) + '.txt'
-            ),
-            dtype='int',
-            ndmin=2
-        )
-    else: #of if NumInpLayers >= 0:
-        ColCombinations = np.loadtxt(
-            os.path.join(
-              ##'/discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/Inputs',
-              '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS',
-              'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpsForNDFracMI) + '.txt'
-            ),
-            dtype='int',
-            ndmin=2
-        )
-    #end of if NumInpLayers >= 0:
+    ColCombinations = np.loadtxt(
+        os.path.join(
+          ##'/discover/nobackup/projects/nca/jacaraba/NIDIS_Runs/Inputs',
+          '/discover/nobackup/syatheen/Sujay/DeepLearning/ExampleTries/NIDIS',
+          ##'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpLayers) + '.txt'
+          'Combinations' + NumInpsForNDFracMI + 'of' + str(NumInpsForNDFracMI) + '.txt'
+        ),
+        dtype='int',
+        ndmin=2
+    )
     SelectCols = ColCombinations[WhichInpCombinForNDFracMI, :]
     SelectCols = SelectCols - 1
     # SY: End partially moved portion from that commented further below
@@ -497,10 +482,10 @@ def main(
                                         (('NLDAS2D_TCSM_Noah',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Noah_TCSM_Crr2MnthlyPrc_20060103To20191231.npz'),
                                         (('NLDAS2D_TCSM_SAC',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_SAC_TCSM_Crr2MnthlyPrc_20060103To20191231.npz'),
                                         (('NLDAS2D_TCSM_VIC',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_VIC_TCSM_Crr2MnthlyPrc_20060103To20191231.npz'),
-                                        (('NLDAS2D_EVAP_Mosaic',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Mosaic_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
-                                        (('NLDAS2D_EVAP_Noah',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Noah_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
-                                        (('NLDAS2D_EVAP_SAC',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_SAC_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
-                                        (('NLDAS2D_EVAP_VIC',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_VIC_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
+                                        (('NLDAS2D_EVAP_Mosaic',), f'{temp_path_npz_Jordan}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Mosaic_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
+                                        (('NLDAS2D_EVAP_Noah',), f'{temp_path_npz_Jordan}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Noah_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
+                                        (('NLDAS2D_EVAP_SAC',), f'{temp_path_npz_Jordan}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_SAC_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
+                                        (('NLDAS2D_EVAP_VIC',), f'{temp_path_npz_Jordan}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_VIC_EVAP_Crr2MnthlyPrc_20060103To20191231.npz'),
                                         (('NLDAS2D_SWE_Mosaic',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Mosaic_SWE_20060103To20191231.npz'),
                                         (('NLDAS2D_SWE_Noah',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_Noah_SWE_20060103To20191231.npz'),
                                         (('NLDAS2D_SWE_SAC',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_NLDAS_2_dly_SAC_SWE_20060103To20191231.npz'),
@@ -541,8 +526,7 @@ def main(
                                         (('SPEI_pear_72_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_spei_pearson_72_20060103To20191231.npz'),
                                         (('tavg_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tavg_01_20060103To20191231.npz'),
                                         (('tmax_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tmax_01_20060103To20191231.npz'),
-#                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
-                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_MnthlyPrc_20060103To20191231.npz'),
+                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
                                         (('ESA_CCI',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_ESA_CCI_20060103To20191231.npz'),
                                         (('IMERG_01',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG1Month_20060103To20191231.npz'),
                                         (('IMERG_02',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG2Month_20060103To20191231.npz'),
@@ -559,8 +543,7 @@ def main(
                                           'TCI_BlendedVHP', 
                                           'VCI_BlendedVHP', 
                                           'VHI_BlendedVHP'), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_BlendedVHP_Corr2MonthlyPerc_20030930To20191231.npz'),
-#                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
-                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_MnthlyPrc_20060103To20191231.npz')     )
+                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
 
             Dict_of_Name_Filename_Pairs = { key : value for keys, value in NameKeys_FilenameValues for key in keys }
             
@@ -828,10 +811,7 @@ def main(
                 if WhichSeason in ['P', 'U', 'F', 'W']:
                     ThisIndicator_PrcntlArray = ThisIndicator_PrcntlArray[WhichRows[0], :]
 
-                ThisIndicator_PrcntlArray = ResetUniquePercentileValuesToMid(ThisIndicator_PrcntlArray) # SY: added this for unique percentile values correction
-
                 ThisIndicator_PrcntlArray = np.reshape(ThisIndicator_PrcntlArray, (ThisIndicator_PrcntlArray.size, 1))
-
                 Inputs_Mat = np.concatenate( (Inputs_Mat, ThisIndicator_PrcntlArray ), axis = 1)
                 del ThisIndicator_PrcntlArray
 
@@ -883,13 +863,13 @@ def main(
     #All_Inputs_Mat = All_Inputs_Mat[:, SelectCols] 
     #SY: End portion commented now and only partially moved further above
 
-    def calc_MI_info(Inp_name_key, Targ_name_key, Inp_array_key, Targ_array_key, If_discrete_features_key, Num_random_states_key, n_neighbors_key, Inp_names_list_key, MI_values_list_key, MI_lowersofrange_list_key, MI_uppersofrange_list_key, MI_ranges_list_key, sample_sizes_list_key, Entropy_list_key, RelMI_values_list_key, RelMI_lowersofrange_list_key, RelMI_uppersofrange_list_key, MinSamplesForFracI_key):
+    def calc_MI_info(Inp_name_key, Targ_name_key, Inp_array_key, Targ_array_key, If_discrete_features_key, Num_random_states_key, n_neighbors_key, Inp_names_list_key, MI_values_list_key, MI_lowersofrange_list_key, MI_uppersofrange_list_key, MI_ranges_list_key, sample_sizes_list_key, Entropy_list_key, RelMI_values_list_key, RelMI_lowersofrange_list_key, RelMI_uppersofrange_list_key):
         XX = Inp_array_key[:,0:1]
         YY = Targ_array_key[:,0:1]
         Idxs = np.where((~np.isnan(XX)) & (~np.isnan(YY)))
         Percentiles_for_n_neighbors = np.empty((3,), dtype=np.float32)
         Percentiles_for_n_neighbors[:] = np.NaN
-        if len(Idxs[0]) > MinSamplesForFracI_key:
+        if len(Idxs[0]) > 0:
             XX = XX[Idxs[0]]
             YY = YY[Idxs[0]]
             YY = YY[:,0]
@@ -898,6 +878,7 @@ def main(
             for Which_Random_state_value in range(Num_random_states_key):
                 Random_state_value = 3 + Which_Random_state_value*100
                 MIs_this_n_neighbors[Which_Random_state_value] = mutual_info_classif(XX,YY,discrete_features=If_discrete_features_key, n_neighbors=n_neighbors_key, copy=True, random_state = Random_state_value)
+            del XX 
             Percentiles_for_n_neighbors[0] = np.percentile(MIs_this_n_neighbors, 5)
             Percentiles_for_n_neighbors[1] = np.percentile(MIs_this_n_neighbors, 50)
             Percentiles_for_n_neighbors[2] = np.percentile(MIs_this_n_neighbors, 95)
@@ -915,19 +896,18 @@ def main(
             #end of if Entropyy == 0.0
             MI_ranges_list_key.append(Percentiles_for_n_neighbors[2]-Percentiles_for_n_neighbors[0])
             sample_sizes_list_key.append(YY.size)
+            del YY
             RelMI_values_list_key.append(Percentiles_for_n_neighbors[1]/Entropyy)
             RelMI_lowersofrange_list_key.append(Percentiles_for_n_neighbors[0]/Entropyy)
             RelMI_uppersofrange_list_key.append(Percentiles_for_n_neighbors[2]/Entropyy)
-        else: # if len(Idxs[0]) > MinSamplesForFracI_key
+        else: # if len(Idxs[0]) > 0
             MI_ranges_list_key.append(np.NaN)
             sample_sizes_list_key.append(0.0)
-            Entropyy = np.NaN
+            Entropyy = np.copy(np.NaN)
             RelMI_values_list_key.append(np.NaN)
             RelMI_lowersofrange_list_key.append(np.NaN)
             RelMI_uppersofrange_list_key.append(np.NaN)
-        #end of if len(Idxs[0]) > MinSamplesForFracI_key
-        del XX 
-        del YY
+        #end of if len(Idxs[0]) > 0
         del Idxs
         Inp_names_list_key.append(Inp_name_key)
         MI_values_list_key.append(Percentiles_for_n_neighbors[1])
@@ -938,57 +918,58 @@ def main(
         return Inp_names_list_key, MI_values_list_key, MI_lowersofrange_list_key, MI_uppersofrange_list_key, MI_ranges_list_key, sample_sizes_list_key, Entropy_list_key, RelMI_values_list_key, RelMI_lowersofrange_list_key, RelMI_uppersofrange_list_key
     #end of def calc_MI_info
 
-    def calc_MI_1ValueForMultiFeatures(Inp_array_key, Targ_array_key, If_discrete_features_key, Num_random_states_key, n_neighbors_key, MinSamplesForFracI_key):
+    def calc_MI_1ValueForMultiFeatures(Inp_array_key, Targ_array_key, If_discrete_features_key, Num_random_states_key, n_neighbors_key):
         XX = np.copy(Inp_array_key)
         YY = Targ_array_key[:,0:1]
     #  Idxs = np.where((~np.isnan(XX)) & (~np.isnan(YY)))
         Idxs = np.where( ( np.reshape(np.all( ~np.isnan(XX) & ~np.isnan(YY), axis = 1 ), (-1, 1)) ) )
+        XX = XX[Idxs[0]]
+        YY = YY[Idxs[0]]
+        del Idxs
+        YY = YY[:,0]
         Percentiles_for_n_neighbors = np.empty((3,), dtype=np.float32)
         Percentiles_for_n_neighbors[:] = np.NaN
-        if len(Idxs[0]) > MinSamplesForFracI_key:
-            XX = XX[Idxs[0]]
-            YY = YY[Idxs[0]]
-            YY = YY[:,0]
-            MIs_this_n_neighbors = np.empty((Num_random_states_key,), dtype=np.float32)
-            MIs_this_n_neighbors[:] = np.NaN
-            for Which_Random_state_value in range(Num_random_states_key):
-                Random_state_value = 3 + Which_Random_state_value*100
-        #        MIs_this_n_neighbors[Which_Random_state_value] = mutual_info_classif(XX,YY,discrete_features=If_discrete_features_key, n_neighbors=n_neighbors_key, copy=True, random_state = Random_state_value)
-                MIs_this_n_neighbors[Which_Random_state_value] = MI_classif_1ValueForMultiFeatures(XX,YY,discrete_features=If_discrete_features_key, n_neighbors=n_neighbors_key, copy=True, random_state = Random_state_value)
-            Percentiles_for_n_neighbors[0] = np.percentile(MIs_this_n_neighbors, 5)
-            Percentiles_for_n_neighbors[1] = np.percentile(MIs_this_n_neighbors, 50)
-            Percentiles_for_n_neighbors[2] = np.percentile(MIs_this_n_neighbors, 95)
-            print("All-features-together : median MI ", Percentiles_for_n_neighbors[1], ", MI 90-perc range ",Percentiles_for_n_neighbors[2]-Percentiles_for_n_neighbors[0], ", sample size ", YY.size)
-            Unique_YY_values, unique_counts = np.unique(YY, return_counts=True)
-            del Unique_YY_values
-            YY_probabs = unique_counts / sum(unique_counts)
-            del unique_counts
-            Entropyy = entropy(YY_probabs)
-            del YY_probabs
-            if Entropyy == 0.0:
-                Percentiles_for_n_neighbors[0] = 0.0
-                Percentiles_for_n_neighbors[1] = 0.0
-                Percentiles_for_n_neighbors[2] = 0.0
-            #end of if Entropyy == 0.0
-            MI_range = Percentiles_for_n_neighbors[2]-Percentiles_for_n_neighbors[0]
-            sample_size = YY.size
-            RelMI_value = Percentiles_for_n_neighbors[1]/Entropyy
-            RelMI_lowerofrange = Percentiles_for_n_neighbors[0]/Entropyy
-            RelMI_upperofrange = Percentiles_for_n_neighbors[2]/Entropyy
-        else: # of if len(Idxs[0]) > MinSamplesForFracI_key
-            MI_range = np.NaN
-            sample_size = 0
-            Entropyy = np.NaN
-            RelMI_value = np.NaN
-            RelMI_lowerofrange = np.NaN
-            RelMI_upperofrange = np.NaN
-        #end of if len(Idxs[0]) > MinSamplesForFracI_key
+        MIs_this_n_neighbors = np.empty((Num_random_states_key,), dtype=np.float32)
+        MIs_this_n_neighbors[:] = np.NaN
+        for Which_Random_state_value in range(Num_random_states_key):
+            Random_state_value = 3 + Which_Random_state_value*100
+    #        MIs_this_n_neighbors[Which_Random_state_value] = mutual_info_classif(XX,YY,discrete_features=If_discrete_features_key, n_neighbors=n_neighbors_key, copy=True, random_state = Random_state_value)
+            MIs_this_n_neighbors[Which_Random_state_value] = MI_classif_1ValueForMultiFeatures(XX,YY,discrete_features=If_discrete_features_key, n_neighbors=n_neighbors_key, copy=True, random_state = Random_state_value)
         del XX
-        del YY
-        del Idxs
+        Percentiles_for_n_neighbors[0] = np.percentile(MIs_this_n_neighbors, 5)
+        Percentiles_for_n_neighbors[1] = np.percentile(MIs_this_n_neighbors, 50)
+        Percentiles_for_n_neighbors[2] = np.percentile(MIs_this_n_neighbors, 95)
+        print("All-features-together : median MI ", Percentiles_for_n_neighbors[1], ", MI 90-perc range ",Percentiles_for_n_neighbors[2]-Percentiles_for_n_neighbors[0], ", sample size ", YY.size)
+        Unique_YY_values, unique_counts = np.unique(YY, return_counts=True)
+        del Unique_YY_values
+        YY_probabs = unique_counts / sum(unique_counts)
+        del unique_counts
+        Entropyy = entropy(YY_probabs)
+        del YY_probabs
+        if Entropyy == 0.0:
+            Percentiles_for_n_neighbors[0] = 0.0
+            Percentiles_for_n_neighbors[1] = 0.0
+            Percentiles_for_n_neighbors[2] = 0.0
+        #end of if Entropyy == 0.0
         MI_value = Percentiles_for_n_neighbors[1]
         MI_lowerofrange = Percentiles_for_n_neighbors[0]
         MI_upperofrange = Percentiles_for_n_neighbors[2]
+        MI_range = Percentiles_for_n_neighbors[2]-Percentiles_for_n_neighbors[0]
+        sample_size = YY.size
+        del YY
+        RelMI_value = Percentiles_for_n_neighbors[1]/Entropyy
+        RelMI_lowerofrange = Percentiles_for_n_neighbors[0]/Entropyy
+        RelMI_upperofrange = Percentiles_for_n_neighbors[2]/Entropyy
+
+        print ('MI_value is ',MI_value)
+        print ('MI_lowerofrange is ',MI_lowerofrange)
+        print ('MI_upperofrange is ',MI_upperofrange)
+        print ('MI_range is ',MI_range)
+        print ('sample_size is ',sample_size)
+        print ('Entropyy is ',Entropyy)
+        print ('RelMI_value is ',RelMI_value)
+        print ('RelMI_lowerofrange is ',RelMI_lowerofrange)
+        print ('RelMI_upperofrange is ',RelMI_upperofrange)
 
         return MI_value, MI_lowerofrange, MI_upperofrange, MI_range, sample_size, Entropyy, RelMI_value, RelMI_lowerofrange, RelMI_upperofrange
     #end of def calc_MI_1ValueForMultiFeatures
@@ -1008,7 +989,7 @@ def main(
         RelMI_lowersofrange_list = []
         RelMI_uppersofrange_list = []
 
-        Inp_names_list, MI_values_list, MI_lowersofrange_list, MI_uppersofrange_list, MI_ranges_list, sample_sizes_list, Entropy_list, RelMI_values_list, RelMI_lowersofrange_list, RelMI_uppersofrange_list = calc_MI_info(Inp_name_key = DictofNumNamePairs_Channels[SelectCols[0]+1], Targ_name_key = TargetVariable, Inp_array_key = All_Inputs_Mat, Targ_array_key = All_Target_Array, If_discrete_features_key = False, Num_random_states_key = Num_random_states, n_neighbors_key = n_neighbors, Inp_names_list_key = Inp_names_list, MI_values_list_key = MI_values_list, MI_lowersofrange_list_key = MI_lowersofrange_list, MI_uppersofrange_list_key = MI_uppersofrange_list, MI_ranges_list_key = MI_ranges_list, sample_sizes_list_key = sample_sizes_list, Entropy_list_key = Entropy_list, RelMI_values_list_key = RelMI_values_list, RelMI_lowersofrange_list_key = RelMI_lowersofrange_list, RelMI_uppersofrange_list_key = RelMI_uppersofrange_list, MinSamplesForFracI_key = MinSamplesForFracI)
+        Inp_names_list, MI_values_list, MI_lowersofrange_list, MI_uppersofrange_list, MI_ranges_list, sample_sizes_list, Entropy_list, RelMI_values_list, RelMI_lowersofrange_list, RelMI_uppersofrange_list = calc_MI_info(Inp_name_key = DictofNumNamePairs_Channels[SelectCols[0]+1], Targ_name_key = TargetVariable, Inp_array_key = All_Inputs_Mat, Targ_array_key = All_Target_Array, If_discrete_features_key = False, Num_random_states_key = Num_random_states, n_neighbors_key = n_neighbors, Inp_names_list_key = Inp_names_list, MI_values_list_key = MI_values_list, MI_lowersofrange_list_key = MI_lowersofrange_list, MI_uppersofrange_list_key = MI_uppersofrange_list, MI_ranges_list_key = MI_ranges_list, sample_sizes_list_key = sample_sizes_list, Entropy_list_key = Entropy_list, RelMI_values_list_key = RelMI_values_list, RelMI_lowersofrange_list_key = RelMI_lowersofrange_list, RelMI_uppersofrange_list_key = RelMI_uppersofrange_list)
 
     #  print ('Inp_names_list is ',Inp_names_list)
         print ('MI_values_list is ',MI_values_list)
@@ -1036,7 +1017,7 @@ def main(
     #        print ('Inp_names_list is ', InpLayersCombination)
     #SY: End portion commented now and only partially moved further above
 
-        MI_value, MI_lowerofrange, MI_upperofrange, MI_range, sample_size, Entropyy, RelMI_value, RelMI_lowerofrange, RelMI_upperofrange = calc_MI_1ValueForMultiFeatures(Inp_array_key = All_Inputs_Mat, Targ_array_key = All_Target_Array, If_discrete_features_key = False, Num_random_states_key = Num_random_states, n_neighbors_key = n_neighbors, MinSamplesForFracI_key = MinSamplesForFracI)
+        MI_value, MI_lowerofrange, MI_upperofrange, MI_range, sample_size, Entropyy, RelMI_value, RelMI_lowerofrange, RelMI_upperofrange = calc_MI_1ValueForMultiFeatures(Inp_array_key = All_Inputs_Mat, Targ_array_key = All_Target_Array, If_discrete_features_key = False, Num_random_states_key = Num_random_states, n_neighbors_key = n_neighbors)
 
     #end of if SelectCols.size == 1
 

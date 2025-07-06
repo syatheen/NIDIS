@@ -541,8 +541,7 @@ def main(
                                         (('SPEI_pear_72_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_spei_pearson_72_20060103To20191231.npz'),
                                         (('tavg_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tavg_01_20060103To20191231.npz'),
                                         (('tmax_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tmax_01_20060103To20191231.npz'),
-#                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
-                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_MnthlyPrc_20060103To20191231.npz'),
+                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
                                         (('ESA_CCI',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_ESA_CCI_20060103To20191231.npz'),
                                         (('IMERG_01',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG1Month_20060103To20191231.npz'),
                                         (('IMERG_02',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG2Month_20060103To20191231.npz'),
@@ -559,8 +558,7 @@ def main(
                                           'TCI_BlendedVHP', 
                                           'VCI_BlendedVHP', 
                                           'VHI_BlendedVHP'), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_BlendedVHP_Corr2MonthlyPerc_20030930To20191231.npz'),
-#                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
-                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_MnthlyPrc_20060103To20191231.npz')     )
+                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
 
             Dict_of_Name_Filename_Pairs = { key : value for keys, value in NameKeys_FilenameValues for key in keys }
             

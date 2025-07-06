@@ -25,8 +25,6 @@ from nidis.model.Split_YYYYMMDD_To_Components_File \
     import Split_YYYYMMDD_To_Components
 from nidis.model.TimeSliceStrict_YYYYMMDDAndRefArrays_File \
     import TimeSliceStrict_YYYYMMDDAndRefArrays
-from nidis.model.ResetUniquePercentileValuesToMid_File \
-    import ResetUniquePercentileValuesToMid
 
 __all__ = [
     "Split_YYYYMMDD_To_Components",
@@ -47,7 +45,7 @@ def main(
     TargetVariable, # Choices are 'USDM', 'CPC_S' (for short-term), 'CPC_LE' (for long-term Eastern), and 'CPC_LW' (for long-term Western)  
     SpatialDomain, # Choices are 'CONUS'
     WhichArgForNumInpLayers, # Which argument has info about number of input layers
-    NumInpLayers, # 113 for all input channels (SY: but current temporary implementation is -15), 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
+    NumInpLayers, # 113 for all input channels, 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
     NumInpsForNDFracMI,
     WhichInpCombinForNDFracMI, # 0-start
     Which_1D_Pixel, # Which 1D number of nClimGrid pixels # 0-start
@@ -266,8 +264,6 @@ def main(
             InpLayerNumsCombination = [*range(16, 68), 96]
         elif NumInpLayers == -12: # Modeled+PrecipObs
             InpLayerNumsCombination = [*range(5, 68), 96]
-        elif NumInpLayers == -15: # All 113   # SY: This needs to be changed later
-            InpLayerNumsCombination = list(range(1,113+1))
         elif NumInpLayers == -50: # All NDMC Blend input channels
             InpLayerNumsCombination = [45, 49, 72, *range(74, 79), 81, 83, 87, 92]
         else:
@@ -541,8 +537,7 @@ def main(
                                         (('SPEI_pear_72_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_spei_pearson_72_20060103To20191231.npz'),
                                         (('tavg_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tavg_01_20060103To20191231.npz'),
                                         (('tmax_01_nCG',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_nCG_tmax_01_20060103To20191231.npz'),
-#                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
-                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_MnthlyPrc_20060103To20191231.npz'),
+                                        (('SNODAS',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_SNODAS_20060103To20191231.npz'),
                                         (('ESA_CCI',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_ESA_CCI_20060103To20191231.npz'),
                                         (('IMERG_01',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG1Month_20060103To20191231.npz'),
                                         (('IMERG_02',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_IMERG2Month_20060103To20191231.npz'),
@@ -559,8 +554,7 @@ def main(
                                           'TCI_BlendedVHP', 
                                           'VCI_BlendedVHP', 
                                           'VHI_BlendedVHP'), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_BlendedVHP_Corr2MonthlyPerc_20030930To20191231.npz'),
-#                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
-                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_MnthlyPrc_20060103To20191231.npz')     )
+                                        (('GlobSnow3',), f'{temp_path_npz_Soni}/PreppedTrainNEvalNpzs/ClimGrid1D/SingleUnified_GlobSnow3_20060103To20191231.npz')     )
 
             Dict_of_Name_Filename_Pairs = { key : value for keys, value in NameKeys_FilenameValues for key in keys }
             
@@ -828,10 +822,7 @@ def main(
                 if WhichSeason in ['P', 'U', 'F', 'W']:
                     ThisIndicator_PrcntlArray = ThisIndicator_PrcntlArray[WhichRows[0], :]
 
-                ThisIndicator_PrcntlArray = ResetUniquePercentileValuesToMid(ThisIndicator_PrcntlArray) # SY: added this for unique percentile values correction
-
                 ThisIndicator_PrcntlArray = np.reshape(ThisIndicator_PrcntlArray, (ThisIndicator_PrcntlArray.size, 1))
-
                 Inputs_Mat = np.concatenate( (Inputs_Mat, ThisIndicator_PrcntlArray ), axis = 1)
                 del ThisIndicator_PrcntlArray
 
