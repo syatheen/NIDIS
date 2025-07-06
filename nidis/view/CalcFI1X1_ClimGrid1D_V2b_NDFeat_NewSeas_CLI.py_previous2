@@ -33,7 +33,7 @@ def run_calc(parameters):
         TargetVariable=parameters[4],  # Choices are 'USDM', 'CPC_S' (for short-term), 'CPC_LE' (for long-term Eastern), and 'CPC_LW' (for long-term Western)  
         SpatialDomain=parameters[5],  # Choices are 'CONUS'
         WhichArgForNumInpLayers= 6,  # Which argument has info about number of input layers, goes to 6 since its indexing
-        NumInpLayers=int(round(float(parameters[6]))), #int(round(float(sys.argv[7]))), # 113 for all input channels (SY: temporarily using -15, this needs to be changed), 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
+        NumInpLayers=int(round(float(parameters[6]))), #int(round(float(sys.argv[7]))), # 113 for all input channels, 0 for All CPC Blend input channels, -10 for remotely-sensed, -11 for modeled, -12 for modeled+PrecipObs, -50 for all NDMC Blend input channels
         NumInpsForNDFracMI=parameters[7],
         WhichInpCombinForNDFracMI=int(round(float(parameters[8]))), #int(round(float(sys.argv[9]))), # 0-start
         Which_1D_Pixel=int(round(float(parameters[9]))), #int(round(float(sys.argv[10]))), # Which 1D number of nClimGrid pixels # 0-start
@@ -123,10 +123,6 @@ def run_training(
             elif indicator == -12:
                 NumInpLayers_Str = '-12'
                 NumInpsForNDFracMI_Str = '64'
-                WhichInpCombinForNDFracMI = 0   
-            elif indicator == -15:
-                NumInpLayers_Str = '-15'
-                NumInpsForNDFracMI_Str = '113'
                 WhichInpCombinForNDFracMI = 0   
 
             for config_id in range(init_task, end_task):
