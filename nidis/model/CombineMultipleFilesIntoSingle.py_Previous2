@@ -238,8 +238,6 @@ def ArrayToNetCDF(
             MultiIndicatorName = 'Remotely_sensed_multi-indicator'
         elif indicator == -12:
             MultiIndicatorName = 'Modeled_and_obsPrecip_multi-indicator'
-        elif indicator == -15:
-            MultiIndicatorName = 'All_113_multi-indicator'
 
         ncfile.title = \
             MultiIndicatorName + ' ' + \
